@@ -4,7 +4,7 @@
 - **Contract:**
   - In: —
   - Requires: imports `session.harpia`
-  - Delivers: `Take` (id, type, session_id, roles, host_start/end), `SyncEvent` (kind START/END, host_ts_ns, source FIRMWARE/MANUAL), `CameraTakeReport` (role, frames, fps_measured, fps_cv, gaps, flash_frames), `TakeReport` (ok, reports[])
+  - Delivers: `Take` (id, type, session_id, roles, host_start/end), `SyncEvent` (kind START/END, host_ts_ns, source MANUAL — the enum leaves room for a future hardware source), `CameraTakeReport` (role, frames, fps_measured, fps_cv, gaps, first_ts_ns, last_ts_ns), `TakeReport` (ok, reports[])
 - **Pre-work:** none
 - **Out of scope:** —
 - **Tests:** JSON round-trip
