@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message Crop {
+int32 ID_9741ae31683aa8e5c6ffec2922711a8d = 1;
+int32 x = 2;
+int32 y = 3;
+int32 width = 4;
+int32 height = 5;
+string STATUS_9741ae31683aa8e5c6ffec2922711a8d = 6;
+string ERROR_9741ae31683aa8e5c6ffec2922711a8d = 7;
+string ORIGINATOR = 8;
+}

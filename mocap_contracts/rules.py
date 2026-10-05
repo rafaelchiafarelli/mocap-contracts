@@ -145,7 +145,7 @@ def _span(msg: Message, what: str) -> Iterator[str]:
 def _camera_file_ready(msg: Message) -> Iterator[str]:
     if not re.fullmatch(r"[0-9a-f]{64}", msg.sha256):
         yield f"sha256 must be 64 lowercase hex characters, got {msg.sha256!r}"
-    if not msg.path or msg.path.startswith("/") or ".." in msg.path.split("/"):
+    if not _relative(msg.path):
         yield f"path must be relative to the take folder, got {msg.path!r}"
     yield from _span(msg, "size_bytes frames")
 
@@ -168,6 +168,69 @@ def _take_report(msg: Message) -> Iterator[str]:
         yield f"duplicate report roles {dup}"
 
 
+def _relative(path: str) -> bool:
+    return bool(path) and not path.startswith("/") and ".." not in path.split("/")
+
+
+def _extract_index(msg: Message) -> Iterator[str]:
+    if msg.fps <= 0:
+        yield f"fps must be positive, got {msg.fps}"
+    if msg.frames < 0:
+        yield f"frames can't be negative, got {msg.frames}"
+    paths = [msg.calibration_path] + [v.path for v in msg.synced_videos] + [
+        p.path for p in list(msg.points_3d) + list(msg.points_2d)
+    ]
+    if bad := [p for p in paths if not _relative(p)]:
+        yield f"paths must be relative to the session folder: {bad}"
+    for what, roles in (
+        ("synced video", [v.role for v in msg.synced_videos]),
+        ("alignment", [a.role for a in msg.alignment]),
+    ):
+        if dup := _duplicates(roles):
+            yield f"duplicate {what} roles {dup}"
+    if bad := [p.name for p in msg.points_3d if p.role]:
+        yield f"3D point sets can't name a role: {bad}"
+    if bad := [p.name for p in msg.points_2d if not p.role]:
+        yield f"2D point sets need a role: {bad}"
+
+
+def _point_set(msg: Message) -> Iterator[str]:
+    if msg.frames < 0:
+        yield f"frames can't be negative, got {msg.frames}"
+    if dup := _duplicates(list(msg.point_names)):
+        yield f"duplicate point names {dup}"
+
+
+def _camera_quality(msg: Message) -> Iterator[str]:
+    rates = ("detection_rate_body", "detection_rate_left_hand", "detection_rate_right_hand")
+    if bad := [f for f in rates if not 0 <= getattr(msg, f) <= 1]:
+        yield f"rates must be within 0..1: {bad}"
+    if bad := [f for f in ("jitter_px", "reproj_err_px") if msg.HasField(f) and getattr(msg, f) < 0]:
+        yield f"can't be negative: {bad}"
+
+
+def _bone_stability(msg: Message) -> Iterator[str]:
+    if msg.mean_length_m < 0 or msg.rsd < 0:
+        yield "mean_length_m and rsd can't be negative"
+
+
+def _camera_ablation(msg: Message) -> Iterator[str]:
+    if msg.mean_shift_m < 0:
+        yield f"mean_shift_m can't be negative, got {msg.mean_shift_m}"
+
+
+def _quality_report(msg: Message) -> Iterator[str]:
+    if msg.HasField("calibration_reproj_err_px") and msg.calibration_reproj_err_px < 0:
+        yield "calibration_reproj_err_px can't be negative"
+    for what, keys in (
+        ("camera", [c.role for c in msg.cameras]),
+        ("bone", [b.bone for b in msg.bones]),
+        ("ablation", [a.removed_role for a in msg.ablation]),
+    ):
+        if dup := _duplicates(keys):
+            yield f"duplicate {what} entries {dup}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _camera_config,
     "PreprocessSpec": _preprocess_spec,
@@ -182,6 +245,12 @@ RULES: dict[str, Rule] = {
     "CameraTakeReport": _camera_take_report,
     "FrameGap": _frame_gap,
     "TakeReport": _take_report,
+    "ExtractIndex": _extract_index,
+    "PointSet": _point_set,
+    "CameraQuality": _camera_quality,
+    "BoneStability": _bone_stability,
+    "CameraAblation": _camera_ablation,
+    "QualityReport": _quality_report,
 }
 
 

@@ -148,6 +148,37 @@ def take_closed(**kw):
     return mc.TakeClosed(**fields)
 
 
+def extract_index(**kw):
+    body = ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    fields = dict(
+        take_id="t003", calibration_take_id="t001",
+        calibration_path="calibration/calibration.toml",
+        fps=30.0, frames=1260, t0_ns=T0,
+        length_unit=_enum("LengthUnit", "LENGTH_UNIT_M"), up_axis=_enum("UpAxis", "UP_AXIS_Z"),
+        synced_videos=[mc.SyncedVideo(role="body_2", path="takes/t003/extract/synced/body_2.mp4")],
+        alignment=[mc.CameraAlignment(role="body_2", offset_ns=1_000_000, drift_ppm=-19.5,
+                                      frames_in=1258, frames_out=1260)],
+        points_3d=[mc.PointSet(name="body", role="", path="takes/t003/extract/body_3d.npy",
+                               frames=1260, point_names=body)],
+        points_2d=[mc.PointSet(name="body", role="body_2", path="takes/t003/extract/2d/body_2_body.npy",
+                               frames=1260, point_names=body)],
+    )
+    fields.update(kw)
+    return mc.ExtractIndex(**fields)
+
+
+def quality_report(**kw):
+    fields = dict(
+        take_id="t003", calibration_reproj_err_px=0.42,
+        cameras=[mc.CameraQuality(role="body_2", detection_rate_body=0.98, detection_rate_left_hand=0.71,
+                                  detection_rate_right_hand=0.69, jitter_px=1.8, reproj_err_px=2.3)],
+        bones=[mc.BoneStability(bone="upper_arm_left", mean_length_m=0.29, rsd=0.034)],
+        ablation=[mc.CameraAblation(removed_role="body_2", mean_shift_m=0.012, mean_rsd_change=0.006)],
+    )
+    fields.update(kw)
+    return mc.QualityReport(**fields)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -190,4 +221,12 @@ SAMPLES = {
     "TakeReport": take_report,
     "TakeClosed": take_closed,
     "CameraFileReady": file_ready,
+    "CameraAlignment": lambda: extract_index().alignment[0],
+    "SyncedVideo": lambda: extract_index().synced_videos[0],
+    "PointSet": lambda: extract_index().points_3d[0],
+    "ExtractIndex": extract_index,
+    "CameraQuality": lambda: quality_report().cameras[0],
+    "BoneStability": lambda: quality_report().bones[0],
+    "CameraAblation": lambda: quality_report().ablation[0],
+    "QualityReport": quality_report,
 }

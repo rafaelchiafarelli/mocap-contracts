@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Flag_9741ae31683aa8e5c6ffec2922711a8d.proto";
+message CameraControls {
+int32 ID_9741ae31683aa8e5c6ffec2922711a8d = 1;
+optional int64 exposure_ns = 2;
+optional int32 iso = 3;
+optional float gain_raw = 4;
+optional float focus_diopters = 5;
+optional float focus_raw = 6;
+optional int32 white_balance_k = 7;
+optional int32 power_line_hz = 8;
+optional Flag auto_exposure = 9;
+optional Flag auto_focus = 10;
+optional Flag auto_white_balance = 11;
+string STATUS_9741ae31683aa8e5c6ffec2922711a8d = 12;
+string ERROR_9741ae31683aa8e5c6ffec2922711a8d = 13;
+string ORIGINATOR = 14;
+}

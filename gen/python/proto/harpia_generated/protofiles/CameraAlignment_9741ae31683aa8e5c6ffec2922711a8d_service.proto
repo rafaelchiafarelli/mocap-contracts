@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/CameraAlignment_9741ae31683aa8e5c6ffec2922711a8d.proto";
+
+message CameraAlignment_Message {
+    CameraAlignment msg = 1;
+}
+//message for the standard functions 
+message CameraAlignment_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message CameraAlignment_ID {
+    int32 id = 1;
+}
+message CameraAlignment_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service CameraAlignment_Service {
+    rpc heartBeat(CameraAlignment_HeartBeat) returns (CameraAlignment_HeartBeat) {}
+    rpc streamSrc(CameraAlignment_Stream ) returns (stream CameraAlignment_Message) {}
+    rpc pullByID(CameraAlignment_ID) returns (CameraAlignment_Message) {}
+    rpc push(CameraAlignment_Message) returns (errorCode) {}
+}
