@@ -8,7 +8,8 @@ the input folder is staged under the Harpia repo (Docker mounts it at
 - the generated python/ project replaces gen/python/,
 - mocap_contracts/messages.py is rewritten to re-export every message and
   enum under its declared name, so consumers never see the <hash> in
-  Harpia's module names.
+  Harpia's module names, plus the declared and required fields per message
+  read from schema/ (the JSON helpers need both).
 
 Stdlib only. Usage: python3 tools/harpia_gen.py [--into DIR]
 (--into writes the three outputs under DIR instead of the repo; the
@@ -71,7 +72,49 @@ def top_level_names(proto: Path) -> list[str]:
     return names
 
 
-def messages_module(python_dir: Path) -> str:
+def schema_fields(schema_dir: Path) -> dict[str, tuple[list[str], list[str]]]:
+    """Declared and required field names per message, from our .harpia sources.
+
+    `required` is lost in the generated proto3 code, and Harpia adds its own
+    bookkeeping fields to every message, so this is the only place that knows
+    which fields a message really declares. It covers the documented grammar
+    (USAGE §3): nested messages, `} table;` endings, single-line enums.
+    """
+    fields: dict[str, tuple[list[str], list[str]]] = {}
+    for path in sorted(schema_dir.rglob("*.harpia")):
+        text = re.sub(r"//[^\n]*", "", path.read_text())
+        tokens = re.sub(r"([{};])", r" \1 ", text).split()
+        stack: list[str | None] = []  # message name, or None inside an enum
+        stmt: list[str] = []
+        for tok in tokens:
+            if tok == "{":
+                name = None
+                if "message" in stmt:
+                    name = stmt[stmt.index("message") + 1]
+                    if name in fields:
+                        raise SystemExit(f"{path.name}: message {name} declared twice")
+                    fields[name] = ([], [])
+                elif "enum" not in stmt:
+                    raise SystemExit(f"{path.name}: unexpected block {' '.join(stmt)}")
+                stack.append(name)
+                stmt = []
+            elif tok == "}":
+                stack.pop()
+                stmt = []
+            elif tok == ";":
+                current = stack[-1] if stack else None
+                if current is not None and len(stmt) >= 2:  # `[modifiers] type name;`
+                    declared, required = fields[current]
+                    declared.append(stmt[-1])
+                    if "required" in stmt:
+                        required.append(stmt[-1])
+                stmt = []
+            else:
+                stmt.append(tok)
+    return fields
+
+
+def messages_module(python_dir: Path, schema_dir: Path) -> str:
     protos = python_dir / "proto" / "harpia_generated" / "protofiles"
     lines = [
         '"""Every contract message and enum, under its declared name.',
@@ -95,6 +138,17 @@ def messages_module(python_dir: Path) -> str:
             exported += names
     if not exported:
         raise SystemExit("no messages found in the generated .proto files")
+    fields = schema_fields(schema_dir)
+    missing = [n for n in fields if n not in exported]
+    if missing:
+        raise SystemExit(f"declared in schema/ but not generated: {missing}")
+    lines += ["", "# Field names as declared in schema/ (Harpia's bookkeeping fields excluded)."]
+    lines.append("DECLARED_FIELDS: dict[str, tuple[str, ...]] = {")
+    lines += [f"    {n!r}: {tuple(d)!r}," for n, (d, _) in sorted(fields.items())]
+    lines += ["}", "", "# Fields declared `required` (proto3 doesn't keep it)."]
+    lines.append("REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {")
+    lines += [f"    {n!r}: {tuple(r)!r}," for n, (_, r) in sorted(fields.items())]
+    lines += ["}"]
     lines += ["", "__all__ = ["] + [f'    "{n}",' for n in sorted(exported)] + ["]", ""]
     return "\n".join(lines)
 
@@ -113,7 +167,7 @@ def write_outputs(out: Path, into: Path) -> None:
     shutil.copytree(registry_src, registry)
 
     (into / MESSAGES_PY).parent.mkdir(parents=True, exist_ok=True)
-    (into / MESSAGES_PY).write_text(messages_module(out / "python"))
+    (into / MESSAGES_PY).write_text(messages_module(out / "python", SCHEMA))
 
 
 def main() -> None:

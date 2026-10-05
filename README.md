@@ -22,7 +22,13 @@ package and the folder layout.
 ```python
 import mocap_contracts
 msg = mocap_contracts.contracts_placeholder(note="hi")
+text = mocap_contracts.to_json(msg)          # declared fields only, defaults included
+back = mocap_contracts.from_json(mocap_contracts.contracts_placeholder, text)
 ```
+
+`from_json` raises `ContractError` on invalid JSON, on any key not declared in
+`schema/` (Harpia's own `ID_/STATUS_/ERROR_<hash>` and `ORIGINATOR` fields
+included), and on a missing `required` field at any nesting level.
 
 Import from `mocap_contracts` only, never from `harpia_generated`. Its module
 names carry a hash of the root `.harpia` and change with it.
