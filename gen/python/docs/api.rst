@@ -13,16 +13,16 @@ harpia_generated.capability
 .. automodule:: harpia_generated.capability
    :members:
 
-harpia_generated.capability.capabilities_fb15c485dc8666ed616f54252a0db38b_grpc
+harpia_generated.capability.capabilities_5f4d7690e05d3b2a18b01aae2e150601_grpc
 ------------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_fb15c485dc8666ed616f54252a0db38b_grpc
+.. automodule:: harpia_generated.capability.capabilities_5f4d7690e05d3b2a18b01aae2e150601_grpc
    :members:
 
-harpia_generated.capability.capabilities_fb15c485dc8666ed616f54252a0db38b_zmq
+harpia_generated.capability.capabilities_5f4d7690e05d3b2a18b01aae2e150601_zmq
 -----------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_fb15c485dc8666ed616f54252a0db38b_zmq
+.. automodule:: harpia_generated.capability.capabilities_5f4d7690e05d3b2a18b01aae2e150601_zmq
    :members:
 
 harpia_generated.db
