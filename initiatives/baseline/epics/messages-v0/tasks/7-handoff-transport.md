@@ -1,8 +1,8 @@
-## 6. Hand-off event transport (Harpia ZeroMQ)
+## 7. Hand-off event transport (Harpia ZeroMQ)
 
-- **Depends on:** 2; bootstrap/2
+- **Depends on:** 3; bootstrap/2
 - **Contract:**
-  - In: `TakeClosed`, `CameraFileReady` (task 2)
+  - In: `TakeClosed`, `CameraFileReady` (task 3)
   - Requires:
     - Harpia submodule bumped from `V4` to **`V5`**. V5 is V4 plus the docs for ZeroMQ in Python and Java (USAGE §7.6, §7.7, §7.9, §11); the generated code is the same, and `make check-gen` proves it.
     - Both messages declared **`push pull`**, without `critical` (Rafael, 2026-10-05). The recorder's sender (PUSH) connects to the processing PC's receiver (PULL, binds), and ZeroMQ queues messages while the receiver is down. Anything lost across a restart is recovered from the sidecars (`mocap-extract` watch rescans them). `critical` would only be a bounded in-memory queue that drops the oldest message on overflow, and Java doesn't support it.
