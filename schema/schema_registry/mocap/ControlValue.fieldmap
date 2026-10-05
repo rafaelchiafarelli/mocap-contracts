@@ -1,0 +1,10 @@
+ID:1
+int_value:2
+float_value:3
+flag_value:4
+text_value:5
+int_values:6
+float_values:7
+STATUS:8
+ERROR:9
+ORIGINATOR:10

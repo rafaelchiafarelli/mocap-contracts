@@ -1,0 +1,81 @@
+// Camera controls owned by mocap-capture for setup and also produced by mocap-camera-app
+// Every control a camera offers can be listed and set from the recorder
+// Keys keep their native names from V4L2 or Camera2 and are never translated
+import "common.harpia";
+
+enum ControlBackend {
+    CONTROL_BACKEND_UNSET = 0;
+    CONTROL_BACKEND_V4L2;
+    CONTROL_BACKEND_CAMERA2;
+}
+
+enum ControlValueType {
+    CONTROL_VALUE_TYPE_UNSET = 0;
+    CONTROL_VALUE_TYPE_INT;
+    CONTROL_VALUE_TYPE_FLOAT;
+    CONTROL_VALUE_TYPE_FLAG;
+    CONTROL_VALUE_TYPE_MENU;
+    CONTROL_VALUE_TYPE_STRING;
+    CONTROL_VALUE_TYPE_INT_LIST;
+    CONTROL_VALUE_TYPE_FLOAT_LIST;
+}
+
+enum ControlStatus {
+    CONTROL_STATUS_UNSET = 0;
+    CONTROL_STATUS_APPLIED;
+    CONTROL_STATUS_CLAMPED;
+    CONTROL_STATUS_UNSUPPORTED;
+    CONTROL_STATUS_READ_ONLY;
+    CONTROL_STATUS_FAILED;
+}
+
+// One typed value and only the field matching the value type is set
+// Menu values use int_value with the native number
+// Lists carry ranges and vectors such as an fps range or white balance gains
+message ControlValue {
+    optional int64 int_value;
+    optional float float_value;
+    optional Flag flag_value;
+    optional string text_value;
+    repeteable int64 int_values;
+    repeteable float float_values;
+};
+
+// One entry of a menu control as the device names it
+message ControlMenuOption {
+    required int64 value;
+    required string name;
+};
+
+// What a camera offers for one control
+// Limits are absent when the device does not report them and are never guessed
+// Unit is empty when the backend does not declare one
+message ControlCapability {
+    required ControlBackend backend;
+    required string key;
+    required ControlValueType value_type;
+    ControlValue min_value;
+    ControlValue max_value;
+    ControlValue step;
+    repeteable ControlMenuOption options;
+    ControlValue default_value;
+    ControlValue current_value;
+    required Flag read_only;
+    required string unit;
+};
+
+// A requested value for one control
+message ControlSetting {
+    required string key;
+    required ControlValue value;
+};
+
+// What happened to one requested setting
+// applied is read back from the device and is absent when nothing was applied
+message ControlResult {
+    required string key;
+    required ControlValue requested;
+    ControlValue applied;
+    required ControlStatus status;
+    required string note;
+};

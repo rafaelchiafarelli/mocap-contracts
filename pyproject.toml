@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mocap-contracts"
+version = "0.1.0"
+description = "Data contracts shared by the Mocap Studio repositories"
+readme = "README.md"
+requires-python = ">=3.12"
+# Copied from the generated gen/python/pyproject.toml (tests/test_generated_deps.py
+# keeps them in sync). MediaPipe needs protobuf 4.25.x, which this range allows.
+dependencies = [
+    "protobuf>=4.21.12,<5",
+    "grpcio>=1.51.1,<2",
+]
+
+[project.optional-dependencies]
+# Copied from the generated gen/python/pyproject.toml, like the dependencies above.
+# Needed by mocap_contracts.transport (the hand-off events over ZeroMQ).
+zmq = ["pyzmq>=24.0.1,<27"]
+test = ["pytest>=8", "pyzmq>=24.0.1,<27"]
+
+# Harpia's generated packages ship top-level and unmoved: their own imports
+# are absolute (harpia_generated.*, harpia_runtime.*).
+[tool.hatch.build.targets.wheel]
+packages = [
+    "mocap_contracts",
+    "gen/python/harpia_generated",
+    "gen/python/harpia_runtime",
+]
+
+[tool.hatch.build]
+dev-mode-dirs = [".", "gen/python"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

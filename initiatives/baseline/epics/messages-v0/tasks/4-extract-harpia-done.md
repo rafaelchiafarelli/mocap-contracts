@@ -1,0 +1,24 @@
+## 4. extract.harpia (owner: mocap-extract/P3)
+
+- **Depends on:** 3
+- **Contract:**
+  - In: —
+  - Requires: imports `capture.harpia`; lengths in metres everywhere; every path in `ExtractIndex` relative to the **session** folder (so a take can point at the session's calibration); every enum's zero is `*_UNSET`
+  - Delivers:
+    - `CameraAlignment` (role, offset_ns, drift_ppm, frames_in, frames_out): what alignment did to each camera
+    - `PointSet` (name, role — empty for 3D sets, path, frames, point_names[]): one array file of tracked points (FreeMoCap's output), with the point names in array order. `ExtractIndex` doesn't fix the array file format, which mocap-extract writes and documents.
+    - `ExtractIndex` (take_id, calibration_take_id, calibration_path, fps, frames, t0_ns, length_unit, up_axis, synced_videos[] as role + path, alignment[], points_3d[], points_2d[]): `index.json`, everything mocap-adapt needs. Frame 0 is at t0_ns on the recorder clock.
+    - enums `LengthUnit {M}` and `UpAxis {Z}`: declared values rather than assumed ones. Only metres and Z-up exist today, and a reader refuses anything else.
+    - `CameraQuality` (role, detection_rate_body, detection_rate_left_hand, detection_rate_right_hand, optional jitter_px, optional reproj_err_px): per camera; the optional fields are filled by later quality tasks
+    - `BoneStability` (bone, mean_length_m, rsd): rsd is the relative standard deviation of the bone length over the take
+    - `CameraAblation` (removed_role, mean_shift_m, mean_rsd_change): what happens to the 3D without one camera
+    - `QualityReport` (take_id, optional calibration_reproj_err_px, cameras[], bones[], ablation[]): `quality.json`
+  - Rules:
+    - rates are within 0..1; errors, rsd and lengths are not negative; fps is positive
+    - roles are unique in alignment, synced videos, cameras and ablation
+    - every 2D set names a role and every 3D set doesn't
+    - paths are relative with no `..`
+- **Decisions (Claude, for Rafael's review, 2026-10-05):** metres in the contract (FreeMoCap's mm are converted in mocap-extract); paths relative to the session folder; the array file format is left to mocap-extract (the index says where and what, not how it's encoded); `LengthUnit`/`UpAxis` are enums with one value each, so the files state their frame of reference.
+- **Pre-work:** none
+- **Out of scope:** the array file format; computing anything
+- **Tests:** JSON round-trip; each rule
