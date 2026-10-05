@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/BodyLength_af98f0786af1eb31da6209cc006a6a92.proto";
+
+message BodyLength_Message {
+    BodyLength msg = 1;
+}
+//message for the standard functions 
+message BodyLength_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message BodyLength_ID {
+    int32 id = 1;
+}
+message BodyLength_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service BodyLength_Service {
+    rpc heartBeat(BodyLength_HeartBeat) returns (BodyLength_HeartBeat) {}
+    rpc streamSrc(BodyLength_Stream ) returns (stream BodyLength_Message) {}
+    rpc pullByID(BodyLength_ID) returns (BodyLength_Message) {}
+    rpc push(BodyLength_Message) returns (errorCode) {}
+}

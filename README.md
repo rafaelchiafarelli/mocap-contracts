@@ -15,6 +15,7 @@ package and the folder layout.
 | `schema/schema_registry/` | frozen wire numbers, written by Harpia | **never delete**; commit |
 | `gen/python/` | Harpia's generated Python project | no, regenerate |
 | `mocap_contracts/messages.py` | re-exports every message under its declared name | no, regenerate |
+| `mocap_contracts/rules.py` | per-message rules `required` can't express (e.g. a STREAM camera needs its host and four ports) | yes, with the message's task |
 | `third_party/harpia/` | Harpia, pinned to `V4` (black box) | no |
 
 ## Use
@@ -28,7 +29,8 @@ back = mocap_contracts.from_json(mocap_contracts.ControlMenuOption, text)
 
 `from_json` raises `ContractError` on invalid JSON, on any key not declared in
 `schema/` (Harpia's own `ID_/STATUS_/ERROR_<hash>` and `ORIGINATOR` fields
-included), and on a missing `required` field at any nesting level. A `required` enum
+included), on a missing `required` field at any nesting level, and on any broken
+per-message rule (`mocap_contracts/rules.py`), with the path of the problem. A `required` enum
 holding its `*_UNSET` zero value counts as missing, and `to_json` refuses to
 write what `from_json` would refuse to read.
 
