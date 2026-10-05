@@ -3,8 +3,31 @@
 - **Depends on:** 1; bootstrap
 - **Contract:**
   - In: —
-  - Requires: enum `CameraSource {UVC, STREAM}` (STREAM = a device that streams frames live to the recorder with each frame's capture time embedded, like the `camera-stream-eval` app; there is no internal-recording / `adb` import source); enum `TakeType {CALIBRATION, PERFORMANCE}`
-  - Delivers: `Session` (id, date, actor), `Actor` (height, optional lengths), `CameraConfig` (role, source, device_hint — UVC only, stream_host + stream_port — STREAM only, width, height, fps, notes, preprocess, controls: the `ControlSetting`s declared for the role in `config.yaml`, any control the device offers), `PreprocessSpec` (optional crop x/y/w/h in source pixels, output width/height; declared per role, never inferred), `CalibrationBoard` (squares_x, squares_y, square_length_mm, marker_length_mm, aruco_dictionary, measured_square_length_mm — all required, no defaults)
-- **Pre-work:** Read the comment restrictions of the `.harpia` lexer in Harpia's documented interface (`USAGE.md` §3).
-- **Out of scope:** —
-- **Tests:** JSON round-trip; required fields (a board with any field missing is rejected); a STREAM camera without host/port is rejected
+  - Requires:
+    - Harpia scalars only: `int`, `int64`, `float`, `string`, plus `Flag`; the unit in every numeric field's name
+    - every enum's zero is `*_UNSET`
+    - rules that `required` can't express live in `mocap_contracts.rules` and run in `to_json`/`from_json`
+  - Delivers:
+    - enum `CameraSource {UNSET, UVC, STREAM}`. STREAM is a device streaming live to the recorder (stream protocol v1). There's no internal-recording or `adb` source.
+    - enum `TakeType {UNSET, CALIBRATION, PERFORMANCE}`
+    - `Session`: id, date (ISO 8601 `YYYY-MM-DD`), actors[], characters[], casting[]
+    - `Actor`: id, name, height_m, optional `BodyLength`s
+    - `BodyLength`: segment (string), length_m
+    - `Character`: id, name
+    - `Casting`: actor_id, character_id
+      - **many-to-many:** one character can be played by several actors and one actor can play several characters (Rafael, 2026-10-05)
+      - every id it uses must exist in the session
+    - `CameraConfig`: role, source, width, height (px), fps (float), notes, optional `PreprocessSpec` (absent = no preprocessing), controls (`ControlSetting`s, any control the device offers)
+      - UVC only: device_hint
+      - STREAM only: stream_host, video_port (HTTP `/h264.raw`), sync_port (UDP clock sync), control_port (ZeroMQ requests, the app binds), stats_port (ZeroMQ stats, the app publishes)
+      - all four ports explicit (Rafael, 2026-10-05); fields of the other source must be empty
+    - `PreprocessSpec`: optional `Crop` (x, y, width, height in source px), output_width, output_height
+    - `CalibrationBoard`: squares_x, squares_y, square_length_mm, marker_length_mm, aruco_dictionary (OpenCV's name, e.g. `DICT_4X4_250`), measured_square_length_mm. All required, no defaults.
+- **Pre-work:** done. The lexer restrictions are in this repo's README.
+- **Out of scope:** which characters appear in which take (`Take`, task 3); character profiles (phase 2)
+- **Tests:**
+  - JSON round-trip
+  - a board with any field missing is rejected
+  - a STREAM camera without host or any port is rejected, and so is a UVC camera without device_hint or with STREAM fields
+  - a casting that names an unknown actor or character is rejected
+  - duplicate actor or character ids are rejected (duplicate camera roles are checked where the camera list lives: `config.yaml`, mocap-capture bootstrap/1)
