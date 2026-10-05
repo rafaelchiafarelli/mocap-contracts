@@ -1,0 +1,8 @@
+// Shared primitives with no single owner
+// Harpia has no boolean type so on and off values use Flag
+// FLAG_UNSET is the zero value so a field nobody set never reads as off
+enum Flag {
+    FLAG_UNSET = 0;
+    FLAG_OFF;
+    FLAG_ON;
+}

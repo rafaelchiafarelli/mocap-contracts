@@ -1,0 +1,15 @@
+ID:1
+backend:2
+key:3
+value_type:4
+min_value:5
+max_value:6
+step:7
+options:8
+default_value:9
+current_value:10
+read_only:11
+unit:12
+STATUS:13
+ERROR:14
+ORIGINATOR:15
