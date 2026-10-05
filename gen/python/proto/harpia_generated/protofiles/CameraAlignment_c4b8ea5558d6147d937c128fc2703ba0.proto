@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message CameraAlignment {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string role = 2;
+int64 offset_ns = 3;
+float drift_ppm = 4;
+int64 frames_in = 5;
+int64 frames_out = 6;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 7;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 8;
+string ORIGINATOR = 9;
+}
