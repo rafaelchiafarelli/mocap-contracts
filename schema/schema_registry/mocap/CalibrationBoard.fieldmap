@@ -1,0 +1,10 @@
+ID:1
+squares_x:2
+squares_y:3
+square_length_mm:4
+marker_length_mm:5
+aruco_dictionary:6
+measured_square_length_mm:7
+STATUS:8
+ERROR:9
+ORIGINATOR:10

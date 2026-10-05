@@ -1,0 +1,9 @@
+ID:1
+role:2
+offset_ns:3
+drift_ppm:4
+frames_in:5
+frames_out:6
+STATUS:7
+ERROR:8
+ORIGINATOR:9

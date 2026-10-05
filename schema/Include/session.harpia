@@ -1,0 +1,95 @@
+// Session and studio setup owned by mocap-capture for P1
+// Units are in the field names and every enum starts with its UNSET value
+// Rules that required cannot express live in mocap_contracts rules
+import "camera_control.harpia";
+
+enum CameraSource {
+    CAMERA_SOURCE_UNSET = 0;
+    CAMERA_SOURCE_UVC;
+    CAMERA_SOURCE_STREAM;
+}
+
+enum TakeType {
+    TAKE_TYPE_UNSET = 0;
+    TAKE_TYPE_CALIBRATION;
+    TAKE_TYPE_PERFORMANCE;
+}
+
+// One measured body segment such as upper_arm_left
+message BodyLength {
+    required string segment;
+    required float length_m;
+};
+
+// A person who performs
+message Actor {
+    required string id;
+    required string name;
+    required float height_m;
+    repeteable BodyLength lengths;
+};
+
+// A role in the story that one or more actors can play
+message Character {
+    required string id;
+    required string name;
+};
+
+// One actor playing one character and the relation is many to many
+message Casting {
+    required string actor_id;
+    required string character_id;
+};
+
+// A recording session and its date as YYYY-MM-DD
+message Session {
+    required string id;
+    required string date;
+    repeteable Actor actors;
+    repeteable Character characters;
+    repeteable Casting casting;
+};
+
+// A crop rectangle in source pixels
+message Crop {
+    required int x;
+    required int y;
+    required int width;
+    required int height;
+};
+
+// Preprocessing for one camera on the recorder and absent means none
+message PreprocessSpec {
+    Crop crop;
+    required int output_width;
+    required int output_height;
+};
+
+// One camera as declared in config yaml
+// device_hint is set for UVC only and the host and ports for STREAM only
+message CameraConfig {
+    required string role;
+    required CameraSource source;
+    required int width;
+    required int height;
+    required float fps;
+    required string notes;
+    PreprocessSpec preprocess;
+    repeteable ControlSetting controls;
+    optional string device_hint;
+    optional string stream_host;
+    optional int video_port;
+    optional int sync_port;
+    optional int control_port;
+    optional int stats_port;
+};
+
+// The ChArUco board as declared and measured with no default values anywhere
+message CalibrationBoard {
+    required int squares_x;
+    required int squares_y;
+    required float square_length_mm;
+    required float marker_length_mm;
+    required string aruco_dictionary;
+    required float measured_square_length_mm;
+};

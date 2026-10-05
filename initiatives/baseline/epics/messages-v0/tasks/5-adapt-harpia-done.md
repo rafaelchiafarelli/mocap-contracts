@@ -1,0 +1,35 @@
+## 5. adapt.harpia (owner: mocap-adapt/P4)
+
+- **Depends on:** 4
+- **Contract:**
+  - In: —
+  - Requires:
+    - joints named as in FreeMoCap
+    - metres, Z up, both declared in the file (`LengthUnit`, `UpAxis`)
+    - timestamps in ns on the recorder clock
+    - every enum's zero is `*_UNSET`
+  - Delivers:
+    - `MocapTakeHeader`: take_id, session_id, actor_id, character_id, fps, frame_count, t0_ns, length_unit, up_axis, body_joints[], left_hand_joints[], right_hand_joints[], face_blendshape_names[]
+      - one `MocapTake` per performer, identified by the casting pair it belongs to
+    - `MocapFrame`: frame_id, timestamp_ns, body_xyz[], left_hand_xyz[], right_hand_xyz[], body_missing[], left_hand_missing[], right_hand_missing[], face_blendshapes[], gaze[], optional emotion, left_foot_contact, right_foot_contact
+      - each `*_xyz` holds x,y,z for every joint of its group, in the header's order
+      - `*_missing` lists the joints with no data in that frame (their xyz is 0 and must be ignored)
+    - `MocapTake`: header + frames[]
+  - Rules:
+    - every xyz list is exactly 3 × its joint count
+    - missing indices are in range and unique
+    - face_blendshapes is empty or one value per name
+    - gaze is empty or 3 values
+    - frame ids and timestamps strictly increase
+    - frame_count matches the frames
+    - fps is positive
+    - joint names are unique per group
+    - the foot contacts are never UNSET
+- **Decisions (Claude, for Rafael's review, 2026-10-05):**
+  - flat per-frame xyz lists instead of one object per joint, since the JSON would be about 10× larger otherwise (a 2-minute take would be ~30 MB)
+  - missing joints listed explicitly, never encoded as a fake position
+  - one `MocapTake` per performer, keyed by actor_id + character_id: FreeMoCap tracks one person per take in the baseline, and several performers later means several files
+  - face, gaze and emotion exist but stay empty in the baseline (phase 2)
+- **Pre-work:** none
+- **Out of scope:** filling in face/gaze/emotion (phase 2); the joint list itself, which comes from FreeMoCap at run time and is written into each header
+- **Tests:** JSON round-trip; a frame with empty face fields is valid; each rule
