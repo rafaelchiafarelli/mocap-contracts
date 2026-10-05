@@ -3,13 +3,39 @@
 - **Depends on:** 2
 - **Contract:**
   - In: —
-  - Requires: imports `session.harpia` and `camera_control.harpia`
+  - Requires:
+    - imports `session.harpia` and `camera_control.harpia`
+    - timestamps are `int64` ns on the recorder's host clock
+    - every enum's zero is `*_UNSET`
+    - rules `required` can't express go in `mocap_contracts.rules`
   - Delivers:
-    - `Take` (id, type, session_id, roles, host_start/end, board: `CalibrationBoard` — required on CALIBRATION takes, per role: `control_results` (every `ControlResult` from applying the role's controls, i.e. the full native record) and `applied_controls` (the normalized `CameraControls` summary), applied_preprocess per role)
-    - `CameraControls`: a normalized summary for comparing cameras in the study (exposure in ns, gain/ISO, focus, white balance in K, power_line_hz, auto_* flags), filled from the read-back `ControlResult`s where a native control maps onto it, empty where none does. Never the requested values.
-    - `SyncEvent` (kind START/END, host_ts_ns, source MANUAL — the enum leaves room for a future hardware source)
-    - `CameraTakeReport` (role, frames, fps_measured, fps_cv, gaps, first_ts_ns, last_ts_ns), `TakeReport` (ok, reports[])
-    - **Hand-off events** (recorder → processing PC): `TakeClosed` (take_id, roles expected, START/END `SyncEvent`s), sent at END; `CameraFileReady` (take_id, role, kind VIDEO|TIMESTAMPS, relative path, size_bytes, sha256, frames, first/last host_ts_ns), sent once per file **after** that file has been copied to the processing PC. So the event means "arrived", not "exists on the recorder".
+    - enums: `SyncKind {START, END}`, `SyncSource {MANUAL}` (room for a future hardware source), `FileKind {VIDEO, TIMESTAMPS}`
+    - `SyncEvent`: kind, host_ts_ns, source
+    - `Take`: id, session_id, type, start (`SyncEvent`, START), optional end (`SyncEvent`, END, absent while recording), casting, board, cameras
+      - casting: the session's (actor, character) pairs performing in this take, empty for calibration (Rafael, 2026-10-05). That it's a subset of the session casting is checked by mocap-capture, which has both files.
+      - board: `CalibrationBoard`, required on CALIBRATION takes
+      - cameras: a `TakeCamera` per role. The take describes itself, because the processing PC never sees `config.yaml` (Rafael, 2026-10-05).
+    - `TakeCamera`: config (the `CameraConfig` as used), control_results (every `ControlResult`, the full native record), optional applied_controls (`CameraControls`), optional applied_preprocess (`PreprocessSpec`, absent = none)
+    - `CameraControls`: a normalized summary for comparing cameras in the study, every field optional and filled only from read-back values where a native control maps onto it, never from requested ones
+      - exposure_ns, iso (Camera2 sensitivity), gain_raw (V4L2 gain, unitless)
+      - focus_diopters (Camera2), focus_raw (V4L2, unitless)
+      - white_balance_k, power_line_hz
+      - auto_exposure, auto_focus, auto_white_balance (`Flag`)
+    - `FrameGap`: after_frame, duration_ns
+    - `CameraTakeReport`: role, frames, fps_measured, fps_cv, gaps (every `FrameGap` longer than 1.5 frame periods; Rafael, 2026-10-05), first_ts_ns, last_ts_ns
+    - `TakeReport`: take_id, ok, problems (strings), reports
+    - **Hand-off events** (recorder → processing PC):
+      - `TakeClosed`: take_id, roles, start, end. Sent at END.
+      - `CameraFileReady`: take_id, role, kind, path (relative to the take folder), size_bytes, sha256 (64 lowercase hex), frames, first_ts_ns, last_ts_ns. Sent once per file **after** that file has been copied to the processing PC, so the event means "arrived", not "exists on the recorder".
+  - Rules:
+    - a take's start is a START event, its end an END event no earlier than the start
+    - CALIBRATION needs a board
+    - camera roles in a take are unique
+    - `TakeClosed` roles are unique and it carries both events
+    - sha256 is 64 hex
+    - sizes and frame counts are not negative
+    - last_ts_ns ≥ first_ts_ns
+    - a report with problems can't be ok
 - **Pre-work:** none
-- **Out of scope:** the transport that carries the hand-off events (task 6)
-- **Tests:** JSON round-trip; a `CameraFileReady` with any field missing is rejected
+- **Out of scope:** the transport that carries the hand-off events (task 7); checking the take casting against the session (mocap-capture)
+- **Tests:** JSON round-trip; a `CameraFileReady` with any field missing is rejected; each rule above
