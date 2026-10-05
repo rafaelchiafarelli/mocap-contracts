@@ -16,6 +16,7 @@ from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 
 from mocap_contracts.errors import ContractError
+from mocap_contracts.layout import ID_PATTERN
 
 Rule = Callable[[Message], Iterator[str]]
 
@@ -272,15 +273,28 @@ def _mocap_take(msg: Message) -> Iterator[str]:
         prev = frame
 
 
+def _ids(msg: Message, fields: str) -> Iterator[str]:
+    bad = [f"{f}={getattr(msg, f)!r}" for f in fields.split() if not ID_PATTERN.fullmatch(getattr(msg, f))]
+    if bad:
+        yield f"ids must be letters, digits, '-' or '_' (max 64), got {bad}"
+
+
+def _chain(*rules: Rule) -> Rule:
+    def run(msg: Message) -> Iterator[str]:
+        for rule in rules:
+            yield from rule(msg)
+    return run
+
+
 RULES: dict[str, Rule] = {
-    "CameraConfig": _camera_config,
+    "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
     "Crop": _crop,
     "CalibrationBoard": _calibration_board,
     "Actor": _actor,
     "BodyLength": _body_length,
-    "Session": _session,
-    "Take": _take,
+    "Session": _chain(lambda m: _ids(m, "id"), _session),
+    "Take": _chain(lambda m: _ids(m, "id session_id"), _take),
     "TakeClosed": _take_closed,
     "CameraFileReady": _camera_file_ready,
     "CameraTakeReport": _camera_take_report,
