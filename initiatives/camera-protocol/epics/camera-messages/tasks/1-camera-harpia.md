@@ -1,10 +1,19 @@
 ## 1. camera.harpia (owner: mocap-camera-app)
 
-- **Depends on:** baseline messages-v0/1, /2 (imports `session.harpia`, `capture.harpia` for `CameraControls`)
+- **Depends on:** baseline messages-v0/1, /2, /3 (imports `camera_control.harpia`, `session.harpia`, `capture.harpia`)
 - **Contract:**
   - In: —
-  - Requires: the app's control surface as it exists in the eval app (`/control` keys: width, height, fps, mode, bitrate, quality, facing) plus manual controls (exposure time, ISO, focus distance, white balance, AE/AF lock); every unit declared (ns, mm, K)
-  - Delivers: `DeviceInfo` (model, serial, Android version, Camera2 hardware level, cameras with sizes, fps ranges, sensor orientation, H.264 encoders), `CameraStats` (per-second: camera and encoder fps, dropped frames, CPU, battery temperature, thermal status), `ControlRequest` (request_id, device serial, requested stream settings + requested `CameraControls`), `ControlReply` (the same request_id and device serial, `CameraControls` actually applied, unsupported controls listed by name — never silently ignored). The id and serial are needed because every app's reply arrives on the recorder's one shared receiver (task 3).
+  - Requires:
+    - **Every** Camera2 control the device offers is exposed: the app lists them and the recorder can set any of them (Rafael, 2026-10-05), using the shared vocabulary (`ControlCapability`, `ControlSetting`, `ControlResult`) rather than a fixed list
+    - stream settings (camera id, width, height, fps, bitrate, H.264 profile/I-frame interval) kept separate from camera controls
+    - every unit declared
+  - Delivers:
+    - `DeviceInfo`: model, serial, Android version, and per camera its id, facing, Camera2 hardware level, sensor orientation, sizes, fps ranges, H.264 encoders and **every `ControlCapability`**
+    - `CameraStats`, per second: camera and encoder fps, dropped frames, CPU, battery temperature, thermal status
+    - `ControlRequest`: request_id, device serial, optional stream settings, `ControlSetting`s, and a flag that asks for `DeviceInfo` in the reply
+    - `ControlReply`: the same request_id and device serial, a `ControlResult` per setting (unsupported or clamped ones say so, never silently), and `DeviceInfo` when asked
+
+    The id and serial are needed because every app's reply arrives on the recorder's one shared receiver (task 3).
 - **Pre-work:** none
 - **Out of scope:** the transport (task 3)
-- **Tests:** JSON round-trip; a reply with an unsupported control lists it
+- **Tests:** JSON round-trip; a reply with an unsupported and a clamped setting reports both

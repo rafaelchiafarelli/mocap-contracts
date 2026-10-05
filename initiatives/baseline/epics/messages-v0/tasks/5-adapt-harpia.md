@@ -1,6 +1,6 @@
-## 4. adapt.harpia (owner: mocap-adapt/P4)
+## 5. adapt.harpia (owner: mocap-adapt/P4)
 
-- **Depends on:** 3
+- **Depends on:** 4
 - **Contract:**
   - In: —
   - Requires: joints named as in FreeMoCap; units in meters; Z-up coordinate system
