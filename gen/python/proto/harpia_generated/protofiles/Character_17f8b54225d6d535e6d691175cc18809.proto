@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message Character {
+int32 ID_17f8b54225d6d535e6d691175cc18809 = 1;
+string id = 2;
+string name = 3;
+string STATUS_17f8b54225d6d535e6d691175cc18809 = 4;
+string ERROR_17f8b54225d6d535e6d691175cc18809 = 5;
+string ORIGINATOR = 6;
+}

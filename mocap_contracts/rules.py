@@ -9,6 +9,7 @@ anything in.
 from __future__ import annotations
 
 import datetime
+import re
 from collections.abc import Callable, Iterator
 
 from google.protobuf.descriptor import FieldDescriptor
@@ -107,6 +108,66 @@ def _session(msg: Message) -> Iterator[str]:
             yield f"casting[{i}] names unknown character {c.character_id!r}"
 
 
+def _sync_pair(start: Message, end: Message | None) -> Iterator[str]:
+    if _enum_name(start, "kind") != "SYNC_KIND_START":
+        yield f"start must be a START event, got {_enum_name(start, 'kind')}"
+    if end is not None:
+        if _enum_name(end, "kind") != "SYNC_KIND_END":
+            yield f"end must be an END event, got {_enum_name(end, 'kind')}"
+        if end.host_ts_ns < start.host_ts_ns:
+            yield f"end ({end.host_ts_ns}) is before start ({start.host_ts_ns})"
+
+
+def _take(msg: Message) -> Iterator[str]:
+    yield from _sync_pair(msg.start, msg.end if msg.HasField("end") else None)
+    if _enum_name(msg, "type") == "TAKE_TYPE_CALIBRATION" and not msg.HasField("board"):
+        yield "a CALIBRATION take needs its board"
+    if dup := _duplicates([c.config.role for c in msg.cameras]):
+        yield f"duplicate camera roles {dup}"
+
+
+def _take_closed(msg: Message) -> Iterator[str]:
+    yield from _sync_pair(msg.start, msg.end)
+    if not msg.roles:
+        yield "roles is empty"
+    if dup := _duplicates(list(msg.roles)):
+        yield f"duplicate roles {dup}"
+
+
+def _span(msg: Message, what: str) -> Iterator[str]:
+    negative = [f for f in what.split() if getattr(msg, f) < 0]
+    if negative:
+        yield f"negative {negative}"
+    if msg.last_ts_ns < msg.first_ts_ns:
+        yield f"last_ts_ns ({msg.last_ts_ns}) is before first_ts_ns ({msg.first_ts_ns})"
+
+
+def _camera_file_ready(msg: Message) -> Iterator[str]:
+    if not re.fullmatch(r"[0-9a-f]{64}", msg.sha256):
+        yield f"sha256 must be 64 lowercase hex characters, got {msg.sha256!r}"
+    if not msg.path or msg.path.startswith("/") or ".." in msg.path.split("/"):
+        yield f"path must be relative to the take folder, got {msg.path!r}"
+    yield from _span(msg, "size_bytes frames")
+
+
+def _camera_take_report(msg: Message) -> Iterator[str]:
+    yield from _span(msg, "frames")
+    if msg.fps_measured < 0 or msg.fps_cv < 0:
+        yield "fps_measured and fps_cv can't be negative"
+
+
+def _frame_gap(msg: Message) -> Iterator[str]:
+    if msg.after_frame < 0 or msg.duration_ns <= 0:
+        yield f"a gap needs after_frame >= 0 and a positive duration, got {msg.after_frame}, {msg.duration_ns}"
+
+
+def _take_report(msg: Message) -> Iterator[str]:
+    if _enum_name(msg, "ok") == "FLAG_ON" and msg.problems:
+        yield f"a report with problems can't be ok: {list(msg.problems)}"
+    if dup := _duplicates([r.role for r in msg.reports]):
+        yield f"duplicate report roles {dup}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _camera_config,
     "PreprocessSpec": _preprocess_spec,
@@ -115,6 +176,12 @@ RULES: dict[str, Rule] = {
     "Actor": _actor,
     "BodyLength": _body_length,
     "Session": _session,
+    "Take": _take,
+    "TakeClosed": _take_closed,
+    "CameraFileReady": _camera_file_ready,
+    "CameraTakeReport": _camera_take_report,
+    "FrameGap": _frame_gap,
+    "TakeReport": _take_report,
 }
 
 

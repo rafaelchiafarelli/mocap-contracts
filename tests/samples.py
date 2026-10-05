@@ -74,6 +74,80 @@ def session(**kw):
     return mc.Session(**fields)
 
 
+T0 = 1_759_700_000_000_000_000  # host clock, ns
+
+
+def sync(kind, ts, source="SYNC_SOURCE_MANUAL"):
+    return mc.SyncEvent(kind=_enum("SyncKind", kind), host_ts_ns=ts, source=_enum("SyncSource", source))
+
+
+def take_camera(cam=None):
+    cam = cam or stream_camera()
+    tc = mc.TakeCamera(
+        config=cam,
+        control_results=[mc.ControlResult(
+            key="android.sensor.exposureTime", requested=_int(8_000_000), applied=_int(8_000_000),
+            status=_enum("ControlStatus", "CONTROL_STATUS_APPLIED"), note="",
+        )],
+        applied_controls=mc.CameraControls(
+            exposure_ns=8_000_000, iso=400, auto_exposure=_enum("Flag", "FLAG_OFF"),
+        ),
+    )
+    if cam.HasField("preprocess"):  # absent means no preprocessing
+        tc.applied_preprocess.CopyFrom(cam.preprocess)
+    return tc
+
+
+def take(**kw):
+    fields = dict(
+        id="t003", session_id="s2026-10-05", type=_enum("TakeType", "TAKE_TYPE_PERFORMANCE"),
+        start=sync("SYNC_KIND_START", T0), end=sync("SYNC_KIND_END", T0 + 42_000_000_000),
+        casting=[mc.Casting(actor_id="a2", character_id="c1")],
+        cameras=[take_camera(), take_camera(uvc_camera())],
+    )
+    fields.update(kw)
+    return mc.Take(**fields)
+
+
+def file_ready(**kw):
+    fields = dict(
+        take_id="t003", role="body_2", kind=_enum("FileKind", "FILE_KIND_VIDEO"),
+        path="prep/body_2.mkv", size_bytes=412_345_678, sha256="ab" * 32,
+        frames=1260, first_ts_ns=T0 + 1_000_000, last_ts_ns=T0 + 41_966_000_000,
+    )
+    fields.update(kw)
+    return mc.CameraFileReady(**fields)
+
+
+def camera_report(**kw):
+    fields = dict(
+        role="body_2", frames=1258, fps_measured=29.96, fps_cv=0.012,
+        gaps=[mc.FrameGap(after_frame=611, duration_ns=100_000_000)],
+        first_ts_ns=T0 + 1_000_000, last_ts_ns=T0 + 41_966_000_000,
+    )
+    fields.update(kw)
+    return mc.CameraTakeReport(**fields)
+
+
+def take_report(**kw):
+    fields = dict(
+        take_id="t003", ok=_enum("Flag", "FLAG_OFF"),
+        problems=["body_2: 1 gap longer than 1.5 frame periods"],
+        reports=[camera_report(), camera_report(role="body_1", gaps=[])],
+    )
+    fields.update(kw)
+    return mc.TakeReport(**fields)
+
+
+def take_closed(**kw):
+    fields = dict(
+        take_id="t003", roles=["body_1", "body_2"],
+        start=sync("SYNC_KIND_START", T0), end=sync("SYNC_KIND_END", T0 + 42_000_000_000),
+    )
+    fields.update(kw)
+    return mc.TakeClosed(**fields)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -107,4 +181,13 @@ SAMPLES = {
     "PreprocessSpec": lambda: stream_camera().preprocess,
     "CameraConfig": stream_camera,
     "CalibrationBoard": board,
+    "SyncEvent": lambda: sync("SYNC_KIND_START", T0),
+    "CameraControls": lambda: take_camera().applied_controls,
+    "TakeCamera": take_camera,
+    "Take": take,
+    "FrameGap": lambda: mc.FrameGap(after_frame=611, duration_ns=100_000_000),
+    "CameraTakeReport": camera_report,
+    "TakeReport": take_report,
+    "TakeClosed": take_closed,
+    "CameraFileReady": file_ready,
 }

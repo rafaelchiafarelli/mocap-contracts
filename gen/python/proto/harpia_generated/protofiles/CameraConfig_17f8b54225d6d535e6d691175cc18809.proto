@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/CameraSource_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/PreprocessSpec_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/ControlSetting_17f8b54225d6d535e6d691175cc18809.proto";
+message CameraConfig {
+int32 ID_17f8b54225d6d535e6d691175cc18809 = 1;
+string role = 2;
+CameraSource source = 3;
+int32 width = 4;
+int32 height = 5;
+float fps = 6;
+string notes = 7;
+PreprocessSpec preprocess = 8;
+repeated ControlSetting controls = 9;
+optional string device_hint = 10;
+optional string stream_host = 11;
+optional int32 video_port = 12;
+optional int32 sync_port = 13;
+optional int32 control_port = 14;
+optional int32 stats_port = 15;
+string STATUS_17f8b54225d6d535e6d691175cc18809 = 16;
+string ERROR_17f8b54225d6d535e6d691175cc18809 = 17;
+string ORIGINATOR = 18;
+}
