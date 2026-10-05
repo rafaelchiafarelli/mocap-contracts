@@ -1,0 +1,9 @@
+ID:1
+take_id:2
+calibration_reproj_err_px:3
+cameras:4
+bones:5
+ablation:6
+STATUS:7
+ERROR:8
+ORIGINATOR:9

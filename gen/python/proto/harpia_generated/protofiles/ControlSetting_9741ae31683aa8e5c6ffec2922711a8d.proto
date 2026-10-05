@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/ControlValue_9741ae31683aa8e5c6ffec2922711a8d.proto";
+message ControlSetting {
+int32 ID_9741ae31683aa8e5c6ffec2922711a8d = 1;
+string key = 2;
+ControlValue value = 3;
+string STATUS_9741ae31683aa8e5c6ffec2922711a8d = 4;
+string ERROR_9741ae31683aa8e5c6ffec2922711a8d = 5;
+string ORIGINATOR = 6;
+}
