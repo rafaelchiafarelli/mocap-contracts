@@ -231,6 +231,47 @@ def _quality_report(msg: Message) -> Iterator[str]:
             yield f"duplicate {what} entries {dup}"
 
 
+GROUPS = ("body", "left_hand", "right_hand")
+
+
+def _mocap_take_header(msg: Message) -> Iterator[str]:
+    if msg.fps <= 0:
+        yield f"fps must be positive, got {msg.fps}"
+    for group in GROUPS:
+        if dup := _duplicates(list(getattr(msg, f"{group}_joints"))):
+            yield f"duplicate {group} joints {dup}"
+
+
+def _mocap_frame(frame: Message, header: Message) -> Iterator[str]:
+    for group in GROUPS:
+        joints = len(getattr(header, f"{group}_joints"))
+        xyz = len(getattr(frame, f"{group}_xyz"))
+        if xyz != 3 * joints:
+            yield f"{group}_xyz has {xyz} values, expected 3 x {joints} joints"
+        missing = list(getattr(frame, f"{group}_missing"))
+        if bad := [i for i in missing if not 0 <= i < joints]:
+            yield f"{group}_missing has out-of-range joints {bad}"
+        if dup := _duplicates(missing):
+            yield f"{group}_missing lists joints twice {dup}"
+    names = len(header.face_blendshape_names)
+    if len(frame.face_blendshapes) not in (0, names):
+        yield f"face_blendshapes has {len(frame.face_blendshapes)} values, expected 0 or {names}"
+    if len(frame.gaze) not in (0, 3):
+        yield f"gaze has {len(frame.gaze)} values, expected 0 or 3"
+
+
+def _mocap_take(msg: Message) -> Iterator[str]:
+    if msg.header.frame_count != len(msg.frames):
+        yield f"header.frame_count is {msg.header.frame_count} but there are {len(msg.frames)} frames"
+    prev = None
+    for i, frame in enumerate(msg.frames):
+        for problem in _mocap_frame(frame, msg.header):
+            yield f"frames[{i}]: {problem}"
+        if prev is not None and (frame.frame_id <= prev.frame_id or frame.timestamp_ns <= prev.timestamp_ns):
+            yield f"frames[{i}]: frame_id and timestamp_ns must strictly increase"
+        prev = frame
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _camera_config,
     "PreprocessSpec": _preprocess_spec,
@@ -251,6 +292,8 @@ RULES: dict[str, Rule] = {
     "BoneStability": _bone_stability,
     "CameraAblation": _camera_ablation,
     "QualityReport": _quality_report,
+    "MocapTakeHeader": _mocap_take_header,
+    "MocapTake": _mocap_take,
 }
 
 
