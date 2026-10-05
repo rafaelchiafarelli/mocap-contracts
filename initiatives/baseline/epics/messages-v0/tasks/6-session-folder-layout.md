@@ -1,6 +1,6 @@
-## 5. Session folder layout
+## 6. Session folder layout
 
-- **Depends on:** 1
+- **Depends on:** 2
 - **Contract:**
   - In: data root + ids
   - Requires: stdlib only (`pathlib`); the same layout on the recorder PC and the processing PC (hand-off copies files to the same relative paths)

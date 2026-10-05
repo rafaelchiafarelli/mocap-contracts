@@ -1,6 +1,6 @@
-## 7. Release v0.1.0
+## 8. Release v0.1.0
 
-- **Depends on:** 1–6
+- **Depends on:** 1–7
 - **Contract:**
   - In: —
   - Requires: short CHANGELOG

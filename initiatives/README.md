@@ -23,3 +23,4 @@ Rules specific to this repository:
 | Initiative | Status |
 |---|---|
 | [baseline](baseline/baseline.md) | Planned — not started |
+| [camera-protocol](camera-protocol/camera-protocol.md) | Planned — stream protocol v1, camera messages, Java generation |
