@@ -201,6 +201,69 @@ def mocap_take(frames=3, **kw):
     ], **kw)
 
 
+def device_info(**kw):
+    exposure = SAMPLES["ControlCapability"]()
+    ae_mode = mc.ControlCapability(
+        backend=_enum("ControlBackend", "CONTROL_BACKEND_CAMERA2"), key="android.control.aeMode",
+        value_type=_enum("ControlValueType", "CONTROL_VALUE_TYPE_MENU"),
+        options=[mc.ControlMenuOption(value=0, name="OFF"), mc.ControlMenuOption(value=1, name="ON")],
+        current_value=_int(1), read_only=_enum("Flag", "FLAG_OFF"), unit="",
+    )
+    fields = dict(
+        model="Multilaser M7", serial="200138", android_version="11", app_version="0.1.0",
+        h264_encoders=["c2.android.avc.encoder", "OMX.MTK.VIDEO.ENCODER.AVC"],
+        cameras=[mc.CameraInfo(
+            camera_id="0", facing=_enum("CameraFacing", "CAMERA_FACING_BACK"), hardware_level="LIMITED",
+            sensor_orientation_deg=90, focal_lengths_mm=[3.3],
+            sizes=[mc.FrameSize(width=1600, height=1200), mc.FrameSize(width=1280, height=720)],
+            fps_ranges=[mc.FpsRange(min_fps=15, max_fps=30), mc.FpsRange(min_fps=30, max_fps=30)],
+            controls=[exposure, ae_mode],
+        )],
+    )
+    fields.update(kw)
+    return mc.DeviceInfo(**fields)
+
+
+def stream_settings(**kw):
+    fields = dict(camera_id="0", width=1600, height=1200, fps=30.0, bitrate_kbps=20000, i_frame_interval_s=1.0)
+    fields.update(kw)
+    return mc.StreamSettings(**fields)
+
+
+def control_request(**kw):
+    fields = dict(
+        request_id="r-17", serial="200138", stream=stream_settings(),
+        settings=[mc.ControlSetting(key="android.control.aeMode", value=_int(0)),
+                  mc.ControlSetting(key="android.sensor.exposureTime", value=_int(8_000_000))],
+        want_device_info=_enum("Flag", "FLAG_ON"),
+    )
+    fields.update(kw)
+    return mc.ControlRequest(**fields)
+
+
+def control_reply(**kw):
+    fields = dict(
+        request_id="r-17", serial="200138", stream_applied=stream_settings(),
+        results=[
+            mc.ControlResult(key="android.control.aeMode", requested=_int(0), applied=_int(0),
+                             status=_enum("ControlStatus", "CONTROL_STATUS_APPLIED"), note=""),
+            mc.ControlResult(key="android.sensor.exposureTime", requested=_int(8_000_000),
+                             status=_enum("ControlStatus", "CONTROL_STATUS_UNSUPPORTED"),
+                             note="LIMITED device without MANUAL_SENSOR"),
+        ],
+        device_info=device_info(),
+    )
+    fields.update(kw)
+    return mc.ControlReply(**fields)
+
+
+def camera_stats(**kw):
+    fields = dict(serial="200138", sensor_ns=35_123_093_746_000, camera_fps=29.98, encoder_fps=29.97,
+                  dropped_frames=3, cpu_percent=41.5, battery_temp_c=36.2, thermal_status=0)
+    fields.update(kw)
+    return mc.CameraStats(**fields)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -254,4 +317,12 @@ SAMPLES = {
     "MocapTakeHeader": lambda: mocap_take().header,
     "MocapFrame": lambda: mocap_take().frames[0],
     "MocapTake": mocap_take,
+    "FrameSize": lambda: mc.FrameSize(width=1600, height=1200),
+    "FpsRange": lambda: mc.FpsRange(min_fps=30, max_fps=30),
+    "CameraInfo": lambda: device_info().cameras[0],
+    "DeviceInfo": device_info,
+    "StreamSettings": stream_settings,
+    "CameraStats": camera_stats,
+    "ControlRequest": control_request,
+    "ControlReply": control_reply,
 }

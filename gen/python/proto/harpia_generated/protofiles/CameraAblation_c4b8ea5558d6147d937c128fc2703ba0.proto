@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message CameraAblation {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string removed_role = 2;
+float mean_shift_m = 3;
+float mean_rsd_change = 4;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 5;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 6;
+string ORIGINATOR = 7;
+}

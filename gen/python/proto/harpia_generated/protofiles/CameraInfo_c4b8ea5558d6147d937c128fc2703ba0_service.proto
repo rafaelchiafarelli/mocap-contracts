@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/CameraInfo_c4b8ea5558d6147d937c128fc2703ba0.proto";
+
+message CameraInfo_Message {
+    CameraInfo msg = 1;
+}
+//message for the standard functions 
+message CameraInfo_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message CameraInfo_ID {
+    int32 id = 1;
+}
+message CameraInfo_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service CameraInfo_Service {
+    rpc heartBeat(CameraInfo_HeartBeat) returns (CameraInfo_HeartBeat) {}
+    rpc streamSrc(CameraInfo_Stream ) returns (stream CameraInfo_Message) {}
+    rpc pullByID(CameraInfo_ID) returns (CameraInfo_Message) {}
+    rpc push(CameraInfo_Message) returns (errorCode) {}
+}

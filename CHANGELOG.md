@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.2.0 — 2026-10-05
+
+The contract between the STREAM camera app and the recorder (`camera-protocol` initiative).
+
+- **Stream protocol v1** (`docs/stream-protocol-v1.md`): raw Annex-B H.264 over HTTP, a timestamp SEI on every frame, UDP clock sync, and the timing model. `mocap_contracts.stream_v1` is the reference reader and writer (stdlib only). Fixtures in `fixtures/stream-v1/`: a real tablet excerpt (checked against the eval's own `sei.py`), a decodable stream, garbled SEIs, sync packets.
+- **`camera.harpia`**: `DeviceInfo` (every camera with every `ControlCapability`), `CameraStats`, `StreamSettings`, `ControlRequest` / `ControlReply`, with rules.
+- **Java**: `make gen` also generates `gen/java/`, the Gradle project the camera app builds against (Android `minSdk 24`).
+- **ZeroMQ**: `ControlRequest` / `ControlReply` (push/pull) and `CameraStats` (pub/sub) through `mocap_contracts.transport`, interoperating with Java. `make test-slow` runs a Java camera peer against the Python recorder side.
+
 ## v0.1.0 — 2026-10-05
 
 First release of the Mocap Studio contracts (`baseline` initiative).

@@ -13,16 +13,16 @@ harpia_generated.capability
 .. automodule:: harpia_generated.capability
    :members:
 
-harpia_generated.capability.capabilities_61c8c10158ef4d464aeae2ffe73974e6_grpc
+harpia_generated.capability.capabilities_c4b8ea5558d6147d937c128fc2703ba0_grpc
 ------------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_61c8c10158ef4d464aeae2ffe73974e6_grpc
+.. automodule:: harpia_generated.capability.capabilities_c4b8ea5558d6147d937c128fc2703ba0_grpc
    :members:
 
-harpia_generated.capability.capabilities_61c8c10158ef4d464aeae2ffe73974e6_zmq
+harpia_generated.capability.capabilities_c4b8ea5558d6147d937c128fc2703ba0_zmq
 -----------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_61c8c10158ef4d464aeae2ffe73974e6_zmq
+.. automodule:: harpia_generated.capability.capabilities_c4b8ea5558d6147d937c128fc2703ba0_zmq
    :members:
 
 harpia_generated.db
@@ -41,6 +41,18 @@ harpia_generated.dbio
 ---------------------
 
 .. automodule:: harpia_generated.dbio
+   :members:
+
+harpia_generated.events
+-----------------------
+
+.. automodule:: harpia_generated.events
+   :members:
+
+harpia_generated.events.CameraStats_c4b8ea5558d6147d937c128fc2703ba0_events
+---------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.events.CameraStats_c4b8ea5558d6147d937c128fc2703ba0_events
    :members:
 
 harpia_generated.migrate
@@ -73,16 +85,34 @@ harpia_generated.zmq
 .. automodule:: harpia_generated.zmq
    :members:
 
-harpia_generated.zmq.CameraFileReady_61c8c10158ef4d464aeae2ffe73974e6_zmq
+harpia_generated.zmq.CameraFileReady_c4b8ea5558d6147d937c128fc2703ba0_zmq
 -------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.CameraFileReady_61c8c10158ef4d464aeae2ffe73974e6_zmq
+.. automodule:: harpia_generated.zmq.CameraFileReady_c4b8ea5558d6147d937c128fc2703ba0_zmq
    :members:
 
-harpia_generated.zmq.TakeClosed_61c8c10158ef4d464aeae2ffe73974e6_zmq
+harpia_generated.zmq.CameraStats_c4b8ea5558d6147d937c128fc2703ba0_zmq
+---------------------------------------------------------------------
+
+.. automodule:: harpia_generated.zmq.CameraStats_c4b8ea5558d6147d937c128fc2703ba0_zmq
+   :members:
+
+harpia_generated.zmq.ControlReply_c4b8ea5558d6147d937c128fc2703ba0_zmq
+----------------------------------------------------------------------
+
+.. automodule:: harpia_generated.zmq.ControlReply_c4b8ea5558d6147d937c128fc2703ba0_zmq
+   :members:
+
+harpia_generated.zmq.ControlRequest_c4b8ea5558d6147d937c128fc2703ba0_zmq
+------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.zmq.ControlRequest_c4b8ea5558d6147d937c128fc2703ba0_zmq
+   :members:
+
+harpia_generated.zmq.TakeClosed_c4b8ea5558d6147d937c128fc2703ba0_zmq
 --------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.TakeClosed_61c8c10158ef4d464aeae2ffe73974e6_zmq
+.. automodule:: harpia_generated.zmq.TakeClosed_c4b8ea5558d6147d937c128fc2703ba0_zmq
    :members:
 
 harpia_runtime
@@ -167,6 +197,12 @@ harpia_runtime.db.pool
 ----------------------
 
 .. automodule:: harpia_runtime.db.pool
+   :members:
+
+harpia_runtime.events
+---------------------
+
+.. automodule:: harpia_runtime.events
    :members:
 
 harpia_runtime.json
