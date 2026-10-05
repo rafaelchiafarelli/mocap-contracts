@@ -53,7 +53,7 @@ message StreamSettings {
 
 // Sent every second and sensor_ns is on the same clock as the stream timestamps
 // thermal_status is the Android PowerManager value from 0 to 6
-message CameraStats {
+event message CameraStats {
     required string serial;
     required int64 sensor_ns;
     required float camera_fps;
@@ -65,7 +65,7 @@ message CameraStats {
 };
 
 // From the recorder and absent stream means leave the stream as it is
-message ControlRequest {
+push pull message ControlRequest {
     required string request_id;
     required string serial;
     StreamSettings stream;
@@ -74,7 +74,7 @@ message ControlRequest {
 };
 
 // From the app with one result per requested setting and nothing silently ignored
-message ControlReply {
+push pull message ControlReply {
     required string request_id;
     required string serial;
     StreamSettings stream_applied;

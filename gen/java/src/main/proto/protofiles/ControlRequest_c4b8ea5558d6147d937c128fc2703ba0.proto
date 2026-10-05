@@ -14,5 +14,5 @@ repeated ControlSetting settings = 5;
 Flag want_device_info = 6;
 string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 7;
 string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 8;
-string ORIGINATOR = 9;
+string ORIGINATOR_c4b8ea5558d6147d937c128fc2703ba0 = 9;
 }
