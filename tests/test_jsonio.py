@@ -5,11 +5,16 @@ from google.protobuf import descriptor_pb2, descriptor_pool, message_factory
 
 import mocap_contracts
 from mocap_contracts import ContractError, from_json, messages, to_json
+from samples import SAMPLES
 
 CONTRACT_MESSAGES = sorted(messages.DECLARED_FIELDS)
 
 
 # ---------------------------------------------------------------- the real contracts
+
+def test_every_contract_message_has_a_sample():
+    assert sorted(SAMPLES) == CONTRACT_MESSAGES
+
 
 @pytest.mark.parametrize("name", CONTRACT_MESSAGES)
 def test_every_declared_field_exists_in_the_generated_message(name):
@@ -18,44 +23,42 @@ def test_every_declared_field_exists_in_the_generated_message(name):
 
 
 @pytest.mark.parametrize("name", CONTRACT_MESSAGES)
-def test_round_trip_with_defaults(name):
+def test_sample_round_trips(name):
     cls = getattr(mocap_contracts, name)
-    msg = cls()
+    msg = SAMPLES[name]()
     text = to_json(msg)
-    assert set(json.loads(text)) == set(messages.DECLARED_FIELDS[name])
+    assert set(json.loads(text)) <= set(messages.DECLARED_FIELDS[name])
     assert from_json(cls, text) == msg
 
 
-def test_placeholder_round_trip_and_no_bookkeeping_fields():
-    cls = mocap_contracts.contracts_placeholder
-    msg = cls(note="take 1")
+def test_bookkeeping_fields_are_never_written():
+    cls = mocap_contracts.ControlMenuOption
+    msg = SAMPLES["ControlMenuOption"]()
     for field in cls.DESCRIPTOR.fields:  # Harpia's own fields, set on purpose
-        if field.name not in messages.DECLARED_FIELDS["contracts_placeholder"]:
+        if field.name not in messages.DECLARED_FIELDS["ControlMenuOption"]:
             setattr(msg, field.name, 7 if field.cpp_type == field.CPPTYPE_INT32 else "x")
-    data = json.loads(to_json(msg))
-    assert data == {"note": "take 1"}
-    assert from_json(cls, to_json(msg)).note == "take 1"
+    assert json.loads(to_json(msg)) == {"value": "1", "name": "Manual Mode"}  # int64 is a JSON string
 
 
-def test_placeholder_missing_required_rejected():
-    with pytest.raises(ContractError, match=r"missing required field\(s\) \['note'\]"):
-        from_json(mocap_contracts.contracts_placeholder, "{}")
+def test_missing_required_rejected():
+    with pytest.raises(ContractError, match=r"missing required field\(s\) \['name'\]"):
+        from_json(mocap_contracts.ControlMenuOption, '{"value": "1"}')
 
 
 def test_bookkeeping_key_rejected_on_read():
     with pytest.raises(ContractError, match="unknown field"):
-        from_json(mocap_contracts.contracts_placeholder, '{"note": "a", "ORIGINATOR": "x"}')
+        from_json(mocap_contracts.ControlMenuOption, '{"value": "1", "name": "a", "ORIGINATOR": "x"}')
 
 
-@pytest.mark.parametrize("text", ["{not json", "[1, 2]", '"note"'])
+@pytest.mark.parametrize("text", ["{not json", "[1, 2]", '"name"'])
 def test_invalid_json_rejected(text):
     with pytest.raises(ContractError):
-        from_json(mocap_contracts.contracts_placeholder, text)
+        from_json(mocap_contracts.ControlMenuOption, text)
 
 
 def test_wrong_value_type_rejected():
     with pytest.raises(ContractError):
-        from_json(mocap_contracts.contracts_placeholder, '{"note": {"a": 1}}')
+        from_json(mocap_contracts.ControlMenuOption, '{"value": "1", "name": {"a": 1}}')
 
 
 def test_harpia_service_message_is_not_a_contract():
@@ -63,6 +66,27 @@ def test_harpia_service_message_is_not_a_contract():
 
     with pytest.raises(ContractError, match="not a contract message"):
         to_json(heartBeat_pb2.heartBeat())
+
+
+# ---------------------------------------------------------------- UNSET enums
+
+def test_required_enum_left_unset_is_refused_on_write():
+    msg = SAMPLES["ControlCapability"]()
+    msg.read_only = mocap_contracts.Flag.Value("FLAG_UNSET")
+    with pytest.raises(ContractError, match=r"\['read_only'\] hold their UNSET value"):
+        to_json(msg)
+
+
+def test_required_enum_unset_is_refused_on_read():
+    data = json.loads(to_json(SAMPLES["ControlResult"]()))
+    data["status"] = "CONTROL_STATUS_UNSET"
+    with pytest.raises(ContractError, match=r"\['status'\] hold their UNSET value"):
+        from_json(mocap_contracts.ControlResult, json.dumps(data))
+
+
+def test_optional_enum_may_stay_unset():
+    msg = mocap_contracts.ControlValue(flag_value=mocap_contracts.Flag.Value("FLAG_UNSET"))
+    assert from_json(mocap_contracts.ControlValue, to_json(msg)).HasField("flag_value")
 
 
 # ---------------------------------------------------------------- nesting (test-only schema)

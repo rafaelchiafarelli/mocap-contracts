@@ -1,5 +1,0 @@
-// Pipeline placeholder for bootstrap task 2
-// Replaced by session harpia in messages v0 task 1
-message contracts_placeholder {
-    required string note;
-};

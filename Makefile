@@ -1,5 +1,5 @@
 PYTHON ?= python3
-GENERATED := gen/python schema/schema_registry mocap_contracts/messages.py
+GENERATED := gen/python schema/schema_registry mocap_contracts/messages.py mocap_contracts/zmq_endpoints.py
 
 .PHONY: gen check-gen test
 

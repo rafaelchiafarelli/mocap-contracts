@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mocap-contracts"
-version = "0.0.1"
+version = "0.1.0"
 description = "Data contracts shared by the Mocap Studio repositories"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -16,7 +16,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=8"]
+# Copied from the generated gen/python/pyproject.toml, like the dependencies above.
+# Needed by mocap_contracts.transport (the hand-off events over ZeroMQ).
+zmq = ["pyzmq>=24.0.1,<27"]
+test = ["pytest>=8", "pyzmq>=24.0.1,<27"]
 
 # Harpia's generated packages ship top-level and unmoved: their own imports
 # are absolute (harpia_generated.*, harpia_runtime.*).

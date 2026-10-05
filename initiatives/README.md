@@ -22,5 +22,5 @@ Rules specific to this repository:
 
 | Initiative | Status |
 |---|---|
-| [baseline](baseline/baseline.md) | Planned — not started |
+| [baseline](baseline/baseline.md) | Done — released as `v0.1.0` (2026-10-05) |
 | [camera-protocol](camera-protocol/camera-protocol.md) | Planned — stream protocol v1, camera messages, Java generation |

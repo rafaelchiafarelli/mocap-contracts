@@ -6,13 +6,15 @@ the input folder is staged under the Harpia repo (Docker mounts it at
 
 - schema_registry/ (frozen wire numbers) is copied back into schema/,
 - the generated python/ project replaces gen/python/,
+- mocap_contracts/zmq_endpoints.py maps each ZeroMQ message to its
+  generated factories (separate, because importing them needs pyzmq),
 - mocap_contracts/messages.py is rewritten to re-export every message and
   enum under its declared name, so consumers never see the <hash> in
   Harpia's module names, plus the declared and required fields per message
   read from schema/ (the JSON helpers need both).
 
 Stdlib only. Usage: python3 tools/harpia_gen.py [--into DIR]
-(--into writes the three outputs under DIR instead of the repo; the
+(--into writes the outputs under DIR instead of the repo; the
 reproducibility test uses it.)
 """
 
@@ -33,9 +35,11 @@ HARPIA_STAGE = HARPIA / "build" / "mocap-contracts"  # Harpia's .gitignore cover
 
 GEN_PYTHON = Path("gen") / "python"
 MESSAGES_PY = Path("mocap_contracts") / "messages.py"
+ZMQ_PY = Path("mocap_contracts") / "zmq_endpoints.py"
 REGISTRY = Path("schema") / "schema_registry"
 
 # a user module's .proto: <name>_<32 hex>.proto (not the _service companion)
+USER_ZMQ = re.compile(r"^(?P<name>.+)_(?P<hash>[0-9a-f]{32})_zmq\.py$")
 USER_PROTO = re.compile(r"^(?P<stem>.+_(?P<hash>[0-9a-f]{32}))\.proto$")
 TOP_LEVEL = re.compile(r"^(message|enum)\s+(\w+)\s*\{")
 
@@ -153,6 +157,29 @@ def messages_module(python_dir: Path, schema_dir: Path) -> str:
     return "\n".join(lines)
 
 
+def zmq_module(python_dir: Path) -> str:
+    """Stable access to Harpia's ZeroMQ factories, kept apart from messages.py
+    because importing them needs pyzmq (the `zmq` extra)."""
+    found = []
+    for f in sorted((python_dir / "harpia_generated" / "zmq").glob("*_zmq.py")):
+        if m := USER_ZMQ.match(f.name):
+            found.append((m["name"], f.stem))
+    lines = [
+        '"""ZeroMQ factories of every message declared with a ZeroMQ modifier.',
+        "",
+        "Written by tools/harpia_gen.py (`make gen`); do not edit. Needs pyzmq",
+        "(`pip install mocap-contracts[zmq]`). Use mocap_contracts.transport.\"\"\"",
+        "",
+        "from types import ModuleType",
+        "",
+    ]
+    lines += [f"from harpia_generated.zmq import {stem} as _{name}" for name, stem in found]
+    lines += ["", "ENDPOINTS: dict[str, ModuleType] = {"]
+    lines += [f'    "{name}": _{name},' for name, _ in found]
+    lines += ["}", ""]
+    return "\n".join(lines)
+
+
 def write_outputs(out: Path, into: Path) -> None:
     gen_python = into / GEN_PYTHON
     if gen_python.exists():
@@ -168,13 +195,14 @@ def write_outputs(out: Path, into: Path) -> None:
 
     (into / MESSAGES_PY).parent.mkdir(parents=True, exist_ok=True)
     (into / MESSAGES_PY).write_text(messages_module(out / "python", SCHEMA))
+    (into / ZMQ_PY).write_text(zmq_module(out / "python"))
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--into", type=Path, default=ROOT,
-                    help="where to write gen/python, schema/schema_registry "
-                         "and mocap_contracts/messages.py (default: the repo)")
+                    help="where to write gen/python, schema/schema_registry, "
+                         "mocap_contracts/messages.py and zmq_endpoints.py (default: the repo)")
     args = ap.parse_args()
     if not (HARPIA / "Docker" / "run.sh").exists():
         raise SystemExit("third_party/harpia is missing: git submodule update --init")

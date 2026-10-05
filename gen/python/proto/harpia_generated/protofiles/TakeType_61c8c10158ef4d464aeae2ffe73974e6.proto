@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum TakeType {
+TAKE_TYPE_UNSET = 0;
+TAKE_TYPE_CALIBRATION = 1;
+TAKE_TYPE_PERFORMANCE = 2;
+}

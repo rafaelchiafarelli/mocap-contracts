@@ -1,0 +1,17 @@
+ID:1
+take_id:2
+session_id:3
+actor_id:4
+character_id:5
+fps:6
+frame_count:7
+t0_ns:8
+length_unit:9
+up_axis:10
+body_joints:11
+left_hand_joints:12
+right_hand_joints:13
+face_blendshape_names:14
+STATUS:15
+ERROR:16
+ORIGINATOR:17

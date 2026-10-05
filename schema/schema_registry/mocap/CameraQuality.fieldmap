@@ -1,0 +1,10 @@
+ID:1
+role:2
+detection_rate_body:3
+detection_rate_left_hand:4
+detection_rate_right_hand:5
+jitter_px:6
+reproj_err_px:7
+STATUS:8
+ERROR:9
+ORIGINATOR:10
