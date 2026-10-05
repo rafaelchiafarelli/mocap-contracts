@@ -5,7 +5,8 @@ re-exported here under their declared names; consumers import from this
 package only, never from the generated modules.
 """
 
-from mocap_contracts.jsonio import ContractError, from_json, to_json
+from mocap_contracts.errors import ContractError
+from mocap_contracts.jsonio import from_json, to_json
 from mocap_contracts.messages import *  # noqa: F403
 from mocap_contracts.messages import __all__ as _messages
 

@@ -2,3 +2,4 @@
 // It only imports modules and each module belongs to the repository that produces its data
 import "common.harpia";
 import "camera_control.harpia";
+import "session.harpia";

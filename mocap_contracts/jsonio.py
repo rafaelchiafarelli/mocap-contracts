@@ -7,8 +7,9 @@ holds its default value. Harpia's bookkeeping fields (ID_/STATUS_/ERROR_
 isn't declared or any missing `required` key, at every nesting level.
 
 Every contract enum has `*_UNSET` as its zero value, so a `required` enum
-field holding it counts as missing. Writing applies the same checks as
-reading, so an invalid file is never produced.
+field holding it counts as missing. The per-message rules in
+`mocap_contracts.rules` run too. Writing applies the same checks as reading,
+so an invalid file is never produced.
 """
 
 from __future__ import annotations
@@ -21,13 +22,11 @@ from google.protobuf import json_format
 from google.protobuf.descriptor import Descriptor, FieldDescriptor
 from google.protobuf.message import Message
 
+from mocap_contracts import rules
+from mocap_contracts.errors import ContractError
 from mocap_contracts.messages import DECLARED_FIELDS, REQUIRED_FIELDS
 
 M = TypeVar("M", bound=Message)
-
-
-class ContractError(ValueError):
-    """JSON that doesn't match a contract message."""
 
 
 def to_json(
@@ -41,6 +40,7 @@ def to_json(
     )
     data = _prune(data, msg.DESCRIPTOR, declared)
     _check(data, msg.DESCRIPTOR, declared, required, msg.DESCRIPTOR.name)
+    rules.check(msg)
     return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
 
@@ -57,9 +57,11 @@ def from_json(
         raise ContractError(f"invalid JSON for {cls.DESCRIPTOR.name}: {e}") from None
     _check(data, cls.DESCRIPTOR, declared, required, cls.DESCRIPTOR.name)
     try:
-        return json_format.ParseDict(data, cls())
+        msg = json_format.ParseDict(data, cls())
     except json_format.ParseError as e:
         raise ContractError(f"{cls.DESCRIPTOR.name}: {e}") from None
+    rules.check(msg)
+    return msg
 
 
 def _fields(desc: Descriptor, declared: Mapping[str, tuple[str, ...]]) -> tuple[str, ...]:
