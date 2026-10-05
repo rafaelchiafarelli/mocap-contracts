@@ -179,6 +179,28 @@ def quality_report(**kw):
     return mc.QualityReport(**fields)
 
 
+def mocap_take(frames=3, **kw):
+    header = mc.MocapTakeHeader(
+        take_id="t003", session_id="s2026-10-05", actor_id="a2", character_id="c1",
+        fps=30.0, frame_count=frames, t0_ns=T0,
+        length_unit=_enum("LengthUnit", "LENGTH_UNIT_M"), up_axis=_enum("UpAxis", "UP_AXIS_Z"),
+        body_joints=["nose", "left_ankle", "right_ankle"],
+        left_hand_joints=["left_wrist", "left_index_tip"],
+        right_hand_joints=["right_wrist", "right_index_tip"],
+    )
+    off, on = _enum("Flag", "FLAG_OFF"), _enum("Flag", "FLAG_ON")
+    return mc.MocapTake(header=header, frames=[
+        mc.MocapFrame(
+            frame_id=i, timestamp_ns=T0 + i * 33_333_333,
+            body_xyz=[0.0, 0.0, 1.62, 0.1, 0.0, 0.08, -0.1, 0.0, 0.08],
+            left_hand_xyz=[0.3, 0.1, 1.0, 0.35, 0.12, 0.98],
+            right_hand_xyz=[0.0] * 6, right_hand_missing=[0, 1],  # right hand not seen
+            left_foot_contact=on, right_foot_contact=off if i else on,
+        )
+        for i in range(frames)
+    ], **kw)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -229,4 +251,7 @@ SAMPLES = {
     "BoneStability": lambda: quality_report().bones[0],
     "CameraAblation": lambda: quality_report().ablation[0],
     "QualityReport": quality_report,
+    "MocapTakeHeader": lambda: mocap_take().header,
+    "MocapFrame": lambda: mocap_take().frames[0],
+    "MocapTake": mocap_take,
 }

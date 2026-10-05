@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/ControlMenuOption_61c8c10158ef4d464aeae2ffe73974e6.proto";
+
+message ControlMenuOption_Message {
+    ControlMenuOption msg = 1;
+}
+//message for the standard functions 
+message ControlMenuOption_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message ControlMenuOption_ID {
+    int32 id = 1;
+}
+message ControlMenuOption_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service ControlMenuOption_Service {
+    rpc heartBeat(ControlMenuOption_HeartBeat) returns (ControlMenuOption_HeartBeat) {}
+    rpc streamSrc(ControlMenuOption_Stream ) returns (stream ControlMenuOption_Message) {}
+    rpc pullByID(ControlMenuOption_ID) returns (ControlMenuOption_Message) {}
+    rpc push(ControlMenuOption_Message) returns (errorCode) {}
+}

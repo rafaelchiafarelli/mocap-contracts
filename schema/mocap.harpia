@@ -5,3 +5,4 @@ import "camera_control.harpia";
 import "session.harpia";
 import "capture.harpia";
 import "extract.harpia";
+import "adapt.harpia";
