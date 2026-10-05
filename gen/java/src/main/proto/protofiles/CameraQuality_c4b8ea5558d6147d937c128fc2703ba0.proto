@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message CameraQuality {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string role = 2;
+float detection_rate_body = 3;
+float detection_rate_left_hand = 4;
+float detection_rate_right_hand = 5;
+optional float jitter_px = 6;
+optional float reproj_err_px = 7;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 8;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 9;
+string ORIGINATOR = 10;
+}

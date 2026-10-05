@@ -5,7 +5,9 @@ the input folder is staged under the Harpia repo (Docker mounts it at
 /harpia), `main.py` runs with HARPIA_GEN_LANG=python, and then:
 
 - schema_registry/ (frozen wire numbers) is copied back into schema/,
-- the generated python/ project replaces gen/python/,
+- the generated python/ project replaces gen/python/, and a second run with
+  HARPIA_GEN_LANG=java puts the java/ Gradle project in gen/java/ (for the
+  camera app; both runs must agree on schema_registry),
 - mocap_contracts/zmq_endpoints.py maps each ZeroMQ message to its
   generated factories (separate, because importing them needs pyzmq),
 - mocap_contracts/messages.py is rewritten to re-export every message and
@@ -34,6 +36,7 @@ ROOT_FILE = "mocap.harpia"
 HARPIA_STAGE = HARPIA / "build" / "mocap-contracts"  # Harpia's .gitignore covers build/
 
 GEN_PYTHON = Path("gen") / "python"
+GEN_JAVA = Path("gen") / "java"
 MESSAGES_PY = Path("mocap_contracts") / "messages.py"
 ZMQ_PY = Path("mocap_contracts") / "zmq_endpoints.py"
 REGISTRY = Path("schema") / "schema_registry"
@@ -44,8 +47,8 @@ USER_PROTO = re.compile(r"^(?P<stem>.+_(?P<hash>[0-9a-f]{32}))\.proto$")
 TOP_LEVEL = re.compile(r"^(message|enum)\s+(\w+)\s*\{")
 
 
-def run_harpia(stage: Path) -> Path:
-    """Stage schema/ under the Harpia mount, generate, return the output dir."""
+def run_harpia(stage: Path, lang: str) -> Path:
+    """Stage schema/ under the Harpia mount, generate `lang`, return the output dir."""
     if stage.exists():
         shutil.rmtree(stage)
     inp, out = stage / "in", stage / "out"
@@ -53,7 +56,7 @@ def run_harpia(stage: Path) -> Path:
     rel = inp.relative_to(HARPIA)
     cmd = [
         "Docker/run.sh", "env",
-        "HARPIA_GEN_LANG=python",
+        f"HARPIA_GEN_LANG={lang}",
         f"HARPIA_INPUT_FILE=./{rel}/{ROOT_FILE}",
         f"HARPIA_INCLUDE_FOLDER=./{rel}/Include",
         f"HARPIA_COMPLIANCE_CONFIG=./{rel}/project.harpia.yaml",
@@ -61,9 +64,9 @@ def run_harpia(stage: Path) -> Path:
         "python3", "main.py",
     ]
     proc = subprocess.run(cmd, cwd=HARPIA, capture_output=True, text=True)
-    if proc.returncode != 0 or not (out / "python").is_dir():
+    if proc.returncode != 0 or not (out / lang).is_dir():
         sys.stderr.write(proc.stdout[-4000:] + proc.stderr[-4000:])
-        raise SystemExit(f"harpia generation failed (exit {proc.returncode})")
+        raise SystemExit(f"harpia {lang} generation failed (exit {proc.returncode})")
     return out
 
 
@@ -180,14 +183,20 @@ def zmq_module(python_dir: Path) -> str:
     return "\n".join(lines)
 
 
-def write_outputs(out: Path, into: Path) -> None:
-    gen_python = into / GEN_PYTHON
-    if gen_python.exists():
-        shutil.rmtree(gen_python)
-    shutil.copytree(out / "python", gen_python,
-                    ignore=shutil.ignore_patterns("__pycache__"))
+def _replace_tree(src: Path, dst: Path) -> None:
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst, ignore=shutil.ignore_patterns("__pycache__", ".gradle", "build"))
 
-    registry_src = HARPIA_STAGE / "in" / "schema_registry"
+
+def write_outputs(out: Path, java_out: Path, into: Path) -> None:
+    _replace_tree(out / "python", into / GEN_PYTHON)
+    _replace_tree(java_out / "java", into / GEN_JAVA)
+
+    registry_src = HARPIA_STAGE / "python" / "in" / "schema_registry"
+    java_registry = HARPIA_STAGE / "java" / "in" / "schema_registry"
+    if _tree_bytes(registry_src) != _tree_bytes(java_registry):
+        raise SystemExit("the Python and Java runs disagree on schema_registry: wire numbers must be one")
     registry = into / REGISTRY
     if registry.exists():
         shutil.rmtree(registry)
@@ -198,16 +207,21 @@ def write_outputs(out: Path, into: Path) -> None:
     (into / ZMQ_PY).write_text(zmq_module(out / "python"))
 
 
+def _tree_bytes(root: Path) -> dict[str, bytes]:
+    return {str(p.relative_to(root)): p.read_bytes() for p in sorted(root.rglob("*")) if p.is_file()}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--into", type=Path, default=ROOT,
-                    help="where to write gen/python, schema/schema_registry, "
+                    help="where to write gen/python, gen/java, schema/schema_registry, "
                          "mocap_contracts/messages.py and zmq_endpoints.py (default: the repo)")
     args = ap.parse_args()
     if not (HARPIA / "Docker" / "run.sh").exists():
         raise SystemExit("third_party/harpia is missing: git submodule update --init")
-    out = run_harpia(HARPIA_STAGE)
-    write_outputs(out, args.into.resolve())
+    out = run_harpia(HARPIA_STAGE / "python", "python")
+    java_out = run_harpia(HARPIA_STAGE / "java", "java")
+    write_outputs(out, java_out, args.into.resolve())
 
 
 if __name__ == "__main__":

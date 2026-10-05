@@ -286,6 +286,67 @@ def _chain(*rules: Rule) -> Rule:
     return run
 
 
+def _frame_size(msg: Message) -> Iterator[str]:
+    if msg.width <= 0 or msg.height <= 0:
+        yield f"size must be positive, got {msg.width}x{msg.height}"
+
+
+def _fps_range(msg: Message) -> Iterator[str]:
+    if not 0 < msg.min_fps <= msg.max_fps:
+        yield f"fps range needs 0 < min <= max, got [{msg.min_fps}, {msg.max_fps}]"
+
+
+def _camera_info(msg: Message) -> Iterator[str]:
+    if msg.sensor_orientation_deg not in (0, 90, 180, 270):
+        yield f"sensor_orientation_deg must be 0, 90, 180 or 270, got {msg.sensor_orientation_deg}"
+    if not msg.camera_id:
+        yield "camera_id is empty"
+    if dup := _duplicates([c.key for c in msg.controls]):
+        yield f"duplicate control keys {dup}"
+
+
+def _device_info(msg: Message) -> Iterator[str]:
+    if not msg.serial:
+        yield "serial is empty"
+    if dup := _duplicates([c.camera_id for c in msg.cameras]):
+        yield f"duplicate camera ids {dup}"
+
+
+def _stream_settings(msg: Message) -> Iterator[str]:
+    if not msg.camera_id:
+        yield "camera_id is empty"
+    if msg.width <= 0 or msg.height <= 0 or msg.fps <= 0 or msg.bitrate_kbps <= 0 or msg.i_frame_interval_s <= 0:
+        yield "size, fps, bitrate and I-frame interval must be positive"
+
+
+def _camera_stats(msg: Message) -> Iterator[str]:
+    if not msg.serial:
+        yield "serial is empty"
+    if min(msg.camera_fps, msg.encoder_fps, msg.cpu_percent) < 0 or msg.dropped_frames < 0:
+        yield "fps, cpu and dropped frames can't be negative"
+    if not 0 <= msg.thermal_status <= 6:
+        yield f"thermal_status is Android's 0..6, got {msg.thermal_status}"
+
+
+def _request_ids(msg: Message) -> Iterator[str]:
+    if not msg.request_id or not msg.serial:
+        yield "request_id and serial can't be empty"
+
+
+def _control_request(msg: Message) -> Iterator[str]:
+    yield from _request_ids(msg)
+    if dup := _duplicates([s.key for s in msg.settings]):
+        yield f"a control is requested twice {dup}"
+
+
+def _control_reply(msg: Message) -> Iterator[str]:
+    yield from _request_ids(msg)
+    if dup := _duplicates([r.key for r in msg.results]):
+        yield f"duplicate results {dup}"
+    if msg.HasField("device_info") and msg.device_info.serial != msg.serial:
+        yield f"device_info.serial {msg.device_info.serial!r} isn't the reply's serial {msg.serial!r}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -308,6 +369,14 @@ RULES: dict[str, Rule] = {
     "QualityReport": _quality_report,
     "MocapTakeHeader": _mocap_take_header,
     "MocapTake": _mocap_take,
+    "FrameSize": _frame_size,
+    "FpsRange": _fps_range,
+    "CameraInfo": _camera_info,
+    "DeviceInfo": _device_info,
+    "StreamSettings": _stream_settings,
+    "CameraStats": _camera_stats,
+    "ControlRequest": _control_request,
+    "ControlReply": _control_reply,
 }
 
 

@@ -1,0 +1,84 @@
+// Device info stats and control for the STREAM camera app owned by mocap-camera-app
+// Every Camera2 control the device offers is listed as a ControlCapability
+// Stream settings are kept apart from camera controls
+import "capture.harpia";
+
+enum CameraFacing {
+    CAMERA_FACING_UNSET = 0;
+    CAMERA_FACING_BACK;
+    CAMERA_FACING_FRONT;
+    CAMERA_FACING_EXTERNAL;
+}
+
+message FrameSize {
+    required int width;
+    required int height;
+};
+
+message FpsRange {
+    required int min_fps;
+    required int max_fps;
+};
+
+// One camera of the device and hardware_level is the Camera2 name such as LIMITED or FULL
+message CameraInfo {
+    required string camera_id;
+    required CameraFacing facing;
+    required string hardware_level;
+    required int sensor_orientation_deg;
+    repeteable float focal_lengths_mm;
+    repeteable FrameSize sizes;
+    repeteable FpsRange fps_ranges;
+    repeteable ControlCapability controls;
+};
+
+message DeviceInfo {
+    required string model;
+    required string serial;
+    required string android_version;
+    required string app_version;
+    repeteable string h264_encoders;
+    repeteable CameraInfo cameras;
+};
+
+// What the camera streams as opposed to how it exposes
+message StreamSettings {
+    required string camera_id;
+    required int width;
+    required int height;
+    required float fps;
+    required int bitrate_kbps;
+    required float i_frame_interval_s;
+};
+
+// Sent every second and sensor_ns is on the same clock as the stream timestamps
+// thermal_status is the Android PowerManager value from 0 to 6
+event message CameraStats {
+    required string serial;
+    required int64 sensor_ns;
+    required float camera_fps;
+    required float encoder_fps;
+    required int64 dropped_frames;
+    required float cpu_percent;
+    required float battery_temp_c;
+    required int thermal_status;
+};
+
+// From the recorder and absent stream means leave the stream as it is
+push pull message ControlRequest {
+    required string request_id;
+    required string serial;
+    StreamSettings stream;
+    repeteable ControlSetting settings;
+    required Flag want_device_info;
+};
+
+// From the app with one result per requested setting and nothing silently ignored
+push pull message ControlReply {
+    required string request_id;
+    required string serial;
+    StreamSettings stream_applied;
+    repeteable ControlResult results;
+    DeviceInfo device_info;
+    repeteable string problems;
+};
