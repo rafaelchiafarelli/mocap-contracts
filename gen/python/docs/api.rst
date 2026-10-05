@@ -67,6 +67,24 @@ harpia_generated.serialize.phi_registry
 .. automodule:: harpia_generated.serialize.phi_registry
    :members:
 
+harpia_generated.zmq
+--------------------
+
+.. automodule:: harpia_generated.zmq
+   :members:
+
+harpia_generated.zmq.CameraFileReady_61c8c10158ef4d464aeae2ffe73974e6_zmq
+-------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.zmq.CameraFileReady_61c8c10158ef4d464aeae2ffe73974e6_zmq
+   :members:
+
+harpia_generated.zmq.TakeClosed_61c8c10158ef4d464aeae2ffe73974e6_zmq
+--------------------------------------------------------------------
+
+.. automodule:: harpia_generated.zmq.TakeClosed_61c8c10158ef4d464aeae2ffe73974e6_zmq
+   :members:
+
 harpia_runtime
 --------------
 
@@ -191,5 +209,17 @@ harpia_runtime.yaml
 -------------------
 
 .. automodule:: harpia_runtime.yaml
+   :members:
+
+harpia_runtime.zap
+------------------
+
+.. automodule:: harpia_runtime.zap
+   :members:
+
+harpia_runtime.zmq
+------------------
+
+.. automodule:: harpia_runtime.zmq
    :members:
 

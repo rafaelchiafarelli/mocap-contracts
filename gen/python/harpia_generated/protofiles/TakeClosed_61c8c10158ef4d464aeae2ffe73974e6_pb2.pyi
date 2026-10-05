@@ -7,14 +7,14 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class TakeClosed(_message.Message):
-    __slots__ = ["ERROR_61c8c10158ef4d464aeae2ffe73974e6", "ID_61c8c10158ef4d464aeae2ffe73974e6", "ORIGINATOR", "STATUS_61c8c10158ef4d464aeae2ffe73974e6", "end", "roles", "start", "take_id"]
+    __slots__ = ["ERROR_61c8c10158ef4d464aeae2ffe73974e6", "ID_61c8c10158ef4d464aeae2ffe73974e6", "ORIGINATOR_61c8c10158ef4d464aeae2ffe73974e6", "STATUS_61c8c10158ef4d464aeae2ffe73974e6", "end", "roles", "start", "take_id"]
     END_FIELD_NUMBER: _ClassVar[int]
     ERROR_61C8C10158EF4D464AEAE2FFE73974E6_FIELD_NUMBER: _ClassVar[int]
     ERROR_61c8c10158ef4d464aeae2ffe73974e6: str
     ID_61C8C10158EF4D464AEAE2FFE73974E6_FIELD_NUMBER: _ClassVar[int]
     ID_61c8c10158ef4d464aeae2ffe73974e6: int
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    ORIGINATOR_61C8C10158EF4D464AEAE2FFE73974E6_FIELD_NUMBER: _ClassVar[int]
+    ORIGINATOR_61c8c10158ef4d464aeae2ffe73974e6: str
     ROLES_FIELD_NUMBER: _ClassVar[int]
     START_FIELD_NUMBER: _ClassVar[int]
     STATUS_61C8C10158EF4D464AEAE2FFE73974E6_FIELD_NUMBER: _ClassVar[int]
@@ -24,4 +24,4 @@ class TakeClosed(_message.Message):
     roles: _containers.RepeatedScalarFieldContainer[str]
     start: _SyncEvent_61c8c10158ef4d464aeae2ffe73974e6_pb2.SyncEvent
     take_id: str
-    def __init__(self, ID_61c8c10158ef4d464aeae2ffe73974e6: _Optional[int] = ..., take_id: _Optional[str] = ..., roles: _Optional[_Iterable[str]] = ..., start: _Optional[_Union[_SyncEvent_61c8c10158ef4d464aeae2ffe73974e6_pb2.SyncEvent, _Mapping]] = ..., end: _Optional[_Union[_SyncEvent_61c8c10158ef4d464aeae2ffe73974e6_pb2.SyncEvent, _Mapping]] = ..., STATUS_61c8c10158ef4d464aeae2ffe73974e6: _Optional[str] = ..., ERROR_61c8c10158ef4d464aeae2ffe73974e6: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, ID_61c8c10158ef4d464aeae2ffe73974e6: _Optional[int] = ..., take_id: _Optional[str] = ..., roles: _Optional[_Iterable[str]] = ..., start: _Optional[_Union[_SyncEvent_61c8c10158ef4d464aeae2ffe73974e6_pb2.SyncEvent, _Mapping]] = ..., end: _Optional[_Union[_SyncEvent_61c8c10158ef4d464aeae2ffe73974e6_pb2.SyncEvent, _Mapping]] = ..., STATUS_61c8c10158ef4d464aeae2ffe73974e6: _Optional[str] = ..., ERROR_61c8c10158ef4d464aeae2ffe73974e6: _Optional[str] = ..., ORIGINATOR_61c8c10158ef4d464aeae2ffe73974e6: _Optional[str] = ...) -> None: ...
