@@ -1,0 +1,8 @@
+# Harpia compliance profile for Mocap Studio (USAGE §4). Declared explicitly:
+# a missing file or field falls back to Harpia's strictest value.
+# Two PCs on a closed studio LAN, no health data.
+risk_class: class_a
+topology: networked
+phi_handling: none
+jurisdiction: []
+project: mocap-studio

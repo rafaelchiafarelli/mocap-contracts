@@ -1,0 +1,3 @@
+[submodule "third_party/harpia"]
+	path = third_party/harpia
+	url = git@github.com:rafaelchiafarelli/harpia.git
