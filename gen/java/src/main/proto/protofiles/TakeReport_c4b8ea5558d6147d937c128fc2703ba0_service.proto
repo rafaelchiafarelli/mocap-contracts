@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "protofiles/errorCode.proto";
+import "protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "protofiles/TakeReport_c4b8ea5558d6147d937c128fc2703ba0.proto";
+
+message TakeReport_Message {
+    TakeReport msg = 1;
+}
+//message for the standard functions 
+message TakeReport_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message TakeReport_ID {
+    int32 id = 1;
+}
+message TakeReport_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service TakeReport_Service {
+    rpc heartBeat(TakeReport_HeartBeat) returns (TakeReport_HeartBeat) {}
+    rpc streamSrc(TakeReport_Stream ) returns (stream TakeReport_Message) {}
+    rpc pullByID(TakeReport_ID) returns (TakeReport_Message) {}
+    rpc push(TakeReport_Message) returns (errorCode) {}
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message FrameSize {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+int32 width = 2;
+int32 height = 3;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 4;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 5;
+string ORIGINATOR = 6;
+}
