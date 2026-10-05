@@ -1,0 +1,12 @@
+ID:1
+serial:2
+sensor_ns:3
+camera_fps:4
+encoder_fps:5
+dropped_frames:6
+cpu_percent:7
+battery_temp_c:8
+thermal_status:9
+STATUS:10
+ERROR:11
+ORIGINATOR:12

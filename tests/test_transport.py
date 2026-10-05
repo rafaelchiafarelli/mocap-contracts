@@ -72,3 +72,32 @@ def test_recv_with_timeout_returns_none(ctx):
 def test_message_without_zmq_transport_is_refused(ctx):
     with pytest.raises(ContractError, match="has no ZeroMQ transport"):
         transport.new_sender(mc.Session, ctx, "tcp://127.0.0.1:1")
+
+
+def test_stats_publish_subscribe(ctx):
+    import time
+
+    from samples import camera_stats
+
+    port = _free_port()
+    pub = transport.new_publisher(mc.CameraStats, ctx, f"tcp://127.0.0.1:{port}")
+    sub = transport.new_subscriber(mc.CameraStats, ctx, f"tcp://127.0.0.1:{port}")
+    sub.socket.rcvtimeo = 200
+    got = None
+    for _ in range(25):  # a subscriber misses what was published before it connected
+        pub.send(camera_stats())
+        if (got := sub.recv()) is not None:
+            break
+        time.sleep(0.02)
+    assert got is not None and got.serial == "200138"
+    pub.close(); sub.close()
+
+
+def test_control_request_reply_legs_are_push_pull(ctx):
+    from samples import control_reply, control_request
+
+    for cls, sample in ((mc.ControlRequest, control_request), (mc.ControlReply, control_reply)):
+        tx, rx = _pair(cls, ctx, _free_port())
+        assert tx.send(sample())
+        assert rx.recv().request_id == "r-17"
+        tx.close(); rx.close()
