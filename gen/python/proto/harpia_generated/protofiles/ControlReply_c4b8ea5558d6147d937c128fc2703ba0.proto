@@ -15,5 +15,5 @@ DeviceInfo device_info = 6;
 repeated string problems = 7;
 string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 8;
 string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 9;
-string ORIGINATOR = 10;
+string ORIGINATOR_c4b8ea5558d6147d937c128fc2703ba0 = 10;
 }

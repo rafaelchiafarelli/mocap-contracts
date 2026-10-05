@@ -14,5 +14,5 @@ float battery_temp_c = 8;
 int32 thermal_status = 9;
 string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 10;
 string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 11;
-string ORIGINATOR = 12;
+string ORIGINATOR_c4b8ea5558d6147d937c128fc2703ba0 = 12;
 }

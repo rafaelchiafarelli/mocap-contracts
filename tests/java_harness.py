@@ -35,11 +35,14 @@ def stage_java(extra: dict[str, str] | None = None) -> Path:
     return STAGE / "java"
 
 
-def gradle(args: str, timeout: int = 900) -> subprocess.CompletedProcess:
+def gradle_cmd(args: str) -> list[str]:
     CACHE.mkdir(parents=True, exist_ok=True)
-    cmd = [
+    return [
         "docker", "run", "--rm", "--network", "host", "-u", f"{os.getuid()}:{os.getgid()}",
         "-e", "GRADLE_USER_HOME=/cache", "-v", f"{STAGE}:/work", "-v", f"{CACHE}:/cache",
         "-w", "/work/java", IMAGE, "bash", "-c", f"gradle --no-daemon -q {args}",
     ]
-    return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+
+
+def gradle(args: str, timeout: int = 900) -> subprocess.CompletedProcess:
+    return subprocess.run(gradle_cmd(args), capture_output=True, text=True, timeout=timeout)

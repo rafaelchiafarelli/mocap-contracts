@@ -11,5 +11,9 @@
     - No `critical` (Java doesn't support it). The compliance profile already declared (class_a, networked) means no CURVE.
   - Delivers: generated Python (recorder) and Java/JeroMQ (app) endpoints for the camera messages, re-exported through `mocap_contracts` on the Python side
 - **Pre-work:** none (Harpia V5 documents both sides). Ports and which side binds go in the recorder's `config.yaml` per STREAM camera; they're never discovered.
+- **Decisions (Claude, for Rafael's review, 2026-10-05):**
+  - `CameraStats` is declared `event`, which in Harpia gives the PUB/SUB pair (USAGE §7.6). A subscriber misses stats published before it connected, which is fine for per-second stats.
+  - `mocap_contracts.transport` gains `new_publisher` / `new_subscriber`.
+  - The Python ↔ Java test runs a Java peer built from `gen/java` alone, in the official Gradle image with host networking, as part of `make test-slow`.
 - **Out of scope:** the video stream (stream-protocol)
 - **Tests:** Python ↔ Java loopback: a control request gets its reply; stats arrive while a request is in flight
