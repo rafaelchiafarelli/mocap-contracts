@@ -4,7 +4,7 @@
 - **Contract:**
   - In: —
   - Requires: the app's control surface as it exists in the eval app (`/control` keys: width, height, fps, mode, bitrate, quality, facing) plus manual controls (exposure time, ISO, focus distance, white balance, AE/AF lock); every unit declared (ns, mm, K)
-  - Delivers: `DeviceInfo` (model, serial, Android version, Camera2 hardware level, cameras with sizes, fps ranges, sensor orientation, H.264 encoders), `CameraStats` (per-second: camera and encoder fps, dropped frames, CPU, battery temperature, thermal status), `ControlRequest` (requested stream settings + requested `CameraControls`), `ControlReply` (`CameraControls` actually applied, unsupported controls listed by name — never silently ignored)
+  - Delivers: `DeviceInfo` (model, serial, Android version, Camera2 hardware level, cameras with sizes, fps ranges, sensor orientation, H.264 encoders), `CameraStats` (per-second: camera and encoder fps, dropped frames, CPU, battery temperature, thermal status), `ControlRequest` (request_id, device serial, requested stream settings + requested `CameraControls`), `ControlReply` (the same request_id and device serial, `CameraControls` actually applied, unsupported controls listed by name — never silently ignored). The id and serial are needed because every app's reply arrives on the recorder's one shared receiver (task 3).
 - **Pre-work:** none
 - **Out of scope:** the transport (task 3)
 - **Tests:** JSON round-trip; a reply with an unsupported control lists it

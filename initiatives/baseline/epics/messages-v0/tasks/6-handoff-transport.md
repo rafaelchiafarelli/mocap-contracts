@@ -4,12 +4,10 @@
 - **Contract:**
   - In: `TakeClosed`, `CameraFileReady` (task 2)
   - Requires:
-    - The `.harpia` declares both messages on Harpia's **ZeroMQ** transport, as `critical` messages (delivery guarantees), so a readiness event isn't silently dropped. Harpia's "events" are in-process only, so they can't cross PCs.
-    - A **compliance profile** (`project.harpia.yaml`) declared in this repo for a closed studio LAN. Its values are Rafael's call and are written down, never left to Harpia's defaults (which turn on mTLS/CURVE/RBAC at higher risk classes).
-    - Harpia stays a black box: only its documented interface (`USAGE.md` §4, §7.6, §7.9) is used.
-  - Delivers: generated Python sender/receiver for the two events, re-exported through `mocap_contracts` (consumers never import Harpia's package names)
-- **Pre-work:**
-  - Harpia documents its **Python** ZeroMQ transport and `critical` delivery (V3's `USAGE.md` documents only the C++ ones). That's Harpia's backlog. Never work it out from Harpia's source.
-  - Rafael sets the compliance profile values.
+    - Harpia submodule bumped from `V4` to **`V5`**. V5 is V4 plus the docs for ZeroMQ in Python and Java (USAGE §7.6, §7.7, §7.9, §11); the generated code is the same, and `make check-gen` proves it.
+    - Both messages declared **`push pull`**, without `critical` (Rafael, 2026-10-05). The recorder's sender (PUSH) connects to the processing PC's receiver (PULL, binds), and ZeroMQ queues messages while the receiver is down. Anything lost across a restart is recovered from the sidecars (`mocap-extract` watch rescans them). `critical` would only be a bounded in-memory queue that drops the oldest message on overflow, and Java doesn't support it.
+    - The compliance profile already declared (class_a, networked): no CURVE, no ZAP.
+  - Delivers: the generated Python sender/receiver for both events (`new_sender`/`new_receiver`, USAGE §7.6), re-exported through `mocap_contracts` under stable names, so consumers never import `harpia_generated.zmq.<name>_<hash>_zmq`
+- **Pre-work:** none
 - **Out of scope:** copying the files (rsync, `mocap-capture` handoff); every other Harpia transport
-- **Tests:** loopback send/receive of both messages; an event sent while the receiver is down arrives once it starts
+- **Tests:** loopback send/receive of both messages; a message sent before the receiver binds arrives once it does (same sender process); `recv` with a timeout returns `None`
