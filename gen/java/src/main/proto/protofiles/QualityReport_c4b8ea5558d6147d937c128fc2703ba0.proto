@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/CameraQuality_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "protofiles/BoneStability_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "protofiles/CameraAblation_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message QualityReport {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string take_id = 2;
+optional float calibration_reproj_err_px = 3;
+repeated CameraQuality cameras = 4;
+repeated BoneStability bones = 5;
+repeated CameraAblation ablation = 6;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 7;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 8;
+string ORIGINATOR = 9;
+}

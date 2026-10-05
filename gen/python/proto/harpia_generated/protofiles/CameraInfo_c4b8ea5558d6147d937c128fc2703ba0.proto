@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/CameraFacing_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "harpia_generated/protofiles/FrameSize_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "harpia_generated/protofiles/FpsRange_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "harpia_generated/protofiles/ControlCapability_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message CameraInfo {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string camera_id = 2;
+CameraFacing facing = 3;
+string hardware_level = 4;
+int32 sensor_orientation_deg = 5;
+repeated float focal_lengths_mm = 6;
+repeated FrameSize sizes = 7;
+repeated FpsRange fps_ranges = 8;
+repeated ControlCapability controls = 9;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 10;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 11;
+string ORIGINATOR = 12;
+}

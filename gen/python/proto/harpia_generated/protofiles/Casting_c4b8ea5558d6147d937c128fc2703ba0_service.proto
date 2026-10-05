@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/Casting_c4b8ea5558d6147d937c128fc2703ba0.proto";
+
+message Casting_Message {
+    Casting msg = 1;
+}
+//message for the standard functions 
+message Casting_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message Casting_ID {
+    int32 id = 1;
+}
+message Casting_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service Casting_Service {
+    rpc heartBeat(Casting_HeartBeat) returns (Casting_HeartBeat) {}
+    rpc streamSrc(Casting_Stream ) returns (stream Casting_Message) {}
+    rpc pullByID(Casting_ID) returns (Casting_Message) {}
+    rpc push(Casting_Message) returns (errorCode) {}
+}

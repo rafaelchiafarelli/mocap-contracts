@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/TakeClosed_c4b8ea5558d6147d937c128fc2703ba0.proto";
+
+message TakeClosed_Message {
+    TakeClosed msg = 1;
+}
+//message for the standard functions 
+message TakeClosed_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message TakeClosed_ID {
+    int32 id = 1;
+}
+message TakeClosed_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service TakeClosed_Service {
+    rpc heartBeat(TakeClosed_HeartBeat) returns (TakeClosed_HeartBeat) {}
+    rpc streamSrc(TakeClosed_Stream ) returns (stream TakeClosed_Message) {}
+    rpc pullByID(TakeClosed_ID) returns (TakeClosed_Message) {}
+    rpc push(TakeClosed_Message) returns (errorCode) {}
+}
