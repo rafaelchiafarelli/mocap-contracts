@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/ControlValue_5f4d7690e05d3b2a18b01aae2e150601.proto";
+import "harpia_generated/protofiles/ControlStatus_5f4d7690e05d3b2a18b01aae2e150601.proto";
+message ControlResult {
+int32 ID_5f4d7690e05d3b2a18b01aae2e150601 = 1;
+string key = 2;
+ControlValue requested = 3;
+ControlValue applied = 4;
+ControlStatus status = 5;
+string note = 6;
+string STATUS_5f4d7690e05d3b2a18b01aae2e150601 = 7;
+string ERROR_5f4d7690e05d3b2a18b01aae2e150601 = 8;
+string ORIGINATOR = 9;
+}

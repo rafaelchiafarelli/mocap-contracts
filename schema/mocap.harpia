@@ -1,3 +1,4 @@
 // Root of the Mocap Studio contracts
 // It only imports modules and each module belongs to the repository that produces its data
-import "placeholder.harpia";
+import "common.harpia";
+import "camera_control.harpia";

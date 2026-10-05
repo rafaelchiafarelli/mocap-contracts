@@ -21,14 +21,16 @@ package and the folder layout.
 
 ```python
 import mocap_contracts
-msg = mocap_contracts.contracts_placeholder(note="hi")
+msg = mocap_contracts.ControlMenuOption(value=1, name="Manual Mode")
 text = mocap_contracts.to_json(msg)          # declared fields only, defaults included
-back = mocap_contracts.from_json(mocap_contracts.contracts_placeholder, text)
+back = mocap_contracts.from_json(mocap_contracts.ControlMenuOption, text)
 ```
 
 `from_json` raises `ContractError` on invalid JSON, on any key not declared in
 `schema/` (Harpia's own `ID_/STATUS_/ERROR_<hash>` and `ORIGINATOR` fields
-included), and on a missing `required` field at any nesting level.
+included), and on a missing `required` field at any nesting level. A `required` enum
+holding its `*_UNSET` zero value counts as missing, and `to_json` refuses to
+write what `from_json` would refuse to read.
 
 Import from `mocap_contracts` only, never from `harpia_generated`. Its module
 names carry a hash of the root `.harpia` and change with it.
@@ -44,7 +46,11 @@ make test                            # full suite; the regeneration check is ski
 make check-gen                       # regenerate and fail on any diff
 ```
 
-Comments in `.harpia` files: plain words only. Harpia's lexer rejects
-punctuation such as `:` inside comments.
+Writing `.harpia` (what Harpia's lexer accepts, beyond USAGE §3):
+- comments: plain words only (`:` and similar punctuation are rejected)
+- scalars: `int` (int32), `int64`, `float` (32-bit), `string`; there's no
+  bool (use the `Flag` enum from `common.harpia`) and no double
+- enums: one value per line; every enum's zero value is `<ENUM>_UNSET`, and
+  every value is prefixed with its enum's name
 
 Plan and progress: `initiatives/`.

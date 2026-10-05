@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Flag_5f4d7690e05d3b2a18b01aae2e150601.proto";
+message ControlValue {
+int32 ID_5f4d7690e05d3b2a18b01aae2e150601 = 1;
+optional int64 int_value = 2;
+optional float float_value = 3;
+optional Flag flag_value = 4;
+optional string text_value = 5;
+repeated int64 int_values = 6;
+repeated float float_values = 7;
+string STATUS_5f4d7690e05d3b2a18b01aae2e150601 = 8;
+string ERROR_5f4d7690e05d3b2a18b01aae2e150601 = 9;
+string ORIGINATOR = 10;
+}

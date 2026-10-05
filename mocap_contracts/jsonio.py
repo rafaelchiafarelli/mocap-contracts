@@ -5,6 +5,10 @@ their declared names, with every non-`optional` field present even when it
 holds its default value. Harpia's bookkeeping fields (ID_/STATUS_/ERROR_
 <hash>, ORIGINATOR) are never written, and reading rejects any key that
 isn't declared or any missing `required` key, at every nesting level.
+
+Every contract enum has `*_UNSET` as its zero value, so a `required` enum
+field holding it counts as missing. Writing applies the same checks as
+reading, so an invalid file is never produced.
 """
 
 from __future__ import annotations
@@ -30,11 +34,14 @@ def to_json(
     msg: Message,
     *,
     declared: Mapping[str, tuple[str, ...]] = DECLARED_FIELDS,
+    required: Mapping[str, tuple[str, ...]] = REQUIRED_FIELDS,
 ) -> str:
     data = json_format.MessageToDict(
         msg, preserving_proto_field_name=True, including_default_value_fields=True
     )
-    return json.dumps(_prune(data, msg.DESCRIPTOR, declared), indent=2, ensure_ascii=False) + "\n"
+    data = _prune(data, msg.DESCRIPTOR, declared)
+    _check(data, msg.DESCRIPTOR, declared, required, msg.DESCRIPTOR.name)
+    return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
 
 def from_json(
@@ -69,6 +76,13 @@ def _is_message(field: FieldDescriptor) -> bool:
     )
 
 
+def _is_unset_enum(field: FieldDescriptor, value: Any) -> bool:
+    if field.type != FieldDescriptor.TYPE_ENUM or field.label == FieldDescriptor.LABEL_REPEATED:
+        return False
+    zero = field.enum_type.values_by_number[0].name
+    return value in (0, zero)
+
+
 def _children(value: Any, field: FieldDescriptor) -> list[Any]:
     if field.label == FieldDescriptor.LABEL_REPEATED:
         return value if isinstance(value, list) else []
@@ -101,6 +115,9 @@ def _check(data: Any, desc: Descriptor, declared, required, path: str) -> None:
     missing = [f for f in required.get(desc.name, ()) if f not in data]
     if missing:
         raise ContractError(f"{path}: missing required field(s) {missing}")
+    unset = [f for f in required.get(desc.name, ()) if _is_unset_enum(desc.fields_by_name[f], data[f])]
+    if unset:
+        raise ContractError(f"{path}: required field(s) {unset} hold their UNSET value")
     for name, value in data.items():
         field = desc.fields_by_name[name]
         if _is_message(field) and value is not None:
