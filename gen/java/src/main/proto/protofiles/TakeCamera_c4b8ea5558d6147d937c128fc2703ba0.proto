@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/CameraConfig_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "protofiles/ControlResult_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "protofiles/CameraControls_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "protofiles/PreprocessSpec_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message TakeCamera {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+CameraConfig config = 2;
+repeated ControlResult control_results = 3;
+CameraControls applied_controls = 4;
+PreprocessSpec applied_preprocess = 5;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 6;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 7;
+string ORIGINATOR = 8;
+}

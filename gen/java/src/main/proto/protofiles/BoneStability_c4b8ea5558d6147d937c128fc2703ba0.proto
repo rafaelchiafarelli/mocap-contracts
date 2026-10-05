@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message BoneStability {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string bone = 2;
+float mean_length_m = 3;
+float rsd = 4;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 5;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 6;
+string ORIGINATOR = 7;
+}

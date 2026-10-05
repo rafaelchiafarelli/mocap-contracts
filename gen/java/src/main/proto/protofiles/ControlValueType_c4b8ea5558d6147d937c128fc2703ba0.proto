@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ControlValueType {
+CONTROL_VALUE_TYPE_UNSET = 0;
+CONTROL_VALUE_TYPE_INT = 1;
+CONTROL_VALUE_TYPE_FLOAT = 2;
+CONTROL_VALUE_TYPE_FLAG = 3;
+CONTROL_VALUE_TYPE_MENU = 4;
+CONTROL_VALUE_TYPE_STRING = 5;
+CONTROL_VALUE_TYPE_INT_LIST = 6;
+CONTROL_VALUE_TYPE_FLOAT_LIST = 7;
+}

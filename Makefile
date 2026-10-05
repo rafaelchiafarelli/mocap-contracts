@@ -1,7 +1,7 @@
 PYTHON ?= python3
-GENERATED := gen/python schema/schema_registry mocap_contracts/messages.py mocap_contracts/zmq_endpoints.py
+GENERATED := gen/python gen/java schema/schema_registry mocap_contracts/messages.py mocap_contracts/zmq_endpoints.py
 
-.PHONY: gen check-gen test
+.PHONY: gen check-gen test test-slow
 
 # Regenerate the Python contracts from schema/ with Harpia (needs Docker).
 gen:
@@ -15,3 +15,7 @@ check-gen: gen
 
 test:
 	.venv/bin/pytest
+
+# Also the slow tests: Gradle builds of the generated Java, Python <-> Java loopback (Docker).
+test-slow:
+	MOCAP_SLOW_TESTS=1 .venv/bin/pytest
