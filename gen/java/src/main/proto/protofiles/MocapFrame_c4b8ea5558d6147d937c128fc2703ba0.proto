@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/Flag_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message MocapFrame {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+int64 frame_id = 2;
+int64 timestamp_ns = 3;
+repeated float body_xyz = 4;
+repeated float left_hand_xyz = 5;
+repeated float right_hand_xyz = 6;
+repeated int32 body_missing = 7;
+repeated int32 left_hand_missing = 8;
+repeated int32 right_hand_missing = 9;
+repeated float face_blendshapes = 10;
+repeated float gaze = 11;
+optional string emotion = 12;
+Flag left_foot_contact = 13;
+Flag right_foot_contact = 14;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 15;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 16;
+string ORIGINATOR = 17;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message StreamSettings {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string camera_id = 2;
+int32 width = 3;
+int32 height = 4;
+float fps = 5;
+int32 bitrate_kbps = 6;
+float i_frame_interval_s = 7;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 8;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 9;
+string ORIGINATOR = 10;
+}

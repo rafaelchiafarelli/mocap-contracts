@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATED = ["gen/python", "schema/schema_registry", "mocap_contracts/messages.py",
+GENERATED = ["gen/python", "gen/java", "schema/schema_registry", "mocap_contracts/messages.py",
              "mocap_contracts/zmq_endpoints.py"]
 
 

@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/FileKind_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message CameraFileReady {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+string take_id = 2;
+string role = 3;
+FileKind kind = 4;
+string path = 5;
+int64 size_bytes = 6;
+string sha256 = 7;
+int64 frames = 8;
+int64 first_ts_ns = 9;
+int64 last_ts_ns = 10;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 11;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 12;
+string ORIGINATOR_c4b8ea5558d6147d937c128fc2703ba0 = 13;
+}
