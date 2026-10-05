@@ -90,7 +90,7 @@ message TakeReport {
 };
 
 // Sent at END so the processing PC can align as soon as the timestamps arrive
-message TakeClosed {
+push pull message TakeClosed {
     required string take_id;
     repeteable string roles;
     required SyncEvent start;
@@ -99,7 +99,7 @@ message TakeClosed {
 
 // Sent once per file after the file arrived on the processing PC
 // path is relative to the take folder and sha256 is lowercase hex
-message CameraFileReady {
+push pull message CameraFileReady {
     required string take_id;
     required string role;
     required FileKind kind;
