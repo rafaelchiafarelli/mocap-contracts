@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/ControlBackend_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/ControlValueType_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/ControlValue_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/ControlMenuOption_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/Flag_17f8b54225d6d535e6d691175cc18809.proto";
+message ControlCapability {
+int32 ID_17f8b54225d6d535e6d691175cc18809 = 1;
+ControlBackend backend = 2;
+string key = 3;
+ControlValueType value_type = 4;
+ControlValue min_value = 5;
+ControlValue max_value = 6;
+ControlValue step = 7;
+repeated ControlMenuOption options = 8;
+ControlValue default_value = 9;
+ControlValue current_value = 10;
+Flag read_only = 11;
+string unit = 12;
+string STATUS_17f8b54225d6d535e6d691175cc18809 = 13;
+string ERROR_17f8b54225d6d535e6d691175cc18809 = 14;
+string ORIGINATOR = 15;
+}

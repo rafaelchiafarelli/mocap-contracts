@@ -3,3 +3,4 @@
 import "common.harpia";
 import "camera_control.harpia";
 import "session.harpia";
+import "capture.harpia";

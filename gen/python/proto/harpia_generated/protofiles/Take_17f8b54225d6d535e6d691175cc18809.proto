@@ -1,0 +1,23 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/TakeType_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/SyncEvent_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/Casting_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/CalibrationBoard_17f8b54225d6d535e6d691175cc18809.proto";
+import "harpia_generated/protofiles/TakeCamera_17f8b54225d6d535e6d691175cc18809.proto";
+message Take {
+int32 ID_17f8b54225d6d535e6d691175cc18809 = 1;
+string id = 2;
+string session_id = 3;
+TakeType type = 4;
+SyncEvent start = 5;
+SyncEvent end = 6;
+repeated Casting casting = 7;
+CalibrationBoard board = 8;
+repeated TakeCamera cameras = 9;
+string STATUS_17f8b54225d6d535e6d691175cc18809 = 10;
+string ERROR_17f8b54225d6d535e6d691175cc18809 = 11;
+string ORIGINATOR = 12;
+}

@@ -1,0 +1,112 @@
+// Takes and the take report owned by mocap-capture for P2
+// Every timestamp is int64 nanoseconds on the recorder host clock
+// Rules that required cannot express live in mocap_contracts rules
+import "session.harpia";
+
+enum SyncKind {
+    SYNC_KIND_UNSET = 0;
+    SYNC_KIND_START;
+    SYNC_KIND_END;
+}
+
+// Only the operator marks a take for now and the enum leaves room for hardware
+enum SyncSource {
+    SYNC_SOURCE_UNSET = 0;
+    SYNC_SOURCE_MANUAL;
+}
+
+enum FileKind {
+    FILE_KIND_UNSET = 0;
+    FILE_KIND_VIDEO;
+    FILE_KIND_TIMESTAMPS;
+}
+
+// A START or END marker on the recorder host clock
+message SyncEvent {
+    required SyncKind kind;
+    required int64 host_ts_ns;
+    required SyncSource source;
+};
+
+// A normalized summary of the controls a camera ended up with
+// Each field is filled only from read back values where a native control maps onto it
+message CameraControls {
+    optional int64 exposure_ns;
+    optional int iso;
+    optional float gain_raw;
+    optional float focus_diopters;
+    optional float focus_raw;
+    optional int white_balance_k;
+    optional int power_line_hz;
+    optional Flag auto_exposure;
+    optional Flag auto_focus;
+    optional Flag auto_white_balance;
+};
+
+// One camera in a take described fully because the processing PC never sees config yaml
+message TakeCamera {
+    required CameraConfig config;
+    repeteable ControlResult control_results;
+    CameraControls applied_controls;
+    PreprocessSpec applied_preprocess;
+};
+
+// One take and end is absent while recording
+// casting lists the pairs performing in this take and board is for calibration takes
+message Take {
+    required string id;
+    required string session_id;
+    required TakeType type;
+    required SyncEvent start;
+    SyncEvent end;
+    repeteable Casting casting;
+    CalibrationBoard board;
+    repeteable TakeCamera cameras;
+};
+
+// Frames missing after a given frame for longer than one and a half frame periods
+message FrameGap {
+    required int64 after_frame;
+    required int64 duration_ns;
+};
+
+// What one camera delivered in a take
+message CameraTakeReport {
+    required string role;
+    required int64 frames;
+    required float fps_measured;
+    required float fps_cv;
+    repeteable FrameGap gaps;
+    required int64 first_ts_ns;
+    required int64 last_ts_ns;
+};
+
+// The verification of a whole take
+message TakeReport {
+    required string take_id;
+    required Flag ok;
+    repeteable string problems;
+    repeteable CameraTakeReport reports;
+};
+
+// Sent at END so the processing PC can align as soon as the timestamps arrive
+message TakeClosed {
+    required string take_id;
+    repeteable string roles;
+    required SyncEvent start;
+    required SyncEvent end;
+};
+
+// Sent once per file after the file arrived on the processing PC
+// path is relative to the take folder and sha256 is lowercase hex
+message CameraFileReady {
+    required string take_id;
+    required string role;
+    required FileKind kind;
+    required string path;
+    required int64 size_bytes;
+    required string sha256;
+    required int64 frames;
+    required int64 first_ts_ns;
+    required int64 last_ts_ns;
+};

@@ -34,6 +34,7 @@
     - `TakeClosed` roles are unique and it carries both events
     - sha256 is 64 hex
     - sizes and frame counts are not negative
+    - path relative to the take folder (no leading `/`, no `..`)
     - last_ts_ns ≥ first_ts_ns
     - a report with problems can't be ok
 - **Pre-work:** none
