@@ -15,6 +15,11 @@
     - `ControlCapability`: backend, key, value type, min/max/step where the device reports them, menu options by name, default, current value, read_only, unit when the backend declares one (left empty, never guessed)
     - `ControlSetting`: key + typed value, as requested
     - `ControlResult`: key, requested value, value **read back** from the device after applying, status, and a note on failure
-- **Pre-work:** the field types Harpia's documented language offers (USAGE §3 shows `int`, `string`, maps, enums, composed). Float, 64-bit int and bool are needed here and in every later message. If they aren't documented, stop and flag it.
+- **Pre-work:** done (2026-10-05). Harpia's scalars, per Rafael and confirmed by generation (USAGE §3 doesn't list them yet):
+  - `int` is int32 (the keyword `int32` is rejected); `int64`; `float` (32-bit); `string`
+  - **no bool and no double**
+  - Booleans use one shared enum in `common.harpia`: `Flag { FLAG_UNSET = 0; FLAG_OFF; FLAG_ON; }`. Proto3 can't tell "unset" from 0, so UNSET makes a forgotten field visible (Rafael's choice).
+  - Every enumerator carries its enum's name as a prefix, since proto3 enum values share one scope.
+  - The pipeline placeholder module is removed here (its job ends once real messages exist).
 - **Out of scope:** talking to a camera (`mocap-capture` studio-setup cameras, `mocap-camera-app` control); the normalized `CameraControls` summary (task 3)
 - **Tests:** JSON round-trip of each message; a capability with a menu keeps its options in order; a result's requested and read-back values can differ (`CLAMPED`)
