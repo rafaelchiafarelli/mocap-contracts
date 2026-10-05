@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/SyncKind_c4b8ea5558d6147d937c128fc2703ba0.proto";
+import "harpia_generated/protofiles/SyncSource_c4b8ea5558d6147d937c128fc2703ba0.proto";
+message SyncEvent {
+int32 ID_c4b8ea5558d6147d937c128fc2703ba0 = 1;
+SyncKind kind = 2;
+int64 host_ts_ns = 3;
+SyncSource source = 4;
+string STATUS_c4b8ea5558d6147d937c128fc2703ba0 = 5;
+string ERROR_c4b8ea5558d6147d937c128fc2703ba0 = 6;
+string ORIGINATOR = 7;
+}
