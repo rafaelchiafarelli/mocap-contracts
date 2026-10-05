@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Actor_61c8c10158ef4d464aeae2ffe73974e6.proto";
+import "harpia_generated/protofiles/Character_61c8c10158ef4d464aeae2ffe73974e6.proto";
+import "harpia_generated/protofiles/Casting_61c8c10158ef4d464aeae2ffe73974e6.proto";
+message Session {
+int32 ID_61c8c10158ef4d464aeae2ffe73974e6 = 1;
+string id = 2;
+string date = 3;
+repeated Actor actors = 4;
+repeated Character characters = 5;
+repeated Casting casting = 6;
+string STATUS_61c8c10158ef4d464aeae2ffe73974e6 = 7;
+string ERROR_61c8c10158ef4d464aeae2ffe73974e6 = 8;
+string ORIGINATOR = 9;
+}
