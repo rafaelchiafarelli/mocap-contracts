@@ -333,8 +333,14 @@ def _request_ids(msg: Message) -> Iterator[str]:
         yield "request_id and serial can't be empty"
 
 
+_TCP_ENDPOINT = re.compile(r"^tcp://[^:/\s*]+:(\d{1,5})$")
+
+
 def _control_request(msg: Message) -> Iterator[str]:
     yield from _request_ids(msg)
+    m = _TCP_ENDPOINT.match(msg.reply_endpoint)
+    if not m or not 0 < int(m.group(1)) < 65536:
+        yield f"reply_endpoint {msg.reply_endpoint!r} must be tcp://<host>:<port> (the recorder's ControlReply receiver)"
     if dup := _duplicates([s.key for s in msg.settings]):
         yield f"a control is requested twice {dup}"
 

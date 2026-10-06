@@ -7,3 +7,4 @@ want_device_info:6
 STATUS:7
 ERROR:8
 ORIGINATOR:9
+reply_endpoint:10

@@ -42,6 +42,9 @@ def test_request_without_stream_leaves_the_stream_alone():
 
 @pytest.mark.parametrize("msg, match", [
     (control_request(request_id=""), "request_id and serial can't be empty"),
+    (control_request(reply_endpoint="192.168.7.10:5700"), "reply_endpoint .* must be tcp://<host>:<port>"),
+    (control_request(reply_endpoint="tcp://*:5700"), "must be tcp://<host>:<port>"),
+    (control_request(reply_endpoint="tcp://recorder:70000"), "must be tcp://<host>:<port>"),
     (control_request(want_device_info=0), r"\['want_device_info'\] hold their UNSET value"),
     (control_request(settings=[mc.ControlSetting(key="k", value=mc.ControlValue(int_value=1))] * 2), r"requested twice \['k'\]"),
     (control_reply(serial=""), "request_id and serial can't be empty"),
