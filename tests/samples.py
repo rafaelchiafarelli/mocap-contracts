@@ -232,7 +232,7 @@ def stream_settings(**kw):
 
 def control_request(**kw):
     fields = dict(
-        request_id="r-17", serial="200138", stream=stream_settings(),
+        request_id="r-17", serial="200138", reply_endpoint="tcp://192.168.7.10:5700", stream=stream_settings(),
         settings=[mc.ControlSetting(key="android.control.aeMode", value=_int(0)),
                   mc.ControlSetting(key="android.sensor.exposureTime", value=_int(8_000_000))],
         want_device_info=_enum("Flag", "FLAG_ON"),

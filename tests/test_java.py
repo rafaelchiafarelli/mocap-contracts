@@ -2,7 +2,8 @@
 
 The Java peer below plays the camera app with nothing but the generated
 messages and ZeroMQ factories: it binds its ControlRequest receiver, answers
-on the recorder's ControlReply receiver, and publishes CameraStats. The test
+on the recorder's ControlReply receiver named in the request (reply_endpoint),
+and publishes CameraStats. The test
 plays the recorder in Python with mocap_contracts.transport.
 """
 
@@ -27,10 +28,9 @@ import org.zeromq.ZContext;
 /** Plays the camera app: one ControlRequest in, its ControlReply out, then stats. */
 public final class CameraPeer {
     public static void main(String[] args) throws Exception {
-        String req = args[0], reply = args[1], stats = args[2];
+        String req = args[0], stats = args[1];
         try (ZContext ctx = new ZContext()) {
             HarpiaZmq.Receiver rx = ControlRequest_zmq.newReceiver(ctx, "tcp://127.0.0.1:" + req);
-            HarpiaZmq.Sender tx = ControlReply_zmq.newSender(ctx, "tcp://127.0.0.1:" + reply);
             HarpiaZmq.Sender pub = CameraStats_zmq.newPublisher(ctx, "tcp://127.0.0.1:" + stats);
             rx.socket().setReceiveTimeOut(60000);
             System.out.println("READY");
@@ -38,6 +38,7 @@ public final class CameraPeer {
             ControlRequest.Builder in = ControlRequest.newBuilder();
             if (!rx.receive(in)) { System.out.println("NO_REQUEST"); System.exit(2); }
             ControlRequest r = in.build();
+            HarpiaZmq.Sender tx = ControlReply_zmq.newSender(ctx, r.getReplyEndpoint());
             ControlReply.Builder out = ControlReply.newBuilder()
                 .setRequestId(r.getRequestId()).setSerial(r.getSerial());
             for (ControlSetting s : r.getSettingsList()) {
@@ -101,7 +102,7 @@ def test_python_recorder_and_java_camera_talk_over_zeromq():
     ctx = zmq.Context()
     replies = transport.new_receiver(mc.ControlReply, ctx, f"tcp://127.0.0.1:{reply_port}")  # recorder binds
     replies.socket.rcvtimeo = 30000
-    peer = subprocess.Popen(gradle_cmd(f"peer -PpeerArgs={req_port},{reply_port},{stats_port}"),
+    peer = subprocess.Popen(gradle_cmd(f"peer -PpeerArgs={req_port},{stats_port}"),
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     lines: list[str] = []
     threading.Thread(target=lambda: lines.extend(peer.stdout), daemon=True).start()
@@ -114,7 +115,7 @@ def test_python_recorder_and_java_camera_talk_over_zeromq():
         stats = transport.new_subscriber(mc.CameraStats, ctx, f"tcp://127.0.0.1:{stats_port}")
         stats.socket.rcvtimeo = 30000
         sender = transport.new_sender(mc.ControlRequest, ctx, f"tcp://127.0.0.1:{req_port}")
-        request = control_request()
+        request = control_request(reply_endpoint=f"tcp://127.0.0.1:{reply_port}")
         assert sender.send(request)
 
         reply = replies.recv()

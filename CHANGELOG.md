@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.0 — 2026-10-06
+
+- **`ControlRequest.reply_endpoint`** (required, `tcp://<host>:<port>`): where the recorder's `ControlReply` receiver listens. The camera app sends each reply there, so a tablet needs no recorder address of its own and moving the recorder PC changes nothing on the tablets. Nothing declared where the reply went before (`CameraConfig` has the app's `control_port` and `stats_port` only). New wire number 10; existing numbers unchanged. **Breaking:** a request without it is rejected by the rules, so recorder and app both move to `v0.3.0`.
+
 ## v0.2.1 — 2026-10-05
 
 - The Harpia submodule is cloned over HTTPS instead of SSH. `pip install git+…@<tag>` clones submodules, and the SSH URL made installs fail on any machine without the maintainer's key (Docker builds included). No contract changes: pin `v0.2.1` instead of `v0.1.0`/`v0.2.0`.

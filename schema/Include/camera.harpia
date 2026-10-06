@@ -65,12 +65,14 @@ event message CameraStats {
 };
 
 // From the recorder and absent stream means leave the stream as it is
+// reply_endpoint is the tcp endpoint where the recorder ControlReply receiver listens and the app sends the reply there
 push pull message ControlRequest {
     required string request_id;
     required string serial;
     StreamSettings stream;
     repeteable ControlSetting settings;
     required Flag want_device_info;
+    required string reply_endpoint;
 };
 
 // From the app with one result per requested setting and nothing silently ignored
