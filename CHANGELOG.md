@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.1 — 2026-10-05
+
+- The Harpia submodule is cloned over HTTPS instead of SSH. `pip install git+…@<tag>` clones submodules, and the SSH URL made installs fail on any machine without the maintainer's key (Docker builds included). No contract changes: pin `v0.2.1` instead of `v0.1.0`/`v0.2.0`.
+
 ## v0.2.0 — 2026-10-05
 
 The contract between the STREAM camera app and the recorder (`camera-protocol` initiative).
