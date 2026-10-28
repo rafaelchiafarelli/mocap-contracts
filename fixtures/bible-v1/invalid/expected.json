@@ -1,0 +1,62 @@
+{
+  "item-unknown-field.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[0]: 'look.smell' is not a prop field of the catalog"
+  },
+  "item-not-a-map.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: id must be a record id of a map"
+  },
+  "item-number-as-text.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[4]: touch.weight is a number"
+  },
+  "item-number-no-unit.json": {
+    "message": "BibleItem",
+    "error": "BibleItem.values[4]: a number has a unit"
+  },
+  "item-tbd-no-revisit.json": {
+    "message": "BibleItem",
+    "error": "BibleItem.values[0]: a TBD value needs its revisit trigger"
+  },
+  "item-link-wrong-kind.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[3]: ownership.owner links to a character id"
+  },
+  "item-per-scene-no-scene.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[2]: state.state is per scene"
+  },
+  "item-scene-not-per-scene.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[0]: look.color is not per scene"
+  },
+  "item-twice.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[4]: look.color holds one value"
+  },
+  "item-bad-scene.json": {
+    "message": "BibleItem",
+    "error": "BibleItem.links[1]: scene must be a scene number"
+  },
+  "item-parent-other-map.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: parent must be a prop id"
+  },
+  "item-link-item-not-wardrobe.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: links: only a wardrobe link names an item"
+  },
+  "item-bad-by.json": {
+    "message": "BibleItem",
+    "error": "BibleItem.values[0]: by must be"
+  },
+  "item-file-leaves.json": {
+    "message": "BibleItem",
+    "error": "BibleItem: values[4]: path can't hold"
+  },
+  "not-props-duplicate.json": {
+    "message": "NotProps",
+    "error": "NotProps: duplicate words ['TV']"
+  }
+}

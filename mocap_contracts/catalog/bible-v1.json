@@ -1,0 +1,1616 @@
+{
+  "version": 1,
+  "maps": [
+    {
+      "bible_map": "BIBLE_MAP_SET",
+      "groups": [
+        {
+          "key": "general",
+          "label": "General",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "notes",
+              "label": "Notes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "tags",
+              "label": "Tags",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "photos",
+              "label": "Photos",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "references",
+              "label": "References",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "space",
+          "label": "Space",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "int_ext",
+              "label": "Interior/exterior",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "interior",
+                "exterior",
+                "both"
+              ]
+            },
+            {
+              "key": "type",
+              "label": "Type",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "house",
+                "apartment",
+                "office",
+                "shop",
+                "street",
+                "school",
+                "hospital",
+                "vehicle",
+                "nature"
+              ]
+            },
+            {
+              "key": "period",
+              "label": "Period/era",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "country",
+              "label": "Country",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "city",
+              "label": "City",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "region",
+              "label": "Region",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "time_of_day",
+              "label": "Time of day it is used at",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "size",
+          "label": "Size",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "width",
+              "label": "Width",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "depth",
+              "label": "Depth",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "height",
+              "label": "Height",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "floor_plan",
+              "label": "Floor plan",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "blend",
+              "label": ".blend file",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "level",
+              "label": "Level",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "ceiling_type",
+              "label": "Ceiling type",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "openings",
+          "label": "Openings",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "doors",
+              "label": "Doors (count, position, which way they open, where they lead)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "windows",
+              "label": "Windows (count, size, what is seen outside)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "stairs",
+              "label": "Stairs",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "surfaces",
+          "label": "Surfaces",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "walls",
+              "label": "Wall color/finish",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "floor",
+              "label": "Floor material",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "ceiling",
+              "label": "Ceiling",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "wear",
+              "label": "Wear",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "new",
+                "worn",
+                "dirty",
+                "damaged"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "style",
+          "label": "Style",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "architecture",
+              "label": "Architecture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "decoration",
+              "label": "Decoration style",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "social_class",
+              "label": "Social class it shows",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "low",
+                "lower-middle",
+                "middle",
+                "upper-middle",
+                "upper"
+              ]
+            },
+            {
+              "key": "mood",
+              "label": "Mood",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "light",
+          "label": "Light",
+          "per_scene": "FLAG_OFF",
+          "department": "lighting",
+          "fields": [
+            {
+              "key": "natural",
+              "label": "Natural light sources and direction",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "practicals",
+              "label": "Practical lights",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "color_temperature",
+              "label": "Color temperature",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "K",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "sound",
+          "label": "Sound",
+          "per_scene": "FLAG_OFF",
+          "department": "sound",
+          "fields": [
+            {
+              "key": "acoustics",
+              "label": "Room acoustics",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "ambience",
+              "label": "Ambient sound",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "senses",
+          "label": "Smell and temperature",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "smell",
+              "label": "Smell",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "temperature",
+              "label": "Temperature",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "dressing",
+          "label": "Furniture and dressing",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "state",
+              "label": "State (on a child item)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "placed_props",
+              "label": "Props placed here",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "prop",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "continuity",
+          "label": "Continuity",
+          "per_scene": "FLAG_ON",
+          "department": "art",
+          "fields": [
+            {
+              "key": "changes",
+              "label": "What changes in this scene",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "capture",
+          "label": "Capture",
+          "per_scene": "FLAG_OFF",
+          "department": "capture",
+          "fields": [
+            {
+              "key": "floor_area",
+              "label": "Floor area needed",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m2",
+              "options": []
+            },
+            {
+              "key": "obstacles",
+              "label": "Obstacles the actor touches",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "realization",
+          "label": "Realization",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "realization",
+              "label": "Realization",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "virtual",
+                "practical",
+                "location"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "connections",
+          "label": "Connections",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "adjoins",
+              "label": "Adjoining set (note — through which opening)",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "set",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "safety",
+          "label": "Safety",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "hazards",
+              "label": "Hazards and safety",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bible_map": "BIBLE_MAP_CHARACTER",
+      "groups": [
+        {
+          "key": "general",
+          "label": "General",
+          "per_scene": "FLAG_OFF",
+          "department": "story",
+          "fields": [
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "notes",
+              "label": "Notes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "tags",
+              "label": "Tags",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "photos",
+              "label": "Photos",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "references",
+              "label": "References",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "identity",
+          "label": "Identity",
+          "per_scene": "FLAG_OFF",
+          "department": "story",
+          "fields": [
+            {
+              "key": "nicknames",
+              "label": "Nicknames",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "age",
+              "label": "Age",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "year",
+              "options": []
+            },
+            {
+              "key": "gender",
+              "label": "Gender",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "pronouns",
+              "label": "Pronouns",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "nationality",
+              "label": "Nationality",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "social_class",
+              "label": "Social class",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "low",
+                "lower-middle",
+                "middle",
+                "upper-middle",
+                "upper"
+              ]
+            },
+            {
+              "key": "occupation",
+              "label": "Occupation",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "role",
+              "label": "Role in the story",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "protagonist",
+                "antagonist",
+                "deuteragonist",
+                "supporting",
+                "minor"
+              ]
+            },
+            {
+              "key": "species",
+              "label": "Species or type",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "human",
+                "animal",
+                "creature"
+              ]
+            },
+            {
+              "key": "color_palette",
+              "label": "Color palette",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "backstory",
+              "label": "Backstory (short)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "inner_life",
+          "label": "Inner life",
+          "per_scene": "FLAG_OFF",
+          "department": "story",
+          "fields": [
+            {
+              "key": "traits",
+              "label": "Personality traits",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "emotions",
+              "label": "Predominant emotions",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "archetypes",
+              "label": "Jungian archetypes",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "wants",
+              "label": "Wants",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "needs",
+              "label": "Needs",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "fears",
+              "label": "Fears",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "values",
+              "label": "Values",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "secret",
+              "label": "Secret",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "arc",
+              "label": "Arc (start → end)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "body",
+          "label": "Body",
+          "per_scene": "FLAG_OFF",
+          "department": "character-design",
+          "fields": [
+            {
+              "key": "height",
+              "label": "Height",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "build",
+              "label": "Build",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "posture",
+              "label": "Posture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "physicality",
+              "label": "Physicality",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "walk",
+              "label": "Way of walking",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "condition",
+              "label": "Disability or condition",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "age_marks",
+              "label": "Age marks",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "face",
+          "label": "Face",
+          "per_scene": "FLAG_OFF",
+          "department": "character-design",
+          "fields": [
+            {
+              "key": "shape",
+              "label": "Face shape",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "eye_size",
+              "label": "Eye size",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "eye_shape",
+              "label": "Eye shape",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "eye_color",
+              "label": "Eye color",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "eyebrows",
+              "label": "Eyebrows",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "nose_size",
+              "label": "Nose size",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "nose_shape",
+              "label": "Nose shape",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "mouth_size",
+              "label": "Mouth size",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "lips",
+              "label": "Lips",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "teeth",
+              "label": "Teeth",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "ears",
+              "label": "Ears",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "chin",
+              "label": "Chin",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "skin_color",
+              "label": "Skin color",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "skin_texture",
+              "label": "Skin texture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "wrinkles",
+              "label": "Wrinkles",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "scars",
+              "label": "Scars",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "freckles",
+              "label": "Freckles",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "facial_hair",
+              "label": "Facial hair",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "hair",
+          "label": "Hair",
+          "per_scene": "FLAG_OFF",
+          "department": "character-design",
+          "fields": [
+            {
+              "key": "length",
+              "label": "Length",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "color",
+              "label": "Color",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "texture",
+              "label": "Texture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "style",
+              "label": "Style",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "movement",
+              "label": "How it moves",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "hands",
+          "label": "Hands",
+          "per_scene": "FLAG_OFF",
+          "department": "character-design",
+          "fields": [
+            {
+              "key": "size",
+              "label": "Size",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "nails",
+              "label": "Nails",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "rings",
+              "label": "Rings",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "gestures",
+              "label": "How they gesture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "voice",
+          "label": "Voice",
+          "per_scene": "FLAG_OFF",
+          "department": "sound",
+          "fields": [
+            {
+              "key": "pitch",
+              "label": "Pitch",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "rhythm",
+              "label": "Rhythm",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "accent",
+              "label": "Accent",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "catchphrases",
+              "label": "Catchphrases",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "tics",
+              "label": "Verbal tics",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "behavior",
+          "label": "Mannerisms and habits",
+          "per_scene": "FLAG_OFF",
+          "department": "story",
+          "fields": [
+            {
+              "key": "mannerisms",
+              "label": "Mannerisms",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "habits",
+              "label": "Habits",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "under_stress",
+              "label": "How they react under stress",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "relationships",
+          "label": "Relationships",
+          "per_scene": "FLAG_OFF",
+          "department": "story",
+          "fields": [
+            {
+              "key": "with",
+              "label": "Related character (note — kind of relationship)",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "character",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "capture",
+          "label": "Capture",
+          "per_scene": "FLAG_OFF",
+          "department": "capture",
+          "fields": [
+            {
+              "key": "actor",
+              "label": "Actor who plays it",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "retarget",
+              "label": "Proportions to retarget",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "per_scene",
+          "label": "Per scene",
+          "per_scene": "FLAG_ON",
+          "department": "story",
+          "fields": [
+            {
+              "key": "emotional_state",
+              "label": "Emotional state",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "physical_state",
+              "label": "Physical state",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "wardrobe",
+              "label": "Wardrobe",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "wardrobe",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bible_map": "BIBLE_MAP_PROP",
+      "groups": [
+        {
+          "key": "general",
+          "label": "General",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "notes",
+              "label": "Notes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "tags",
+              "label": "Tags",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "photos",
+              "label": "Photos",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "references",
+              "label": "References",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "identity",
+          "label": "Identity",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "category",
+              "label": "Category",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "hand prop",
+                "set dressing",
+                "vehicle",
+                "food",
+                "weapon"
+              ]
+            },
+            {
+              "key": "quantity",
+              "label": "Quantity",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "pcs",
+              "options": []
+            },
+            {
+              "key": "hero",
+              "label": "Hero prop (seen in close-up)",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "yes",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "look",
+          "label": "Look",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "width",
+              "label": "Width",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "height",
+              "label": "Height",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "depth",
+              "label": "Depth",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "m",
+              "options": []
+            },
+            {
+              "key": "shape",
+              "label": "Shape",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "color",
+              "label": "Color",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "material",
+              "label": "Material",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "wood",
+                "metal",
+                "glass",
+                "fabric",
+                "plastic",
+                "paper",
+                "ceramic",
+                "stone",
+                "leather"
+              ]
+            },
+            {
+              "key": "finish",
+              "label": "Finish",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "matte",
+                "satin",
+                "glossy"
+              ]
+            },
+            {
+              "key": "drawings",
+              "label": "Drawings/sketches",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "brand",
+              "label": "Brand",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "touch",
+          "label": "Touch",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "weight",
+              "label": "Weight",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "kg",
+              "options": []
+            },
+            {
+              "key": "temperature",
+              "label": "Temperature",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "surface",
+              "label": "Surface",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "feel",
+              "label": "How it feels to the character",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "senses",
+          "label": "Taste, smell and sound",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "taste",
+              "label": "Taste",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "smell",
+              "label": "Smell",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "sound",
+              "label": "Sound it makes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "behavior",
+          "label": "Behavior",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "behavior",
+              "label": "Behavior",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "rigid",
+                "flexible",
+                "breakable",
+                "liquid",
+                "cloth"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "handling",
+          "label": "Handling",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "handled_by",
+              "label": "Handled by",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "character",
+              "options": []
+            },
+            {
+              "key": "how",
+              "label": "How",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "hand_offs",
+              "label": "Hand-offs between characters",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "state",
+          "label": "State",
+          "per_scene": "FLAG_ON",
+          "department": "props",
+          "fields": [
+            {
+              "key": "state",
+              "label": "State in this scene",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "new",
+                "used",
+                "broken",
+                "full",
+                "empty",
+                "lit",
+                "unlit"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "capture",
+          "label": "Capture",
+          "per_scene": "FLAG_OFF",
+          "department": "capture",
+          "fields": [
+            {
+              "key": "stand_in",
+              "label": "Stand-in object for the actor",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "blend",
+              "label": ".blend model",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "realization",
+          "label": "Realization",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "realization",
+              "label": "Realization",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "virtual",
+                "practical",
+                "bought"
+              ]
+            },
+            {
+              "key": "duplicates",
+              "label": "Duplicates",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "pcs",
+              "options": []
+            },
+            {
+              "key": "duplicates_why",
+              "label": "Why duplicates",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "ownership",
+          "label": "Owner",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "owner",
+              "label": "Owner",
+              "type": "FIELD_TYPE_LINK",
+              "link_kind": "character",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bible_map": "BIBLE_MAP_WARDROBE",
+      "groups": [
+        {
+          "key": "general",
+          "label": "General",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "notes",
+              "label": "Notes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "tags",
+              "label": "Tags",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "photos",
+              "label": "Photos",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "references",
+              "label": "References",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "piece",
+          "label": "Piece",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "garment",
+              "label": "Garment type",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "fabric",
+              "label": "Fabric type",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "color",
+              "label": "Color",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "pattern",
+              "label": "Pattern",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "fit",
+              "label": "Fit",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "brand",
+              "label": "Brand",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "condition",
+          "label": "Condition",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "condition",
+              "label": "Condition",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "clean",
+                "dirty",
+                "torn",
+                "wet",
+                "ironed"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "meaning",
+          "label": "Meaning",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "says",
+              "label": "What it says about the character",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "period",
+              "label": "Period",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "social_class",
+              "label": "Social class",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "low",
+                "lower-middle",
+                "middle",
+                "upper-middle",
+                "upper"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "behavior",
+          "label": "Behavior",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "cloth",
+              "label": "Cloth",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "stiff",
+                "flowing"
+              ]
+            },
+            {
+              "key": "noise",
+              "label": "Noise it makes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "files",
+          "label": "Files",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "blend",
+              "label": ".blend model",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            },
+            {
+              "key": "patterns",
+              "label": "Pattern files",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "changes",
+          "label": "Changes",
+          "per_scene": "FLAG_ON",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "change",
+              "label": "What changes in this scene",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "capture",
+          "label": "Capture",
+          "per_scene": "FLAG_OFF",
+          "department": "capture",
+          "fields": [
+            {
+              "key": "capture_wear",
+              "label": "What the actor wears for capture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "fit",
+              "label": "Fit for capture",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "tight",
+                "loose"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "realization",
+          "label": "Realization",
+          "per_scene": "FLAG_OFF",
+          "department": "wardrobe",
+          "fields": [
+            {
+              "key": "realization",
+              "label": "Realization",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "virtual",
+                "practical"
+              ]
+            },
+            {
+              "key": "duplicates",
+              "label": "Duplicates",
+              "type": "FIELD_TYPE_NUMBER",
+              "unit": "pcs",
+              "options": []
+            },
+            {
+              "key": "duplicates_why",
+              "label": "Why duplicates (wet or torn continuity)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "hair_makeup",
+          "label": "Hair and makeup",
+          "per_scene": "FLAG_ON",
+          "department": "hair-makeup",
+          "fields": [
+            {
+              "key": "hair",
+              "label": "Hair",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "makeup",
+              "label": "Makeup",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

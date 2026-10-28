@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Crop_ae090d6fa4827e92540c3f916b30649f.proto";
+message PreprocessSpec {
+int32 ID_ae090d6fa4827e92540c3f916b30649f = 1;
+Crop crop = 2;
+int32 output_width = 3;
+int32 output_height = 4;
+string STATUS_ae090d6fa4827e92540c3f916b30649f = 5;
+string ERROR_ae090d6fa4827e92540c3f916b30649f = 6;
+string ORIGINATOR = 7;
+}

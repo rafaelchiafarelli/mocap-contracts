@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message FrameGap {
+int32 ID_ae090d6fa4827e92540c3f916b30649f = 1;
+int64 after_frame = 2;
+int64 duration_ns = 3;
+string STATUS_ae090d6fa4827e92540c3f916b30649f = 4;
+string ERROR_ae090d6fa4827e92540c3f916b30649f = 5;
+string ORIGINATOR = 6;
+}

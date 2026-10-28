@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ValueState {
+VALUE_STATE_UNSET = 0;
+VALUE_STATE_SCRIPT_STATED = 1;
+VALUE_STATE_CREATOR_APPROVED = 2;
+VALUE_STATE_PROPOSAL = 3;
+VALUE_STATE_TBD = 4;
+}

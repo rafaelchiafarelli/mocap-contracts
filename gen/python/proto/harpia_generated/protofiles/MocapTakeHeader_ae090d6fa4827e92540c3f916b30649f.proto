@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/LengthUnit_ae090d6fa4827e92540c3f916b30649f.proto";
+import "harpia_generated/protofiles/UpAxis_ae090d6fa4827e92540c3f916b30649f.proto";
+message MocapTakeHeader {
+int32 ID_ae090d6fa4827e92540c3f916b30649f = 1;
+string take_id = 2;
+string session_id = 3;
+string actor_id = 4;
+string character_id = 5;
+float fps = 6;
+int64 frame_count = 7;
+int64 t0_ns = 8;
+LengthUnit length_unit = 9;
+UpAxis up_axis = 10;
+repeated string body_joints = 11;
+repeated string left_hand_joints = 12;
+repeated string right_hand_joints = 13;
+repeated string face_blendshape_names = 14;
+string STATUS_ae090d6fa4827e92540c3f916b30649f = 15;
+string ERROR_ae090d6fa4827e92540c3f916b30649f = 16;
+string ORIGINATOR = 17;
+}
