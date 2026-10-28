@@ -1,5 +1,7 @@
 ## 3. change.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-28)
+
 - **Depends on:** 1
 - **Contract:**
   - In: `mocap-writer` file-format layout/2 (decided 2026-10-28)
