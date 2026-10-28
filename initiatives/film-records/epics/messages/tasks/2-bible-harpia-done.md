@@ -1,5 +1,7 @@
 ## 2. bible.harpia and the catalog (owner: mocap-writer)
 
+- **Status:** Done (2026-10-28)
+
 - **Depends on:** 1
 - **Contract:**
   - In: the approved catalog (`mocap-writer` film-bible contract/1) and the
