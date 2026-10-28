@@ -1,5 +1,7 @@
 ## 4. Release v0.5.0
 
+- **Status:** Done (2026-10-28)
+
 - **Depends on:** 1–3
 - **Contract:**
   - Requires: CHANGELOG entry; the full suite including `make test-slow`
