@@ -44,13 +44,15 @@ def test_invalid_film_is_never_written():
 
 
 def test_folder_parts_with_a_shared_prefix_are_apart():
-    parts = list(sample_film().parts) + [mc.FilmPart(name="old", path="bible-old/", owner="writer")]
+    parts = [p for p in sample_film().parts if p.name != "history"]
+    parts.append(mc.FilmPart(name="history", path="bible-old/", owner="writer"))
     assert from_json(mc.Film, to_json(sample_film(parts=parts))).parts[-1].path == "bible-old/"
 
 
 def test_same_path_twice_is_refused():
-    parts = list(sample_film().parts) + [mc.FilmPart(name="other", path="bible", owner="writer")]
-    with pytest.raises(ContractError, match="'bible' and 'other'"):
+    parts = [p for p in sample_film().parts if p.name != "history"]
+    parts.append(mc.FilmPart(name="history", path="bible", owner="writer"))
+    with pytest.raises(ContractError, match="'bible' and 'history'"):
         to_json(sample_film(parts=parts))
 
 
@@ -115,3 +117,24 @@ def test_root_files():
     assert film.ids_file("pcp") == "ids/pcp.json"
     with pytest.raises(ContractError):
         film.ids_file("../x")
+
+
+@pytest.mark.parametrize("value", [
+    "script.fountain", "bible/", "bible/props/xicara-azul/item.json", "photos/Foto 1.jpg",
+])
+def test_film_paths(value):
+    assert film.check_path(value) == value
+
+
+@pytest.mark.parametrize("value", [
+    "", "/abs", "a\\b", "C:/x", "a//b", "../x", "a/./b", "x?.json", "a|b", "dot./x", "space /x",
+    "CON", "nul.txt", "a/COM1.json", "tab\there",
+])
+def test_bad_film_paths(value):
+    with pytest.raises(ContractError):
+        film.check_path(value)
+
+
+def test_owner_form():
+    assert film.OWNER.fullmatch("props-continuity-planner")
+    assert not film.OWNER.fullmatch("Props") and not film.OWNER.fullmatch("a--b")

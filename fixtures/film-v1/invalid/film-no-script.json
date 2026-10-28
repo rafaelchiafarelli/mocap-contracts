@@ -1,0 +1,44 @@
+{
+  "format_version": 1,
+  "origin": {
+    "program": "mocap-writer",
+    "version": "1.0.0"
+  },
+  "parts": [
+    {
+      "name": "settings",
+      "path": "settings/script-settings.json",
+      "owner": "writer"
+    },
+    {
+      "name": "bible",
+      "path": "bible/",
+      "owner": "writer"
+    },
+    {
+      "name": "annotations",
+      "path": "annotations/",
+      "owner": "writer"
+    },
+    {
+      "name": "proposals-pcp",
+      "path": "proposals/props-continuity-planner/",
+      "owner": "props-continuity-planner"
+    },
+    {
+      "name": "history",
+      "path": "history/",
+      "owner": "writer"
+    }
+  ],
+  "spaces": [
+    {
+      "code": "w",
+      "owner": "writer"
+    },
+    {
+      "code": "pcp",
+      "owner": "props-continuity-planner"
+    }
+  ]
+}
