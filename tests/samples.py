@@ -293,6 +293,44 @@ def id_counters(**next_):
     return mc.IdCounters(next=next_ or {"character": 13, "prop": 4})
 
 
+def _state(name):
+    return mc.ValueState.Value(f"VALUE_STATE_{name}")
+
+
+def bible_value(**kw):
+    fields = dict(field="look.color", text="blue", state=_state("SCRIPT_STATED"),
+                  source="12", department="props", by="writer")
+    fields.update(kw)
+    return mc.BibleValue(**fields)
+
+
+def bible_item(**kw):
+    fields = dict(
+        id="prop-w-3", name="Xícara Azul", aliases=["xícara"],
+        values=[
+            bible_value(),
+            bible_value(field="look.width", text=None, number="0.08", unit="m",
+                        state=_state("CREATOR_APPROVED"), source="decision 2026-10-28", by="creator"),
+            bible_value(field="state.state", scene="12.A", text="full"),
+            bible_value(field="ownership.owner", text="character-w-1", state=_state("PROPOSAL"),
+                        source="12", by="props-continuity-planner"),
+            bible_value(field="touch.weight", text=None, number="0.3", unit="kg", state=_state("TBD"),
+                        source="12", by="writer", revisit="when the prop is bought"),
+        ],
+        links=[mc.BibleLink(scene="12"), mc.BibleLink(scene="12.A")],
+    )
+    fields.update(kw)
+    return mc.BibleItem(**fields)
+
+
+def change(**kw):
+    fields = dict(time="2026-10-28T14:03:12.5Z", by="writer", path="bible/props/blue-cup/item.json",
+                  record="prop-w-3", op=mc.ChangeOp.Value("CHANGE_OP_UPDATE"),
+                  before='{"id": "prop-w-3"}\n', after='{"id": "prop-w-3", "name": "x"}\n')
+    fields.update(kw)
+    return mc.Change(**fields)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -359,4 +397,13 @@ SAMPLES = {
     "IdSpace": lambda: film().spaces[0],
     "Film": film,
     "IdCounters": id_counters,
+    "BibleCatalog": lambda: mc.bible.catalog(),
+    "CatalogMap": lambda: mc.bible.catalog().maps[0],
+    "CatalogGroup": lambda: mc.bible.catalog().maps[0].groups[1],
+    "CatalogField": lambda: mc.bible.catalog().maps[0].groups[1].fields[0],
+    "BibleValue": bible_value,
+    "BibleLink": lambda: mc.BibleLink(scene="12.A", item="character-w-1"),
+    "BibleItem": bible_item,
+    "NotProps": lambda: mc.NotProps(words=["OK", "TV"]),
+    "Change": lambda: change(),
 }
