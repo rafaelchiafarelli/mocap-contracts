@@ -1,0 +1,47 @@
+// The root index of a film root and its record ids owned by mocap-writer
+// film json lists the parts of the film and who owns each one
+// ids slash space json holds the counters of one id space
+// Rules that required cannot express live in mocap_contracts rules
+
+// The kinds of record that get an id and a new kind is a change to this file
+enum RecordKind {
+    RECORD_KIND_UNSET = 0;
+    RECORD_KIND_SET;
+    RECORD_KIND_CHARACTER;
+    RECORD_KIND_PROP;
+    RECORD_KIND_WARDROBE;
+    RECORD_KIND_ANNOTATION;
+    RECORD_KIND_PROPOSAL;
+}
+
+// The program and version that last wrote film json
+message FilmOrigin {
+    required string program;
+    required string version;
+};
+
+// One part of the film with its path relative to the film root and its owner
+message FilmPart {
+    required string name;
+    required string path;
+    required string owner;
+};
+
+// One id space with its short code and the owner that makes its records
+message IdSpace {
+    required string code;
+    required string owner;
+};
+
+// film json at the film root
+message Film {
+    required int format_version;
+    required FilmOrigin origin;
+    repeteable FilmPart parts;
+    repeteable IdSpace spaces;
+};
+
+// ids slash space json with the next number per record kind
+message IdCounters {
+    required map<string,int> next;
+};
