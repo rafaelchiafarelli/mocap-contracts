@@ -264,6 +264,35 @@ def camera_stats(**kw):
     return mc.CameraStats(**fields)
 
 
+# The default parts of a new film (mocap-writer file-format/layout/1) and one agent space.
+FILM_PARTS = (
+    ("script", "script.fountain", "writer"),
+    ("settings", "settings/script-settings.json", "writer"),
+    ("bible", "bible/", "writer"),
+    ("annotations", "annotations/", "writer"),
+    ("proposals-pcp", "proposals/props-continuity-planner/", "props-continuity-planner"),
+    ("history", "history/", "writer"),
+)
+
+
+def film(**kw):
+    fields = dict(
+        format_version=1,
+        origin=mc.FilmOrigin(program="mocap-writer", version="1.0.0"),
+        parts=[mc.FilmPart(name=n, path=p, owner=o) for n, p, o in FILM_PARTS],
+        spaces=[
+            mc.IdSpace(code="w", owner="writer"),
+            mc.IdSpace(code="pcp", owner="props-continuity-planner"),
+        ],
+    )
+    fields.update(kw)
+    return mc.Film(**fields)
+
+
+def id_counters(**next_):
+    return mc.IdCounters(next=next_ or {"character": 13, "prop": 4})
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -325,4 +354,9 @@ SAMPLES = {
     "CameraStats": camera_stats,
     "ControlRequest": control_request,
     "ControlReply": control_reply,
+    "FilmOrigin": lambda: film().origin,
+    "FilmPart": lambda: film().parts[0],
+    "IdSpace": lambda: film().spaces[0],
+    "Film": film,
+    "IdCounters": id_counters,
 }

@@ -23,10 +23,14 @@ It runs nowhere on its own. It's a library installed into every Python repo
 | `extract.harpia` | mocap-extract (P3) | extraction index, per-camera quality |
 | `adapt.harpia` | mocap-adapt (P4) | `MocapTake`, the animation data Blender reads |
 | `camera.harpia` | mocap-camera-app | device info, stats, control request/reply |
+| `film.harpia` | mocap-writer | a film root's `film.json` (parts and their owners, id spaces), the `ids/<space>.json` counters, the record kinds |
 
 It also owns:
 - **the session folder layout** (`mocap_contracts.layout`): where every file
   of a take lives, the same on both PCs
+- **the film root ids** (`mocap_contracts.film`): the record id form
+  `<kind>-<space>-<n>` and its regex, space codes, `film.json` and
+  `ids/<code>.json`
 - **stream protocol v1**: the binary format the camera app streams in, as a
   spec with fixtures
 - **the ZeroMQ channels** for the hand-off events and the camera control
@@ -79,6 +83,8 @@ Writing `.harpia` (what Harpia's lexer accepts, beyond USAGE §3):
 - comments: plain words only (`:` and similar punctuation are rejected)
 - scalars: `int` (int32), `int64`, `float` (32-bit), `string`; there's no
   bool (use the `Flag` enum from `common.harpia`) and no double
+- maps: `map<string,int>`; `to_json` writes their keys sorted (protobuf keeps
+  no map order)
 - enums: one value per line; every enum's zero value is `<ENUM>_UNSET`, and
   every value is prefixed with its enum's name
 

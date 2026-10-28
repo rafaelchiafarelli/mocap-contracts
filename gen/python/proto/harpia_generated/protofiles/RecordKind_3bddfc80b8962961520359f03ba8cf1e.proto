@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum RecordKind {
+RECORD_KIND_UNSET = 0;
+RECORD_KIND_SET = 1;
+RECORD_KIND_CHARACTER = 2;
+RECORD_KIND_PROP = 3;
+RECORD_KIND_WARDROBE = 4;
+RECORD_KIND_ANNOTATION = 5;
+RECORD_KIND_PROPOSAL = 6;
+}
