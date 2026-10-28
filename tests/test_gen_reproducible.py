@@ -27,14 +27,20 @@ pytestmark = pytest.mark.skipif(
 )
 
 
+def _files(root: Path) -> set[Path]:
+    # Files only: git keeps no empty folders, and Harpia's Java run makes some
+    # (gen/java/src/test, generated/{db,rest,soap}), so a fresh clone lacks them.
+    if root.is_file():
+        return {Path()}
+    return {p.relative_to(root) for p in root.rglob("*")
+            if p.is_file() and "__pycache__" not in p.parts}
+
+
 def _diff(a: Path, b: Path) -> list[str]:
-    if a.is_file():
-        return [] if filecmp.cmp(a, b, shallow=False) else [str(a)]
-    cmp = filecmp.dircmp(a, b, ignore=["__pycache__"])
-    out = [f"only in one side: {p}" for p in cmp.left_only + cmp.right_only]
-    out += [str(a / p) for p in cmp.diff_files + cmp.funny_files]
-    for sub in cmp.common_dirs:
-        out += _diff(a / sub, b / sub)
+    fa, fb = _files(a), _files(b)
+    out = [f"only in one side: {a / p}" for p in sorted(fa ^ fb)]
+    out += [str(a / p) for p in sorted(fa & fb)
+            if not filecmp.cmp(a / p, b / p, shallow=False)]
     return out
 
 
