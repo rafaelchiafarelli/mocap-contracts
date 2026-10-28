@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/ChangeOp_136996d09eedbf0a12cec4204d8d4ec2.proto";
+message Change {
+int32 ID_136996d09eedbf0a12cec4204d8d4ec2 = 1;
+string time = 2;
+string by = 3;
+string path = 4;
+optional string record = 5;
+ChangeOp op = 6;
+optional string before = 7;
+optional string after = 8;
+string STATUS_136996d09eedbf0a12cec4204d8d4ec2 = 9;
+string ERROR_136996d09eedbf0a12cec4204d8d4ec2 = 10;
+string ORIGINATOR = 11;
+}

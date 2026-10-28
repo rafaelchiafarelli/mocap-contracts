@@ -19,7 +19,7 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:537`); `check` (`rules.py:583`) walks nested messages
+  in `RULES` (`rules.py:560`); `check` (`rules.py:607`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
@@ -28,9 +28,10 @@ checked strings. Nothing here creates folders or touches files.
   (`film.py:25`), `RECORD_ID` (`film.py:40`), `SPACE_CODE` (`film.py:39`),
   `WRITER`, `WRITER_SPACE`, `PART_NAMES` and `PROPOSALS_PREFIX`
   (`film.py:34-35`), `OWNER` (`film.py:38`), `FORMAT_VERSION`, `FILM_FILE`,
-  `check_record_id`, `record_id`, `check_space_code`, `ids_file`;
-  `segments`, `path_problem` (`film.py:86`: relative, `/`, no empty, `.` or
-  `..` segment, Windows-safe names) and `check_path` (`film.py:110`), for
+  `check_record_id`, `record_id`, `check_space_code`, `ids_file`,
+  `history_file(time)` → `history/<yyyy-mm>.jsonl` (`film.py:71`);
+  `segments`, `path_problem` (`film.py:91`: relative, `/`, no empty, `.` or
+  `..` segment, Windows-safe names) and `check_path` (`film.py:115`), for
   any path a film record holds.
 - `bible.py` — the film bible (bible.harpia): `MAPS` read from `BibleMap`
   (`bible.py:30`), `MAP_FOLDERS` (`sets`, `characters`, `props`,
@@ -74,6 +75,10 @@ checked strings. Nothing here creates folders or touches files.
   scene key; a parent is an id of the same map; only a wardrobe link names
   an item (the character). A choice accepts text outside its options (the
   free "other").
+- Change rules (`rules.py:537-557`): `time` UTC ISO-8601 ending in `Z` and
+  a real date; `by` kebab-case; `path` a film path; `record` a record id
+  when present; a create has `after` only, an update both, a delete
+  `before` only.
 - `to_json` writes empty repeated fields after the set ones (protobuf's
   default-value pass), so a byte-for-byte fixture lists them last
   (`tools/make_bible_fixtures.py`).

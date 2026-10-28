@@ -4,77 +4,79 @@ Written by tools/harpia_gen.py (`make gen`); do not edit. Harpia's
 module names carry a hash of the root .harpia file and change with it;
 import from here (or from mocap_contracts) instead."""
 
-from harpia_generated.protofiles.Actor_ae090d6fa4827e92540c3f916b30649f_pb2 import Actor
-from harpia_generated.protofiles.BibleCatalog_ae090d6fa4827e92540c3f916b30649f_pb2 import BibleCatalog
-from harpia_generated.protofiles.BibleItem_ae090d6fa4827e92540c3f916b30649f_pb2 import BibleItem
-from harpia_generated.protofiles.BibleLink_ae090d6fa4827e92540c3f916b30649f_pb2 import BibleLink
-from harpia_generated.protofiles.BibleMap_ae090d6fa4827e92540c3f916b30649f_pb2 import BibleMap
-from harpia_generated.protofiles.BibleValue_ae090d6fa4827e92540c3f916b30649f_pb2 import BibleValue
-from harpia_generated.protofiles.BodyLength_ae090d6fa4827e92540c3f916b30649f_pb2 import BodyLength
-from harpia_generated.protofiles.BoneStability_ae090d6fa4827e92540c3f916b30649f_pb2 import BoneStability
-from harpia_generated.protofiles.CalibrationBoard_ae090d6fa4827e92540c3f916b30649f_pb2 import CalibrationBoard
-from harpia_generated.protofiles.CameraAblation_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraAblation
-from harpia_generated.protofiles.CameraAlignment_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraAlignment
-from harpia_generated.protofiles.CameraConfig_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraConfig
-from harpia_generated.protofiles.CameraControls_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraControls
-from harpia_generated.protofiles.CameraFacing_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraFacing
-from harpia_generated.protofiles.CameraFileReady_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraFileReady
-from harpia_generated.protofiles.CameraInfo_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraInfo
-from harpia_generated.protofiles.CameraQuality_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraQuality
-from harpia_generated.protofiles.CameraSource_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraSource
-from harpia_generated.protofiles.CameraStats_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraStats
-from harpia_generated.protofiles.CameraTakeReport_ae090d6fa4827e92540c3f916b30649f_pb2 import CameraTakeReport
-from harpia_generated.protofiles.Casting_ae090d6fa4827e92540c3f916b30649f_pb2 import Casting
-from harpia_generated.protofiles.CatalogField_ae090d6fa4827e92540c3f916b30649f_pb2 import CatalogField
-from harpia_generated.protofiles.CatalogGroup_ae090d6fa4827e92540c3f916b30649f_pb2 import CatalogGroup
-from harpia_generated.protofiles.CatalogMap_ae090d6fa4827e92540c3f916b30649f_pb2 import CatalogMap
-from harpia_generated.protofiles.Character_ae090d6fa4827e92540c3f916b30649f_pb2 import Character
-from harpia_generated.protofiles.ControlBackend_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlBackend
-from harpia_generated.protofiles.ControlCapability_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlCapability
-from harpia_generated.protofiles.ControlMenuOption_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlMenuOption
-from harpia_generated.protofiles.ControlReply_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlReply
-from harpia_generated.protofiles.ControlRequest_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlRequest
-from harpia_generated.protofiles.ControlResult_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlResult
-from harpia_generated.protofiles.ControlSetting_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlSetting
-from harpia_generated.protofiles.ControlStatus_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlStatus
-from harpia_generated.protofiles.ControlValueType_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlValueType
-from harpia_generated.protofiles.ControlValue_ae090d6fa4827e92540c3f916b30649f_pb2 import ControlValue
-from harpia_generated.protofiles.Crop_ae090d6fa4827e92540c3f916b30649f_pb2 import Crop
-from harpia_generated.protofiles.DeviceInfo_ae090d6fa4827e92540c3f916b30649f_pb2 import DeviceInfo
-from harpia_generated.protofiles.ExtractIndex_ae090d6fa4827e92540c3f916b30649f_pb2 import ExtractIndex
-from harpia_generated.protofiles.FieldType_ae090d6fa4827e92540c3f916b30649f_pb2 import FieldType
-from harpia_generated.protofiles.FileKind_ae090d6fa4827e92540c3f916b30649f_pb2 import FileKind
-from harpia_generated.protofiles.FilmOrigin_ae090d6fa4827e92540c3f916b30649f_pb2 import FilmOrigin
-from harpia_generated.protofiles.FilmPart_ae090d6fa4827e92540c3f916b30649f_pb2 import FilmPart
-from harpia_generated.protofiles.Film_ae090d6fa4827e92540c3f916b30649f_pb2 import Film
-from harpia_generated.protofiles.Flag_ae090d6fa4827e92540c3f916b30649f_pb2 import Flag
-from harpia_generated.protofiles.FpsRange_ae090d6fa4827e92540c3f916b30649f_pb2 import FpsRange
-from harpia_generated.protofiles.FrameGap_ae090d6fa4827e92540c3f916b30649f_pb2 import FrameGap
-from harpia_generated.protofiles.FrameSize_ae090d6fa4827e92540c3f916b30649f_pb2 import FrameSize
-from harpia_generated.protofiles.IdCounters_ae090d6fa4827e92540c3f916b30649f_pb2 import IdCounters
-from harpia_generated.protofiles.IdSpace_ae090d6fa4827e92540c3f916b30649f_pb2 import IdSpace
-from harpia_generated.protofiles.LengthUnit_ae090d6fa4827e92540c3f916b30649f_pb2 import LengthUnit
-from harpia_generated.protofiles.MocapFrame_ae090d6fa4827e92540c3f916b30649f_pb2 import MocapFrame
-from harpia_generated.protofiles.MocapTakeHeader_ae090d6fa4827e92540c3f916b30649f_pb2 import MocapTakeHeader
-from harpia_generated.protofiles.MocapTake_ae090d6fa4827e92540c3f916b30649f_pb2 import MocapTake
-from harpia_generated.protofiles.NotProps_ae090d6fa4827e92540c3f916b30649f_pb2 import NotProps
-from harpia_generated.protofiles.PointSet_ae090d6fa4827e92540c3f916b30649f_pb2 import PointSet
-from harpia_generated.protofiles.PreprocessSpec_ae090d6fa4827e92540c3f916b30649f_pb2 import PreprocessSpec
-from harpia_generated.protofiles.QualityReport_ae090d6fa4827e92540c3f916b30649f_pb2 import QualityReport
-from harpia_generated.protofiles.RecordKind_ae090d6fa4827e92540c3f916b30649f_pb2 import RecordKind
-from harpia_generated.protofiles.Session_ae090d6fa4827e92540c3f916b30649f_pb2 import Session
-from harpia_generated.protofiles.StreamSettings_ae090d6fa4827e92540c3f916b30649f_pb2 import StreamSettings
-from harpia_generated.protofiles.SyncEvent_ae090d6fa4827e92540c3f916b30649f_pb2 import SyncEvent
-from harpia_generated.protofiles.SyncKind_ae090d6fa4827e92540c3f916b30649f_pb2 import SyncKind
-from harpia_generated.protofiles.SyncSource_ae090d6fa4827e92540c3f916b30649f_pb2 import SyncSource
-from harpia_generated.protofiles.SyncedVideo_ae090d6fa4827e92540c3f916b30649f_pb2 import SyncedVideo
-from harpia_generated.protofiles.TakeCamera_ae090d6fa4827e92540c3f916b30649f_pb2 import TakeCamera
-from harpia_generated.protofiles.TakeClosed_ae090d6fa4827e92540c3f916b30649f_pb2 import TakeClosed
-from harpia_generated.protofiles.TakeReport_ae090d6fa4827e92540c3f916b30649f_pb2 import TakeReport
-from harpia_generated.protofiles.TakeType_ae090d6fa4827e92540c3f916b30649f_pb2 import TakeType
-from harpia_generated.protofiles.Take_ae090d6fa4827e92540c3f916b30649f_pb2 import Take
-from harpia_generated.protofiles.UpAxis_ae090d6fa4827e92540c3f916b30649f_pb2 import UpAxis
-from harpia_generated.protofiles.ValueState_ae090d6fa4827e92540c3f916b30649f_pb2 import ValueState
+from harpia_generated.protofiles.Actor_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Actor
+from harpia_generated.protofiles.BibleCatalog_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleCatalog
+from harpia_generated.protofiles.BibleItem_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleItem
+from harpia_generated.protofiles.BibleLink_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleLink
+from harpia_generated.protofiles.BibleMap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleMap
+from harpia_generated.protofiles.BibleValue_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleValue
+from harpia_generated.protofiles.BodyLength_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BodyLength
+from harpia_generated.protofiles.BoneStability_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BoneStability
+from harpia_generated.protofiles.CalibrationBoard_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CalibrationBoard
+from harpia_generated.protofiles.CameraAblation_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraAblation
+from harpia_generated.protofiles.CameraAlignment_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraAlignment
+from harpia_generated.protofiles.CameraConfig_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraConfig
+from harpia_generated.protofiles.CameraControls_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraControls
+from harpia_generated.protofiles.CameraFacing_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraFacing
+from harpia_generated.protofiles.CameraFileReady_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraFileReady
+from harpia_generated.protofiles.CameraInfo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraInfo
+from harpia_generated.protofiles.CameraQuality_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraQuality
+from harpia_generated.protofiles.CameraSource_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraSource
+from harpia_generated.protofiles.CameraStats_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraStats
+from harpia_generated.protofiles.CameraTakeReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraTakeReport
+from harpia_generated.protofiles.Casting_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Casting
+from harpia_generated.protofiles.CatalogField_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogField
+from harpia_generated.protofiles.CatalogGroup_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogGroup
+from harpia_generated.protofiles.CatalogMap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogMap
+from harpia_generated.protofiles.ChangeOp_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ChangeOp
+from harpia_generated.protofiles.Change_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Change
+from harpia_generated.protofiles.Character_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Character
+from harpia_generated.protofiles.ControlBackend_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlBackend
+from harpia_generated.protofiles.ControlCapability_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlCapability
+from harpia_generated.protofiles.ControlMenuOption_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlMenuOption
+from harpia_generated.protofiles.ControlReply_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlReply
+from harpia_generated.protofiles.ControlRequest_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlRequest
+from harpia_generated.protofiles.ControlResult_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlResult
+from harpia_generated.protofiles.ControlSetting_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlSetting
+from harpia_generated.protofiles.ControlStatus_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlStatus
+from harpia_generated.protofiles.ControlValueType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlValueType
+from harpia_generated.protofiles.ControlValue_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlValue
+from harpia_generated.protofiles.Crop_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Crop
+from harpia_generated.protofiles.DeviceInfo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import DeviceInfo
+from harpia_generated.protofiles.ExtractIndex_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ExtractIndex
+from harpia_generated.protofiles.FieldType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FieldType
+from harpia_generated.protofiles.FileKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FileKind
+from harpia_generated.protofiles.FilmOrigin_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FilmOrigin
+from harpia_generated.protofiles.FilmPart_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FilmPart
+from harpia_generated.protofiles.Film_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Film
+from harpia_generated.protofiles.Flag_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Flag
+from harpia_generated.protofiles.FpsRange_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FpsRange
+from harpia_generated.protofiles.FrameGap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FrameGap
+from harpia_generated.protofiles.FrameSize_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FrameSize
+from harpia_generated.protofiles.IdCounters_136996d09eedbf0a12cec4204d8d4ec2_pb2 import IdCounters
+from harpia_generated.protofiles.IdSpace_136996d09eedbf0a12cec4204d8d4ec2_pb2 import IdSpace
+from harpia_generated.protofiles.LengthUnit_136996d09eedbf0a12cec4204d8d4ec2_pb2 import LengthUnit
+from harpia_generated.protofiles.MocapFrame_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapFrame
+from harpia_generated.protofiles.MocapTakeHeader_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapTakeHeader
+from harpia_generated.protofiles.MocapTake_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapTake
+from harpia_generated.protofiles.NotProps_136996d09eedbf0a12cec4204d8d4ec2_pb2 import NotProps
+from harpia_generated.protofiles.PointSet_136996d09eedbf0a12cec4204d8d4ec2_pb2 import PointSet
+from harpia_generated.protofiles.PreprocessSpec_136996d09eedbf0a12cec4204d8d4ec2_pb2 import PreprocessSpec
+from harpia_generated.protofiles.QualityReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import QualityReport
+from harpia_generated.protofiles.RecordKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import RecordKind
+from harpia_generated.protofiles.Session_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Session
+from harpia_generated.protofiles.StreamSettings_136996d09eedbf0a12cec4204d8d4ec2_pb2 import StreamSettings
+from harpia_generated.protofiles.SyncEvent_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncEvent
+from harpia_generated.protofiles.SyncKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncKind
+from harpia_generated.protofiles.SyncSource_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncSource
+from harpia_generated.protofiles.SyncedVideo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncedVideo
+from harpia_generated.protofiles.TakeCamera_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeCamera
+from harpia_generated.protofiles.TakeClosed_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeClosed
+from harpia_generated.protofiles.TakeReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeReport
+from harpia_generated.protofiles.TakeType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeType
+from harpia_generated.protofiles.Take_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Take
+from harpia_generated.protofiles.UpAxis_136996d09eedbf0a12cec4204d8d4ec2_pb2 import UpAxis
+from harpia_generated.protofiles.ValueState_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ValueState
 
 # Field names as declared in schema/ (Harpia's bookkeeping fields excluded).
 DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
@@ -99,6 +101,7 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'CatalogField': ('key', 'label', 'type', 'options', 'unit', 'link_kind'),
     'CatalogGroup': ('key', 'label', 'per_scene', 'department', 'fields'),
     'CatalogMap': ('bible_map', 'groups'),
+    'Change': ('time', 'by', 'path', 'record', 'op', 'before', 'after'),
     'Character': ('id', 'name'),
     'ControlCapability': ('backend', 'key', 'value_type', 'min_value', 'max_value', 'step', 'options', 'default_value', 'current_value', 'read_only', 'unit'),
     'ControlMenuOption': ('value', 'name'),
@@ -158,6 +161,7 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'CatalogField': ('key', 'label', 'type'),
     'CatalogGroup': ('key', 'label', 'per_scene', 'department'),
     'CatalogMap': ('bible_map',),
+    'Change': ('time', 'by', 'path', 'op'),
     'Character': ('id', 'name'),
     'ControlCapability': ('backend', 'key', 'value_type', 'read_only', 'unit'),
     'ControlMenuOption': ('value', 'name'),
@@ -219,6 +223,8 @@ __all__ = [
     "CatalogField",
     "CatalogGroup",
     "CatalogMap",
+    "Change",
+    "ChangeOp",
     "Character",
     "ControlBackend",
     "ControlCapability",

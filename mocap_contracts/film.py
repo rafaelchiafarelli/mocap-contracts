@@ -68,6 +68,11 @@ def record_id(kind: str, space: str, n: int) -> str:
     return f"{kind}-{space}-{n}"
 
 
+def history_file(time: str) -> str:
+    """The change log a Change of `time` (UTC ISO-8601) goes to: history/<yyyy-mm>.jsonl."""
+    return f"history/{time[:7]}.jsonl"
+
+
 def ids_file(code: str) -> str:
     """Path of a space's counters, relative to the film root, `/` separated."""
     return f"ids/{check_space_code(code)}.json"
