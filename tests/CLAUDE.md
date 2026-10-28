@@ -40,7 +40,7 @@ pass/fail. Nothing is written into the repository.
 - `test_gen_reproducible.py:30` compares **files only**. Harpia's Java run
   makes empty folders (`gen/java/src/test`, `generated/{db,rest,soap}`) that
   git can't keep, so comparing folders failed on every fresh clone
-  (bug: `initiatives/bugs/epics/tests/tasks/1-gen-test-empty-dirs.md`).
+  (bug 1 gen-test-empty-dirs, fixed 2026-10-27 in fixes/000097).
 - `test_gen_reproducible.py` runs Harpia in Docker (a few seconds once the
   image is built).
 
