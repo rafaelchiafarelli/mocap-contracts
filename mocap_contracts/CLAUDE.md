@@ -45,7 +45,7 @@ checked strings. Nothing here creates folders or touches files.
   are kind words, values ≥ 1.
 - The film rules leave open what layout/1 didn't decide (part owners vs
   space owners, required parts, part-name set, owner form): see
-  `initiatives/film-root/epics/film-messages/tasks/1-film-harpia*.md`.
+  `initiatives/film-root/epics/film-messages/tasks/1-film-harpia-done.md`.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 
