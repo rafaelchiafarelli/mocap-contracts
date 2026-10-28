@@ -1,0 +1,23 @@
+// The change log of a film root owned by mocap-writer
+// Every record the writer creates changes or deletes adds one Change line
+// to history slash yyyy-mm jsonl so a pass can be listed and reverted
+
+// What happened to the file
+enum ChangeOp {
+    CHANGE_OP_UNSET = 0;
+    CHANGE_OP_CREATE;
+    CHANGE_OP_UPDATE;
+    CHANGE_OP_DELETE;
+}
+
+// One change of one file of the film with its text before and after
+// time is UTC in ISO 8601 with a Z and before and after are the file text
+message Change {
+    required string time;
+    required string by;
+    required string path;
+    optional string record;
+    required ChangeOp op;
+    optional string before;
+    optional string after;
+};

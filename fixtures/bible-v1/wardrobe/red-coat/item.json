@@ -1,0 +1,38 @@
+{
+  "id": "wardrobe-w-1",
+  "name": "Red Coat",
+  "values": [
+    {
+      "field": "piece.garment",
+      "text": "coat",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "wardrobe",
+      "by": "writer"
+    },
+    {
+      "field": "condition.condition",
+      "text": "wet",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "wardrobe",
+      "by": "writer"
+    },
+    {
+      "field": "hair_makeup.hair",
+      "scene": "1",
+      "text": "wet, flat",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "hair-makeup",
+      "by": "writer"
+    }
+  ],
+  "links": [
+    {
+      "scene": "1",
+      "item": "character-w-1"
+    }
+  ],
+  "aliases": []
+}

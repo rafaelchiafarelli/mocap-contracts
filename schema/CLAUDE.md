@@ -22,6 +22,13 @@
 - `Include/film.harpia` — `Film` (`film.json`), `FilmOrigin`, `FilmPart`,
   `IdSpace`, `IdCounters` (`ids/<code>.json`, a `map<string,int>`) and the
   `RecordKind` enum (owner: mocap-writer).
+- `Include/bible.harpia` — the film bible (owner: mocap-writer):
+  `BibleItem` (`item.json`), `BibleValue`, `BibleLink`, `NotProps`, the
+  catalog messages `BibleCatalog`, `CatalogMap`, `CatalogGroup`,
+  `CatalogField`, enums `BibleMap`, `FieldType`, `ValueState`.
+- `Include/change.harpia` — the change log (owner: mocap-writer): `Change`
+  (one line of `history/<yyyy-mm>.jsonl`: time, by, path, record, op,
+  before, after) and `ChangeOp`.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 
@@ -32,6 +39,9 @@
   `messages.py` hides it.
 - `RecordKind` is the list of record kinds: a new kind is a change here
   (`mocap_contracts/film.py:25` reads it).
+- `map` is a Harpia keyword: `CatalogMap`'s field is `bible_map`.
+- `BibleValue.number` is decimal text: Harpia's `float` is 32-bit and would
+  change `1.85` on a round trip.
 - `Character` already exists in `session.harpia` (capture), so the film's
   kinds are enum values, not messages.
 

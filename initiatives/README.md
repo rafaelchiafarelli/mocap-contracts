@@ -25,5 +25,5 @@ Rules specific to this repository:
 | [baseline](baseline/baseline.md) | Done — released as `v0.1.0` (2026-10-05) |
 | [camera-protocol](camera-protocol/camera-protocol.md) | Done — released as `v0.2.0` (2026-10-05) |
 | [film-root](film-root/film-root.md) | Done — released as `v0.4.0` (2026-10-27) |
-| [film-records](film-records/film-records.md) | Planned — the film rules, `bible.harpia` with the catalog, `change.harpia`, `v0.5.0` |
+| [film-records](film-records/film-records.md) | Done — released as `v0.5.0` (2026-10-28) |
 | [bugs](bugs/bugs.md) | Open — a backlog, fixed when a bug gets in the way |

@@ -4,7 +4,7 @@
 and rules, the folder layouts and ids, and the transports.
 
 **Entry points:** `import mocap_contracts` (`__init__.py`): every message and
-enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`.
+enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`, `bible`.
 
 **Inputs → Outputs:** contract messages ↔ JSON text; ids and paths ↔
 checked strings. Nothing here creates folders or touches files.
@@ -19,15 +19,31 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:414`); `check` (`rules.py:452`) walks nested messages
+  in `RULES` (`rules.py:560`); `check` (`rules.py:607`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
   `ID_PATTERN` (`layout.py:23`) for session, take and role ids.
 - `film.py` — the film root (film.harpia): `KINDS` read from `RecordKind`
-  (`film.py:25`), `RECORD_ID` (`film.py:33`), `SPACE_CODE` (`film.py:32`),
-  `WRITER_SPACE`, `FORMAT_VERSION`, `FILM_FILE`, `check_record_id`,
-  `record_id`, `check_space_code`, `ids_file`.
+  (`film.py:25`), `RECORD_ID` (`film.py:40`), `SPACE_CODE` (`film.py:39`),
+  `WRITER`, `WRITER_SPACE`, `PART_NAMES` and `PROPOSALS_PREFIX`
+  (`film.py:34-35`), `OWNER` (`film.py:38`), `FORMAT_VERSION`, `FILM_FILE`,
+  `check_record_id`, `record_id`, `check_space_code`, `ids_file`,
+  `history_file(time)` → `history/<yyyy-mm>.jsonl` (`film.py:71`);
+  `segments`, `path_problem` (`film.py:91`: relative, `/`, no empty, `.` or
+  `..` segment, Windows-safe names) and `check_path` (`film.py:115`), for
+  any path a film record holds.
+- `bible.py` — the film bible (bible.harpia): `MAPS` read from `BibleMap`
+  (`bible.py:30`), `MAP_FOLDERS` (`sets`, `characters`, `props`,
+  `wardrobe`), `ITEM_FILE`, `NOT_PROPS_FILE`, `SCENE` (the writer's scene
+  number form, `bible.py:38`), `DECIMAL`, `BY`; `catalog()` reads
+  `catalog/bible-v1.json` once (`bible.py:75`), `fields(map)` → `Field`s by
+  `<group>.<field>` (`bible.py:84`), `map_of(id)`, `slug(name)` (ASCII
+  folder name, `bible.py:108`).
+- `catalog/bible-v1.json` — the approved field catalog (mocap-writer
+  film-bible contract/1, 2026-10-26) as a `BibleCatalog`: per map its
+  groups (key, label, per scene, department) and fields (key, label, type,
+  options, unit, link kind); 180 fields. Shipped in the wheel.
 - `transport.py` — Harpia ZeroMQ legs under stable names (`[zmq]` extra).
 - `zmq_endpoints.py` — generated; the ZeroMQ factories per message.
 - `stream_v1.py` — stream protocol v1 reference reader and writer, stdlib only.
@@ -37,15 +53,35 @@ checked strings. Nothing here creates folders or touches files.
 - `to_json` writes map keys sorted (`jsonio.py:110`): protobuf keeps no map
   order, so without it `ids/<code>.json` came out in a different order each
   time.
-- Film rules (`rules.py:357-412`): `format_version` must be 1; part paths are
-  relative, `/`-separated, with no empty, `.` or `..` segment, no drive
-  letter, never `film.json` or under `ids/`; no part path inside or equal to
-  another, compared by segment (`_segments`, `rules.py:377`), so `bible/` and
-  `bible-old/` don't clash; part names and space codes unique; counter keys
-  are kind words, values ≥ 1.
-- The film rules leave open what layout/1 didn't decide (part owners vs
-  space owners, required parts, part-name set, owner form): see
-  `initiatives/film-root/epics/film-messages/tasks/1-film-harpia-done.md`.
+- Film rules (`rules.py:357-424`): `format_version` must be 1; part paths
+  pass `film.path_problem` and are never `film.json` or under `ids/`; no
+  part path inside or equal to another, compared by segment, so `bible/`
+  and `bible-old/` don't clash; part names and space codes unique; counter
+  keys are kind words, values ≥ 1. The five rules decided on 2026-10-28
+  (film-records/messages/1): a `script` part and a `w` space owned by
+  `writer`; part names from `PART_NAMES` or `proposals-<code>` with a
+  listed space; owners `writer` or kebab-case; every non-writer part owner
+  has a space (`rules.py:373-402`).
+- `_film` skips its cross-list checks while a space has a broken code or
+  owner (`rules.py:387-389`), so the error names the space, not a
+  consequence of it.
+- Bible rules (`rules.py:426-534`): catalog keys and per-type extras
+  (options only on a choice, unit only on a number, `link_kind` only on a
+  link); a value holds text or a decimal number with a unit, a `TBD` needs
+  `revisit`, `by` is kebab-case; an item's id is a map's kind, its values'
+  fields are in that map's catalog, per-scene groups and only they carry a
+  `scene`, a number field holds a number, a link holds an id of its
+  `link_kind`, a file a film path, a non-repeating field one value per
+  scene key; a parent is an id of the same map; only a wardrobe link names
+  an item (the character). A choice accepts text outside its options (the
+  free "other").
+- Change rules (`rules.py:537-557`): `time` UTC ISO-8601 ending in `Z` and
+  a real date; `by` kebab-case; `path` a film path; `record` a record id
+  when present; a create has `after` only, an update both, a delete
+  `before` only.
+- `to_json` writes empty repeated fields after the set ones (protobuf's
+  default-value pass), so a byte-for-byte fixture lists them last
+  (`tools/make_bible_fixtures.py`).
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 
