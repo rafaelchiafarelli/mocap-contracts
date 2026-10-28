@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.5.0 — 2026-10-28
+
+The film's records besides its index (`film-records` initiative), for `mocap-writer` file-format layout/1 and layout/5 and film-bible contract/2.
+
+- **Film rules** (decided 2026-10-28): `film.json` holds a `script` part and the `w` space owned by `writer`; part names are `script`, `settings`, `bible`, `annotations`, `history` or `proposals-<code>` with a listed space; owners are `writer` or kebab-case; every non-writer part owner has a space; paths are Windows-safe (no `<>:"|?*` or control characters, no segment ending in a dot or space, no reserved device names). `mocap_contracts.film` gains `PART_NAMES`, `OWNER`, `path_problem`, `check_path`, `history_file`. **Breaking for `film.json` only:** these refuse files `v0.4.0` accepted; no film was written with `v0.4.0`.
+- **`bible.harpia`** (owner: `mocap-writer`): `BibleItem` (`item.json`) with generic `BibleValue`s (field, scene, text or decimal number + unit, note, state, source, department, by, revisit) and `BibleLink`s (scene, and for wardrobe the character); `NotProps`; the catalog messages. The approved field catalog ships as `mocap_contracts/catalog/bible-v1.json` (180 fields over sets, characters, props, wardrobe) and the rules check every item against it. `mocap_contracts.bible`: maps and their folders, `catalog()`, `fields(map)`, `map_of`, `slug`, the scene-number form.
+- **`change.harpia`** (owner: `mocap-writer`): `Change`, one line of `history/<yyyy-mm>.jsonl` (time, by, path, record, op, before, after).
+- Fixtures `fixtures/bible-v1/` and new invalid `fixtures/film-v1/` cases.
+
 ## v0.4.0 — 2026-10-27
 
 The film root's index and record ids (`film-root` initiative), for `mocap-writer` file-format/layout/1.

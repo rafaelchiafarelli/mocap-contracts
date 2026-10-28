@@ -18,6 +18,12 @@ consumers that implement the same formats.
   - `invalid/<what>.json` — one broken field each; `invalid/expected.json`
     gives the message to read each as and a text its error holds.
 
+- `bible-v1/` — bible.harpia (`tools/make_bible_fixtures.py`): a neutral
+  `bible/` folder: `sets/dining-room/` with its child `table/`,
+  `characters/ana/`, `props/blue-cup/` (made in the agent space `pcp`),
+  `wardrobe/red-coat/`, each an `item.json`; `not-props.json`;
+  `invalid/<what>.json` with `invalid/expected.json`.
+
 ## Key facts / gotchas
 
 - The valid film fixtures are byte-for-byte what `to_json` writes
@@ -27,4 +33,4 @@ consumers that implement the same formats.
 
 ## Touchpoints
 
-- `tests/test_stream_v1.py`, `tests/test_film.py`.
+- `tests/test_stream_v1.py`, `tests/test_film.py`, `tests/test_bible.py`.

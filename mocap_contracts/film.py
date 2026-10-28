@@ -28,7 +28,14 @@ KINDS = tuple(
     if name != "RECORD_KIND_UNSET"
 )
 
+WRITER = "writer"
 WRITER_SPACE = "w"
+# A part name is one of these, or "proposals-<code>" with <code> a listed space.
+PART_NAMES = ("script", "settings", "bible", "annotations", "history")
+PROPOSALS_PREFIX = "proposals-"
+SCRIPT_PART = "script"
+# An owner is "writer" or an agent's file name in kebab-case.
+OWNER = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)*$")
 SPACE_CODE = re.compile(r"^[a-z][a-z0-9]{0,7}$")
 RECORD_ID = re.compile(rf"^({'|'.join(KINDS)})-[a-z][a-z0-9]{{0,7}}-[1-9][0-9]*$")
 
@@ -61,6 +68,52 @@ def record_id(kind: str, space: str, n: int) -> str:
     return f"{kind}-{space}-{n}"
 
 
+def history_file(time: str) -> str:
+    """The change log a Change of `time` (UTC ISO-8601) goes to: history/<yyyy-mm>.jsonl."""
+    return f"history/{time[:7]}.jsonl"
+
+
 def ids_file(code: str) -> str:
     """Path of a space's counters, relative to the film root, `/` separated."""
     return f"ids/{check_space_code(code)}.json"
+
+
+_DRIVE = re.compile(r"^[A-Za-z]:")
+_UNSAFE = re.compile(r'[<>:"|?*\x00-\x1f]')
+_RESERVED = re.compile(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\..*)?$", re.IGNORECASE)
+
+
+def segments(path: str) -> tuple[str, ...]:
+    """The segments of a film path, one trailing `/` ignored."""
+    return tuple(path.removesuffix("/").split("/"))
+
+
+def path_problem(path: str) -> str | None:
+    """Why `path` can't name a place in a film root, or None.
+
+    Relative to the film root, `/` as separator, never leaving it, and a
+    name Windows accepts in every segment, so a film copied between Linux
+    and Windows still opens. One trailing `/` (a folder) is allowed.
+    """
+    if not path:
+        return "path is empty"
+    if path.startswith("/") or "\\" in path or _DRIVE.match(path):
+        return f"path must be relative to the film root with '/' as separator, got {path!r}"
+    segs = segments(path)
+    if any(s in ("", ".", "..") for s in segs):
+        return f"path can't hold empty, '.' or '..' segments, got {path!r}"
+    for s in segs:
+        if _UNSAFE.search(s):
+            return f"path can't hold <>:\"|?* or control characters, got {path!r}"
+        if s[-1] in ". ":
+            return f"a path segment can't end in a dot or a space, got {path!r}"
+        if _RESERVED.match(s):
+            return f"path can't use the reserved Windows name {s!r}, got {path!r}"
+    return None
+
+
+def check_path(value: str) -> str:
+    """Return value if it is a film path (see path_problem), else raise ContractError."""
+    if problem := path_problem(value):
+        raise ContractError(problem)
+    return value

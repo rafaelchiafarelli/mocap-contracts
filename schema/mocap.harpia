@@ -8,3 +8,5 @@ import "extract.harpia";
 import "adapt.harpia";
 import "camera.harpia";
 import "film.harpia";
+import "bible.harpia";
+import "change.harpia";
