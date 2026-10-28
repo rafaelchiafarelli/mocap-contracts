@@ -4,7 +4,7 @@
 and rules, the folder layouts and ids, and the transports.
 
 **Entry points:** `import mocap_contracts` (`__init__.py`): every message and
-enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`.
+enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`, `bible`.
 
 **Inputs → Outputs:** contract messages ↔ JSON text; ids and paths ↔
 checked strings. Nothing here creates folders or touches files.
@@ -19,7 +19,7 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:426`); `check` (`rules.py:464`) walks nested messages
+  in `RULES` (`rules.py:537`); `check` (`rules.py:583`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
@@ -32,6 +32,17 @@ checked strings. Nothing here creates folders or touches files.
   `segments`, `path_problem` (`film.py:86`: relative, `/`, no empty, `.` or
   `..` segment, Windows-safe names) and `check_path` (`film.py:110`), for
   any path a film record holds.
+- `bible.py` — the film bible (bible.harpia): `MAPS` read from `BibleMap`
+  (`bible.py:30`), `MAP_FOLDERS` (`sets`, `characters`, `props`,
+  `wardrobe`), `ITEM_FILE`, `NOT_PROPS_FILE`, `SCENE` (the writer's scene
+  number form, `bible.py:38`), `DECIMAL`, `BY`; `catalog()` reads
+  `catalog/bible-v1.json` once (`bible.py:75`), `fields(map)` → `Field`s by
+  `<group>.<field>` (`bible.py:84`), `map_of(id)`, `slug(name)` (ASCII
+  folder name, `bible.py:108`).
+- `catalog/bible-v1.json` — the approved field catalog (mocap-writer
+  film-bible contract/1, 2026-10-26) as a `BibleCatalog`: per map its
+  groups (key, label, per scene, department) and fields (key, label, type,
+  options, unit, link kind); 180 fields. Shipped in the wheel.
 - `transport.py` — Harpia ZeroMQ legs under stable names (`[zmq]` extra).
 - `zmq_endpoints.py` — generated; the ZeroMQ factories per message.
 - `stream_v1.py` — stream protocol v1 reference reader and writer, stdlib only.
@@ -53,6 +64,19 @@ checked strings. Nothing here creates folders or touches files.
 - `_film` skips its cross-list checks while a space has a broken code or
   owner (`rules.py:387-389`), so the error names the space, not a
   consequence of it.
+- Bible rules (`rules.py:426-534`): catalog keys and per-type extras
+  (options only on a choice, unit only on a number, `link_kind` only on a
+  link); a value holds text or a decimal number with a unit, a `TBD` needs
+  `revisit`, `by` is kebab-case; an item's id is a map's kind, its values'
+  fields are in that map's catalog, per-scene groups and only they carry a
+  `scene`, a number field holds a number, a link holds an id of its
+  `link_kind`, a file a film path, a non-repeating field one value per
+  scene key; a parent is an id of the same map; only a wardrobe link names
+  an item (the character). A choice accepts text outside its options (the
+  free "other").
+- `to_json` writes empty repeated fields after the set ones (protobuf's
+  default-value pass), so a byte-for-byte fixture lists them last
+  (`tools/make_bible_fixtures.py`).
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

@@ -2,7 +2,7 @@
 
 **Role:** scripts a maintainer runs; nothing imports them.
 
-**Entry points:** `make gen` (`harpia_gen.py`); the two fixture builders.
+**Entry points:** `make gen` (`harpia_gen.py`); the three fixture builders.
 
 **Inputs → Outputs:** `schema/` → generated code; known values → `fixtures/`.
 
@@ -17,6 +17,8 @@
 - `make_film_fixtures.py` — builds `fixtures/film-v1/` from plain dicts
   (`FILM`, `IDS`, `INVALID`, `make_film_fixtures.py:26-121`), stdlib only so the
   fixtures don't come from the code they test.
+- `make_bible_fixtures.py` — builds `fixtures/bible-v1/` the same way
+  (`ITEMS`, `INVALID`, `make_bible_fixtures.py:53-140`).
 
 ## Key facts / gotchas
 

@@ -1,0 +1,17 @@
+{
+  "id": "set-w-3",
+  "name": "Table",
+  "parent": "set-w-1",
+  "values": [
+    {
+      "field": "dressing.state",
+      "text": "dirty plates",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "art",
+      "by": "writer"
+    }
+  ],
+  "aliases": [],
+  "links": []
+}

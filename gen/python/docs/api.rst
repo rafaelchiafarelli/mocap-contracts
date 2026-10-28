@@ -13,16 +13,16 @@ harpia_generated.capability
 .. automodule:: harpia_generated.capability
    :members:
 
-harpia_generated.capability.capabilities_3bddfc80b8962961520359f03ba8cf1e_grpc
+harpia_generated.capability.capabilities_ae090d6fa4827e92540c3f916b30649f_grpc
 ------------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_3bddfc80b8962961520359f03ba8cf1e_grpc
+.. automodule:: harpia_generated.capability.capabilities_ae090d6fa4827e92540c3f916b30649f_grpc
    :members:
 
-harpia_generated.capability.capabilities_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.capability.capabilities_ae090d6fa4827e92540c3f916b30649f_zmq
 -----------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.capability.capabilities_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
 harpia_generated.db
@@ -49,10 +49,10 @@ harpia_generated.events
 .. automodule:: harpia_generated.events
    :members:
 
-harpia_generated.events.CameraStats_3bddfc80b8962961520359f03ba8cf1e_events
+harpia_generated.events.CameraStats_ae090d6fa4827e92540c3f916b30649f_events
 ---------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.events.CameraStats_3bddfc80b8962961520359f03ba8cf1e_events
+.. automodule:: harpia_generated.events.CameraStats_ae090d6fa4827e92540c3f916b30649f_events
    :members:
 
 harpia_generated.migrate
@@ -85,34 +85,34 @@ harpia_generated.zmq
 .. automodule:: harpia_generated.zmq
    :members:
 
-harpia_generated.zmq.CameraFileReady_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.zmq.CameraFileReady_ae090d6fa4827e92540c3f916b30649f_zmq
 -------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.CameraFileReady_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.zmq.CameraFileReady_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
-harpia_generated.zmq.CameraStats_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.zmq.CameraStats_ae090d6fa4827e92540c3f916b30649f_zmq
 ---------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.CameraStats_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.zmq.CameraStats_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
-harpia_generated.zmq.ControlReply_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.zmq.ControlReply_ae090d6fa4827e92540c3f916b30649f_zmq
 ----------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.ControlReply_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.zmq.ControlReply_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
-harpia_generated.zmq.ControlRequest_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.zmq.ControlRequest_ae090d6fa4827e92540c3f916b30649f_zmq
 ------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.ControlRequest_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.zmq.ControlRequest_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
-harpia_generated.zmq.TakeClosed_3bddfc80b8962961520359f03ba8cf1e_zmq
+harpia_generated.zmq.TakeClosed_ae090d6fa4827e92540c3f916b30649f_zmq
 --------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.TakeClosed_3bddfc80b8962961520359f03ba8cf1e_zmq
+.. automodule:: harpia_generated.zmq.TakeClosed_ae090d6fa4827e92540c3f916b30649f_zmq
    :members:
 
 harpia_runtime

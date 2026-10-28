@@ -1,0 +1,70 @@
+{
+  "id": "set-w-1",
+  "name": "Dining Room",
+  "values": [
+    {
+      "field": "space.int_ext",
+      "text": "interior",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "art",
+      "by": "writer"
+    },
+    {
+      "field": "size.width",
+      "number": "4.5",
+      "unit": "m",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-28",
+      "department": "art",
+      "by": "creator"
+    },
+    {
+      "field": "size.floor_plan",
+      "text": "plans/floor.png",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-28",
+      "department": "art",
+      "by": "creator"
+    },
+    {
+      "field": "connections.adjoins",
+      "text": "set-w-2",
+      "note": "through the kitchen door",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "art",
+      "by": "writer"
+    },
+    {
+      "field": "continuity.changes",
+      "scene": "2",
+      "text": "the window is broken",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "art",
+      "by": "writer"
+    },
+    {
+      "field": "light.color_temperature",
+      "number": "3200",
+      "unit": "K",
+      "state": "VALUE_STATE_PROPOSAL",
+      "source": "1",
+      "department": "lighting",
+      "by": "visual-development-analyst"
+    }
+  ],
+  "links": [
+    {
+      "scene": "1"
+    },
+    {
+      "scene": "2"
+    },
+    {
+      "scene": "2.A"
+    }
+  ],
+  "aliases": []
+}

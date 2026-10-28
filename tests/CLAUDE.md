@@ -31,6 +31,8 @@ pass/fail. Nothing is written into the repository.
 - `test_film.py` — film.harpia: `fixtures/film-v1/` (valid ones byte for
   byte, every invalid one with its field), the record id form against the
   layout/1 regex, map key order, film paths and owners.
+- `test_bible.py` — bible.harpia: the catalog (round trip, every group of
+  contract/1, per-scene groups), `fixtures/bible-v1/`, slugs, scene numbers.
 - `test_transport.py` — the ZeroMQ legs (loopback).
 - `test_java.py` — slow: the Java build and a Python ↔ Java exchange.
 - `test_stream_v1.py` — the stream protocol v1 reader against `fixtures/stream-v1/`.

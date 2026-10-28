@@ -15,7 +15,7 @@ from collections.abc import Callable, Iterator
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 
-from mocap_contracts import film
+from mocap_contracts import bible, film
 from mocap_contracts.errors import ContractError
 from mocap_contracts.layout import ID_PATTERN
 
@@ -423,6 +423,117 @@ def _id_counters(msg: Message) -> Iterator[str]:
         yield f"next: counters start at 1, got {bad}"
 
 
+def _catalog(msg: Message) -> Iterator[str]:
+    maps = [bible.map_word(m.bible_map) for m in msg.maps]
+    if dup := _duplicates(maps):
+        yield f"duplicate maps {dup}"
+
+
+def _catalog_map(msg: Message) -> Iterator[str]:
+    if dup := _duplicates([g.key for g in msg.groups]):
+        yield f"duplicate group keys {dup}"
+
+
+def _catalog_group(msg: Message) -> Iterator[str]:
+    if not bible.KEY.fullmatch(msg.key):
+        yield f"key must be lower-case words joined by '_', got {msg.key!r}"
+    if not msg.label or not msg.department:
+        yield "label and department can't be empty"
+    if dup := _duplicates([f.key for f in msg.fields]):
+        yield f"duplicate field keys {dup}"
+
+
+def _catalog_field(msg: Message) -> Iterator[str]:
+    kind = bible.type_word(msg.type)
+    if not bible.KEY.fullmatch(msg.key):
+        yield f"key must be lower-case words joined by '_', got {msg.key!r}"
+    if not msg.label:
+        yield "label is empty"
+    if (kind == "choice") != bool(msg.options):
+        yield "a choice field, and only a choice field, has options"
+    if (kind == "number") != (msg.HasField("unit") and bool(msg.unit)):
+        yield "a number field, and only a number field, has a unit"
+    if (kind == "link") != msg.HasField("link_kind"):
+        yield "a link field, and only a link field, has a link_kind"
+    elif kind == "link" and msg.link_kind not in film.KINDS:
+        yield f"link_kind must be a record kind {list(film.KINDS)}, got {msg.link_kind!r}"
+
+
+def _bible_value(msg: Message) -> Iterator[str]:
+    if not msg.field or not msg.source or not msg.department:
+        yield "field, source and department can't be empty"
+    if not bible.BY.fullmatch(msg.by):
+        yield f"by must be 'creator', 'writer' or an agent name in kebab-case, got {msg.by!r}"
+    if msg.HasField("scene") and not bible.SCENE.fullmatch(msg.scene):
+        yield f"scene must be a scene number like 12 or 12.A, got {msg.scene!r}"
+    if msg.HasField("text") == msg.HasField("number"):
+        yield "a value holds either text or number"
+    if msg.HasField("number") and not bible.DECIMAL.fullmatch(msg.number):
+        yield f"number must be decimal text like 1.85, got {msg.number!r}"
+    if msg.HasField("number") != (msg.HasField("unit") and bool(msg.unit)):
+        yield "a number has a unit, and only a number"
+    if _enum_name(msg, "state") == "VALUE_STATE_TBD" and not msg.revisit:
+        yield "a TBD value needs its revisit trigger"
+
+
+def _bible_link(msg: Message) -> Iterator[str]:
+    if not bible.SCENE.fullmatch(msg.scene):
+        yield f"scene must be a scene number like 12 or 12.A, got {msg.scene!r}"
+    if msg.HasField("item") and not film.RECORD_ID.fullmatch(msg.item):
+        yield f"item must be a record id, got {msg.item!r}"
+
+
+def _bible_item(msg: Message) -> Iterator[str]:
+    if not film.RECORD_ID.fullmatch(msg.id) or not (map_ := bible.map_of(msg.id)):
+        yield f"id must be a record id of a map {list(bible.MAPS)}, got {msg.id!r}"
+        return
+    if not msg.name.strip():
+        yield "name is empty"
+    if msg.HasField("parent"):
+        if bible.map_of(msg.parent) != map_ or not film.RECORD_ID.fullmatch(msg.parent):
+            yield f"parent must be a {map_} id, got {msg.parent!r}"
+        elif msg.parent == msg.id:
+            yield "an item can't be its own parent"
+    fields = bible.fields(map_)
+    seen = set()
+    for i, v in enumerate(msg.values):
+        where = f"values[{i}]"
+        f = fields.get(v.field)
+        if f is None:
+            yield f"{where}: {v.field!r} is not a {map_} field of the catalog"
+            continue
+        if f.per_scene != v.HasField("scene"):
+            yield f"{where}: {v.field} is {'' if f.per_scene else 'not '}per scene"
+        if f.type == "number" and not v.HasField("number"):
+            yield f"{where}: {v.field} is a number"
+        if f.type != "number" and not v.HasField("text"):
+            yield f"{where}: {v.field} is {f.type}, not a number"
+        if f.type == "link" and v.HasField("text"):
+            if not film.RECORD_ID.fullmatch(v.text) or v.text.split("-", 1)[0] != f.link_kind:
+                yield f"{where}: {v.field} links to a {f.link_kind} id, got {v.text!r}"
+        if f.type == "file" and v.HasField("text") and (problem := film.path_problem(v.text)):
+            yield f"{where}: {problem}"
+        key = (v.field, v.scene if v.HasField("scene") else None)
+        if not f.repeats and key in seen:
+            yield f"{where}: {v.field} holds one value{' per scene' if f.per_scene else ''}"
+        seen.add(key)
+    links = [(link.scene, link.item if link.HasField("item") else None) for link in msg.links]
+    if dup := _duplicates([f"{s}/{i}" if i else s for s, i in links]):
+        yield f"duplicate links {dup}"
+    for s, item in links:
+        if map_ == "wardrobe" and item and not item.startswith("character-"):
+            yield f"links: a wardrobe link names the character who wears it, got {item!r}"
+        if map_ != "wardrobe" and item:
+            yield f"links: only a wardrobe link names an item, got {item!r} in scene {s}"
+
+
+def _not_props(msg: Message) -> Iterator[str]:
+    if any(not w.strip() for w in msg.words):
+        yield "words can't be empty"
+    if dup := _duplicates(list(msg.words)):
+        yield f"duplicate words {dup}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -458,6 +569,14 @@ RULES: dict[str, Rule] = {
     "FilmPart": _film_part,
     "IdSpace": _id_space,
     "IdCounters": _id_counters,
+    "BibleCatalog": _catalog,
+    "CatalogMap": _catalog_map,
+    "CatalogGroup": _catalog_group,
+    "CatalogField": _catalog_field,
+    "BibleValue": _bible_value,
+    "BibleLink": _bible_link,
+    "BibleItem": _bible_item,
+    "NotProps": _not_props,
 }
 
 

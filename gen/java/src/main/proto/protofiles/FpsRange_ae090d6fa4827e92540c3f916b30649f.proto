@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message FpsRange {
+int32 ID_ae090d6fa4827e92540c3f916b30649f = 1;
+int32 min_fps = 2;
+int32 max_fps = 3;
+string STATUS_ae090d6fa4827e92540c3f916b30649f = 4;
+string ERROR_ae090d6fa4827e92540c3f916b30649f = 5;
+string ORIGINATOR = 6;
+}
