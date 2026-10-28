@@ -24,4 +24,5 @@ Rules specific to this repository:
 |---|---|
 | [baseline](baseline/baseline.md) | Done — released as `v0.1.0` (2026-10-05) |
 | [camera-protocol](camera-protocol/camera-protocol.md) | Done — released as `v0.2.0` (2026-10-05) |
+| [film-root](film-root/film-root.md) | Planned — `film.harpia` (root index and ids), release `v0.4.0` |
 | [bugs](bugs/bugs.md) | Open — a backlog, fixed when a bug gets in the way |
