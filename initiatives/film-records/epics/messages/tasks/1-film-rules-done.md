@@ -1,5 +1,7 @@
 ## 1. The five film.json rules
 
+- **Status:** Done (2026-10-28)
+
 - **Depends on:** `film-root` (`v0.4.0`)
 - **Contract:**
   - In: the five questions of `film-root/epics/film-messages/tasks/1-film-harpia-done.md`
