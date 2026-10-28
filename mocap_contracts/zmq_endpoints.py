@@ -5,11 +5,11 @@ Written by tools/harpia_gen.py (`make gen`); do not edit. Needs pyzmq
 
 from types import ModuleType
 
-from harpia_generated.zmq import CameraFileReady_ae090d6fa4827e92540c3f916b30649f_zmq as _CameraFileReady
-from harpia_generated.zmq import CameraStats_ae090d6fa4827e92540c3f916b30649f_zmq as _CameraStats
-from harpia_generated.zmq import ControlReply_ae090d6fa4827e92540c3f916b30649f_zmq as _ControlReply
-from harpia_generated.zmq import ControlRequest_ae090d6fa4827e92540c3f916b30649f_zmq as _ControlRequest
-from harpia_generated.zmq import TakeClosed_ae090d6fa4827e92540c3f916b30649f_zmq as _TakeClosed
+from harpia_generated.zmq import CameraFileReady_136996d09eedbf0a12cec4204d8d4ec2_zmq as _CameraFileReady
+from harpia_generated.zmq import CameraStats_136996d09eedbf0a12cec4204d8d4ec2_zmq as _CameraStats
+from harpia_generated.zmq import ControlReply_136996d09eedbf0a12cec4204d8d4ec2_zmq as _ControlReply
+from harpia_generated.zmq import ControlRequest_136996d09eedbf0a12cec4204d8d4ec2_zmq as _ControlRequest
+from harpia_generated.zmq import TakeClosed_136996d09eedbf0a12cec4204d8d4ec2_zmq as _TakeClosed
 
 ENDPOINTS: dict[str, ModuleType] = {
     "CameraFileReady": _CameraFileReady,

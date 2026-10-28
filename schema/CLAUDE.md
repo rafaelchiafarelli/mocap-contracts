@@ -26,6 +26,9 @@
   `BibleItem` (`item.json`), `BibleValue`, `BibleLink`, `NotProps`, the
   catalog messages `BibleCatalog`, `CatalogMap`, `CatalogGroup`,
   `CatalogField`, enums `BibleMap`, `FieldType`, `ValueState`.
+- `Include/change.harpia` — the change log (owner: mocap-writer): `Change`
+  (one line of `history/<yyyy-mm>.jsonl`: time, by, path, record, op,
+  before, after) and `ChangeOp`.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 

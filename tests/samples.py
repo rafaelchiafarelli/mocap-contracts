@@ -323,6 +323,14 @@ def bible_item(**kw):
     return mc.BibleItem(**fields)
 
 
+def change(**kw):
+    fields = dict(time="2026-10-28T14:03:12.5Z", by="writer", path="bible/props/blue-cup/item.json",
+                  record="prop-w-3", op=mc.ChangeOp.Value("CHANGE_OP_UPDATE"),
+                  before='{"id": "prop-w-3"}\n', after='{"id": "prop-w-3", "name": "x"}\n')
+    fields.update(kw)
+    return mc.Change(**fields)
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -397,4 +405,5 @@ SAMPLES = {
     "BibleLink": lambda: mc.BibleLink(scene="12.A", item="character-w-1"),
     "BibleItem": bible_item,
     "NotProps": lambda: mc.NotProps(words=["OK", "TV"]),
+    "Change": lambda: change(),
 }

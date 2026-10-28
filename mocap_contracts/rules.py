@@ -534,6 +534,29 @@ def _not_props(msg: Message) -> Iterator[str]:
         yield f"duplicate words {dup}"
 
 
+_TIME = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?Z$")
+
+
+def _change(msg: Message) -> Iterator[str]:
+    if not _TIME.fullmatch(msg.time):
+        yield f"time must be UTC ISO-8601 ending in Z, got {msg.time!r}"
+    else:
+        try:
+            datetime.datetime.fromisoformat(msg.time.replace("Z", "+00:00"))
+        except ValueError:
+            yield f"time is not a real date, got {msg.time!r}"
+    if not bible.BY.fullmatch(msg.by):
+        yield f"by must be 'creator', 'writer' or an agent name in kebab-case, got {msg.by!r}"
+    if problem := film.path_problem(msg.path):
+        yield problem
+    if msg.HasField("record") and not film.RECORD_ID.fullmatch(msg.record):
+        yield f"record must be a record id, got {msg.record!r}"
+    op = _enum_name(msg, "op").removeprefix("CHANGE_OP_").lower()
+    want = {"create": (False, True), "update": (True, True), "delete": (True, False)}.get(op)
+    if want and (msg.HasField("before"), msg.HasField("after")) != want:
+        yield f"a {op} has {' and '.join(n for n, w in zip(('before', 'after'), want) if w)} only"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -577,6 +600,7 @@ RULES: dict[str, Rule] = {
     "BibleLink": _bible_link,
     "BibleItem": _bible_item,
     "NotProps": _not_props,
+    "Change": _change,
 }
 
 
