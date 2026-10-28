@@ -1,5 +1,7 @@
 ## 2. Release v0.4.0
 
+- **Status:** Done (2026-10-27)
+
 - **Depends on:** 1
 - **Contract:**
   - In: —
