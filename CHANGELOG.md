@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.4.0 — 2026-10-27
+
+The film root's index and record ids (`film-root` initiative), for `mocap-writer` file-format/layout/1.
+
+- **`film.harpia`** (owner: `mocap-writer`): `Film` is `film.json` (`format_version` 1, `origin` program and version, `parts` with name, path and owner, `spaces` with code and owner); `IdCounters` is `ids/<code>.json` (`next`, one counter per record kind); `RecordKind` lists the kinds (`set`, `character`, `prop`, `wardrobe`, `annotation`, `proposal`). Rules: part paths relative to the film root with `/`, never leaving it, never `film.json` or under `ids/`, never inside another part's path; part names and space codes unique; space codes 1–8 lower-case letters or digits starting with a letter; counters ≥ 1.
+- **`mocap_contracts.film`**: the record id `<kind>-<space>-<n>` (`RECORD_ID`, `record_id`, `check_record_id`), space codes, `film.json` and `ids_file(code)`.
+- **Fixtures** `fixtures/film-v1/`: a valid film root index and counters; invalid files with the error each must raise (`invalid/expected.json`).
+- `to_json` writes map keys sorted (no earlier message had a map).
+- The reproducibility test compares files only, so it passes on a fresh clone (fixes/000097).
+
+New messages only: nothing in `v0.3.0` changes.
+
 ## v0.3.0 — 2026-10-06
 
 - **`ControlRequest.reply_endpoint`** (required, `tcp://<host>:<port>`): where the recorder's `ControlReply` receiver listens. The camera app sends each reply there, so a tablet needs no recorder address of its own and moving the recorder PC changes nothing on the tablets. Nothing declared where the reply went before (`CameraConfig` has the app's `control_port` and `stats_port` only). New wire number 10; existing numbers unchanged. **Breaking:** a request without it is rejected by the rules, so recorder and app both move to `v0.3.0`.
