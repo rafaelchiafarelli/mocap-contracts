@@ -1,5 +1,7 @@
 ## 1. film.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-27)
+
 - **Depends on:** baseline bootstrap (generation, `to_json` / `from_json`,
   `mocap_contracts.rules`); Harpia V5 `map<string,int>` (USAGE §3)
 - **Contract:**
@@ -47,6 +49,9 @@
         segment (decided: "a part's path is never inside another part's
         path"); so `bible/` and `bible-old/` don't clash
       - Part names unique, not empty (derived: a part is looked up by name)
+      - No part's path is `film.json` or inside `ids/` (derived: "the writer
+        owns `film.json`"; "the `ids/<space>.json` counters are not parts:
+        each one belongs to its space's owner")
       - `FilmPart.owner` and `IdSpace.owner` not empty (derived)
       - `IdSpace.code` matches `^[a-z][a-z0-9]{0,7}$` (decided: "1–8
         lower-case letters or digits, starting with a letter"); codes unique
@@ -54,7 +59,8 @@
       - `IdCounters.next`: every key is a kind word, every value ≥ 1
         (decided: "`next`, one entry per kind"; "a counter per kind … starting
         at 1"). A kind with no entry has made no record yet.
-    - `mocap_contracts.film` (stdlib only, like `layout.py`):
+    - `mocap_contracts.film` (paths and ids only, like `layout.py`; it reads
+      `RecordKind`, so not stdlib only):
       - `KINDS` — the kind words, read from `RecordKind`
         (`"set", "character", …`)
       - `RECORD_ID` — `^(set|character|prop|wardrobe|annotation|proposal)-[a-z][a-z0-9]{0,7}-[1-9][0-9]*$`,
@@ -66,7 +72,16 @@
         (decided)
     - Fixtures in `fixtures/film-v1/`: `film.json` (the default parts of
       layout/1 for a new film, the writer space `w` and one agent space),
-      `ids/w.json`, and `invalid/<what>.json`, one broken field each
+      `ids/w.json`, `ids/pcp.json`, and `invalid/<what>.json`, one broken
+      field each, listed with the expected error in `invalid/expected.json`
+      (built by `tools/make_film_fixtures.py`)
+- **Decisions (Claude, for Rafael's review, 2026-10-27):**
+  - message names `Film`, `FilmOrigin`, `FilmPart`, `IdSpace`,
+    `IdCounters`, `RecordKind` (not visible in the JSON)
+  - `to_json` writes map keys sorted: protobuf keeps no map order, so
+    `ids/<code>.json` would otherwise change order on every write. No
+    earlier message has a map, so nothing else changes.
+  - `invalid/expected.json` so `mocap-writer` can run the same cases
 - **Not decided (left out, not enforced — questions for Rafael):**
   1. Must every part's owner, and every space's owner, be listed in the other
      list (a part owner has a space, a space owner has a part)?

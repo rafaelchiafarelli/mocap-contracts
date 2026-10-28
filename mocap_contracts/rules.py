@@ -15,6 +15,7 @@ from collections.abc import Callable, Iterator
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 
+from mocap_contracts import film
 from mocap_contracts.errors import ContractError
 from mocap_contracts.layout import ID_PATTERN
 
@@ -353,6 +354,63 @@ def _control_reply(msg: Message) -> Iterator[str]:
         yield f"device_info.serial {msg.device_info.serial!r} isn't the reply's serial {msg.serial!r}"
 
 
+_DRIVE = re.compile(r"^[A-Za-z]:")
+
+
+def _film_part(msg: Message) -> Iterator[str]:
+    if not msg.name:
+        yield "name is empty"
+    if not msg.owner:
+        yield "owner is empty"
+    path = msg.path
+    if not path:
+        yield "path is empty"
+    elif path.startswith("/") or "\\" in path or _DRIVE.match(path):
+        yield f"path must be relative to the film root with '/' as separator, got {path!r}"
+    elif any(s in ("", ".", "..") for s in _segments(path)):
+        yield f"path can't hold empty, '.' or '..' segments, got {path!r}"
+    elif path == film.FILM_FILE or _segments(path)[0] == "ids":
+        # film.json is the writer's and each ids/<code>.json its space owner's, never a part's
+        yield f"path can't be {film.FILM_FILE} or inside ids/, got {path!r}"
+
+
+def _segments(path: str) -> tuple[str, ...]:
+    return tuple(path.removesuffix("/").split("/"))
+
+
+def _film(msg: Message) -> Iterator[str]:
+    if msg.format_version != film.FORMAT_VERSION:
+        yield f"format_version must be {film.FORMAT_VERSION}, got {msg.format_version}"
+    if dup := _duplicates([p.name for p in msg.parts]):
+        yield f"duplicate part names {dup}"
+    if dup := _duplicates([s.code for s in msg.spaces]):
+        yield f"duplicate space codes {dup}"
+    paths = [(p.name, _segments(p.path)) for p in msg.parts]
+    for i, (name, a) in enumerate(paths):
+        for other, b in paths[i + 1:]:
+            if a[:len(b)] == b or b[:len(a)] == a:
+                yield f"parts {name!r} and {other!r}: one path is inside the other"
+
+
+def _film_origin(msg: Message) -> Iterator[str]:
+    if empty := [f for f in ("program", "version") if not getattr(msg, f)]:
+        yield f"empty {empty}"
+
+
+def _id_space(msg: Message) -> Iterator[str]:
+    if not film.SPACE_CODE.fullmatch(msg.code):
+        yield f"code must be 1-8 lower-case letters or digits starting with a letter, got {msg.code!r}"
+    if not msg.owner:
+        yield "owner is empty"
+
+
+def _id_counters(msg: Message) -> Iterator[str]:
+    if bad := sorted(k for k in msg.next if k not in film.KINDS):
+        yield f"next: unknown record kinds {bad}, known {list(film.KINDS)}"
+    if bad := sorted(f"{k}={v}" for k, v in msg.next.items() if v < 1):
+        yield f"next: counters start at 1, got {bad}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -383,6 +441,11 @@ RULES: dict[str, Rule] = {
     "CameraStats": _camera_stats,
     "ControlRequest": _control_request,
     "ControlReply": _control_reply,
+    "Film": _film,
+    "FilmOrigin": _film_origin,
+    "FilmPart": _film_part,
+    "IdSpace": _id_space,
+    "IdCounters": _id_counters,
 }
 
 
