@@ -16,7 +16,7 @@ public final class ControlReply_zmq {
 
     // Compile-time unique sender number (one-to-*: hash(file)+message),
     // the same derivation as the C++ target's origin_id().
-    public static final String ORIGIN_ID = "470314658113253041";
+    public static final String ORIGIN_ID = "6572271944203474";
 
     public static HarpiaZmq.Sender newSender(ZContext ctx, String endpoint) {
         return new HarpiaZmq.Sender(ctx, SocketType.PUSH, endpoint, false,

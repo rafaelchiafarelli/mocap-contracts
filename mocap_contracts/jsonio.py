@@ -2,7 +2,7 @@
 
 Files written here contain exactly the fields declared in schema/, under
 their declared names, with every non-`optional` field present even when it
-holds its default value. Harpia's bookkeeping fields (ID_/STATUS_/ERROR_
+holds its default value, and map keys sorted (protobuf keeps no map order). Harpia's bookkeeping fields (ID_/STATUS_/ERROR_
 <hash>, ORIGINATOR) are never written, and reading rejects any key that
 isn't declared or any missing `required` key, at every nesting level.
 
@@ -78,6 +78,10 @@ def _is_message(field: FieldDescriptor) -> bool:
     )
 
 
+def _is_map(field: FieldDescriptor) -> bool:
+    return field.type == FieldDescriptor.TYPE_MESSAGE and field.message_type.GetOptions().map_entry
+
+
 def _is_unset_enum(field: FieldDescriptor, value: Any) -> bool:
     if field.type != FieldDescriptor.TYPE_ENUM or field.label == FieldDescriptor.LABEL_REPEATED:
         return False
@@ -103,6 +107,8 @@ def _prune(data: dict[str, Any], desc: Descriptor, declared) -> dict[str, Any]:
                 value = [_prune(v, field.message_type, declared) for v in value]
             else:
                 value = _prune(value, field.message_type, declared)
+        elif _is_map(field):
+            value = dict(sorted(value.items()))  # protobuf maps keep no order
         out[name] = value
     return out
 
