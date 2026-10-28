@@ -16,7 +16,7 @@ public final class CameraFileReady_zmq {
 
     // Compile-time unique sender number (one-to-*: hash(file)+message),
     // the same derivation as the C++ target's origin_id().
-    public static final String ORIGIN_ID = "176983149557704507";
+    public static final String ORIGIN_ID = "225502965788854529";
 
     public static HarpiaZmq.Sender newSender(ZContext ctx, String endpoint) {
         return new HarpiaZmq.Sender(ctx, SocketType.PUSH, endpoint, false,

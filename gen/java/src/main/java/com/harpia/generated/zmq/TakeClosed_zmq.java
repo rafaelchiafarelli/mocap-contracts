@@ -16,7 +16,7 @@ public final class TakeClosed_zmq {
 
     // Compile-time unique sender number (one-to-*: hash(file)+message),
     // the same derivation as the C++ target's origin_id().
-    public static final String ORIGIN_ID = "487250986432776721";
+    public static final String ORIGIN_ID = "798071093517459062";
 
     public static HarpiaZmq.Sender newSender(ZContext ctx, String endpoint) {
         return new HarpiaZmq.Sender(ctx, SocketType.PUSH, endpoint, false,
