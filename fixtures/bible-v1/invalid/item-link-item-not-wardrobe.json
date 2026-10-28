@@ -1,0 +1,46 @@
+{
+  "id": "prop-pcp-1",
+  "name": "Blue Cup",
+  "values": [
+    {
+      "field": "look.color",
+      "text": "blue",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "props",
+      "by": "writer"
+    },
+    {
+      "field": "look.material",
+      "text": "enamel",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "props",
+      "by": "writer"
+    },
+    {
+      "field": "state.state",
+      "scene": "1",
+      "text": "full",
+      "state": "VALUE_STATE_SCRIPT_STATED",
+      "source": "1",
+      "department": "props",
+      "by": "writer"
+    },
+    {
+      "field": "ownership.owner",
+      "text": "character-w-1",
+      "state": "VALUE_STATE_PROPOSAL",
+      "source": "1",
+      "department": "props",
+      "by": "props-continuity-planner"
+    }
+  ],
+  "links": [
+    {
+      "scene": "1",
+      "item": "character-w-1"
+    }
+  ],
+  "aliases": []
+}

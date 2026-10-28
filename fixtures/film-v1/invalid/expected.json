@@ -55,6 +55,46 @@
     "message": "Film",
     "error": "Film: duplicate space codes ['w']"
   },
+  "film-no-script.json": {
+    "message": "Film",
+    "error": "Film: parts: no 'script' part"
+  },
+  "film-no-writer-space.json": {
+    "message": "Film",
+    "error": "Film: spaces: no 'w' space owned by 'writer'"
+  },
+  "part-owner-no-space.json": {
+    "message": "Film",
+    "error": "Film: parts: owners ['set-designer'] have no space"
+  },
+  "part-bad-name.json": {
+    "message": "Film",
+    "error": "Film.parts[5]: name must be one of"
+  },
+  "part-proposals-no-space.json": {
+    "message": "Film",
+    "error": "Film: part 'proposals-xyz': no space 'xyz'"
+  },
+  "part-bad-owner.json": {
+    "message": "Film",
+    "error": "Film.parts[1]: owner must be 'writer' or an agent name"
+  },
+  "space-bad-owner.json": {
+    "message": "Film",
+    "error": "Film.spaces[1]: owner must be 'writer' or an agent name"
+  },
+  "part-windows-unsafe.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path can't hold <>"
+  },
+  "part-trailing-dot.json": {
+    "message": "Film",
+    "error": "Film.parts[2]: a path segment can't end in a dot or a space"
+  },
+  "part-reserved-name.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path can't use the reserved Windows name"
+  },
   "ids-unknown-kind.json": {
     "message": "IdCounters",
     "error": "IdCounters: next: unknown record kinds ['scene']"
