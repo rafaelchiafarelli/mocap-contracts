@@ -16,7 +16,7 @@ public final class ControlRequest_zmq {
 
     // Compile-time unique sender number (one-to-*: hash(file)+message),
     // the same derivation as the C++ target's origin_id().
-    public static final String ORIGIN_ID = "995880953070177486";
+    public static final String ORIGIN_ID = "703739905370335634";
 
     public static HarpiaZmq.Sender newSender(ZContext ctx, String endpoint) {
         return new HarpiaZmq.Sender(ctx, SocketType.PUSH, endpoint, false,

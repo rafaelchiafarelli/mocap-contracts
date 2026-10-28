@@ -4,60 +4,66 @@ Written by tools/harpia_gen.py (`make gen`); do not edit. Harpia's
 module names carry a hash of the root .harpia file and change with it;
 import from here (or from mocap_contracts) instead."""
 
-from harpia_generated.protofiles.Actor_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Actor
-from harpia_generated.protofiles.BodyLength_c4b8ea5558d6147d937c128fc2703ba0_pb2 import BodyLength
-from harpia_generated.protofiles.BoneStability_c4b8ea5558d6147d937c128fc2703ba0_pb2 import BoneStability
-from harpia_generated.protofiles.CalibrationBoard_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CalibrationBoard
-from harpia_generated.protofiles.CameraAblation_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraAblation
-from harpia_generated.protofiles.CameraAlignment_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraAlignment
-from harpia_generated.protofiles.CameraConfig_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraConfig
-from harpia_generated.protofiles.CameraControls_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraControls
-from harpia_generated.protofiles.CameraFacing_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraFacing
-from harpia_generated.protofiles.CameraFileReady_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraFileReady
-from harpia_generated.protofiles.CameraInfo_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraInfo
-from harpia_generated.protofiles.CameraQuality_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraQuality
-from harpia_generated.protofiles.CameraSource_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraSource
-from harpia_generated.protofiles.CameraStats_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraStats
-from harpia_generated.protofiles.CameraTakeReport_c4b8ea5558d6147d937c128fc2703ba0_pb2 import CameraTakeReport
-from harpia_generated.protofiles.Casting_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Casting
-from harpia_generated.protofiles.Character_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Character
-from harpia_generated.protofiles.ControlBackend_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlBackend
-from harpia_generated.protofiles.ControlCapability_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlCapability
-from harpia_generated.protofiles.ControlMenuOption_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlMenuOption
-from harpia_generated.protofiles.ControlReply_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlReply
-from harpia_generated.protofiles.ControlRequest_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlRequest
-from harpia_generated.protofiles.ControlResult_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlResult
-from harpia_generated.protofiles.ControlSetting_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlSetting
-from harpia_generated.protofiles.ControlStatus_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlStatus
-from harpia_generated.protofiles.ControlValueType_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlValueType
-from harpia_generated.protofiles.ControlValue_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ControlValue
-from harpia_generated.protofiles.Crop_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Crop
-from harpia_generated.protofiles.DeviceInfo_c4b8ea5558d6147d937c128fc2703ba0_pb2 import DeviceInfo
-from harpia_generated.protofiles.ExtractIndex_c4b8ea5558d6147d937c128fc2703ba0_pb2 import ExtractIndex
-from harpia_generated.protofiles.FileKind_c4b8ea5558d6147d937c128fc2703ba0_pb2 import FileKind
-from harpia_generated.protofiles.Flag_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Flag
-from harpia_generated.protofiles.FpsRange_c4b8ea5558d6147d937c128fc2703ba0_pb2 import FpsRange
-from harpia_generated.protofiles.FrameGap_c4b8ea5558d6147d937c128fc2703ba0_pb2 import FrameGap
-from harpia_generated.protofiles.FrameSize_c4b8ea5558d6147d937c128fc2703ba0_pb2 import FrameSize
-from harpia_generated.protofiles.LengthUnit_c4b8ea5558d6147d937c128fc2703ba0_pb2 import LengthUnit
-from harpia_generated.protofiles.MocapFrame_c4b8ea5558d6147d937c128fc2703ba0_pb2 import MocapFrame
-from harpia_generated.protofiles.MocapTakeHeader_c4b8ea5558d6147d937c128fc2703ba0_pb2 import MocapTakeHeader
-from harpia_generated.protofiles.MocapTake_c4b8ea5558d6147d937c128fc2703ba0_pb2 import MocapTake
-from harpia_generated.protofiles.PointSet_c4b8ea5558d6147d937c128fc2703ba0_pb2 import PointSet
-from harpia_generated.protofiles.PreprocessSpec_c4b8ea5558d6147d937c128fc2703ba0_pb2 import PreprocessSpec
-from harpia_generated.protofiles.QualityReport_c4b8ea5558d6147d937c128fc2703ba0_pb2 import QualityReport
-from harpia_generated.protofiles.Session_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Session
-from harpia_generated.protofiles.StreamSettings_c4b8ea5558d6147d937c128fc2703ba0_pb2 import StreamSettings
-from harpia_generated.protofiles.SyncEvent_c4b8ea5558d6147d937c128fc2703ba0_pb2 import SyncEvent
-from harpia_generated.protofiles.SyncKind_c4b8ea5558d6147d937c128fc2703ba0_pb2 import SyncKind
-from harpia_generated.protofiles.SyncSource_c4b8ea5558d6147d937c128fc2703ba0_pb2 import SyncSource
-from harpia_generated.protofiles.SyncedVideo_c4b8ea5558d6147d937c128fc2703ba0_pb2 import SyncedVideo
-from harpia_generated.protofiles.TakeCamera_c4b8ea5558d6147d937c128fc2703ba0_pb2 import TakeCamera
-from harpia_generated.protofiles.TakeClosed_c4b8ea5558d6147d937c128fc2703ba0_pb2 import TakeClosed
-from harpia_generated.protofiles.TakeReport_c4b8ea5558d6147d937c128fc2703ba0_pb2 import TakeReport
-from harpia_generated.protofiles.TakeType_c4b8ea5558d6147d937c128fc2703ba0_pb2 import TakeType
-from harpia_generated.protofiles.Take_c4b8ea5558d6147d937c128fc2703ba0_pb2 import Take
-from harpia_generated.protofiles.UpAxis_c4b8ea5558d6147d937c128fc2703ba0_pb2 import UpAxis
+from harpia_generated.protofiles.Actor_3bddfc80b8962961520359f03ba8cf1e_pb2 import Actor
+from harpia_generated.protofiles.BodyLength_3bddfc80b8962961520359f03ba8cf1e_pb2 import BodyLength
+from harpia_generated.protofiles.BoneStability_3bddfc80b8962961520359f03ba8cf1e_pb2 import BoneStability
+from harpia_generated.protofiles.CalibrationBoard_3bddfc80b8962961520359f03ba8cf1e_pb2 import CalibrationBoard
+from harpia_generated.protofiles.CameraAblation_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraAblation
+from harpia_generated.protofiles.CameraAlignment_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraAlignment
+from harpia_generated.protofiles.CameraConfig_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraConfig
+from harpia_generated.protofiles.CameraControls_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraControls
+from harpia_generated.protofiles.CameraFacing_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraFacing
+from harpia_generated.protofiles.CameraFileReady_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraFileReady
+from harpia_generated.protofiles.CameraInfo_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraInfo
+from harpia_generated.protofiles.CameraQuality_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraQuality
+from harpia_generated.protofiles.CameraSource_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraSource
+from harpia_generated.protofiles.CameraStats_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraStats
+from harpia_generated.protofiles.CameraTakeReport_3bddfc80b8962961520359f03ba8cf1e_pb2 import CameraTakeReport
+from harpia_generated.protofiles.Casting_3bddfc80b8962961520359f03ba8cf1e_pb2 import Casting
+from harpia_generated.protofiles.Character_3bddfc80b8962961520359f03ba8cf1e_pb2 import Character
+from harpia_generated.protofiles.ControlBackend_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlBackend
+from harpia_generated.protofiles.ControlCapability_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlCapability
+from harpia_generated.protofiles.ControlMenuOption_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlMenuOption
+from harpia_generated.protofiles.ControlReply_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlReply
+from harpia_generated.protofiles.ControlRequest_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlRequest
+from harpia_generated.protofiles.ControlResult_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlResult
+from harpia_generated.protofiles.ControlSetting_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlSetting
+from harpia_generated.protofiles.ControlStatus_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlStatus
+from harpia_generated.protofiles.ControlValueType_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlValueType
+from harpia_generated.protofiles.ControlValue_3bddfc80b8962961520359f03ba8cf1e_pb2 import ControlValue
+from harpia_generated.protofiles.Crop_3bddfc80b8962961520359f03ba8cf1e_pb2 import Crop
+from harpia_generated.protofiles.DeviceInfo_3bddfc80b8962961520359f03ba8cf1e_pb2 import DeviceInfo
+from harpia_generated.protofiles.ExtractIndex_3bddfc80b8962961520359f03ba8cf1e_pb2 import ExtractIndex
+from harpia_generated.protofiles.FileKind_3bddfc80b8962961520359f03ba8cf1e_pb2 import FileKind
+from harpia_generated.protofiles.FilmOrigin_3bddfc80b8962961520359f03ba8cf1e_pb2 import FilmOrigin
+from harpia_generated.protofiles.FilmPart_3bddfc80b8962961520359f03ba8cf1e_pb2 import FilmPart
+from harpia_generated.protofiles.Film_3bddfc80b8962961520359f03ba8cf1e_pb2 import Film
+from harpia_generated.protofiles.Flag_3bddfc80b8962961520359f03ba8cf1e_pb2 import Flag
+from harpia_generated.protofiles.FpsRange_3bddfc80b8962961520359f03ba8cf1e_pb2 import FpsRange
+from harpia_generated.protofiles.FrameGap_3bddfc80b8962961520359f03ba8cf1e_pb2 import FrameGap
+from harpia_generated.protofiles.FrameSize_3bddfc80b8962961520359f03ba8cf1e_pb2 import FrameSize
+from harpia_generated.protofiles.IdCounters_3bddfc80b8962961520359f03ba8cf1e_pb2 import IdCounters
+from harpia_generated.protofiles.IdSpace_3bddfc80b8962961520359f03ba8cf1e_pb2 import IdSpace
+from harpia_generated.protofiles.LengthUnit_3bddfc80b8962961520359f03ba8cf1e_pb2 import LengthUnit
+from harpia_generated.protofiles.MocapFrame_3bddfc80b8962961520359f03ba8cf1e_pb2 import MocapFrame
+from harpia_generated.protofiles.MocapTakeHeader_3bddfc80b8962961520359f03ba8cf1e_pb2 import MocapTakeHeader
+from harpia_generated.protofiles.MocapTake_3bddfc80b8962961520359f03ba8cf1e_pb2 import MocapTake
+from harpia_generated.protofiles.PointSet_3bddfc80b8962961520359f03ba8cf1e_pb2 import PointSet
+from harpia_generated.protofiles.PreprocessSpec_3bddfc80b8962961520359f03ba8cf1e_pb2 import PreprocessSpec
+from harpia_generated.protofiles.QualityReport_3bddfc80b8962961520359f03ba8cf1e_pb2 import QualityReport
+from harpia_generated.protofiles.RecordKind_3bddfc80b8962961520359f03ba8cf1e_pb2 import RecordKind
+from harpia_generated.protofiles.Session_3bddfc80b8962961520359f03ba8cf1e_pb2 import Session
+from harpia_generated.protofiles.StreamSettings_3bddfc80b8962961520359f03ba8cf1e_pb2 import StreamSettings
+from harpia_generated.protofiles.SyncEvent_3bddfc80b8962961520359f03ba8cf1e_pb2 import SyncEvent
+from harpia_generated.protofiles.SyncKind_3bddfc80b8962961520359f03ba8cf1e_pb2 import SyncKind
+from harpia_generated.protofiles.SyncSource_3bddfc80b8962961520359f03ba8cf1e_pb2 import SyncSource
+from harpia_generated.protofiles.SyncedVideo_3bddfc80b8962961520359f03ba8cf1e_pb2 import SyncedVideo
+from harpia_generated.protofiles.TakeCamera_3bddfc80b8962961520359f03ba8cf1e_pb2 import TakeCamera
+from harpia_generated.protofiles.TakeClosed_3bddfc80b8962961520359f03ba8cf1e_pb2 import TakeClosed
+from harpia_generated.protofiles.TakeReport_3bddfc80b8962961520359f03ba8cf1e_pb2 import TakeReport
+from harpia_generated.protofiles.TakeType_3bddfc80b8962961520359f03ba8cf1e_pb2 import TakeType
+from harpia_generated.protofiles.Take_3bddfc80b8962961520359f03ba8cf1e_pb2 import Take
+from harpia_generated.protofiles.UpAxis_3bddfc80b8962961520359f03ba8cf1e_pb2 import UpAxis
 
 # Field names as declared in schema/ (Harpia's bookkeeping fields excluded).
 DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
@@ -86,9 +92,14 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'Crop': ('x', 'y', 'width', 'height'),
     'DeviceInfo': ('model', 'serial', 'android_version', 'app_version', 'h264_encoders', 'cameras'),
     'ExtractIndex': ('take_id', 'calibration_take_id', 'calibration_path', 'fps', 'frames', 't0_ns', 'length_unit', 'up_axis', 'synced_videos', 'alignment', 'points_3d', 'points_2d'),
+    'Film': ('format_version', 'origin', 'parts', 'spaces'),
+    'FilmOrigin': ('program', 'version'),
+    'FilmPart': ('name', 'path', 'owner'),
     'FpsRange': ('min_fps', 'max_fps'),
     'FrameGap': ('after_frame', 'duration_ns'),
     'FrameSize': ('width', 'height'),
+    'IdCounters': ('next',),
+    'IdSpace': ('code', 'owner'),
     'MocapFrame': ('frame_id', 'timestamp_ns', 'body_xyz', 'left_hand_xyz', 'right_hand_xyz', 'body_missing', 'left_hand_missing', 'right_hand_missing', 'face_blendshapes', 'gaze', 'emotion', 'left_foot_contact', 'right_foot_contact'),
     'MocapTake': ('header', 'frames'),
     'MocapTakeHeader': ('take_id', 'session_id', 'actor_id', 'character_id', 'fps', 'frame_count', 't0_ns', 'length_unit', 'up_axis', 'body_joints', 'left_hand_joints', 'right_hand_joints', 'face_blendshape_names'),
@@ -132,9 +143,14 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'Crop': ('x', 'y', 'width', 'height'),
     'DeviceInfo': ('model', 'serial', 'android_version', 'app_version'),
     'ExtractIndex': ('take_id', 'calibration_take_id', 'calibration_path', 'fps', 'frames', 't0_ns', 'length_unit', 'up_axis'),
+    'Film': ('format_version', 'origin'),
+    'FilmOrigin': ('program', 'version'),
+    'FilmPart': ('name', 'path', 'owner'),
     'FpsRange': ('min_fps', 'max_fps'),
     'FrameGap': ('after_frame', 'duration_ns'),
     'FrameSize': ('width', 'height'),
+    'IdCounters': ('next',),
+    'IdSpace': ('code', 'owner'),
     'MocapFrame': ('frame_id', 'timestamp_ns', 'left_foot_contact', 'right_foot_contact'),
     'MocapTake': ('header',),
     'MocapTakeHeader': ('take_id', 'session_id', 'actor_id', 'character_id', 'fps', 'frame_count', 't0_ns', 'length_unit', 'up_axis'),
@@ -183,10 +199,15 @@ __all__ = [
     "DeviceInfo",
     "ExtractIndex",
     "FileKind",
+    "Film",
+    "FilmOrigin",
+    "FilmPart",
     "Flag",
     "FpsRange",
     "FrameGap",
     "FrameSize",
+    "IdCounters",
+    "IdSpace",
     "LengthUnit",
     "MocapFrame",
     "MocapTake",
@@ -194,6 +215,7 @@ __all__ = [
     "PointSet",
     "PreprocessSpec",
     "QualityReport",
+    "RecordKind",
     "Session",
     "StreamSettings",
     "SyncEvent",

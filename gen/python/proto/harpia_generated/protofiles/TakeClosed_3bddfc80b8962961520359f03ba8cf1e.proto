@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/SyncEvent_3bddfc80b8962961520359f03ba8cf1e.proto";
+message TakeClosed {
+int32 ID_3bddfc80b8962961520359f03ba8cf1e = 1;
+string take_id = 2;
+repeated string roles = 3;
+SyncEvent start = 4;
+SyncEvent end = 5;
+string STATUS_3bddfc80b8962961520359f03ba8cf1e = 6;
+string ERROR_3bddfc80b8962961520359f03ba8cf1e = 7;
+string ORIGINATOR_3bddfc80b8962961520359f03ba8cf1e = 8;
+}
