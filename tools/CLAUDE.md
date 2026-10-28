@@ -15,7 +15,7 @@
 - `make_stream_fixtures.py` — builds `fixtures/stream-v1/` (needs ffmpeg and
   an eval recording).
 - `make_film_fixtures.py` — builds `fixtures/film-v1/` from plain dicts
-  (`FILM`, `IDS`, `INVALID`, `make_film_fixtures.py:26-64`), stdlib only so the
+  (`FILM`, `IDS`, `INVALID`, `make_film_fixtures.py:26-121`), stdlib only so the
   fixtures don't come from the code they test.
 
 ## Key facts / gotchas

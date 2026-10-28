@@ -354,28 +354,20 @@ def _control_reply(msg: Message) -> Iterator[str]:
         yield f"device_info.serial {msg.device_info.serial!r} isn't the reply's serial {msg.serial!r}"
 
 
-_DRIVE = re.compile(r"^[A-Za-z]:")
-
-
 def _film_part(msg: Message) -> Iterator[str]:
     if not msg.name:
         yield "name is empty"
+    elif msg.name not in film.PART_NAMES and not msg.name.startswith(film.PROPOSALS_PREFIX):
+        yield f"name must be one of {list(film.PART_NAMES)} or proposals-<code>, got {msg.name!r}"
     if not msg.owner:
         yield "owner is empty"
-    path = msg.path
-    if not path:
-        yield "path is empty"
-    elif path.startswith("/") or "\\" in path or _DRIVE.match(path):
-        yield f"path must be relative to the film root with '/' as separator, got {path!r}"
-    elif any(s in ("", ".", "..") for s in _segments(path)):
-        yield f"path can't hold empty, '.' or '..' segments, got {path!r}"
-    elif path == film.FILM_FILE or _segments(path)[0] == "ids":
+    elif not film.OWNER.fullmatch(msg.owner):
+        yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
+    if problem := film.path_problem(msg.path):
+        yield problem
+    elif msg.path == film.FILM_FILE or film.segments(msg.path)[0] == "ids":
         # film.json is the writer's and each ids/<code>.json its space owner's, never a part's
-        yield f"path can't be {film.FILM_FILE} or inside ids/, got {path!r}"
-
-
-def _segments(path: str) -> tuple[str, ...]:
-    return tuple(path.removesuffix("/").split("/"))
+        yield f"path can't be {film.FILM_FILE} or inside ids/, got {msg.path!r}"
 
 
 def _film(msg: Message) -> Iterator[str]:
@@ -385,11 +377,29 @@ def _film(msg: Message) -> Iterator[str]:
         yield f"duplicate part names {dup}"
     if dup := _duplicates([s.code for s in msg.spaces]):
         yield f"duplicate space codes {dup}"
-    paths = [(p.name, _segments(p.path)) for p in msg.parts]
+    paths = [(p.name, film.segments(p.path)) for p in msg.parts]
     for i, (name, a) in enumerate(paths):
         for other, b in paths[i + 1:]:
             if a[:len(b)] == b or b[:len(a)] == a:
                 yield f"parts {name!r} and {other!r}: one path is inside the other"
+    if any(not film.SPACE_CODE.fullmatch(s.code) or not film.OWNER.fullmatch(s.owner)
+           for s in msg.spaces):
+        return  # the space itself names its broken field
+    names = {p.name for p in msg.parts}
+    spaces = {s.code: s.owner for s in msg.spaces}
+    if film.SCRIPT_PART not in names:
+        yield f"parts: no {film.SCRIPT_PART!r} part"
+    if spaces.get(film.WRITER_SPACE) != film.WRITER:
+        yield f"spaces: no {film.WRITER_SPACE!r} space owned by {film.WRITER!r}"
+    for p in msg.parts:
+        if p.name.startswith(film.PROPOSALS_PREFIX):
+            code = p.name.removeprefix(film.PROPOSALS_PREFIX)
+            if code not in spaces:
+                yield f"part {p.name!r}: no space {code!r}"
+    owners = set(spaces.values())
+    if bad := sorted({p.owner for p in msg.parts
+                          if film.OWNER.fullmatch(p.owner) and p.owner != film.WRITER} - owners):
+        yield f"parts: owners {bad} have no space"
 
 
 def _film_origin(msg: Message) -> Iterator[str]:
@@ -402,6 +412,8 @@ def _id_space(msg: Message) -> Iterator[str]:
         yield f"code must be 1-8 lower-case letters or digits starting with a letter, got {msg.code!r}"
     if not msg.owner:
         yield "owner is empty"
+    elif not film.OWNER.fullmatch(msg.owner):
+        yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
 
 
 def _id_counters(msg: Message) -> Iterator[str]:

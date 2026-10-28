@@ -19,15 +19,19 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:414`); `check` (`rules.py:452`) walks nested messages
+  in `RULES` (`rules.py:426`); `check` (`rules.py:464`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
   `ID_PATTERN` (`layout.py:23`) for session, take and role ids.
 - `film.py` — the film root (film.harpia): `KINDS` read from `RecordKind`
-  (`film.py:25`), `RECORD_ID` (`film.py:33`), `SPACE_CODE` (`film.py:32`),
-  `WRITER_SPACE`, `FORMAT_VERSION`, `FILM_FILE`, `check_record_id`,
-  `record_id`, `check_space_code`, `ids_file`.
+  (`film.py:25`), `RECORD_ID` (`film.py:40`), `SPACE_CODE` (`film.py:39`),
+  `WRITER`, `WRITER_SPACE`, `PART_NAMES` and `PROPOSALS_PREFIX`
+  (`film.py:34-35`), `OWNER` (`film.py:38`), `FORMAT_VERSION`, `FILM_FILE`,
+  `check_record_id`, `record_id`, `check_space_code`, `ids_file`;
+  `segments`, `path_problem` (`film.py:86`: relative, `/`, no empty, `.` or
+  `..` segment, Windows-safe names) and `check_path` (`film.py:110`), for
+  any path a film record holds.
 - `transport.py` — Harpia ZeroMQ legs under stable names (`[zmq]` extra).
 - `zmq_endpoints.py` — generated; the ZeroMQ factories per message.
 - `stream_v1.py` — stream protocol v1 reference reader and writer, stdlib only.
@@ -37,15 +41,18 @@ checked strings. Nothing here creates folders or touches files.
 - `to_json` writes map keys sorted (`jsonio.py:110`): protobuf keeps no map
   order, so without it `ids/<code>.json` came out in a different order each
   time.
-- Film rules (`rules.py:357-412`): `format_version` must be 1; part paths are
-  relative, `/`-separated, with no empty, `.` or `..` segment, no drive
-  letter, never `film.json` or under `ids/`; no part path inside or equal to
-  another, compared by segment (`_segments`, `rules.py:377`), so `bible/` and
-  `bible-old/` don't clash; part names and space codes unique; counter keys
-  are kind words, values ≥ 1.
-- The film rules leave open what layout/1 didn't decide (part owners vs
-  space owners, required parts, part-name set, owner form): see
-  `initiatives/film-root/epics/film-messages/tasks/1-film-harpia-done.md`.
+- Film rules (`rules.py:357-424`): `format_version` must be 1; part paths
+  pass `film.path_problem` and are never `film.json` or under `ids/`; no
+  part path inside or equal to another, compared by segment, so `bible/`
+  and `bible-old/` don't clash; part names and space codes unique; counter
+  keys are kind words, values ≥ 1. The five rules decided on 2026-10-28
+  (film-records/messages/1): a `script` part and a `w` space owned by
+  `writer`; part names from `PART_NAMES` or `proposals-<code>` with a
+  listed space; owners `writer` or kebab-case; every non-writer part owner
+  has a space (`rules.py:373-402`).
+- `_film` skips its cross-list checks while a space has a broken code or
+  owner (`rules.py:387-389`), so the error names the space, not a
+  consequence of it.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 
