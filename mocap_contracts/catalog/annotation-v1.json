@@ -1,0 +1,653 @@
+{
+  "version": 1,
+  "kinds": [
+    {
+      "kind": "ANNOTATION_KIND_NOTE",
+      "groups": []
+    },
+    {
+      "kind": "ANNOTATION_KIND_CHARACTER_DIRECTION",
+      "groups": [
+        {
+          "key": "direction",
+          "label": "Character direction",
+          "per_scene": "FLAG_OFF",
+          "department": "capture",
+          "fields": [
+            {
+              "key": "character",
+              "label": "Character",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "character"
+            },
+            {
+              "key": "blocking",
+              "label": "Blocking",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "path_from",
+              "label": "Path from",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "path_to",
+              "label": "Path to",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "gesture",
+              "label": "Gesture",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "look",
+              "label": "Look / eyeline",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "emotion",
+              "label": "Emotion",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "intensity",
+              "label": "Intensity",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            {
+              "key": "timing",
+              "label": "Timing",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "beat",
+                "pause",
+                "overlap"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_PROP_DIRECTION",
+      "groups": [
+        {
+          "key": "direction",
+          "label": "Prop direction",
+          "per_scene": "FLAG_OFF",
+          "department": "props",
+          "fields": [
+            {
+              "key": "prop",
+              "label": "Prop",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "prop"
+            },
+            {
+              "key": "action",
+              "label": "Action",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "picks up",
+                "drops",
+                "breaks",
+                "hands over"
+              ]
+            },
+            {
+              "key": "to_character",
+              "label": "Hands over to",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "character"
+            },
+            {
+              "key": "state_before",
+              "label": "State before",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "state_after",
+              "label": "State after",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_SPECIAL_EFFECT",
+      "groups": [
+        {
+          "key": "effect",
+          "label": "Special effect",
+          "per_scene": "FLAG_OFF",
+          "department": "effects",
+          "fields": [
+            {
+              "key": "realization",
+              "label": "Practical or visual",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "practical",
+                "visual"
+              ]
+            },
+            {
+              "key": "type",
+              "label": "Type",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "rain",
+                "smoke",
+                "fire",
+                "breakaway",
+                "squib",
+                "digital"
+              ]
+            },
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "starts",
+              "label": "When it starts",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "stops",
+              "label": "When it stops",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "intensity",
+              "label": "Intensity",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "safety",
+              "label": "Safety notes",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "made_by",
+              "label": "Made by",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "SFX",
+                "VFX"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_SET_DIRECTION",
+      "groups": [
+        {
+          "key": "direction",
+          "label": "Set direction",
+          "per_scene": "FLAG_OFF",
+          "department": "art",
+          "fields": [
+            {
+              "key": "set",
+              "label": "Set",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "set"
+            },
+            {
+              "key": "change",
+              "label": "Change during the scene (dressing moved, door opens, light changes)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_SOUND_DIRECTION",
+      "groups": [
+        {
+          "key": "direction",
+          "label": "Sound direction",
+          "per_scene": "FLAG_OFF",
+          "department": "sound",
+          "fields": [
+            {
+              "key": "type",
+              "label": "Type",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "effect",
+                "ambience",
+                "music"
+              ]
+            },
+            {
+              "key": "cue",
+              "label": "Cue",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_GENERAL_DIRECTION",
+      "groups": []
+    },
+    {
+      "kind": "ANNOTATION_KIND_TRANSITION",
+      "groups": [
+        {
+          "key": "transition",
+          "label": "Transition",
+          "per_scene": "FLAG_OFF",
+          "department": "editing",
+          "fields": [
+            {
+              "key": "picture",
+              "label": "Picture (cut, match cut, jump cut, smash cut, dissolve, fade in, fade out, fade to black, fade to white, wipe, iris; several combine)",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "sound",
+              "label": "Sound (J-cut, L-cut...)",
+              "type": "FIELD_TYPE_LIST",
+              "options": []
+            },
+            {
+              "key": "duration",
+              "label": "Duration",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "s"
+            },
+            {
+              "key": "sound_bridge",
+              "label": "Sound bridge",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "motivation",
+              "label": "What motivates it",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ANNOTATION_KIND_SHOT",
+      "groups": [
+        {
+          "key": "framing",
+          "label": "Framing",
+          "per_scene": "FLAG_OFF",
+          "department": "camera",
+          "fields": [
+            {
+              "key": "size",
+              "label": "Size",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "extreme close-up",
+                "close-up",
+                "medium close-up",
+                "medium",
+                "cowboy",
+                "medium long",
+                "long",
+                "extreme long",
+                "insert"
+              ]
+            },
+            {
+              "key": "angle",
+              "label": "Angle",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "eye level",
+                "high",
+                "low",
+                "overhead",
+                "worm's eye",
+                "dutch"
+              ]
+            },
+            {
+              "key": "dutch_tilt",
+              "label": "Dutch tilt",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "deg"
+            },
+            {
+              "key": "pov",
+              "label": "Point of view",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "neutral",
+                "POV",
+                "over the shoulder"
+              ]
+            },
+            {
+              "key": "pov_of",
+              "label": "POV / over the shoulder of",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "character"
+            },
+            {
+              "key": "characters",
+              "label": "Characters in frame",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "character"
+            },
+            {
+              "key": "props",
+              "label": "Props in frame",
+              "type": "FIELD_TYPE_LINK",
+              "options": [],
+              "link_kind": "prop"
+            },
+            {
+              "key": "grouping",
+              "label": "Grouping",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "single",
+                "two-shot",
+                "group"
+              ]
+            },
+            {
+              "key": "composition",
+              "label": "Composition",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "lens",
+          "label": "Lens",
+          "per_scene": "FLAG_OFF",
+          "department": "camera",
+          "fields": [
+            {
+              "key": "focal_length",
+              "label": "Focal length",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "mm"
+            },
+            {
+              "key": "type",
+              "label": "Lens type",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "spherical",
+                "anamorphic",
+                "macro",
+                "fisheye"
+              ]
+            },
+            {
+              "key": "aperture",
+              "label": "Aperture (T/f-stop)",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "depth_of_field",
+              "label": "Depth of field",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "focus",
+              "label": "Focus",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "fixed",
+                "rack focus",
+                "split diopter"
+              ]
+            },
+            {
+              "key": "focus_from",
+              "label": "Rack focus from",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "focus_to",
+              "label": "Rack focus to",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "movement",
+          "label": "Camera movement",
+          "per_scene": "FLAG_OFF",
+          "department": "camera",
+          "fields": [
+            {
+              "key": "movement",
+              "label": "Movement",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "static",
+                "pan",
+                "tilt",
+                "dolly in",
+                "dolly out",
+                "truck",
+                "pedestal",
+                "crane",
+                "zoom",
+                "dolly zoom",
+                "handheld",
+                "steadicam",
+                "drone",
+                "arc"
+              ]
+            },
+            {
+              "key": "speed",
+              "label": "Speed",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "path",
+              "label": "Path",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "support",
+              "label": "Support",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "tripod",
+                "dolly and track",
+                "slider",
+                "crane",
+                "gimbal",
+                "car mount",
+                "drone",
+                "motion control"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "timing",
+          "label": "Timing",
+          "per_scene": "FLAG_OFF",
+          "department": "camera",
+          "fields": [
+            {
+              "key": "frame_rate",
+              "label": "Frame rate",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "fps"
+            },
+            {
+              "key": "shutter_angle",
+              "label": "Shutter angle",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "deg"
+            },
+            {
+              "key": "duration",
+              "label": "Duration",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "s"
+            },
+            {
+              "key": "aspect_ratio",
+              "label": "Aspect ratio",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "lighting",
+          "label": "Lighting intent",
+          "per_scene": "FLAG_OFF",
+          "department": "lighting",
+          "fields": [
+            {
+              "key": "key_direction",
+              "label": "Key direction",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "key",
+              "label": "Key",
+              "type": "FIELD_TYPE_CHOICE",
+              "options": [
+                "high-key",
+                "low-key"
+              ]
+            },
+            {
+              "key": "contrast",
+              "label": "Contrast",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "color_temperature",
+              "label": "Color temperature",
+              "type": "FIELD_TYPE_NUMBER",
+              "options": [],
+              "unit": "K"
+            },
+            {
+              "key": "practicals",
+              "label": "Practicals in shot",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "previz",
+          "label": "Previz camera",
+          "per_scene": "FLAG_OFF",
+          "department": "previz",
+          "fields": [
+            {
+              "key": "sensor",
+              "label": "Sensor",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "position",
+              "label": "Position",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "path",
+              "label": "Path",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            }
+          ]
+        },
+        {
+          "key": "general",
+          "label": "General",
+          "per_scene": "FLAG_OFF",
+          "department": "camera",
+          "fields": [
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "FIELD_TYPE_TEXT",
+              "options": []
+            },
+            {
+              "key": "references",
+              "label": "References (frames, storyboard)",
+              "type": "FIELD_TYPE_FILE",
+              "options": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

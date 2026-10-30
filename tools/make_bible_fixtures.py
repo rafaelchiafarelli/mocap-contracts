@@ -46,8 +46,7 @@ def _item(id_, name, values, *, aliases=(), parent=None, links=()):
         d["parent"] = parent
     d["values"] = values
     d["links"] = list(links)
-    # to_json writes empty repeated fields after the others (protobuf's default-value pass)
-    return {k: v for k, v in d.items() if v != []} | {k: v for k, v in d.items() if v == []}
+    return d
 
 
 ITEMS = {

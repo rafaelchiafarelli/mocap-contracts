@@ -1,0 +1,27 @@
+{
+  "id": "annotation-w-2",
+  "kind": "ANNOTATION_KIND_CHARACTER_DIRECTION",
+  "anchor": {
+    "scene": "1",
+    "element": 3
+  },
+  "by": "creator",
+  "values": [
+    {
+      "field": "direction.character",
+      "text": "character-w-1",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "capture",
+      "by": "creator"
+    },
+    {
+      "field": "direction.intensity",
+      "text": "high",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "capture",
+      "by": "creator"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/ScriptElement_acbcec83d1091de463df65590ca62e7d.proto";
+import "protofiles/TextStyle_acbcec83d1091de463df65590ca62e7d.proto";
+message ElementStyle {
+int32 ID_acbcec83d1091de463df65590ca62e7d = 1;
+ScriptElement element = 2;
+int32 before_spacing_tenths = 3;
+int32 intra_spacing_tenths = 4;
+int32 indent_chars = 5;
+int32 width_chars = 6;
+TextStyle screen = 7;
+TextStyle export = 8;
+string STATUS_acbcec83d1091de463df65590ca62e7d = 9;
+string ERROR_acbcec83d1091de463df65590ca62e7d = 10;
+string ORIGINATOR = 11;
+}
