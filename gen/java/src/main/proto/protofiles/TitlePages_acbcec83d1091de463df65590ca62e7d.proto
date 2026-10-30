@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/TitlePageLayout_acbcec83d1091de463df65590ca62e7d.proto";
+message TitlePages {
+int32 ID_acbcec83d1091de463df65590ca62e7d = 1;
+repeated TitlePageLayout pages = 2;
+string fountain_title = 3;
+string STATUS_acbcec83d1091de463df65590ca62e7d = 4;
+string ERROR_acbcec83d1091de463df65590ca62e7d = 5;
+string ORIGINATOR = 6;
+}
