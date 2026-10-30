@@ -1,5 +1,7 @@
 ## 1. script_settings.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-30)
+
 - **Depends on:** `v0.5.0`
 - **Contract:**
   - Requires: `ScriptSettings` (`settings/script-settings.json`) with the
