@@ -1,5 +1,7 @@
 ## 2. annotation.harpia and its catalog (owner: mocap-writer)
 
+- **Status:** Done (2026-10-30)
+
 - **Depends on:** 1
 - **Contract:**
   - Requires: `Annotation` (`annotations/<id>.json`): `id`
