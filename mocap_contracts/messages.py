@@ -4,83 +4,110 @@ Written by tools/harpia_gen.py (`make gen`); do not edit. Harpia's
 module names carry a hash of the root .harpia file and change with it;
 import from here (or from mocap_contracts) instead."""
 
-from harpia_generated.protofiles.Actor_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Actor
-from harpia_generated.protofiles.BibleCatalog_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleCatalog
-from harpia_generated.protofiles.BibleItem_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleItem
-from harpia_generated.protofiles.BibleLink_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleLink
-from harpia_generated.protofiles.BibleMap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleMap
-from harpia_generated.protofiles.BibleValue_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BibleValue
-from harpia_generated.protofiles.BodyLength_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BodyLength
-from harpia_generated.protofiles.BoneStability_136996d09eedbf0a12cec4204d8d4ec2_pb2 import BoneStability
-from harpia_generated.protofiles.CalibrationBoard_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CalibrationBoard
-from harpia_generated.protofiles.CameraAblation_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraAblation
-from harpia_generated.protofiles.CameraAlignment_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraAlignment
-from harpia_generated.protofiles.CameraConfig_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraConfig
-from harpia_generated.protofiles.CameraControls_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraControls
-from harpia_generated.protofiles.CameraFacing_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraFacing
-from harpia_generated.protofiles.CameraFileReady_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraFileReady
-from harpia_generated.protofiles.CameraInfo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraInfo
-from harpia_generated.protofiles.CameraQuality_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraQuality
-from harpia_generated.protofiles.CameraSource_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraSource
-from harpia_generated.protofiles.CameraStats_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraStats
-from harpia_generated.protofiles.CameraTakeReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CameraTakeReport
-from harpia_generated.protofiles.Casting_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Casting
-from harpia_generated.protofiles.CatalogField_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogField
-from harpia_generated.protofiles.CatalogGroup_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogGroup
-from harpia_generated.protofiles.CatalogMap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import CatalogMap
-from harpia_generated.protofiles.ChangeOp_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ChangeOp
-from harpia_generated.protofiles.Change_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Change
-from harpia_generated.protofiles.Character_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Character
-from harpia_generated.protofiles.ControlBackend_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlBackend
-from harpia_generated.protofiles.ControlCapability_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlCapability
-from harpia_generated.protofiles.ControlMenuOption_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlMenuOption
-from harpia_generated.protofiles.ControlReply_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlReply
-from harpia_generated.protofiles.ControlRequest_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlRequest
-from harpia_generated.protofiles.ControlResult_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlResult
-from harpia_generated.protofiles.ControlSetting_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlSetting
-from harpia_generated.protofiles.ControlStatus_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlStatus
-from harpia_generated.protofiles.ControlValueType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlValueType
-from harpia_generated.protofiles.ControlValue_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ControlValue
-from harpia_generated.protofiles.Crop_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Crop
-from harpia_generated.protofiles.DeviceInfo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import DeviceInfo
-from harpia_generated.protofiles.ExtractIndex_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ExtractIndex
-from harpia_generated.protofiles.FieldType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FieldType
-from harpia_generated.protofiles.FileKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FileKind
-from harpia_generated.protofiles.FilmOrigin_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FilmOrigin
-from harpia_generated.protofiles.FilmPart_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FilmPart
-from harpia_generated.protofiles.Film_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Film
-from harpia_generated.protofiles.Flag_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Flag
-from harpia_generated.protofiles.FpsRange_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FpsRange
-from harpia_generated.protofiles.FrameGap_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FrameGap
-from harpia_generated.protofiles.FrameSize_136996d09eedbf0a12cec4204d8d4ec2_pb2 import FrameSize
-from harpia_generated.protofiles.IdCounters_136996d09eedbf0a12cec4204d8d4ec2_pb2 import IdCounters
-from harpia_generated.protofiles.IdSpace_136996d09eedbf0a12cec4204d8d4ec2_pb2 import IdSpace
-from harpia_generated.protofiles.LengthUnit_136996d09eedbf0a12cec4204d8d4ec2_pb2 import LengthUnit
-from harpia_generated.protofiles.MocapFrame_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapFrame
-from harpia_generated.protofiles.MocapTakeHeader_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapTakeHeader
-from harpia_generated.protofiles.MocapTake_136996d09eedbf0a12cec4204d8d4ec2_pb2 import MocapTake
-from harpia_generated.protofiles.NotProps_136996d09eedbf0a12cec4204d8d4ec2_pb2 import NotProps
-from harpia_generated.protofiles.PointSet_136996d09eedbf0a12cec4204d8d4ec2_pb2 import PointSet
-from harpia_generated.protofiles.PreprocessSpec_136996d09eedbf0a12cec4204d8d4ec2_pb2 import PreprocessSpec
-from harpia_generated.protofiles.QualityReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import QualityReport
-from harpia_generated.protofiles.RecordKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import RecordKind
-from harpia_generated.protofiles.Session_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Session
-from harpia_generated.protofiles.StreamSettings_136996d09eedbf0a12cec4204d8d4ec2_pb2 import StreamSettings
-from harpia_generated.protofiles.SyncEvent_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncEvent
-from harpia_generated.protofiles.SyncKind_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncKind
-from harpia_generated.protofiles.SyncSource_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncSource
-from harpia_generated.protofiles.SyncedVideo_136996d09eedbf0a12cec4204d8d4ec2_pb2 import SyncedVideo
-from harpia_generated.protofiles.TakeCamera_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeCamera
-from harpia_generated.protofiles.TakeClosed_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeClosed
-from harpia_generated.protofiles.TakeReport_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeReport
-from harpia_generated.protofiles.TakeType_136996d09eedbf0a12cec4204d8d4ec2_pb2 import TakeType
-from harpia_generated.protofiles.Take_136996d09eedbf0a12cec4204d8d4ec2_pb2 import Take
-from harpia_generated.protofiles.UpAxis_136996d09eedbf0a12cec4204d8d4ec2_pb2 import UpAxis
-from harpia_generated.protofiles.ValueState_136996d09eedbf0a12cec4204d8d4ec2_pb2 import ValueState
+from harpia_generated.protofiles.Actor_acbcec83d1091de463df65590ca62e7d_pb2 import Actor
+from harpia_generated.protofiles.AnnotationAnchor_acbcec83d1091de463df65590ca62e7d_pb2 import AnnotationAnchor
+from harpia_generated.protofiles.AnnotationCatalog_acbcec83d1091de463df65590ca62e7d_pb2 import AnnotationCatalog
+from harpia_generated.protofiles.AnnotationKind_acbcec83d1091de463df65590ca62e7d_pb2 import AnnotationKind
+from harpia_generated.protofiles.Annotation_acbcec83d1091de463df65590ca62e7d_pb2 import Annotation
+from harpia_generated.protofiles.AutoCompletionList_acbcec83d1091de463df65590ca62e7d_pb2 import AutoCompletionList
+from harpia_generated.protofiles.BibleCatalog_acbcec83d1091de463df65590ca62e7d_pb2 import BibleCatalog
+from harpia_generated.protofiles.BibleItem_acbcec83d1091de463df65590ca62e7d_pb2 import BibleItem
+from harpia_generated.protofiles.BibleLink_acbcec83d1091de463df65590ca62e7d_pb2 import BibleLink
+from harpia_generated.protofiles.BibleMap_acbcec83d1091de463df65590ca62e7d_pb2 import BibleMap
+from harpia_generated.protofiles.BibleValue_acbcec83d1091de463df65590ca62e7d_pb2 import BibleValue
+from harpia_generated.protofiles.BodyLength_acbcec83d1091de463df65590ca62e7d_pb2 import BodyLength
+from harpia_generated.protofiles.BoneStability_acbcec83d1091de463df65590ca62e7d_pb2 import BoneStability
+from harpia_generated.protofiles.CalibrationBoard_acbcec83d1091de463df65590ca62e7d_pb2 import CalibrationBoard
+from harpia_generated.protofiles.CameraAblation_acbcec83d1091de463df65590ca62e7d_pb2 import CameraAblation
+from harpia_generated.protofiles.CameraAlignment_acbcec83d1091de463df65590ca62e7d_pb2 import CameraAlignment
+from harpia_generated.protofiles.CameraConfig_acbcec83d1091de463df65590ca62e7d_pb2 import CameraConfig
+from harpia_generated.protofiles.CameraControls_acbcec83d1091de463df65590ca62e7d_pb2 import CameraControls
+from harpia_generated.protofiles.CameraFacing_acbcec83d1091de463df65590ca62e7d_pb2 import CameraFacing
+from harpia_generated.protofiles.CameraFileReady_acbcec83d1091de463df65590ca62e7d_pb2 import CameraFileReady
+from harpia_generated.protofiles.CameraInfo_acbcec83d1091de463df65590ca62e7d_pb2 import CameraInfo
+from harpia_generated.protofiles.CameraQuality_acbcec83d1091de463df65590ca62e7d_pb2 import CameraQuality
+from harpia_generated.protofiles.CameraSource_acbcec83d1091de463df65590ca62e7d_pb2 import CameraSource
+from harpia_generated.protofiles.CameraStats_acbcec83d1091de463df65590ca62e7d_pb2 import CameraStats
+from harpia_generated.protofiles.CameraTakeReport_acbcec83d1091de463df65590ca62e7d_pb2 import CameraTakeReport
+from harpia_generated.protofiles.Casting_acbcec83d1091de463df65590ca62e7d_pb2 import Casting
+from harpia_generated.protofiles.CatalogField_acbcec83d1091de463df65590ca62e7d_pb2 import CatalogField
+from harpia_generated.protofiles.CatalogGroup_acbcec83d1091de463df65590ca62e7d_pb2 import CatalogGroup
+from harpia_generated.protofiles.CatalogKind_acbcec83d1091de463df65590ca62e7d_pb2 import CatalogKind
+from harpia_generated.protofiles.CatalogMap_acbcec83d1091de463df65590ca62e7d_pb2 import CatalogMap
+from harpia_generated.protofiles.ChangeOp_acbcec83d1091de463df65590ca62e7d_pb2 import ChangeOp
+from harpia_generated.protofiles.Change_acbcec83d1091de463df65590ca62e7d_pb2 import Change
+from harpia_generated.protofiles.Character_acbcec83d1091de463df65590ca62e7d_pb2 import Character
+from harpia_generated.protofiles.ControlBackend_acbcec83d1091de463df65590ca62e7d_pb2 import ControlBackend
+from harpia_generated.protofiles.ControlCapability_acbcec83d1091de463df65590ca62e7d_pb2 import ControlCapability
+from harpia_generated.protofiles.ControlMenuOption_acbcec83d1091de463df65590ca62e7d_pb2 import ControlMenuOption
+from harpia_generated.protofiles.ControlReply_acbcec83d1091de463df65590ca62e7d_pb2 import ControlReply
+from harpia_generated.protofiles.ControlRequest_acbcec83d1091de463df65590ca62e7d_pb2 import ControlRequest
+from harpia_generated.protofiles.ControlResult_acbcec83d1091de463df65590ca62e7d_pb2 import ControlResult
+from harpia_generated.protofiles.ControlSetting_acbcec83d1091de463df65590ca62e7d_pb2 import ControlSetting
+from harpia_generated.protofiles.ControlStatus_acbcec83d1091de463df65590ca62e7d_pb2 import ControlStatus
+from harpia_generated.protofiles.ControlValueType_acbcec83d1091de463df65590ca62e7d_pb2 import ControlValueType
+from harpia_generated.protofiles.ControlValue_acbcec83d1091de463df65590ca62e7d_pb2 import ControlValue
+from harpia_generated.protofiles.Crop_acbcec83d1091de463df65590ca62e7d_pb2 import Crop
+from harpia_generated.protofiles.DeviceInfo_acbcec83d1091de463df65590ca62e7d_pb2 import DeviceInfo
+from harpia_generated.protofiles.ElementStyle_acbcec83d1091de463df65590ca62e7d_pb2 import ElementStyle
+from harpia_generated.protofiles.ExtractIndex_acbcec83d1091de463df65590ca62e7d_pb2 import ExtractIndex
+from harpia_generated.protofiles.FieldType_acbcec83d1091de463df65590ca62e7d_pb2 import FieldType
+from harpia_generated.protofiles.FileKind_acbcec83d1091de463df65590ca62e7d_pb2 import FileKind
+from harpia_generated.protofiles.FilmOrigin_acbcec83d1091de463df65590ca62e7d_pb2 import FilmOrigin
+from harpia_generated.protofiles.FilmPart_acbcec83d1091de463df65590ca62e7d_pb2 import FilmPart
+from harpia_generated.protofiles.Film_acbcec83d1091de463df65590ca62e7d_pb2 import Film
+from harpia_generated.protofiles.Flag_acbcec83d1091de463df65590ca62e7d_pb2 import Flag
+from harpia_generated.protofiles.FpsRange_acbcec83d1091de463df65590ca62e7d_pb2 import FpsRange
+from harpia_generated.protofiles.FrameGap_acbcec83d1091de463df65590ca62e7d_pb2 import FrameGap
+from harpia_generated.protofiles.FrameSize_acbcec83d1091de463df65590ca62e7d_pb2 import FrameSize
+from harpia_generated.protofiles.HeaderLine_acbcec83d1091de463df65590ca62e7d_pb2 import HeaderLine
+from harpia_generated.protofiles.HeaderSettings_acbcec83d1091de463df65590ca62e7d_pb2 import HeaderSettings
+from harpia_generated.protofiles.IdCounters_acbcec83d1091de463df65590ca62e7d_pb2 import IdCounters
+from harpia_generated.protofiles.IdSpace_acbcec83d1091de463df65590ca62e7d_pb2 import IdSpace
+from harpia_generated.protofiles.LengthUnit_acbcec83d1091de463df65590ca62e7d_pb2 import LengthUnit
+from harpia_generated.protofiles.LocationGroup_acbcec83d1091de463df65590ca62e7d_pb2 import LocationGroup
+from harpia_generated.protofiles.MocapFrame_acbcec83d1091de463df65590ca62e7d_pb2 import MocapFrame
+from harpia_generated.protofiles.MocapTakeHeader_acbcec83d1091de463df65590ca62e7d_pb2 import MocapTakeHeader
+from harpia_generated.protofiles.MocapTake_acbcec83d1091de463df65590ca62e7d_pb2 import MocapTake
+from harpia_generated.protofiles.NotProps_acbcec83d1091de463df65590ca62e7d_pb2 import NotProps
+from harpia_generated.protofiles.PageSettings_acbcec83d1091de463df65590ca62e7d_pb2 import PageSettings
+from harpia_generated.protofiles.PdfFont_acbcec83d1091de463df65590ca62e7d_pb2 import PdfFont
+from harpia_generated.protofiles.PdfSettings_acbcec83d1091de463df65590ca62e7d_pb2 import PdfSettings
+from harpia_generated.protofiles.PointSet_acbcec83d1091de463df65590ca62e7d_pb2 import PointSet
+from harpia_generated.protofiles.PreprocessSpec_acbcec83d1091de463df65590ca62e7d_pb2 import PreprocessSpec
+from harpia_generated.protofiles.QualityReport_acbcec83d1091de463df65590ca62e7d_pb2 import QualityReport
+from harpia_generated.protofiles.RecordKind_acbcec83d1091de463df65590ca62e7d_pb2 import RecordKind
+from harpia_generated.protofiles.ScriptElement_acbcec83d1091de463df65590ca62e7d_pb2 import ScriptElement
+from harpia_generated.protofiles.ScriptSettings_acbcec83d1091de463df65590ca62e7d_pb2 import ScriptSettings
+from harpia_generated.protofiles.ScriptStrings_acbcec83d1091de463df65590ca62e7d_pb2 import ScriptStrings
+from harpia_generated.protofiles.Session_acbcec83d1091de463df65590ca62e7d_pb2 import Session
+from harpia_generated.protofiles.ShotCounters_acbcec83d1091de463df65590ca62e7d_pb2 import ShotCounters
+from harpia_generated.protofiles.StreamSettings_acbcec83d1091de463df65590ca62e7d_pb2 import StreamSettings
+from harpia_generated.protofiles.SyncEvent_acbcec83d1091de463df65590ca62e7d_pb2 import SyncEvent
+from harpia_generated.protofiles.SyncKind_acbcec83d1091de463df65590ca62e7d_pb2 import SyncKind
+from harpia_generated.protofiles.SyncSource_acbcec83d1091de463df65590ca62e7d_pb2 import SyncSource
+from harpia_generated.protofiles.SyncedVideo_acbcec83d1091de463df65590ca62e7d_pb2 import SyncedVideo
+from harpia_generated.protofiles.TakeCamera_acbcec83d1091de463df65590ca62e7d_pb2 import TakeCamera
+from harpia_generated.protofiles.TakeClosed_acbcec83d1091de463df65590ca62e7d_pb2 import TakeClosed
+from harpia_generated.protofiles.TakeReport_acbcec83d1091de463df65590ca62e7d_pb2 import TakeReport
+from harpia_generated.protofiles.TakeType_acbcec83d1091de463df65590ca62e7d_pb2 import TakeType
+from harpia_generated.protofiles.Take_acbcec83d1091de463df65590ca62e7d_pb2 import Take
+from harpia_generated.protofiles.TextAlign_acbcec83d1091de463df65590ca62e7d_pb2 import TextAlign
+from harpia_generated.protofiles.TextStyle_acbcec83d1091de463df65590ca62e7d_pb2 import TextStyle
+from harpia_generated.protofiles.TitleFont_acbcec83d1091de463df65590ca62e7d_pb2 import TitleFont
+from harpia_generated.protofiles.TitlePageLayout_acbcec83d1091de463df65590ca62e7d_pb2 import TitlePageLayout
+from harpia_generated.protofiles.TitlePages_acbcec83d1091de463df65590ca62e7d_pb2 import TitlePages
+from harpia_generated.protofiles.TitleString_acbcec83d1091de463df65590ca62e7d_pb2 import TitleString
+from harpia_generated.protofiles.UpAxis_acbcec83d1091de463df65590ca62e7d_pb2 import UpAxis
+from harpia_generated.protofiles.ValueState_acbcec83d1091de463df65590ca62e7d_pb2 import ValueState
 
 # Field names as declared in schema/ (Harpia's bookkeeping fields excluded).
 DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'Actor': ('id', 'name', 'height_m', 'lengths'),
+    'Annotation': ('id', 'kind', 'anchor', 'text', 'by', 'shot', 'values'),
+    'AnnotationAnchor': ('scene', 'element', 'quote', 'occurrence'),
+    'AnnotationCatalog': ('version', 'kinds'),
+    'AutoCompletionList': ('element', 'enabled', 'items'),
     'BibleCatalog': ('version', 'maps'),
     'BibleItem': ('id', 'name', 'aliases', 'parent', 'values', 'links'),
     'BibleLink': ('scene', 'item'),
@@ -100,6 +127,7 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'Casting': ('actor_id', 'character_id'),
     'CatalogField': ('key', 'label', 'type', 'options', 'unit', 'link_kind'),
     'CatalogGroup': ('key', 'label', 'per_scene', 'department', 'fields'),
+    'CatalogKind': ('kind', 'groups'),
     'CatalogMap': ('bible_map', 'groups'),
     'Change': ('time', 'by', 'path', 'record', 'op', 'before', 'after'),
     'Character': ('id', 'name'),
@@ -112,6 +140,7 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'ControlValue': ('int_value', 'float_value', 'flag_value', 'text_value', 'int_values', 'float_values'),
     'Crop': ('x', 'y', 'width', 'height'),
     'DeviceInfo': ('model', 'serial', 'android_version', 'app_version', 'h264_encoders', 'cameras'),
+    'ElementStyle': ('element', 'before_spacing_tenths', 'intra_spacing_tenths', 'indent_chars', 'width_chars', 'screen', 'export'),
     'ExtractIndex': ('take_id', 'calibration_take_id', 'calibration_path', 'fps', 'frames', 't0_ns', 'length_unit', 'up_axis', 'synced_videos', 'alignment', 'points_3d', 'points_2d'),
     'Film': ('format_version', 'origin', 'parts', 'spaces'),
     'FilmOrigin': ('program', 'version'),
@@ -119,16 +148,25 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'FpsRange': ('min_fps', 'max_fps'),
     'FrameGap': ('after_frame', 'duration_ns'),
     'FrameSize': ('width', 'height'),
+    'HeaderLine': ('line', 'x_offset_chars', 'align', 'bold', 'italic', 'underlined', 'text'),
+    'HeaderSettings': ('empty_lines_after', 'lines'),
     'IdCounters': ('next',),
     'IdSpace': ('code', 'owner'),
+    'LocationGroup': ('headings',),
     'MocapFrame': ('frame_id', 'timestamp_ns', 'body_xyz', 'left_hand_xyz', 'right_hand_xyz', 'body_missing', 'left_hand_missing', 'right_hand_missing', 'face_blendshapes', 'gaze', 'emotion', 'left_foot_contact', 'right_foot_contact'),
     'MocapTake': ('header', 'frames'),
     'MocapTakeHeader': ('take_id', 'session_id', 'actor_id', 'character_id', 'fps', 'frame_count', 't0_ns', 'length_unit', 'up_axis', 'body_joints', 'left_hand_joints', 'right_hand_joints', 'face_blendshape_names'),
     'NotProps': ('words',),
+    'PageSettings': ('paper_width_mm', 'paper_height_mm', 'margin_top_mm', 'margin_bottom_mm', 'margin_left_mm', 'margin_right_mm', 'font_size_pt', 'page_break_action_lines', 'page_break_dialogue_lines', 'scene_continueds', 'scene_continued_indent_chars'),
+    'PdfFont': ('pdf_name', 'filename'),
+    'PdfSettings': ('show_scene_numbers', 'include_toc', 'show_toc', 'open_on_current_page', 'remove_notes', 'outline_notes', 'show_margins', 'show_line_numbers', 'normal', 'bold', 'italic', 'bold_italic'),
     'PointSet': ('name', 'role', 'path', 'frames', 'point_names'),
     'PreprocessSpec': ('crop', 'output_width', 'output_height'),
     'QualityReport': ('take_id', 'calibration_reproj_err_px', 'cameras', 'bones', 'ablation'),
+    'ScriptSettings': ('page', 'elements', 'pdf', 'strings', 'headers', 'auto_completion', 'locations', 'spelling_words', 'title_page'),
+    'ScriptStrings': ('more', 'continued_page_end', 'continued_page_start', 'dialogue_continued'),
     'Session': ('id', 'date', 'actors', 'characters', 'casting'),
+    'ShotCounters': ('next',),
     'StreamSettings': ('camera_id', 'width', 'height', 'fps', 'bitrate_kbps', 'i_frame_interval_s'),
     'SyncEvent': ('kind', 'host_ts_ns', 'source'),
     'SyncedVideo': ('role', 'path'),
@@ -136,11 +174,19 @@ DECLARED_FIELDS: dict[str, tuple[str, ...]] = {
     'TakeCamera': ('config', 'control_results', 'applied_controls', 'applied_preprocess'),
     'TakeClosed': ('take_id', 'roles', 'start', 'end'),
     'TakeReport': ('take_id', 'ok', 'problems', 'reports'),
+    'TextStyle': ('caps', 'bold', 'italic', 'underlined'),
+    'TitlePageLayout': ('strings',),
+    'TitlePages': ('pages', 'fountain_title'),
+    'TitleString': ('items', 'x_mm', 'y_mm', 'size_pt', 'align', 'bold', 'italic', 'underlined', 'font'),
 }
 
 # Fields declared `required` (proto3 doesn't keep it).
 REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'Actor': ('id', 'name', 'height_m'),
+    'Annotation': ('id', 'kind', 'anchor', 'by'),
+    'AnnotationAnchor': ('scene',),
+    'AnnotationCatalog': ('version',),
+    'AutoCompletionList': ('element', 'enabled'),
     'BibleCatalog': ('version',),
     'BibleItem': ('id', 'name'),
     'BibleLink': ('scene',),
@@ -160,6 +206,7 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'Casting': ('actor_id', 'character_id'),
     'CatalogField': ('key', 'label', 'type'),
     'CatalogGroup': ('key', 'label', 'per_scene', 'department'),
+    'CatalogKind': ('kind',),
     'CatalogMap': ('bible_map',),
     'Change': ('time', 'by', 'path', 'op'),
     'Character': ('id', 'name'),
@@ -172,6 +219,7 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'ControlValue': (),
     'Crop': ('x', 'y', 'width', 'height'),
     'DeviceInfo': ('model', 'serial', 'android_version', 'app_version'),
+    'ElementStyle': ('element', 'before_spacing_tenths', 'intra_spacing_tenths', 'indent_chars', 'width_chars', 'screen', 'export'),
     'ExtractIndex': ('take_id', 'calibration_take_id', 'calibration_path', 'fps', 'frames', 't0_ns', 'length_unit', 'up_axis'),
     'Film': ('format_version', 'origin'),
     'FilmOrigin': ('program', 'version'),
@@ -179,16 +227,25 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'FpsRange': ('min_fps', 'max_fps'),
     'FrameGap': ('after_frame', 'duration_ns'),
     'FrameSize': ('width', 'height'),
+    'HeaderLine': ('line', 'x_offset_chars', 'align', 'bold', 'italic', 'underlined', 'text'),
+    'HeaderSettings': ('empty_lines_after',),
     'IdCounters': ('next',),
     'IdSpace': ('code', 'owner'),
+    'LocationGroup': (),
     'MocapFrame': ('frame_id', 'timestamp_ns', 'left_foot_contact', 'right_foot_contact'),
     'MocapTake': ('header',),
     'MocapTakeHeader': ('take_id', 'session_id', 'actor_id', 'character_id', 'fps', 'frame_count', 't0_ns', 'length_unit', 'up_axis'),
     'NotProps': (),
+    'PageSettings': ('paper_width_mm', 'paper_height_mm', 'margin_top_mm', 'margin_bottom_mm', 'margin_left_mm', 'margin_right_mm', 'font_size_pt', 'page_break_action_lines', 'page_break_dialogue_lines', 'scene_continueds', 'scene_continued_indent_chars'),
+    'PdfFont': ('pdf_name', 'filename'),
+    'PdfSettings': ('show_scene_numbers', 'include_toc', 'show_toc', 'open_on_current_page', 'remove_notes', 'outline_notes', 'show_margins', 'show_line_numbers', 'normal', 'bold', 'italic', 'bold_italic'),
     'PointSet': ('name', 'role', 'path', 'frames'),
     'PreprocessSpec': ('output_width', 'output_height'),
     'QualityReport': ('take_id',),
+    'ScriptSettings': ('page', 'pdf', 'strings', 'headers', 'title_page'),
+    'ScriptStrings': ('more', 'continued_page_end', 'continued_page_start', 'dialogue_continued'),
     'Session': ('id', 'date'),
+    'ShotCounters': ('next',),
     'StreamSettings': ('camera_id', 'width', 'height', 'fps', 'bitrate_kbps', 'i_frame_interval_s'),
     'SyncEvent': ('kind', 'host_ts_ns', 'source'),
     'SyncedVideo': ('role', 'path'),
@@ -196,10 +253,19 @@ REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     'TakeCamera': ('config',),
     'TakeClosed': ('take_id', 'start', 'end'),
     'TakeReport': ('take_id', 'ok'),
+    'TextStyle': ('caps', 'bold', 'italic', 'underlined'),
+    'TitlePageLayout': (),
+    'TitlePages': ('fountain_title',),
+    'TitleString': ('x_mm', 'y_mm', 'size_pt', 'align', 'bold', 'italic', 'underlined', 'font'),
 }
 
 __all__ = [
     "Actor",
+    "Annotation",
+    "AnnotationAnchor",
+    "AnnotationCatalog",
+    "AnnotationKind",
+    "AutoCompletionList",
     "BibleCatalog",
     "BibleItem",
     "BibleLink",
@@ -222,6 +288,7 @@ __all__ = [
     "Casting",
     "CatalogField",
     "CatalogGroup",
+    "CatalogKind",
     "CatalogMap",
     "Change",
     "ChangeOp",
@@ -238,6 +305,7 @@ __all__ = [
     "ControlValueType",
     "Crop",
     "DeviceInfo",
+    "ElementStyle",
     "ExtractIndex",
     "FieldType",
     "FileKind",
@@ -248,18 +316,28 @@ __all__ = [
     "FpsRange",
     "FrameGap",
     "FrameSize",
+    "HeaderLine",
+    "HeaderSettings",
     "IdCounters",
     "IdSpace",
     "LengthUnit",
+    "LocationGroup",
     "MocapFrame",
     "MocapTake",
     "MocapTakeHeader",
     "NotProps",
+    "PageSettings",
+    "PdfFont",
+    "PdfSettings",
     "PointSet",
     "PreprocessSpec",
     "QualityReport",
     "RecordKind",
+    "ScriptElement",
+    "ScriptSettings",
+    "ScriptStrings",
     "Session",
+    "ShotCounters",
     "StreamSettings",
     "SyncEvent",
     "SyncKind",
@@ -270,6 +348,12 @@ __all__ = [
     "TakeClosed",
     "TakeReport",
     "TakeType",
+    "TextAlign",
+    "TextStyle",
+    "TitleFont",
+    "TitlePageLayout",
+    "TitlePages",
+    "TitleString",
     "UpAxis",
     "ValueState",
 ]

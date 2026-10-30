@@ -1,0 +1,58 @@
+// The annotations of a script owned by mocap-writer
+// Notes and scene annotations kept outside the Fountain text
+// Each one is annotations slash its id json anchored to the script by scene element and quote
+// Values are the bible values checked against the annotation catalog
+// Rules that required cannot express live in mocap_contracts rules
+import "bible.harpia";
+
+// The kinds of annotation and a new kind is a change to this file
+enum AnnotationKind {
+    ANNOTATION_KIND_UNSET = 0;
+    ANNOTATION_KIND_NOTE;
+    ANNOTATION_KIND_CHARACTER_DIRECTION;
+    ANNOTATION_KIND_PROP_DIRECTION;
+    ANNOTATION_KIND_SPECIAL_EFFECT;
+    ANNOTATION_KIND_SET_DIRECTION;
+    ANNOTATION_KIND_SOUND_DIRECTION;
+    ANNOTATION_KIND_GENERAL_DIRECTION;
+    ANNOTATION_KIND_TRANSITION;
+    ANNOTATION_KIND_SHOT;
+}
+
+// Where an annotation sits in the script
+// No element means the whole scene and no quote the whole element
+// The heading is element zero and occurrence counts the quote from one
+message AnnotationAnchor {
+    required string scene;
+    optional int element;
+    optional string quote;
+    optional int occurrence;
+};
+
+// One annotation with its anchor and its values
+message Annotation {
+    required string id;
+    required AnnotationKind kind;
+    required AnnotationAnchor anchor;
+    optional string text;
+    required string by;
+    optional int shot;
+    repeteable BibleValue values;
+};
+
+// The next shot number of each scene so a number never comes back
+message ShotCounters {
+    required map<string,int> next;
+};
+
+// The fields of one annotation kind
+message CatalogKind {
+    required AnnotationKind kind;
+    repeteable CatalogGroup groups;
+};
+
+// The approved field catalog of the annotations
+message AnnotationCatalog {
+    required int version;
+    repeteable CatalogKind kinds;
+};

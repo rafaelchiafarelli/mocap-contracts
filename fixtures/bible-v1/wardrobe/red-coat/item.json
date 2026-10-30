@@ -1,6 +1,7 @@
 {
   "id": "wardrobe-w-1",
   "name": "Red Coat",
+  "aliases": [],
   "values": [
     {
       "field": "piece.garment",
@@ -33,6 +34,5 @@
       "scene": "1",
       "item": "character-w-1"
     }
-  ],
-  "aliases": []
+  ]
 }

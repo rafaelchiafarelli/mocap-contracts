@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/HeaderLine_acbcec83d1091de463df65590ca62e7d.proto";
+message HeaderSettings {
+int32 ID_acbcec83d1091de463df65590ca62e7d = 1;
+int32 empty_lines_after = 2;
+repeated HeaderLine lines = 3;
+string STATUS_acbcec83d1091de463df65590ca62e7d = 4;
+string ERROR_acbcec83d1091de463df65590ca62e7d = 5;
+string ORIGINATOR = 6;
+}

@@ -15,7 +15,7 @@ from collections.abc import Callable, Iterator
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 
-from mocap_contracts import bible, film
+from mocap_contracts import annotation, bible, film
 from mocap_contracts.errors import ContractError
 from mocap_contracts.layout import ID_PATTERN
 
@@ -494,13 +494,25 @@ def _bible_item(msg: Message) -> Iterator[str]:
             yield f"parent must be a {map_} id, got {msg.parent!r}"
         elif msg.parent == msg.id:
             yield "an item can't be its own parent"
-    fields = bible.fields(map_)
+    yield from _values(msg.values, bible.fields(map_), map_)
+    links = [(link.scene, link.item if link.HasField("item") else None) for link in msg.links]
+    if dup := _duplicates([f"{s}/{i}" if i else s for s, i in links]):
+        yield f"duplicate links {dup}"
+    for s, item in links:
+        if map_ == "wardrobe" and item and not item.startswith("character-"):
+            yield f"links: a wardrobe link names the character who wears it, got {item!r}"
+        if map_ != "wardrobe" and item:
+            yield f"links: only a wardrobe link names an item, got {item!r} in scene {s}"
+
+
+def _values(values, fields: dict, what: str) -> Iterator[str]:
+    """Bible values against the catalog fields of a map or annotation kind."""
     seen = set()
-    for i, v in enumerate(msg.values):
+    for i, v in enumerate(values):
         where = f"values[{i}]"
         f = fields.get(v.field)
         if f is None:
-            yield f"{where}: {v.field!r} is not a {map_} field of the catalog"
+            yield f"{where}: {v.field!r} is not a {what} field of the catalog"
             continue
         if f.per_scene != v.HasField("scene"):
             yield f"{where}: {v.field} is {'' if f.per_scene else 'not '}per scene"
@@ -517,14 +529,53 @@ def _bible_item(msg: Message) -> Iterator[str]:
         if not f.repeats and key in seen:
             yield f"{where}: {v.field} holds one value{' per scene' if f.per_scene else ''}"
         seen.add(key)
-    links = [(link.scene, link.item if link.HasField("item") else None) for link in msg.links]
-    if dup := _duplicates([f"{s}/{i}" if i else s for s, i in links]):
-        yield f"duplicate links {dup}"
-    for s, item in links:
-        if map_ == "wardrobe" and item and not item.startswith("character-"):
-            yield f"links: a wardrobe link names the character who wears it, got {item!r}"
-        if map_ != "wardrobe" and item:
-            yield f"links: only a wardrobe link names an item, got {item!r} in scene {s}"
+
+
+def _annotation_anchor(msg: Message) -> Iterator[str]:
+    if not bible.SCENE.fullmatch(msg.scene):
+        yield f"scene must be a scene number like 12 or 12.A, got {msg.scene!r}"
+    if msg.HasField("element") and msg.element < 0:
+        yield f"element must be >= 0 (the heading is 0), got {msg.element}"
+    if msg.HasField("quote"):
+        if not msg.HasField("element"):
+            yield "a quote needs its element"
+        if not msg.quote:
+            yield "quote is empty"
+    if msg.HasField("occurrence"):
+        if not msg.HasField("quote"):
+            yield "an occurrence needs its quote"
+        elif msg.occurrence < 1:
+            yield f"occurrence counts from 1, got {msg.occurrence}"
+
+
+def _annotation(msg: Message) -> Iterator[str]:
+    if not film.RECORD_ID.fullmatch(msg.id) or not msg.id.startswith("annotation-"):
+        yield f"id must be an annotation id annotation-<space>-<n>, got {msg.id!r}"
+    if not bible.BY.fullmatch(msg.by):
+        yield f"by must be 'creator', 'writer' or an agent name in kebab-case, got {msg.by!r}"
+    kind = annotation.kind_word(msg.kind) if msg.kind else None
+    if kind == "shot":
+        if not msg.HasField("shot") or msg.shot < 1:
+            yield "a shot needs its number in the scene, from 1"
+    elif msg.HasField("shot"):
+        yield f"only a shot has a shot number, not a {kind}"
+    if kind:
+        yield from _values(msg.values, annotation.fields(kind), kind)
+        if any(v.HasField("scene") for v in msg.values):
+            yield "an annotation's values have no scene: the anchor names it"
+
+
+def _shot_counters(msg: Message) -> Iterator[str]:
+    if bad := sorted(k for k in msg.next if not bible.SCENE.fullmatch(k)):
+        yield f"next: keys must be scene numbers, got {bad}"
+    if bad := sorted(f"{k}={v}" for k, v in msg.next.items() if v < 1):
+        yield f"next: counters start at 1, got {bad}"
+
+
+def _annotation_catalog(msg: Message) -> Iterator[str]:
+    kinds = [annotation.kind_word(k.kind) for k in msg.kinds]
+    if dup := _duplicates(kinds):
+        yield f"duplicate kinds {dup}"
 
 
 def _not_props(msg: Message) -> Iterator[str]:
@@ -555,6 +606,66 @@ def _change(msg: Message) -> Iterator[str]:
     want = {"create": (False, True), "update": (True, True), "delete": (True, False)}.get(op)
     if want and (msg.HasField("before"), msg.HasField("after")) != want:
         yield f"a {op} has {' and '.join(n for n, w in zip(('before', 'after'), want) if w)} only"
+
+
+def _ranges(msg: Message, limits: dict[str, tuple[float, float]]) -> Iterator[str]:
+    for field, (lo, hi) in limits.items():
+        v = getattr(msg, field)
+        if not lo <= v <= hi:
+            yield f"{field} must be {lo:g}..{hi:g}, got {v:g}"
+
+
+def _page_settings(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {
+        "paper_width_mm": (50, 1000), "paper_height_mm": (100, 1000),
+        "margin_top_mm": (0, 900), "margin_bottom_mm": (0, 900),
+        "margin_left_mm": (0, 900), "margin_right_mm": (0, 900),
+        "font_size_pt": (4, 72), "page_break_action_lines": (1, 30),
+        "page_break_dialogue_lines": (1, 30), "scene_continued_indent_chars": (-20, 80),
+    })
+
+
+def _element_style(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {
+        "before_spacing_tenths": (0, 50), "intra_spacing_tenths": (0, 20),
+        "indent_chars": (0, 80), "width_chars": (5, 80),
+    })
+
+
+# characters a PostScript font name can't hold (OpenType 1.4, name ID 6)
+_PS_BAD = re.compile(r"[\x00-\x20\x7f-\uffff\[\](){}<>/%]")
+
+
+def _pdf_font(msg: Message) -> Iterator[str]:
+    if _PS_BAD.search(msg.pdf_name):
+        yield f"pdf_name can't hold spaces, non-ASCII or []{{}}()<>/%, got {msg.pdf_name!r}"
+
+
+def _header_line(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"line": (1, 5), "x_offset_chars": (-100, 100)})
+
+
+def _header_settings(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"empty_lines_after": (0, 5)})
+
+
+def _title_string(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"size_pt": (4, 288)})
+
+
+def _script_settings(msg: Message) -> Iterator[str]:
+    elements = [_enum_name(e, "element") for e in msg.elements]
+    if dup := _duplicates(elements):
+        yield f"elements: one style per element, twice {dup}"
+    every = [n for n in msg.elements[0].DESCRIPTOR.fields_by_name["element"].enum_type.values_by_name
+             if n != "SCRIPT_ELEMENT_UNSET"] if msg.elements else []
+    if msg.elements and (missing := sorted(set(every) - set(elements))):
+        yield f"elements: no style for {missing}"
+    if not msg.elements:
+        yield "elements: no style at all"
+    lists = [_enum_name(a, "element") for a in msg.auto_completion]
+    if dup := _duplicates(lists):
+        yield f"auto_completion: one list per element, twice {dup}"
 
 
 RULES: dict[str, Rule] = {
@@ -601,6 +712,18 @@ RULES: dict[str, Rule] = {
     "BibleItem": _bible_item,
     "NotProps": _not_props,
     "Change": _change,
+    "PageSettings": _page_settings,
+    "ElementStyle": _element_style,
+    "PdfFont": _pdf_font,
+    "HeaderLine": _header_line,
+    "HeaderSettings": _header_settings,
+    "TitleString": _title_string,
+    "ScriptSettings": _script_settings,
+    "AnnotationAnchor": _annotation_anchor,
+    "Annotation": _annotation,
+    "ShotCounters": _shot_counters,
+    "AnnotationCatalog": _annotation_catalog,
+    "CatalogKind": _catalog_map,
 }
 
 

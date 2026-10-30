@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum TextAlign {
+TEXT_ALIGN_UNSET = 0;
+TEXT_ALIGN_LEFT = 1;
+TEXT_ALIGN_CENTER = 2;
+TEXT_ALIGN_RIGHT = 3;
+}
