@@ -98,9 +98,12 @@ def _children(value: Any, field: FieldDescriptor) -> list[Any]:
 def _prune(data: dict[str, Any], desc: Descriptor, declared) -> dict[str, Any]:
     keep = _fields(desc, declared)
     out = {}
-    for name, value in data.items():
-        if name not in keep:
+    # in declared order: protobuf puts fields holding their default value
+    # last, so the key order would depend on the values
+    for name in keep:
+        if name not in data:
             continue
+        value = data[name]
         field = desc.fields_by_name[name]
         if _is_message(field):
             if field.label == FieldDescriptor.LABEL_REPEATED:
