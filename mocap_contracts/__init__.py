@@ -11,5 +11,5 @@ from mocap_contracts.jsonio import from_json, to_json
 from mocap_contracts.messages import *  # noqa: F403
 from mocap_contracts.messages import __all__ as _messages
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 __all__ = ["__version__", "annotation", "bible", "film", "layout", "ContractError", "from_json", "to_json", *_messages]
