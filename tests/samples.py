@@ -331,6 +331,11 @@ def change(**kw):
     return mc.Change(**fields)
 
 
+def _annotation_fixture(name):
+    from pathlib import Path
+    return (Path(__file__).resolve().parents[1] / "fixtures" / "annotation-v1" / name).read_text()
+
+
 def _script_settings():
     from pathlib import Path
     text = (Path(__file__).resolve().parents[1] / "fixtures" / "script-v1" / "settings"
@@ -432,6 +437,12 @@ SAMPLES = {
     "BibleItem": bible_item,
     "NotProps": lambda: mc.NotProps(words=["OK", "TV"]),
     "Change": lambda: change(),
+    "Annotation": lambda: mc.from_json(mc.Annotation, _annotation_fixture("annotation-w-3.json")),
+    "AnnotationAnchor": lambda: mc.from_json(
+        mc.Annotation, _annotation_fixture("annotation-w-1.json")).anchor,
+    "ShotCounters": lambda: mc.ShotCounters(next={"1.A": 5}),
+    "AnnotationCatalog": lambda: mc.annotation.catalog(),
+    "CatalogKind": lambda: mc.annotation.catalog().kinds[-1],
     **{n: (lambda n=n: _script_part(n)) for n in (
         "ScriptSettings", "PageSettings", "TextStyle", "ElementStyle", "PdfFont", "PdfSettings",
         "ScriptStrings", "HeaderLine", "HeaderSettings", "AutoCompletionList", "LocationGroup",

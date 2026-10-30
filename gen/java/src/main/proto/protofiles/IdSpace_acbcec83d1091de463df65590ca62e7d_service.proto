@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "protofiles/errorCode.proto";
+import "protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "protofiles/IdSpace_acbcec83d1091de463df65590ca62e7d.proto";
+
+message IdSpace_Message {
+    IdSpace msg = 1;
+}
+//message for the standard functions 
+message IdSpace_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message IdSpace_ID {
+    int32 id = 1;
+}
+message IdSpace_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service IdSpace_Service {
+    rpc heartBeat(IdSpace_HeartBeat) returns (IdSpace_HeartBeat) {}
+    rpc streamSrc(IdSpace_Stream ) returns (stream IdSpace_Message) {}
+    rpc pullByID(IdSpace_ID) returns (IdSpace_Message) {}
+    rpc push(IdSpace_Message) returns (errorCode) {}
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/AnnotationKind_acbcec83d1091de463df65590ca62e7d.proto";
+import "harpia_generated/protofiles/CatalogGroup_acbcec83d1091de463df65590ca62e7d.proto";
+message CatalogKind {
+int32 ID_acbcec83d1091de463df65590ca62e7d = 1;
+AnnotationKind kind = 2;
+repeated CatalogGroup groups = 3;
+string STATUS_acbcec83d1091de463df65590ca62e7d = 4;
+string ERROR_acbcec83d1091de463df65590ca62e7d = 5;
+string ORIGINATOR = 6;
+}
