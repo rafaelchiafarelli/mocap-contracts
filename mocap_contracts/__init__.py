@@ -5,11 +5,11 @@ re-exported here under their declared names; consumers import from this
 package only, never from the generated modules.
 """
 
-from mocap_contracts import bible, film, layout
+from mocap_contracts import annotation, bible, film, layout
 from mocap_contracts.errors import ContractError
 from mocap_contracts.jsonio import from_json, to_json
 from mocap_contracts.messages import *  # noqa: F403
 from mocap_contracts.messages import __all__ as _messages
 
 __version__ = "0.5.0"
-__all__ = ["__version__", "bible", "film", "layout", "ContractError", "from_json", "to_json", *_messages]
+__all__ = ["__version__", "annotation", "bible", "film", "layout", "ContractError", "from_json", "to_json", *_messages]

@@ -35,6 +35,11 @@
   `PdfFont`, `ScriptStrings`, `HeaderSettings` / `HeaderLine`,
   `AutoCompletionList`, `LocationGroup`, `TitlePages` / `TitlePageLayout`
   / `TitleString`; enums `ScriptElement`, `TextAlign`, `TitleFont`.
+- `Include/annotation.harpia` — a script's annotations (owner:
+  mocap-writer): `Annotation` (`annotations/<id>.json`),
+  `AnnotationAnchor`, `ShotCounters` (`annotations/shot-counters.json`),
+  the catalog messages `AnnotationCatalog` / `CatalogKind` (reusing
+  `CatalogGroup`), enum `AnnotationKind`; values are `BibleValue`s.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 

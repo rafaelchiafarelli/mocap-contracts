@@ -26,6 +26,10 @@ consumers that implement the same formats.
 - `script-v1/` — script_settings.harpia (`tools/make_script_fixtures.py`):
   `settings/script-settings.json`, a new script's settings at the
   writer's defaults; `invalid/<what>.json` with `invalid/expected.json`.
+- `annotation-v1/` — annotation.harpia (`tools/make_annotation_fixtures.py`):
+  a note on a quoted span, a character direction on a whole element, a
+  shot (`1.A S4`) and an agent's prop-direction proposal on a whole scene,
+  `shot-counters.json`; `invalid/<what>.json` with `invalid/expected.json`.
 
 ## Key facts / gotchas
 
@@ -37,4 +41,4 @@ consumers that implement the same formats.
 ## Touchpoints
 
 - `tests/test_stream_v1.py`, `tests/test_film.py`, `tests/test_bible.py`,
-  `tests/test_script_settings.py`.
+  `tests/test_script_settings.py`, `tests/test_annotation.py`.
