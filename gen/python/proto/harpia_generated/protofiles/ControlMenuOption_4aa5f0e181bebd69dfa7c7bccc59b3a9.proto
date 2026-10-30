@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message ControlMenuOption {
+int32 ID_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 1;
+int64 value = 2;
+string name = 3;
+string STATUS_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 4;
+string ERROR_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 5;
+string ORIGINATOR = 6;
+}

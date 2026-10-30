@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/Flag_4aa5f0e181bebd69dfa7c7bccc59b3a9.proto";
+import "protofiles/CameraTakeReport_4aa5f0e181bebd69dfa7c7bccc59b3a9.proto";
+message TakeReport {
+int32 ID_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 1;
+string take_id = 2;
+Flag ok = 3;
+repeated string problems = 4;
+repeated CameraTakeReport reports = 5;
+string STATUS_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 6;
+string ERROR_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 7;
+string ORIGINATOR = 8;
+}

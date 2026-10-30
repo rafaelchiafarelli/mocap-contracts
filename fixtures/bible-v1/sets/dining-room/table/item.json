@@ -1,6 +1,7 @@
 {
   "id": "set-w-3",
   "name": "Table",
+  "aliases": [],
   "parent": "set-w-1",
   "values": [
     {
@@ -12,6 +13,5 @@
       "by": "writer"
     }
   ],
-  "aliases": [],
   "links": []
 }

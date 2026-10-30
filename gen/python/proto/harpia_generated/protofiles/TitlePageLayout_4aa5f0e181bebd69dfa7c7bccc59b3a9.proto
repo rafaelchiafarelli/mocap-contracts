@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/TitleString_4aa5f0e181bebd69dfa7c7bccc59b3a9.proto";
+message TitlePageLayout {
+int32 ID_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 1;
+repeated TitleString strings = 2;
+string STATUS_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 3;
+string ERROR_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 4;
+string ORIGINATOR = 5;
+}
