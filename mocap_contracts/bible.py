@@ -80,22 +80,27 @@ def catalog():
     return from_json(BibleCatalog, CATALOG_FILE.read_text(encoding="utf-8"))
 
 
+def fields_of(groups) -> dict[str, Field]:
+    """The fields of catalog groups (CatalogGroup) by full name, in order."""
+    return {
+        f"{g.key}.{f.key}": Field(
+            name=f"{g.key}.{f.key}", label=f.label, type=type_word(f.type),
+            options=tuple(f.options), unit=f.unit if f.HasField("unit") else None,
+            link_kind=f.link_kind if f.HasField("link_kind") else None,
+            group=g.key, group_label=g.label,
+            per_scene=g.per_scene == Flag.Value("FLAG_ON"),
+            department=g.department,
+        )
+        for g in groups for f in g.fields
+    }
+
+
 @functools.cache
 def fields(map_: str) -> dict[str, Field]:
     """The fields of one map by full name, in catalog order."""
     for m in catalog().maps:
         if map_word(m.bible_map) == map_:
-            return {
-                f"{g.key}.{f.key}": Field(
-                    name=f"{g.key}.{f.key}", label=f.label, type=type_word(f.type),
-                    options=tuple(f.options), unit=f.unit if f.HasField("unit") else None,
-                    link_kind=f.link_kind if f.HasField("link_kind") else None,
-                    group=g.key, group_label=g.label,
-                    per_scene=g.per_scene == Flag.Value("FLAG_ON"),
-                    department=g.department,
-                )
-                for g in m.groups for f in g.fields
-            }
+            return fields_of(m.groups)
     raise KeyError(f"no map {map_!r} in the catalog: one of {list(MAPS)}")
 
 

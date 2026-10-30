@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum TitleFont {
+TITLE_FONT_UNSET = 0;
+TITLE_FONT_COURIER = 1;
+TITLE_FONT_HELVETICA = 2;
+TITLE_FONT_TIMES = 3;
+}

@@ -1,6 +1,7 @@
 {
   "id": "annotation-w-1",
   "name": "Blue Cup",
+  "aliases": [],
   "values": [
     {
       "field": "look.color",
@@ -40,6 +41,5 @@
     {
       "scene": "1"
     }
-  ],
-  "aliases": []
+  ]
 }

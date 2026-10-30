@@ -4,7 +4,8 @@
 and rules, the folder layouts and ids, and the transports.
 
 **Entry points:** `import mocap_contracts` (`__init__.py`): every message and
-enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`, `bible`.
+enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`, `bible`,
+`annotation`.
 
 **Inputs → Outputs:** contract messages ↔ JSON text; ids and paths ↔
 checked strings. Nothing here creates folders or touches files.
@@ -19,7 +20,7 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:560`); `check` (`rules.py:607`) walks nested messages
+  in `RULES` (`rules.py:671`); `check` (`rules.py:730`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
@@ -38,19 +39,30 @@ checked strings. Nothing here creates folders or touches files.
   `wardrobe`), `ITEM_FILE`, `NOT_PROPS_FILE`, `SCENE` (the writer's scene
   number form, `bible.py:38`), `DECIMAL`, `BY`; `catalog()` reads
   `catalog/bible-v1.json` once (`bible.py:75`), `fields(map)` → `Field`s by
-  `<group>.<field>` (`bible.py:84`), `map_of(id)`, `slug(name)` (ASCII
-  folder name, `bible.py:108`).
+  `<group>.<field>` (`bible.py:99`), built by `fields_of(groups)` (shared
+  with the annotation catalog, `bible.py:83`), `map_of(id)`, `slug(name)`
+  (ASCII folder name, `bible.py:113`).
 - `catalog/bible-v1.json` — the approved field catalog (mocap-writer
   film-bible contract/1, 2026-10-26) as a `BibleCatalog`: per map its
   groups (key, label, per scene, department) and fields (key, label, type,
   options, unit, link kind); 180 fields. Shipped in the wheel.
+- `annotation.py` — the annotations (annotation.harpia): `KINDS` read from
+  `AnnotationKind` (`annotation.py:29`), `kind_word` / `kind_value`,
+  `file_name(id)`, `SHOT_COUNTERS_FILE`, `shot_name` (`12.A S4`) and
+  `shot_file_name` (`12.A_S4`), `catalog()` reads
+  `catalog/annotation-v1.json` once (`annotation.py:59`), `fields(kind)`
+  (`annotation.py:68`).
+- `catalog/annotation-v1.json` — the approved annotation fields
+  (mocap-writer film-bible contract/1, "Scene annotations") as an
+  `AnnotationCatalog`: per kind its groups; 66 fields over the nine kinds
+  (note and general direction have none, their `text` says it all).
 - `transport.py` — Harpia ZeroMQ legs under stable names (`[zmq]` extra).
 - `zmq_endpoints.py` — generated; the ZeroMQ factories per message.
 - `stream_v1.py` — stream protocol v1 reference reader and writer, stdlib only.
 
 ## Key facts / gotchas
 
-- `to_json` writes map keys sorted (`jsonio.py:110`): protobuf keeps no map
+- `to_json` writes map keys sorted (`jsonio.py:114`): protobuf keeps no map
   order, so without it `ids/<code>.json` came out in a different order each
   time.
 - Film rules (`rules.py:357-424`): `format_version` must be 1; part paths
@@ -65,7 +77,8 @@ checked strings. Nothing here creates folders or touches files.
 - `_film` skips its cross-list checks while a space has a broken code or
   owner (`rules.py:387-389`), so the error names the space, not a
   consequence of it.
-- Bible rules (`rules.py:426-534`): catalog keys and per-type extras
+- Bible rules (`rules.py:426-532`, the values in `_values`, `rules.py:508`,
+  shared with annotations): catalog keys and per-type extras
   (options only on a choice, unit only on a number, `link_kind` only on a
   link); a value holds text or a decimal number with a unit, a `TBD` needs
   `revisit`, `by` is kebab-case; an item's id is a map's kind, its values'
@@ -75,13 +88,28 @@ checked strings. Nothing here creates folders or touches files.
   scene key; a parent is an id of the same map; only a wardrobe link names
   an item (the character). A choice accepts text outside its options (the
   free "other").
-- Change rules (`rules.py:537-557`): `time` UTC ISO-8601 ending in `Z` and
+- Change rules (`rules.py:588-608`): `time` UTC ISO-8601 ending in `Z` and
   a real date; `by` kebab-case; `path` a film path; `record` a record id
   when present; a create has `after` only, an update both, a delete
   `before` only.
-- `to_json` writes empty repeated fields after the set ones (protobuf's
-  default-value pass), so a byte-for-byte fixture lists them last
-  (`tools/make_bible_fixtures.py`).
+- Annotation rules (`rules.py:534-578`): an anchor's scene is a scene
+  number, its element ≥ 0 (the heading is 0), a quote needs its element
+  and an occurrence its quote (from 1); an id `annotation-…`; only a shot
+  has a shot number, and it must; values checked against the kind's
+  catalog fields, with no scene (the anchor names it); shot counters keyed
+  by scene number, from 1.
+- `to_json` writes every message's fields in their declared order
+  (`_prune`, `jsonio.py:98-117`): protobuf alone puts the fields holding
+  their default value last, so the key order would depend on the values
+  (changed 2026-10-30; files written by `v0.5.0` read the same, only the
+  order differs).
+- Script settings rules (`rules.py:611-668`): Trelby's limits refused, not
+  clamped (font size 4–72, margins 0–900 mm, paper 50–1000 × 100–1000
+  mm, page-break lines 1–30, scene-continued indent −20–80, spacing 0–50
+  and 0–20 tenths, indent 0–80, width 5–80, header line 1–5 and offset
+  −100–100, empty lines after 0–5, title size 4–288); one style for every
+  element; one completion list per element; a PDF font name without
+  spaces, non-ASCII or `[]{}()<>/%`.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

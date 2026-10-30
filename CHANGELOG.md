@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.0 — 2026-10-30
+
+The records that belong to a script (`script-records` initiative), for `mocap-writer` fountain-native settings/1 and notes/1.
+
+- **`script_settings.harpia`** (owner: `mocap-writer`): `ScriptSettings` is `settings/script-settings.json`: page setup, one `ElementStyle` per element (screen and export `TextStyle`), PDF flags and fonts, the printed strings, headers, completion lists, locations, the script's spelling words, and the title pages' layout with the Fountain title block it was saved with. Every field written; Trelby's limits refused, never clamped. Fixtures `fixtures/script-v1/`.
+- **`annotation.harpia`** (owner: `mocap-writer`): `Annotation` is `annotations/<id>.json`: kind (note, character / prop / set / sound / general direction, special effect, transition, shot), anchor (scene number, element index, quoted text and its occurrence), text, author, a shot's number in its scene, and `BibleValue`s checked against the annotation catalog (`catalog/annotation-v1.json`, 66 fields). `ShotCounters` is `annotations/shot-counters.json`. `mocap_contracts.annotation`. Fixtures `fixtures/annotation-v1/`.
+- **`to_json` writes fields in their declared order.** Before, protobuf put fields holding their default value last, so the order depended on the values. Files written by `v0.5.0` read the same; only their key order differs when written again.
+- `tests/test_import.py` was left at `0.4.0` by the `v0.5.0` release, so that tag's suite has one failing test (the version check only); fixed here.
+
+New messages only: nothing in `v0.5.0` changes meaning.
+
 ## v0.5.0 — 2026-10-28
 
 The film's records besides its index (`film-records` initiative), for `mocap-writer` file-format layout/1 and layout/5 and film-bible contract/2.
