@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Flag_4aa5f0e181bebd69dfa7c7bccc59b3a9.proto";
+import "harpia_generated/protofiles/PdfFont_4aa5f0e181bebd69dfa7c7bccc59b3a9.proto";
+message PdfSettings {
+int32 ID_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 1;
+Flag show_scene_numbers = 2;
+Flag include_toc = 3;
+Flag show_toc = 4;
+Flag open_on_current_page = 5;
+Flag remove_notes = 6;
+Flag outline_notes = 7;
+Flag show_margins = 8;
+Flag show_line_numbers = 9;
+PdfFont normal = 10;
+PdfFont bold = 11;
+PdfFont italic = 12;
+PdfFont bold_italic = 13;
+string STATUS_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 14;
+string ERROR_4aa5f0e181bebd69dfa7c7bccc59b3a9 = 15;
+string ORIGINATOR = 16;
+}

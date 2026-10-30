@@ -1,6 +1,7 @@
 {
   "id": "prop-pcp-1",
   "name": "Blue Cup",
+  "aliases": [],
   "values": [
     {
       "field": "look.color",
@@ -41,6 +42,5 @@
       "scene": "1",
       "item": "character-w-1"
     }
-  ],
-  "aliases": []
+  ]
 }

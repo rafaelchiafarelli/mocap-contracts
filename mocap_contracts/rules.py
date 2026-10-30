@@ -557,6 +557,66 @@ def _change(msg: Message) -> Iterator[str]:
         yield f"a {op} has {' and '.join(n for n, w in zip(('before', 'after'), want) if w)} only"
 
 
+def _ranges(msg: Message, limits: dict[str, tuple[float, float]]) -> Iterator[str]:
+    for field, (lo, hi) in limits.items():
+        v = getattr(msg, field)
+        if not lo <= v <= hi:
+            yield f"{field} must be {lo:g}..{hi:g}, got {v:g}"
+
+
+def _page_settings(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {
+        "paper_width_mm": (50, 1000), "paper_height_mm": (100, 1000),
+        "margin_top_mm": (0, 900), "margin_bottom_mm": (0, 900),
+        "margin_left_mm": (0, 900), "margin_right_mm": (0, 900),
+        "font_size_pt": (4, 72), "page_break_action_lines": (1, 30),
+        "page_break_dialogue_lines": (1, 30), "scene_continued_indent_chars": (-20, 80),
+    })
+
+
+def _element_style(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {
+        "before_spacing_tenths": (0, 50), "intra_spacing_tenths": (0, 20),
+        "indent_chars": (0, 80), "width_chars": (5, 80),
+    })
+
+
+# characters a PostScript font name can't hold (OpenType 1.4, name ID 6)
+_PS_BAD = re.compile(r"[\x00-\x20\x7f-\uffff\[\](){}<>/%]")
+
+
+def _pdf_font(msg: Message) -> Iterator[str]:
+    if _PS_BAD.search(msg.pdf_name):
+        yield f"pdf_name can't hold spaces, non-ASCII or []{{}}()<>/%, got {msg.pdf_name!r}"
+
+
+def _header_line(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"line": (1, 5), "x_offset_chars": (-100, 100)})
+
+
+def _header_settings(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"empty_lines_after": (0, 5)})
+
+
+def _title_string(msg: Message) -> Iterator[str]:
+    yield from _ranges(msg, {"size_pt": (4, 288)})
+
+
+def _script_settings(msg: Message) -> Iterator[str]:
+    elements = [_enum_name(e, "element") for e in msg.elements]
+    if dup := _duplicates(elements):
+        yield f"elements: one style per element, twice {dup}"
+    every = [n for n in msg.elements[0].DESCRIPTOR.fields_by_name["element"].enum_type.values_by_name
+             if n != "SCRIPT_ELEMENT_UNSET"] if msg.elements else []
+    if msg.elements and (missing := sorted(set(every) - set(elements))):
+        yield f"elements: no style for {missing}"
+    if not msg.elements:
+        yield "elements: no style at all"
+    lists = [_enum_name(a, "element") for a in msg.auto_completion]
+    if dup := _duplicates(lists):
+        yield f"auto_completion: one list per element, twice {dup}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -601,6 +661,13 @@ RULES: dict[str, Rule] = {
     "BibleItem": _bible_item,
     "NotProps": _not_props,
     "Change": _change,
+    "PageSettings": _page_settings,
+    "ElementStyle": _element_style,
+    "PdfFont": _pdf_font,
+    "HeaderLine": _header_line,
+    "HeaderSettings": _header_settings,
+    "TitleString": _title_string,
+    "ScriptSettings": _script_settings,
 }
 
 

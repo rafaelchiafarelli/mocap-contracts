@@ -34,6 +34,8 @@ pass/fail. Nothing is written into the repository.
 - `test_bible.py` — bible.harpia: the catalog (round trip, every group of
   contract/1, per-scene groups), `fixtures/bible-v1/`, slugs, scene numbers.
 - `test_change.py` — change.harpia: each op's before/after, time, path, record.
+- `test_script_settings.py` — script_settings.harpia: the defaults round
+  trip, each invalid fixture, Unicode strings, a title page layout.
 - `test_transport.py` — the ZeroMQ legs (loopback).
 - `test_java.py` — slow: the Java build and a Python ↔ Java exchange.
 - `test_stream_v1.py` — the stream protocol v1 reader against `fixtures/stream-v1/`.

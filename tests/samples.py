@@ -331,6 +331,32 @@ def change(**kw):
     return mc.Change(**fields)
 
 
+def _script_settings():
+    from pathlib import Path
+    text = (Path(__file__).resolve().parents[1] / "fixtures" / "script-v1" / "settings"
+            / "script-settings.json").read_text()
+    s = mc.from_json(mc.ScriptSettings, text)
+    s.locations.add(headings=["INT. ROOM - DAY", "INT. ROOM - NIGHT"])
+    s.spelling_words.append("açúcar")
+    page = s.title_page.pages.add()
+    page.strings.add(items=["A FILM"], x_mm=105.0, y_mm=70.5, size_pt=24,
+                     align=mc.TextAlign.Value("TEXT_ALIGN_CENTER"), bold=2, italic=1, underlined=1,
+                     font=mc.TitleFont.Value("TITLE_FONT_COURIER"))
+    return s
+
+
+def _script_part(name):
+    s = _script_settings()
+    return {
+        "ScriptSettings": s, "PageSettings": s.page, "TextStyle": s.elements[0].screen,
+        "ElementStyle": s.elements[0], "PdfFont": s.pdf.bold, "PdfSettings": s.pdf,
+        "ScriptStrings": s.strings, "HeaderLine": s.headers.lines[0], "HeaderSettings": s.headers,
+        "AutoCompletionList": s.auto_completion[2], "LocationGroup": s.locations[0],
+        "TitleString": s.title_page.pages[0].strings[0], "TitlePageLayout": s.title_page.pages[0],
+        "TitlePages": s.title_page,
+    }[name]
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -406,4 +432,8 @@ SAMPLES = {
     "BibleItem": bible_item,
     "NotProps": lambda: mc.NotProps(words=["OK", "TV"]),
     "Change": lambda: change(),
+    **{n: (lambda n=n: _script_part(n)) for n in (
+        "ScriptSettings", "PageSettings", "TextStyle", "ElementStyle", "PdfFont", "PdfSettings",
+        "ScriptStrings", "HeaderLine", "HeaderSettings", "AutoCompletionList", "LocationGroup",
+        "TitleString", "TitlePageLayout", "TitlePages")},
 }

@@ -25,6 +25,7 @@ It runs nowhere on its own. It's a library installed into every Python repo
 | `camera.harpia` | mocap-camera-app | device info, stats, control request/reply |
 | `bible.harpia` | mocap-writer | a film's bible: `item.json` per item (generic values with state, source, department, by), scene links, the field catalog messages, `not-props.json` |
 | `change.harpia` | mocap-writer | the change log: one `Change` per line of `history/<yyyy-mm>.jsonl` |
+| `script_settings.harpia` | mocap-writer | a script's settings: page setup, element styles, PDF, strings, headers, completion lists, locations, spelling words, title page layout |
 | `film.harpia` | mocap-writer | a film root's `film.json` (parts and their owners, id spaces), the `ids/<space>.json` counters, the record kinds |
 
 It also owns:

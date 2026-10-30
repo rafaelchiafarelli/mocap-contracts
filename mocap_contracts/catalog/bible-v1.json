@@ -116,22 +116,22 @@
               "key": "width",
               "label": "Width",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "depth",
               "label": "Depth",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "height",
               "label": "Height",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "floor_plan",
@@ -282,8 +282,8 @@
               "key": "color_temperature",
               "label": "Color temperature",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "K",
-              "options": []
+              "options": [],
+              "unit": "K"
             }
           ]
         },
@@ -343,8 +343,8 @@
               "key": "placed_props",
               "label": "Props placed here",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "prop",
-              "options": []
+              "options": [],
+              "link_kind": "prop"
             }
           ]
         },
@@ -372,8 +372,8 @@
               "key": "floor_area",
               "label": "Floor area needed",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m2",
-              "options": []
+              "options": [],
+              "unit": "m2"
             },
             {
               "key": "obstacles",
@@ -411,8 +411,8 @@
               "key": "adjoins",
               "label": "Adjoining set (note — through which opening)",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "set",
-              "options": []
+              "options": [],
+              "link_kind": "set"
             }
           ]
         },
@@ -489,8 +489,8 @@
               "key": "age",
               "label": "Age",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "year",
-              "options": []
+              "options": [],
+              "unit": "year"
             },
             {
               "key": "gender",
@@ -636,8 +636,8 @@
               "key": "height",
               "label": "Height",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "build",
@@ -937,8 +937,8 @@
               "key": "with",
               "label": "Related character (note — kind of relationship)",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "character",
-              "options": []
+              "options": [],
+              "link_kind": "character"
             }
           ]
         },
@@ -984,8 +984,8 @@
               "key": "wardrobe",
               "label": "Wardrobe",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "wardrobe",
-              "options": []
+              "options": [],
+              "link_kind": "wardrobe"
             }
           ]
         }
@@ -1054,8 +1054,8 @@
               "key": "quantity",
               "label": "Quantity",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "pcs",
-              "options": []
+              "options": [],
+              "unit": "pcs"
             },
             {
               "key": "hero",
@@ -1078,22 +1078,22 @@
               "key": "width",
               "label": "Width",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "height",
               "label": "Height",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "depth",
               "label": "Depth",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "m",
-              "options": []
+              "options": [],
+              "unit": "m"
             },
             {
               "key": "shape",
@@ -1157,8 +1157,8 @@
               "key": "weight",
               "label": "Weight",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "kg",
-              "options": []
+              "options": [],
+              "unit": "kg"
             },
             {
               "key": "temperature",
@@ -1236,8 +1236,8 @@
               "key": "handled_by",
               "label": "Handled by",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "character",
-              "options": []
+              "options": [],
+              "link_kind": "character"
             },
             {
               "key": "how",
@@ -1315,8 +1315,8 @@
               "key": "duplicates",
               "label": "Duplicates",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "pcs",
-              "options": []
+              "options": [],
+              "unit": "pcs"
             },
             {
               "key": "duplicates_why",
@@ -1336,8 +1336,8 @@
               "key": "owner",
               "label": "Owner",
               "type": "FIELD_TYPE_LINK",
-              "link_kind": "character",
-              "options": []
+              "options": [],
+              "link_kind": "character"
             }
           ]
         }
@@ -1579,8 +1579,8 @@
               "key": "duplicates",
               "label": "Duplicates",
               "type": "FIELD_TYPE_NUMBER",
-              "unit": "pcs",
-              "options": []
+              "options": [],
+              "unit": "pcs"
             },
             {
               "key": "duplicates_why",

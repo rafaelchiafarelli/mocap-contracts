@@ -29,6 +29,12 @@
 - `Include/change.harpia` — the change log (owner: mocap-writer): `Change`
   (one line of `history/<yyyy-mm>.jsonl`: time, by, path, record, op,
   before, after) and `ChangeOp`.
+- `Include/script_settings.harpia` — a script's settings (owner:
+  mocap-writer): `ScriptSettings` (`settings/script-settings.json`) with
+  `PageSettings`, `ElementStyle` / `TextStyle`, `PdfSettings` /
+  `PdfFont`, `ScriptStrings`, `HeaderSettings` / `HeaderLine`,
+  `AutoCompletionList`, `LocationGroup`, `TitlePages` / `TitlePageLayout`
+  / `TitleString`; enums `ScriptElement`, `TextAlign`, `TitleFont`.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 
