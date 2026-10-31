@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/MocapTakeHeader_186a1974c92f444f1bbc853569958a27.proto";
+import "protofiles/MocapFrame_186a1974c92f444f1bbc853569958a27.proto";
+message MocapTake {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+MocapTakeHeader header = 2;
+repeated MocapFrame frames = 3;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 4;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 5;
+string ORIGINATOR = 6;
+}

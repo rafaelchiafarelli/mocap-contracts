@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/LocationGroup_186a1974c92f444f1bbc853569958a27.proto";
+
+message LocationGroup_Message {
+    LocationGroup msg = 1;
+}
+//message for the standard functions 
+message LocationGroup_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message LocationGroup_ID {
+    int32 id = 1;
+}
+message LocationGroup_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service LocationGroup_Service {
+    rpc heartBeat(LocationGroup_HeartBeat) returns (LocationGroup_HeartBeat) {}
+    rpc streamSrc(LocationGroup_Stream ) returns (stream LocationGroup_Message) {}
+    rpc pullByID(LocationGroup_ID) returns (LocationGroup_Message) {}
+    rpc push(LocationGroup_Message) returns (errorCode) {}
+}

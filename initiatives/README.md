@@ -27,5 +27,5 @@ Rules specific to this repository:
 | [film-root](film-root/film-root.md) | Done — released as `v0.4.0` (2026-10-27) |
 | [film-records](film-records/film-records.md) | Done — released as `v0.5.0` (2026-10-28) |
 | [script-records](script-records/script-records.md) | Done — released as `v0.6.0` (2026-10-30) |
-| [preprod-records](preprod-records/preprod-records.md) | Planned (2026-10-31) — scene index, change set, front matter; `v0.7.0` |
+| [preprod-records](preprod-records/preprod-records.md) | Done — released as `v0.7.0` (2026-10-31) |
 | [bugs](bugs/bugs.md) | Open — a backlog, fixed when a bug gets in the way |

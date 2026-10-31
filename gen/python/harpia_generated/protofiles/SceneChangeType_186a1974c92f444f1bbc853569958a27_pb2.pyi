@@ -1,0 +1,19 @@
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
+from google.protobuf import descriptor as _descriptor
+from typing import ClassVar as _ClassVar
+
+DESCRIPTOR: _descriptor.FileDescriptor
+SCENE_CHANGE_TYPE_CHARACTER_ENTERED: SceneChangeType
+SCENE_CHANGE_TYPE_CHARACTER_LEFT: SceneChangeType
+SCENE_CHANGE_TYPE_HEADING_CHANGED: SceneChangeType
+SCENE_CHANGE_TYPE_PROP_ADDED: SceneChangeType
+SCENE_CHANGE_TYPE_PROP_REMOVED: SceneChangeType
+SCENE_CHANGE_TYPE_SCENE_ADDED: SceneChangeType
+SCENE_CHANGE_TYPE_SCENE_MOVED: SceneChangeType
+SCENE_CHANGE_TYPE_SCENE_REMOVED: SceneChangeType
+SCENE_CHANGE_TYPE_SET_LINK_CHANGED: SceneChangeType
+SCENE_CHANGE_TYPE_TEXT_CHANGED: SceneChangeType
+SCENE_CHANGE_TYPE_UNSET: SceneChangeType
+
+class SceneChangeType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = []
