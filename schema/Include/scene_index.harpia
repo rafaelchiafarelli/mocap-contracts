@@ -1,0 +1,43 @@
+// The scene index of a script owned by mocap-writer
+// bible slash scene index json is rebuilt by code from the script and the bible
+// The pre production agents read it and cite its scene numbers and bible ids
+// Rules that required cannot express live in mocap_contracts rules
+import "common.harpia";
+
+// One character of a scene as written with its bible id when known
+// speaks is on for a speaker and off for a name found only in Action
+message SceneCharacter {
+    required string name;
+    optional string id;
+    required Flag speaks;
+};
+
+// One prop word of a scene as written with its bible id when known
+message SceneProp {
+    required string word;
+    optional string id;
+};
+
+// One numbered scene of the script in script order
+// The hash is sha256 in lower case hex of the scene text
+message SceneEntry {
+    required string scene;
+    required int order;
+    required string int_ext;
+    required string location;
+    required string time_of_day;
+    optional string set_id;
+    repeteable SceneCharacter characters;
+    repeteable SceneProp props;
+    required int first_page;
+    required int last_page;
+    required int first_line;
+    required int last_line;
+    required string text_hash;
+};
+
+// scene index json of a film with the hash of the whole script text
+message SceneIndex {
+    required string script_hash;
+    repeteable SceneEntry scenes;
+};

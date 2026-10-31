@@ -1,0 +1,57 @@
+{
+  "time": "2026-10-31T12:00:00Z",
+  "from_hash": "4a4817a66e93941fc00fc6b7918f27344e0b875cfd281ee417b7a00604cedc0c",
+  "to_hash": "a86ac4f2ac193318bfa8d06390efa7d2152d2108a41ee51e1499a38d1062397a",
+  "changes": [
+    {
+      "type": "SCENE_CHANGE_TYPE_SCENE_ADDED",
+      "scene": "three"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_SCENE_REMOVED",
+      "scene": "2.A"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_SCENE_MOVED",
+      "scene": "2",
+      "old_value": "2",
+      "new_value": "1"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_HEADING_CHANGED",
+      "scene": "2",
+      "old_value": "EXT. STREET - DAY",
+      "new_value": "EXT. STREET - NIGHT"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_TEXT_CHANGED",
+      "scene": "1"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_CHARACTER_ENTERED",
+      "scene": "1",
+      "new_value": "Bia"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_CHARACTER_LEFT",
+      "scene": "2",
+      "old_value": "Bia"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_PROP_ADDED",
+      "scene": "1",
+      "new_value": "MATCHBOX"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_PROP_REMOVED",
+      "scene": "2",
+      "old_value": "MATCHBOX"
+    },
+    {
+      "type": "SCENE_CHANGE_TYPE_SET_LINK_CHANGED",
+      "scene": "1",
+      "old_value": "set-w-1",
+      "new_value": "set-w-3"
+    }
+  ]
+}

@@ -31,7 +31,9 @@ KINDS = tuple(
 WRITER = "writer"
 WRITER_SPACE = "w"
 # A part name is one of these, or "proposals-<code>" with <code> a listed space.
-PART_NAMES = ("script", "settings", "bible", "annotations", "history")
+PART_NAMES = (
+    "script", "settings", "bible", "annotations", "history", "front-matter", "source",
+)
 PROPOSALS_PREFIX = "proposals-"
 SCRIPT_PART = "script"
 # An owner is "writer" or an agent's file name in kebab-case.

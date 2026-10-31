@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.7.0 — 2026-10-31
+
+The records that link `mocap-writer` to the pre-production agents and the film's front matter (`preprod-records` initiative), for `mocap-writer` preprod-link contract/1–2 and front-matter contract/1.
+
+- **`scene_index.harpia`** (owner: `mocap-writer`): `SceneIndex` is `bible/scene-index.json`: the script's hash and one `SceneEntry` per numbered scene in script order (number, order, INT/EXT, location, time of day as written, the linked set's id, `SceneCharacter`s with their bible id when known and whether they speak, `SceneProp` words with their bible id when known, page and line range, the scene text's sha256).
+- **`change_set.harpia`** (owner: `mocap-writer`): `ChangeSet` is `bible/sync/<time>-changes.json`: the two scene-index hashes and one `SceneChange` per change (scene added, removed, moved, heading or text changed, character entered or left, prop added or removed, set link changed), matched by scene number.
+- **`front_matter.harpia`** (owner: `mocap-writer`): `FrontMatter` is `settings/front-matter.json`: the title page (title, subtitle, episode, author, co-authors, e-mail) and the overview, pitch and argument pages, each with its include flag.
+- **Film part names** gain `front-matter` and `source` (the original of an imported script).
+- Fixtures `fixtures/preprod-v1/`.
+
+New messages and two new part names only: nothing in `v0.6.0` changes meaning.
+
 ## v0.6.0 — 2026-10-30
 
 The records that belong to a script (`script-records` initiative), for `mocap-writer` fountain-native settings/1 and notes/1.
