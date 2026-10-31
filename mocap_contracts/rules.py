@@ -668,6 +668,56 @@ def _script_settings(msg: Message) -> Iterator[str]:
         yield f"auto_completion: one list per element, twice {dup}"
 
 
+_HASH = re.compile(r"^[0-9a-f]{64}$")
+
+
+def _scene_number(scene: str) -> Iterator[str]:
+    if not bible.SCENE.fullmatch(scene):
+        yield f"scene must be a scene number like 12 or 12.A, got {scene!r}"
+
+
+def _ref(rid: str, kind: str) -> Iterator[str]:
+    if not film.RECORD_ID.fullmatch(rid) or not rid.startswith(kind + "-"):
+        yield f"id must be a {kind} id {kind}-<space>-<n>, got {rid!r}"
+
+
+def _scene_character(msg: Message) -> Iterator[str]:
+    if not msg.name.strip():
+        yield "name is empty"
+    if msg.HasField("id"):
+        yield from _ref(msg.id, "character")
+
+
+def _scene_prop(msg: Message) -> Iterator[str]:
+    if not msg.word.strip():
+        yield "word is empty"
+    if msg.HasField("id"):
+        yield from _ref(msg.id, "prop")
+
+
+def _scene_entry(msg: Message) -> Iterator[str]:
+    yield from _scene_number(msg.scene)
+    if msg.HasField("set_id"):
+        yield from _ref(msg.set_id, "set")
+    for what in ("page", "line"):
+        first, last = getattr(msg, f"first_{what}"), getattr(msg, f"last_{what}")
+        if first < 1:
+            yield f"first_{what} counts from 1, got {first}"
+        elif last < first:
+            yield f"last_{what} {last} is before first_{what} {first}"
+    if not _HASH.fullmatch(msg.text_hash):
+        yield f"text_hash must be 64 lower-case hex digits, got {msg.text_hash!r}"
+
+
+def _scene_index(msg: Message) -> Iterator[str]:
+    if not _HASH.fullmatch(msg.script_hash):
+        yield f"script_hash must be 64 lower-case hex digits, got {msg.script_hash!r}"
+    if dup := _duplicates([e.scene for e in msg.scenes]):
+        yield f"scenes: each scene once, twice {dup}"
+    if [e.order for e in msg.scenes] != list(range(1, len(msg.scenes) + 1)):
+        yield "scenes: order must run 1, 2, 3... in the list's order"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -724,6 +774,10 @@ RULES: dict[str, Rule] = {
     "ShotCounters": _shot_counters,
     "AnnotationCatalog": _annotation_catalog,
     "CatalogKind": _catalog_map,
+    "SceneCharacter": _scene_character,
+    "SceneProp": _scene_prop,
+    "SceneEntry": _scene_entry,
+    "SceneIndex": _scene_index,
 }
 
 

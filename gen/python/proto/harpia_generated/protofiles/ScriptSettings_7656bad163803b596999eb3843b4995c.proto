@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/PageSettings_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/ElementStyle_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/PdfSettings_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/ScriptStrings_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/HeaderSettings_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/AutoCompletionList_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/LocationGroup_7656bad163803b596999eb3843b4995c.proto";
+import "harpia_generated/protofiles/TitlePages_7656bad163803b596999eb3843b4995c.proto";
+message ScriptSettings {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+PageSettings page = 2;
+repeated ElementStyle elements = 3;
+PdfSettings pdf = 4;
+ScriptStrings strings = 5;
+HeaderSettings headers = 6;
+repeated AutoCompletionList auto_completion = 7;
+repeated LocationGroup locations = 8;
+repeated string spelling_words = 9;
+TitlePages title_page = 10;
+string STATUS_7656bad163803b596999eb3843b4995c = 11;
+string ERROR_7656bad163803b596999eb3843b4995c = 12;
+string ORIGINATOR = 13;
+}

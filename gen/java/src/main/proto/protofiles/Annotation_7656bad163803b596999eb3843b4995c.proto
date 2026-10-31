@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/AnnotationKind_7656bad163803b596999eb3843b4995c.proto";
+import "protofiles/AnnotationAnchor_7656bad163803b596999eb3843b4995c.proto";
+import "protofiles/BibleValue_7656bad163803b596999eb3843b4995c.proto";
+message Annotation {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+string id = 2;
+AnnotationKind kind = 3;
+AnnotationAnchor anchor = 4;
+optional string text = 5;
+string by = 6;
+optional int32 shot = 7;
+repeated BibleValue values = 8;
+string STATUS_7656bad163803b596999eb3843b4995c = 9;
+string ERROR_7656bad163803b596999eb3843b4995c = 10;
+string ORIGINATOR = 11;
+}

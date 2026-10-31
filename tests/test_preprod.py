@@ -1,0 +1,40 @@
+"""preprod-records messages/1-3: scene_index, change_set, front_matter."""
+
+import json
+from pathlib import Path
+
+import pytest
+
+import mocap_contracts as mc
+from mocap_contracts import ContractError, from_json, to_json
+
+FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "preprod-v1"
+EXPECTED = json.loads((FIXTURES / "invalid" / "expected.json").read_text())
+VALID = [("SceneIndex", "bible/scene-index.json")]
+
+
+@pytest.mark.parametrize("message, rel", VALID)
+def test_valid_fixture_round_trips_byte_for_byte(message, rel):
+    text = (FIXTURES / rel).read_text()
+    assert to_json(from_json(getattr(mc, message), text)) == text
+
+
+def test_every_invalid_fixture_is_listed():
+    files = {p.name for p in (FIXTURES / "invalid").glob("*.json")} - {"expected.json"}
+    assert files == set(EXPECTED)
+
+
+@pytest.mark.parametrize("name", sorted(EXPECTED))
+def test_invalid_fixture_is_refused_naming_its_field(name):
+    case = EXPECTED[name]
+    with pytest.raises(ContractError) as e:
+        from_json(getattr(mc, case["message"]), (FIXTURES / "invalid" / name).read_text())
+    assert case["error"] in str(e.value)
+
+
+def test_an_unknown_name_has_no_id_and_names_keep_accents():
+    s = from_json(mc.SceneIndex, (FIXTURES / "bible" / "scene-index.json").read_text())
+    s.scenes[1].characters[0].name = "Bia Conceição"
+    back = from_json(mc.SceneIndex, to_json(s))
+    assert back.scenes[1].characters[0].name == "Bia Conceição"
+    assert not back.scenes[1].characters[0].HasField("id")

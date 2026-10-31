@@ -20,7 +20,7 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:671`); `check` (`rules.py:730`) walks nested messages
+  in `RULES` (`rules.py:721`); `check` (`rules.py:784`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
@@ -110,6 +110,10 @@ checked strings. Nothing here creates folders or touches files.
   −100–100, empty lines after 0–5, title size 4–288); one style for every
   element; one completion list per element; a PDF font name without
   spaces, non-ASCII or `[]{}()<>/%`.
+- Scene index rules (`rules.py:671-718`): scene numbers in the writer's
+  form, each once, `order` 1..n in list order; `set_id`, a character's and
+  a prop's `id` record ids of their kind; pages and lines from 1, last ≥
+  first; hashes 64 lower-case hex; names and words not blank.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

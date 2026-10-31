@@ -31,6 +31,12 @@ consumers that implement the same formats.
   shot (`1.A S4`) and an agent's prop-direction proposal on a whole scene,
   `shot-counters.json`; `invalid/<what>.json` with `invalid/expected.json`.
 
+- `preprod-v1/` — scene_index, change_set and front_matter
+  (`tools/make_preprod_fixtures.py`): `bible/scene-index.json`, a neutral
+  three-scene script's index (a linked set and character, an agent's prop,
+  an unknown name and prop word); `invalid/<what>.json` with
+  `invalid/expected.json`.
+
 ## Key facts / gotchas
 
 - The valid film fixtures are byte-for-byte what `to_json` writes

@@ -40,6 +40,11 @@
   `AnnotationAnchor`, `ShotCounters` (`annotations/shot-counters.json`),
   the catalog messages `AnnotationCatalog` / `CatalogKind` (reusing
   `CatalogGroup`), enum `AnnotationKind`; values are `BibleValue`s.
+- `Include/scene_index.harpia` — the scene index (owner: mocap-writer):
+  `SceneIndex` (`bible/scene-index.json`: the script's hash and one
+  `SceneEntry` per numbered scene: number, order, heading parts, set id,
+  `SceneCharacter`s with `speaks`, `SceneProp`s, page and line range, the
+  scene text's hash), read by the pre-production agents.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 
