@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/TextAlign_186a1974c92f444f1bbc853569958a27.proto";
+import "protofiles/Flag_186a1974c92f444f1bbc853569958a27.proto";
+message HeaderLine {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+int32 line = 2;
+int32 x_offset_chars = 3;
+TextAlign align = 4;
+Flag bold = 5;
+Flag italic = 6;
+Flag underlined = 7;
+string text = 8;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 9;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 10;
+string ORIGINATOR = 11;
+}

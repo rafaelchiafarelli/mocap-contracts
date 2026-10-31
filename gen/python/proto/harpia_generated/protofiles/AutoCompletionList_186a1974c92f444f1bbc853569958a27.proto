@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/ScriptElement_186a1974c92f444f1bbc853569958a27.proto";
+import "harpia_generated/protofiles/Flag_186a1974c92f444f1bbc853569958a27.proto";
+message AutoCompletionList {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+ScriptElement element = 2;
+Flag enabled = 3;
+repeated string items = 4;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 5;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 6;
+string ORIGINATOR = 7;
+}

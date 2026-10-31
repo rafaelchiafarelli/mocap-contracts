@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message TitlePage {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string title = 2;
+string subtitle = 3;
+string episode = 4;
+string author = 5;
+repeated string co_authors = 6;
+string email = 7;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 8;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 9;
+string ORIGINATOR = 10;
+}
