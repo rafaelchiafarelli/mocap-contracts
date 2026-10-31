@@ -1,5 +1,7 @@
 ## 3. front_matter.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-31)
+
 - **Depends on:** 2
 - **Contract:**
   - Requires: `FrontMatter` (`settings/front-matter.json`, part
