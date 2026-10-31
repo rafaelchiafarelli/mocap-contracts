@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Flag_e51d6d03132b4baa0ced72cde01af9d0.proto";
+message PageSettings {
+int32 ID_e51d6d03132b4baa0ced72cde01af9d0 = 1;
+float paper_width_mm = 2;
+float paper_height_mm = 3;
+float margin_top_mm = 4;
+float margin_bottom_mm = 5;
+float margin_left_mm = 6;
+float margin_right_mm = 7;
+int32 font_size_pt = 8;
+int32 page_break_action_lines = 9;
+int32 page_break_dialogue_lines = 10;
+Flag scene_continueds = 11;
+int32 scene_continued_indent_chars = 12;
+string STATUS_e51d6d03132b4baa0ced72cde01af9d0 = 13;
+string ERROR_e51d6d03132b4baa0ced72cde01af9d0 = 14;
+string ORIGINATOR = 15;
+}

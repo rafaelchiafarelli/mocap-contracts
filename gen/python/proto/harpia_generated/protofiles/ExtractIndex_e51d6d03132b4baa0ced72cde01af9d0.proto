@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/LengthUnit_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/UpAxis_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/SyncedVideo_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/CameraAlignment_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/PointSet_e51d6d03132b4baa0ced72cde01af9d0.proto";
+message ExtractIndex {
+int32 ID_e51d6d03132b4baa0ced72cde01af9d0 = 1;
+string take_id = 2;
+string calibration_take_id = 3;
+string calibration_path = 4;
+float fps = 5;
+int64 frames = 6;
+int64 t0_ns = 7;
+LengthUnit length_unit = 8;
+UpAxis up_axis = 9;
+repeated SyncedVideo synced_videos = 10;
+repeated CameraAlignment alignment = 11;
+repeated PointSet points_3d = 12;
+repeated PointSet points_2d = 13;
+string STATUS_e51d6d03132b4baa0ced72cde01af9d0 = 14;
+string ERROR_e51d6d03132b4baa0ced72cde01af9d0 = 15;
+string ORIGINATOR = 16;
+}

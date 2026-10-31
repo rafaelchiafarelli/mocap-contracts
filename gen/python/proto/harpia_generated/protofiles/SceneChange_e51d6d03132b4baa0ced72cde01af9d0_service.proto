@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/SceneChange_e51d6d03132b4baa0ced72cde01af9d0.proto";
+
+message SceneChange_Message {
+    SceneChange msg = 1;
+}
+//message for the standard functions 
+message SceneChange_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message SceneChange_ID {
+    int32 id = 1;
+}
+message SceneChange_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service SceneChange_Service {
+    rpc heartBeat(SceneChange_HeartBeat) returns (SceneChange_HeartBeat) {}
+    rpc streamSrc(SceneChange_Stream ) returns (stream SceneChange_Message) {}
+    rpc pullByID(SceneChange_ID) returns (SceneChange_Message) {}
+    rpc push(SceneChange_Message) returns (errorCode) {}
+}

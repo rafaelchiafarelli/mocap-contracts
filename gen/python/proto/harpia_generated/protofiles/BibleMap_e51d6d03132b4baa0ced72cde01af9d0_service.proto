@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/BibleMap_e51d6d03132b4baa0ced72cde01af9d0.proto";
+
+message BibleMap_Message {
+    BibleMap msg = 1;
+}
+//message for the standard functions 
+message BibleMap_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message BibleMap_ID {
+    int32 id = 1;
+}
+message BibleMap_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service BibleMap_Service {
+    rpc heartBeat(BibleMap_HeartBeat) returns (BibleMap_HeartBeat) {}
+    rpc streamSrc(BibleMap_Stream ) returns (stream BibleMap_Message) {}
+    rpc pullByID(BibleMap_ID) returns (BibleMap_Message) {}
+    rpc push(BibleMap_Message) returns (errorCode) {}
+}

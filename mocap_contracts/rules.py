@@ -588,14 +588,18 @@ def _not_props(msg: Message) -> Iterator[str]:
 _TIME = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?Z$")
 
 
-def _change(msg: Message) -> Iterator[str]:
-    if not _TIME.fullmatch(msg.time):
-        yield f"time must be UTC ISO-8601 ending in Z, got {msg.time!r}"
+def _time(time: str) -> Iterator[str]:
+    if not _TIME.fullmatch(time):
+        yield f"time must be UTC ISO-8601 ending in Z, got {time!r}"
     else:
         try:
-            datetime.datetime.fromisoformat(msg.time.replace("Z", "+00:00"))
+            datetime.datetime.fromisoformat(time.replace("Z", "+00:00"))
         except ValueError:
-            yield f"time is not a real date, got {msg.time!r}"
+            yield f"time is not a real date, got {time!r}"
+
+
+def _change(msg: Message) -> Iterator[str]:
+    yield from _time(msg.time)
     if not bible.BY.fullmatch(msg.by):
         yield f"by must be 'creator', 'writer' or an agent name in kebab-case, got {msg.by!r}"
     if problem := film.path_problem(msg.path):
@@ -718,6 +722,18 @@ def _scene_index(msg: Message) -> Iterator[str]:
         yield "scenes: order must run 1, 2, 3... in the list's order"
 
 
+def _scene_change(msg: Message) -> Iterator[str]:
+    yield from _scene_number(msg.scene)
+
+
+def _change_set(msg: Message) -> Iterator[str]:
+    yield from _time(msg.time)
+    if msg.HasField("from_hash") and not _HASH.fullmatch(msg.from_hash):
+        yield f"from_hash must be 64 lower-case hex digits, got {msg.from_hash!r}"
+    if not _HASH.fullmatch(msg.to_hash):
+        yield f"to_hash must be 64 lower-case hex digits, got {msg.to_hash!r}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -778,6 +794,8 @@ RULES: dict[str, Rule] = {
     "SceneProp": _scene_prop,
     "SceneEntry": _scene_entry,
     "SceneIndex": _scene_index,
+    "SceneChange": _scene_change,
+    "ChangeSet": _change_set,
 }
 
 

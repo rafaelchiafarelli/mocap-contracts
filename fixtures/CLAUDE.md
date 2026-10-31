@@ -34,7 +34,8 @@ consumers that implement the same formats.
 - `preprod-v1/` — scene_index, change_set and front_matter
   (`tools/make_preprod_fixtures.py`): `bible/scene-index.json`, a neutral
   three-scene script's index (a linked set and character, an agent's prop,
-  an unknown name and prop word); `invalid/<what>.json` with
+  an unknown name and prop word); `bible/sync/changes.json`, a change set
+  with one change of each type; `invalid/<what>.json` with
   `invalid/expected.json`.
 
 ## Key facts / gotchas

@@ -20,7 +20,7 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:721`); `check` (`rules.py:784`) walks nested messages
+  in `RULES` (`rules.py:737`); `check` (`rules.py:802`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
@@ -88,7 +88,7 @@ checked strings. Nothing here creates folders or touches files.
   scene key; a parent is an id of the same map; only a wardrobe link names
   an item (the character). A choice accepts text outside its options (the
   free "other").
-- Change rules (`rules.py:588-608`): `time` UTC ISO-8601 ending in `Z` and
+- Change rules (`rules.py:588-618`): `time` UTC ISO-8601 ending in `Z` and
   a real date; `by` kebab-case; `path` a film path; `record` a record id
   when present; a create has `after` only, an update both, a delete
   `before` only.
@@ -103,17 +103,20 @@ checked strings. Nothing here creates folders or touches files.
   their default value last, so the key order would depend on the values
   (changed 2026-10-30; files written by `v0.5.0` read the same, only the
   order differs).
-- Script settings rules (`rules.py:611-668`): Trelby's limits refused, not
+- Script settings rules (`rules.py:622-672`): Trelby's limits refused, not
   clamped (font size 4–72, margins 0–900 mm, paper 50–1000 × 100–1000
   mm, page-break lines 1–30, scene-continued indent −20–80, spacing 0–50
   and 0–20 tenths, indent 0–80, width 5–80, header line 1–5 and offset
   −100–100, empty lines after 0–5, title size 4–288); one style for every
   element; one completion list per element; a PDF font name without
   spaces, non-ASCII or `[]{}()<>/%`.
-- Scene index rules (`rules.py:671-718`): scene numbers in the writer's
+- Scene index rules (`rules.py:675-726`): scene numbers in the writer's
   form, each once, `order` 1..n in list order; `set_id`, a character's and
   a prop's `id` record ids of their kind; pages and lines from 1, last ≥
   first; hashes 64 lower-case hex; names and words not blank.
+- Change set rules (`rules.py:725-734`): `time` as a `Change`'s (`_time`,
+  `rules.py:591`); `from_hash` (absent on a first sync) and `to_hash` 64
+  lower-case hex; each change's scene a scene number.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

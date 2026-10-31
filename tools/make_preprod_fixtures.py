@@ -9,6 +9,7 @@ from the code they test.
 Writes:
 - bible/scene-index.json: the index of a neutral three-scene script, one
   set and one character linked, one prop word unknown.
+- bible/sync/changes.json: a sync's change set, one change of each type.
 - invalid/<what>.json: one broken field each, and invalid/expected.json.
 """
 
@@ -56,6 +57,28 @@ INDEX = {
 }
 
 
+T = "SCENE_CHANGE_TYPE_"
+CHANGES = {
+    "time": "2026-10-31T12:00:00Z",
+    "from_hash": _sha("last accepted index"),
+    "to_hash": _sha("current index"),
+    "changes": [
+        {"type": T + "SCENE_ADDED", "scene": "3"},
+        {"type": T + "SCENE_REMOVED", "scene": "2.A"},
+        {"type": T + "SCENE_MOVED", "scene": "2", "old_value": "2", "new_value": "1"},
+        {"type": T + "HEADING_CHANGED", "scene": "2", "old_value": "EXT. STREET - DAY",
+         "new_value": "EXT. STREET - NIGHT"},
+        {"type": T + "TEXT_CHANGED", "scene": "1"},
+        {"type": T + "CHARACTER_ENTERED", "scene": "1", "new_value": "Bia"},
+        {"type": T + "CHARACTER_LEFT", "scene": "2", "old_value": "Bia"},
+        {"type": T + "PROP_ADDED", "scene": "1", "new_value": "MATCHBOX"},
+        {"type": T + "PROP_REMOVED", "scene": "2", "old_value": "MATCHBOX"},
+        {"type": T + "SET_LINK_CHANGED", "scene": "1", "old_value": "set-w-1",
+         "new_value": "set-w-3"},
+    ],
+}
+
+
 def _write(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -85,6 +108,13 @@ INVALID = {
                               "word is empty"),
     "index-lines-backwards.json": ("SceneIndex", lambda o: o["scenes"][1].update(last_line=2),
                                    "last_line 2 is before first_line 8"),
+    "changes-bad-time.json": ("ChangeSet", lambda o: o.update(time="2026-10-31 12:00"),
+                              "time must be UTC"),
+    "changes-bad-from-hash.json": ("ChangeSet", lambda o: o.update(from_hash="x"),
+                                   "from_hash must be 64"),
+    "changes-bad-scene.json": ("ChangeSet", lambda o: o["changes"][0].update(scene="three"),
+                               "scene must be a scene number"),
+    "changes-type-unset.json": ("ChangeSet", lambda o: o["changes"][0].pop("type"), "type"),
     "index-speaks-unset.json": ("SceneIndex",
                                 lambda o: o["scenes"][1]["characters"][0].pop("speaks"),
                                 "speaks"),
@@ -95,8 +125,9 @@ def main():
     shutil.rmtree(OUT, ignore_errors=True)
     _write(OUT / "bible" / "scene-index.json", INDEX)
     expected = {}
+    _write(OUT / "bible" / "sync" / "changes.json", CHANGES)
     for name, (message, change, error) in INVALID.items():
-        _write(OUT / "invalid" / name, _broken(INDEX, change))
+        _write(OUT / "invalid" / name, _broken(INDEX if message == "SceneIndex" else CHANGES, change))
         expected[name] = {"message": message, "error": error}
     _write(OUT / "invalid" / "expected.json", expected)
 
