@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/StreamSettings_186a1974c92f444f1bbc853569958a27.proto";
+import "harpia_generated/protofiles/ControlSetting_186a1974c92f444f1bbc853569958a27.proto";
+import "harpia_generated/protofiles/Flag_186a1974c92f444f1bbc853569958a27.proto";
+message ControlRequest {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string request_id = 2;
+string serial = 3;
+StreamSettings stream = 4;
+repeated ControlSetting settings = 5;
+Flag want_device_info = 6;
+string reply_endpoint = 10;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 7;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 8;
+string ORIGINATOR_186a1974c92f444f1bbc853569958a27 = 9;
+}

@@ -734,6 +734,11 @@ def _change_set(msg: Message) -> Iterator[str]:
         yield f"to_hash must be 64 lower-case hex digits, got {msg.to_hash!r}"
 
 
+def _title_page(msg: Message) -> Iterator[str]:
+    if any(not a.strip() for a in msg.co_authors):
+        yield "co_authors can't be empty"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -796,6 +801,7 @@ RULES: dict[str, Rule] = {
     "SceneIndex": _scene_index,
     "SceneChange": _scene_change,
     "ChangeSet": _change_set,
+    "TitlePage": _title_page,
 }
 
 

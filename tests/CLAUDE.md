@@ -41,7 +41,8 @@ pass/fail. Nothing is written into the repository.
 - `test_preprod.py` — scene_index (then change_set and front_matter):
   the valid fixtures round-trip byte for byte, each invalid fixture
   refused naming its field, accents kept, an unknown name has no id; a
-  change set holds every change type, `from_hash` may be absent.
+  change set holds every change type, `from_hash` may be absent; a film
+  with the `front-matter` and `source` parts is valid.
 - `test_transport.py` — the ZeroMQ legs (loopback).
 - `test_java.py` — slow: the Java build and a Python ↔ Java exchange.
 - `test_stream_v1.py` — the stream protocol v1 reader against `fixtures/stream-v1/`.

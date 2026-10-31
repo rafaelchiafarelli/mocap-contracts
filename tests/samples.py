@@ -367,7 +367,10 @@ def _preprod_part(name):
     root = Path(__file__).resolve().parents[1] / "fixtures" / "preprod-v1"
     i = mc.from_json(mc.SceneIndex, (root / "bible" / "scene-index.json").read_text())
     c = mc.from_json(mc.ChangeSet, (root / "bible" / "sync" / "changes.json").read_text())
+    fm = mc.from_json(mc.FrontMatter, (root / "settings" / "front-matter.json").read_text())
     return {
+        "FrontMatter": fm, "TitlePage": fm.title, "Overview": fm.overview, "Pitch": fm.pitch,
+        "Argument": fm.argument,
         "ChangeSet": c, "SceneChange": c.changes[3],
         "SceneIndex": i, "SceneEntry": i.scenes[0], "SceneCharacter": i.scenes[0].characters[0],
         "SceneProp": i.scenes[0].props[0],
@@ -460,5 +463,6 @@ SAMPLES = {
         "ScriptStrings", "HeaderLine", "HeaderSettings", "AutoCompletionList", "LocationGroup",
         "TitleString", "TitlePageLayout", "TitlePages")},
     **{n: (lambda n=n: _preprod_part(n)) for n in (
-        "SceneIndex", "SceneEntry", "SceneCharacter", "SceneProp", "ChangeSet", "SceneChange")},
+        "SceneIndex", "SceneEntry", "SceneCharacter", "SceneProp", "ChangeSet", "SceneChange",
+        "FrontMatter", "TitlePage", "Overview", "Pitch", "Argument")},
 }

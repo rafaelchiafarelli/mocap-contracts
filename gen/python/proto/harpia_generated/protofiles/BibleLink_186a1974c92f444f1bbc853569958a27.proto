@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message BibleLink {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string scene = 2;
+optional string item = 3;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 4;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 5;
+string ORIGINATOR = 6;
+}

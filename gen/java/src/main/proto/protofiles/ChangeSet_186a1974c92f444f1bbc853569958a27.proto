@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/SceneChange_186a1974c92f444f1bbc853569958a27.proto";
+message ChangeSet {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string time = 2;
+optional string from_hash = 3;
+string to_hash = 4;
+repeated SceneChange changes = 5;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 6;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 7;
+string ORIGINATOR = 8;
+}

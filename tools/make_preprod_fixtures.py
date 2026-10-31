@@ -10,6 +10,7 @@ Writes:
 - bible/scene-index.json: the index of a neutral three-scene script, one
   set and one character linked, one prop word unknown.
 - bible/sync/changes.json: a sync's change set, one change of each type.
+- settings/front-matter.json: a filled front matter, the argument left out.
 - invalid/<what>.json: one broken field each, and invalid/expected.json.
 """
 
@@ -79,6 +80,18 @@ CHANGES = {
 }
 
 
+ON, OFF = "FLAG_ON", "FLAG_OFF"
+FRONT = {
+    "title": {"title": "THE BLUE CUP", "subtitle": "A short film", "episode": "1",
+              "author": "Ana Example", "co_authors": ["Bia Example", "Cid Example"],
+              "email": "writers@example.com"},
+    "overview": {"include": ON, "cast": ON, "sets": ON, "acts": ON},
+    "pitch": {"include": ON, "pitch": "A cup goes missing at breakfast.",
+              "logline": "A family searches for a blue cup.", "target_audience": "Everyone"},
+    "argument": {"include": OFF, "text": "Ana loses the cup.\n\nBia finds it."},
+}
+
+
 def _write(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -115,6 +128,10 @@ INVALID = {
     "changes-bad-scene.json": ("ChangeSet", lambda o: o["changes"][0].update(scene="three"),
                                "scene must be a scene number"),
     "changes-type-unset.json": ("ChangeSet", lambda o: o["changes"][0].pop("type"), "type"),
+    "front-empty-co-author.json": ("FrontMatter",
+                                   lambda o: o["title"]["co_authors"].append(" "),
+                                   "co_authors can't be empty"),
+    "front-include-unset.json": ("FrontMatter", lambda o: o["pitch"].pop("include"), "include"),
     "index-speaks-unset.json": ("SceneIndex",
                                 lambda o: o["scenes"][1]["characters"][0].pop("speaks"),
                                 "speaks"),
@@ -126,8 +143,10 @@ def main():
     _write(OUT / "bible" / "scene-index.json", INDEX)
     expected = {}
     _write(OUT / "bible" / "sync" / "changes.json", CHANGES)
+    _write(OUT / "settings" / "front-matter.json", FRONT)
     for name, (message, change, error) in INVALID.items():
-        _write(OUT / "invalid" / name, _broken(INDEX if message == "SceneIndex" else CHANGES, change))
+        base = {"SceneIndex": INDEX, "ChangeSet": CHANGES, "FrontMatter": FRONT}[message]
+        _write(OUT / "invalid" / name, _broken(base, change))
         expected[name] = {"message": message, "error": error}
     _write(OUT / "invalid" / "expected.json", expected)
 
