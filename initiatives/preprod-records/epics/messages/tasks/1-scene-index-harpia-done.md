@@ -1,5 +1,7 @@
 ## 1. scene_index.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-31)
+
 - **Depends on:** `v0.6.0`
 - **Contract:**
   - Requires: `SceneIndex` (`bible/scene-index.json`): `script_hash`
