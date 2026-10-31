@@ -1,5 +1,7 @@
 ## 2. change_set.harpia (owner: mocap-writer)
 
+- **Status:** Done (2026-10-31)
+
 - **Depends on:** 1
 - **Contract:**
   - Requires: `ChangeSet` (`bible/sync/<time>-changes.json`): `time`
