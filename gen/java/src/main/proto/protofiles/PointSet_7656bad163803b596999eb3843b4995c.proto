@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message PointSet {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+string name = 2;
+string role = 3;
+string path = 4;
+int64 frames = 5;
+repeated string point_names = 6;
+string STATUS_7656bad163803b596999eb3843b4995c = 7;
+string ERROR_7656bad163803b596999eb3843b4995c = 8;
+string ORIGINATOR = 9;
+}

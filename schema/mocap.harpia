@@ -12,3 +12,4 @@ import "bible.harpia";
 import "change.harpia";
 import "script_settings.harpia";
 import "annotation.harpia";
+import "scene_index.harpia";

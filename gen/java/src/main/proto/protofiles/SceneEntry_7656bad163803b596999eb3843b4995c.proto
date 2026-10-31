@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/SceneCharacter_7656bad163803b596999eb3843b4995c.proto";
+import "protofiles/SceneProp_7656bad163803b596999eb3843b4995c.proto";
+message SceneEntry {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+string scene = 2;
+int32 order = 3;
+string int_ext = 4;
+string location = 5;
+string time_of_day = 6;
+optional string set_id = 7;
+repeated SceneCharacter characters = 8;
+repeated SceneProp props = 9;
+int32 first_page = 10;
+int32 last_page = 11;
+int32 first_line = 12;
+int32 last_line = 13;
+string text_hash = 14;
+string STATUS_7656bad163803b596999eb3843b4995c = 15;
+string ERROR_7656bad163803b596999eb3843b4995c = 16;
+string ORIGINATOR = 17;
+}

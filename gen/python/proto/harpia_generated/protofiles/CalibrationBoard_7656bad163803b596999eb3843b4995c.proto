@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message CalibrationBoard {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+int32 squares_x = 2;
+int32 squares_y = 3;
+float square_length_mm = 4;
+float marker_length_mm = 5;
+string aruco_dictionary = 6;
+float measured_square_length_mm = 7;
+string STATUS_7656bad163803b596999eb3843b4995c = 8;
+string ERROR_7656bad163803b596999eb3843b4995c = 9;
+string ORIGINATOR = 10;
+}

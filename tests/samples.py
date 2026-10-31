@@ -362,6 +362,16 @@ def _script_part(name):
     }[name]
 
 
+def _preprod_part(name):
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / "fixtures" / "preprod-v1"
+    i = mc.from_json(mc.SceneIndex, (root / "bible" / "scene-index.json").read_text())
+    return {
+        "SceneIndex": i, "SceneEntry": i.scenes[0], "SceneCharacter": i.scenes[0].characters[0],
+        "SceneProp": i.scenes[0].props[0],
+    }[name]
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -447,4 +457,6 @@ SAMPLES = {
         "ScriptSettings", "PageSettings", "TextStyle", "ElementStyle", "PdfFont", "PdfSettings",
         "ScriptStrings", "HeaderLine", "HeaderSettings", "AutoCompletionList", "LocationGroup",
         "TitleString", "TitlePageLayout", "TitlePages")},
+    **{n: (lambda n=n: _preprod_part(n)) for n in (
+        "SceneIndex", "SceneEntry", "SceneCharacter", "SceneProp")},
 }

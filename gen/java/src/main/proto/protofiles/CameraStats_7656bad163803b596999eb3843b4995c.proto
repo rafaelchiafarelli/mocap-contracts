@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message CameraStats {
+int32 ID_7656bad163803b596999eb3843b4995c = 1;
+string serial = 2;
+int64 sensor_ns = 3;
+float camera_fps = 4;
+float encoder_fps = 5;
+int64 dropped_frames = 6;
+float cpu_percent = 7;
+float battery_temp_c = 8;
+int32 thermal_status = 9;
+string STATUS_7656bad163803b596999eb3843b4995c = 10;
+string ERROR_7656bad163803b596999eb3843b4995c = 11;
+string ORIGINATOR_7656bad163803b596999eb3843b4995c = 12;
+}
