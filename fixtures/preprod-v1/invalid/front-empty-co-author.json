@@ -1,0 +1,30 @@
+{
+  "title": {
+    "title": "THE BLUE CUP",
+    "subtitle": "A short film",
+    "episode": "1",
+    "author": "Ana Example",
+    "co_authors": [
+      "Bia Example",
+      "Cid Example",
+      " "
+    ],
+    "email": "writers@example.com"
+  },
+  "overview": {
+    "include": "FLAG_ON",
+    "cast": "FLAG_ON",
+    "sets": "FLAG_ON",
+    "acts": "FLAG_ON"
+  },
+  "pitch": {
+    "include": "FLAG_ON",
+    "pitch": "A cup goes missing at breakfast.",
+    "logline": "A family searches for a blue cup.",
+    "target_audience": "Everyone"
+  },
+  "argument": {
+    "include": "FLAG_OFF",
+    "text": "Ana loses the cup.\n\nBia finds it."
+  }
+}

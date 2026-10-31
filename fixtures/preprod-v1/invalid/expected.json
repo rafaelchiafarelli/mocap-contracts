@@ -1,0 +1,62 @@
+{
+  "index-bad-scene.json": {
+    "message": "SceneIndex",
+    "error": "scene must be a scene number"
+  },
+  "index-scene-twice.json": {
+    "message": "SceneIndex",
+    "error": "each scene once"
+  },
+  "index-order-gap.json": {
+    "message": "SceneIndex",
+    "error": "order must run"
+  },
+  "index-bad-hash.json": {
+    "message": "SceneIndex",
+    "error": "text_hash must be 64"
+  },
+  "index-set-not-a-set.json": {
+    "message": "SceneIndex",
+    "error": "id must be a set id"
+  },
+  "index-character-bad-id.json": {
+    "message": "SceneIndex",
+    "error": "id must be a character id"
+  },
+  "index-empty-prop.json": {
+    "message": "SceneIndex",
+    "error": "word is empty"
+  },
+  "index-lines-backwards.json": {
+    "message": "SceneIndex",
+    "error": "last_line 2 is before first_line 8"
+  },
+  "changes-bad-time.json": {
+    "message": "ChangeSet",
+    "error": "time must be UTC"
+  },
+  "changes-bad-from-hash.json": {
+    "message": "ChangeSet",
+    "error": "from_hash must be 64"
+  },
+  "changes-bad-scene.json": {
+    "message": "ChangeSet",
+    "error": "scene must be a scene number"
+  },
+  "changes-type-unset.json": {
+    "message": "ChangeSet",
+    "error": "type"
+  },
+  "front-empty-co-author.json": {
+    "message": "FrontMatter",
+    "error": "co_authors can't be empty"
+  },
+  "front-include-unset.json": {
+    "message": "FrontMatter",
+    "error": "include"
+  },
+  "index-speaks-unset.json": {
+    "message": "SceneIndex",
+    "error": "speaks"
+  }
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/Flag_186a1974c92f444f1bbc853569958a27.proto";
+message TextStyle {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+Flag caps = 2;
+Flag bold = 3;
+Flag italic = 4;
+Flag underlined = 5;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 6;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 7;
+string ORIGINATOR = 8;
+}
