@@ -1,0 +1,37 @@
+// The change set of a Sync to spec owned by mocap-writer
+// bible slash sync slash its time changes json lists what changed in the script
+// between the last accepted scene index and the current one
+// Scenes are matched by scene number never by heading or position
+import "common.harpia";
+
+// What changed in a scene
+enum SceneChangeType {
+    SCENE_CHANGE_TYPE_UNSET = 0;
+    SCENE_CHANGE_TYPE_SCENE_ADDED;
+    SCENE_CHANGE_TYPE_SCENE_REMOVED;
+    SCENE_CHANGE_TYPE_SCENE_MOVED;
+    SCENE_CHANGE_TYPE_HEADING_CHANGED;
+    SCENE_CHANGE_TYPE_TEXT_CHANGED;
+    SCENE_CHANGE_TYPE_CHARACTER_ENTERED;
+    SCENE_CHANGE_TYPE_CHARACTER_LEFT;
+    SCENE_CHANGE_TYPE_PROP_ADDED;
+    SCENE_CHANGE_TYPE_PROP_REMOVED;
+    SCENE_CHANGE_TYPE_SET_LINK_CHANGED;
+}
+
+// One change of one scene with its old and new value when it has one
+message SceneChange {
+    required SceneChangeType type;
+    required string scene;
+    optional string old_value;
+    optional string new_value;
+};
+
+// changes json of one sync and the two scene index hashes it was made from
+// from hash is empty on the first sync and time is UTC in ISO 8601 with a Z
+message ChangeSet {
+    required string time;
+    optional string from_hash;
+    required string to_hash;
+    repeteable SceneChange changes;
+};

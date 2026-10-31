@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "protofiles/errorCode.proto";
+import "protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "protofiles/PdfFont_e51d6d03132b4baa0ced72cde01af9d0.proto";
+
+message PdfFont_Message {
+    PdfFont msg = 1;
+}
+//message for the standard functions 
+message PdfFont_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message PdfFont_ID {
+    int32 id = 1;
+}
+message PdfFont_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service PdfFont_Service {
+    rpc heartBeat(PdfFont_HeartBeat) returns (PdfFont_HeartBeat) {}
+    rpc streamSrc(PdfFont_Stream ) returns (stream PdfFont_Message) {}
+    rpc pullByID(PdfFont_ID) returns (PdfFont_Message) {}
+    rpc push(PdfFont_Message) returns (errorCode) {}
+}

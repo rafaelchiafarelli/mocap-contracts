@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/FieldType_e51d6d03132b4baa0ced72cde01af9d0.proto";
+message CatalogField {
+int32 ID_e51d6d03132b4baa0ced72cde01af9d0 = 1;
+string key = 2;
+string label = 3;
+FieldType type = 4;
+repeated string options = 5;
+optional string unit = 6;
+optional string link_kind = 7;
+string STATUS_e51d6d03132b4baa0ced72cde01af9d0 = 8;
+string ERROR_e51d6d03132b4baa0ced72cde01af9d0 = 9;
+string ORIGINATOR = 10;
+}

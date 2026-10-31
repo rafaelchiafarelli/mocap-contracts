@@ -31,6 +31,22 @@
     "message": "SceneIndex",
     "error": "last_line 2 is before first_line 8"
   },
+  "changes-bad-time.json": {
+    "message": "ChangeSet",
+    "error": "time must be UTC"
+  },
+  "changes-bad-from-hash.json": {
+    "message": "ChangeSet",
+    "error": "from_hash must be 64"
+  },
+  "changes-bad-scene.json": {
+    "message": "ChangeSet",
+    "error": "scene must be a scene number"
+  },
+  "changes-type-unset.json": {
+    "message": "ChangeSet",
+    "error": "type"
+  },
   "index-speaks-unset.json": {
     "message": "SceneIndex",
     "error": "speaks"

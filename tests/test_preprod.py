@@ -10,7 +10,7 @@ from mocap_contracts import ContractError, from_json, to_json
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "preprod-v1"
 EXPECTED = json.loads((FIXTURES / "invalid" / "expected.json").read_text())
-VALID = [("SceneIndex", "bible/scene-index.json")]
+VALID = [("SceneIndex", "bible/scene-index.json"), ("ChangeSet", "bible/sync/changes.json")]
 
 
 @pytest.mark.parametrize("message, rel", VALID)
@@ -38,3 +38,11 @@ def test_an_unknown_name_has_no_id_and_names_keep_accents():
     back = from_json(mc.SceneIndex, to_json(s))
     assert back.scenes[1].characters[0].name == "Bia Conceição"
     assert not back.scenes[1].characters[0].HasField("id")
+
+
+def test_a_first_sync_has_no_from_hash_and_every_type_is_there():
+    c = from_json(mc.ChangeSet, (FIXTURES / "bible" / "sync" / "changes.json").read_text())
+    names = {mc.SceneChangeType.Name(x.type) for x in c.changes}
+    assert names == set(mc.SceneChangeType.keys()) - {"SCENE_CHANGE_TYPE_UNSET"}
+    c.ClearField("from_hash")
+    assert not from_json(mc.ChangeSet, to_json(c)).HasField("from_hash")

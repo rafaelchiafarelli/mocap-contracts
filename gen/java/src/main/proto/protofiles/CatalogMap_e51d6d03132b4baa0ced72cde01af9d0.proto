@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/BibleMap_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "protofiles/CatalogGroup_e51d6d03132b4baa0ced72cde01af9d0.proto";
+message CatalogMap {
+int32 ID_e51d6d03132b4baa0ced72cde01af9d0 = 1;
+BibleMap bible_map = 2;
+repeated CatalogGroup groups = 3;
+string STATUS_e51d6d03132b4baa0ced72cde01af9d0 = 4;
+string ERROR_e51d6d03132b4baa0ced72cde01af9d0 = 5;
+string ORIGINATOR = 6;
+}

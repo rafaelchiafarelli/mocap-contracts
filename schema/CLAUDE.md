@@ -45,6 +45,10 @@
   `SceneEntry` per numbered scene: number, order, heading parts, set id,
   `SceneCharacter`s with `speaks`, `SceneProp`s, page and line range, the
   scene text's hash), read by the pre-production agents.
+- `Include/change_set.harpia` — a Sync to spec's change set (owner:
+  mocap-writer): `ChangeSet` (`bible/sync/<time>-changes.json`: time, the
+  two index hashes, the changes), `SceneChange` (type, scene, old and new
+  value), enum `SceneChangeType`.
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 

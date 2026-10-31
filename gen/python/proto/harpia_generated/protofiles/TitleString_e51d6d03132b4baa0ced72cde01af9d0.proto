@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/TextAlign_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/Flag_e51d6d03132b4baa0ced72cde01af9d0.proto";
+import "harpia_generated/protofiles/TitleFont_e51d6d03132b4baa0ced72cde01af9d0.proto";
+message TitleString {
+int32 ID_e51d6d03132b4baa0ced72cde01af9d0 = 1;
+repeated string items = 2;
+float x_mm = 3;
+float y_mm = 4;
+int32 size_pt = 5;
+TextAlign align = 6;
+Flag bold = 7;
+Flag italic = 8;
+Flag underlined = 9;
+TitleFont font = 10;
+string STATUS_e51d6d03132b4baa0ced72cde01af9d0 = 11;
+string ERROR_e51d6d03132b4baa0ced72cde01af9d0 = 12;
+string ORIGINATOR = 13;
+}
