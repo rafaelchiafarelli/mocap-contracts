@@ -40,6 +40,21 @@
   `AnnotationAnchor`, `ShotCounters` (`annotations/shot-counters.json`),
   the catalog messages `AnnotationCatalog` / `CatalogKind` (reusing
   `CatalogGroup`), enum `AnnotationKind`; values are `BibleValue`s.
+- `Include/scene_index.harpia` — the scene index (owner: mocap-writer):
+  `SceneIndex` (`bible/scene-index.json`: the script's hash and one
+  `SceneEntry` per numbered scene: number, order, heading parts, set id,
+  `SceneCharacter`s with `speaks`, `SceneProp`s, page and line range, the
+  scene text's hash), read by the pre-production agents.
+- `Include/change_set.harpia` — a Sync to spec's change set (owner:
+  mocap-writer): `ChangeSet` (`bible/sync/<time>-changes.json`: time, the
+  two index hashes, the changes), `SceneChange` (type, scene, old and new
+  value), enum `SceneChangeType`.
+- `Include/front_matter.harpia` — a film's front matter (owner:
+  mocap-writer): `FrontMatter` (`settings/front-matter.json`, part
+  `front-matter`) with `TitlePage` (title, subtitle, episode, author,
+  co-authors, e-mail), `Overview` (include and what it computes: cast,
+  sets, acts), `Pitch` (include, pitch, logline, target audience),
+  `Argument` (include, text).
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 

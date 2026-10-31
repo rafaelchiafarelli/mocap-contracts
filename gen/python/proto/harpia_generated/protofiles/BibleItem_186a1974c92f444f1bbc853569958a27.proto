@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/BibleValue_186a1974c92f444f1bbc853569958a27.proto";
+import "harpia_generated/protofiles/BibleLink_186a1974c92f444f1bbc853569958a27.proto";
+message BibleItem {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string id = 2;
+string name = 3;
+repeated string aliases = 4;
+optional string parent = 5;
+repeated BibleValue values = 6;
+repeated BibleLink links = 7;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 8;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 9;
+string ORIGINATOR = 10;
+}
