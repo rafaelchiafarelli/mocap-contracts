@@ -49,6 +49,12 @@
   mocap-writer): `ChangeSet` (`bible/sync/<time>-changes.json`: time, the
   two index hashes, the changes), `SceneChange` (type, scene, old and new
   value), enum `SceneChangeType`.
+- `Include/front_matter.harpia` — a film's front matter (owner:
+  mocap-writer): `FrontMatter` (`settings/front-matter.json`, part
+  `front-matter`) with `TitlePage` (title, subtitle, episode, author,
+  co-authors, e-mail), `Overview` (include and what it computes: cast,
+  sets, acts), `Pitch` (include, pitch, logline, target audience),
+  `Argument` (include, text).
 - `schema_registry/mocap/*.fieldmap` — frozen wire numbers, one per message;
   never delete.
 

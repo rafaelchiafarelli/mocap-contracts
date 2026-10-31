@@ -22,7 +22,7 @@
 - `make_annotation_fixtures.py` — builds `fixtures/annotation-v1/`
   (`ANNOTATIONS`, `COUNTERS`, `INVALID`).
 - `make_preprod_fixtures.py` — builds `fixtures/preprod-v1/`: `INDEX`
-  (hashes computed from the neutral `SCENES`), `CHANGES` and `INVALID`.
+  (hashes computed from the neutral `SCENES`), `CHANGES`, `FRONT` and `INVALID`.
 - `make_script_fixtures.py` — builds `fixtures/script-v1/`: `DEFAULTS`,
   the writer's defaults as of 2026-10-30, in declared order, and
   `INVALID`.

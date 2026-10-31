@@ -29,6 +29,7 @@ It runs nowhere on its own. It's a library installed into every Python repo
 | `annotation.harpia` | mocap-writer | a script's notes and scene annotations, anchored by scene, element and quote, with values checked against the annotation catalog; shot numbers per scene |
 | `scene_index.harpia` | mocap-writer | a script's scene index for the pre-production agents: per numbered scene its heading parts, set, characters and prop words (bible ids when known), page and line range, text hash |
 | `change_set.harpia` | mocap-writer | what a Sync to spec found changed between two scene indexes, scene by scene, matched by scene number |
+| `front_matter.harpia` | mocap-writer | a film's front matter: the title page and the overview, pitch and argument pages, each with its include flag |
 | `film.harpia` | mocap-writer | a film root's `film.json` (parts and their owners, id spaces), the `ids/<space>.json` counters, the record kinds |
 
 It also owns:

@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/Flag_186a1974c92f444f1bbc853569958a27.proto";
+import "harpia_generated/protofiles/CatalogField_186a1974c92f444f1bbc853569958a27.proto";
+message CatalogGroup {
+int32 ID_186a1974c92f444f1bbc853569958a27 = 1;
+string key = 2;
+string label = 3;
+Flag per_scene = 4;
+string department = 5;
+repeated CatalogField fields = 6;
+string STATUS_186a1974c92f444f1bbc853569958a27 = 7;
+string ERROR_186a1974c92f444f1bbc853569958a27 = 8;
+string ORIGINATOR = 9;
+}

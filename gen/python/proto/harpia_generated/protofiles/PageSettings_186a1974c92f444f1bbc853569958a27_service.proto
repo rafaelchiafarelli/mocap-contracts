@@ -1,0 +1,37 @@
+syntax = "proto3";
+package frameworkProtos;
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+//standard protofile with error code and standard heartBeat messages
+import "harpia_generated/protofiles/errorCode.proto";
+import "harpia_generated/protofiles/heartBeat.proto";
+
+//user imports from harpia process
+import "harpia_generated/protofiles/PageSettings_186a1974c92f444f1bbc853569958a27.proto";
+
+message PageSettings_Message {
+    PageSettings msg = 1;
+}
+//message for the standard functions 
+message PageSettings_HeartBeat {
+    heartBeat hb = 1;
+}
+
+//message for the pullByID function
+message PageSettings_ID {
+    int32 id = 1;
+}
+message PageSettings_Stream {
+    int32 id = 1;
+    string name = 2;
+    // pagination (spec: "pagination" field modifier): limit <= 0 means
+    // unbounded (return everything, matching pre-pagination behavior).
+    int32 offset = 3;
+    int32 limit = 4;
+}
+service PageSettings_Service {
+    rpc heartBeat(PageSettings_HeartBeat) returns (PageSettings_HeartBeat) {}
+    rpc streamSrc(PageSettings_Stream ) returns (stream PageSettings_Message) {}
+    rpc pullByID(PageSettings_ID) returns (PageSettings_Message) {}
+    rpc push(PageSettings_Message) returns (errorCode) {}
+}

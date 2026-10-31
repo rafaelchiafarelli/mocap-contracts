@@ -47,6 +47,14 @@
     "message": "ChangeSet",
     "error": "type"
   },
+  "front-empty-co-author.json": {
+    "message": "FrontMatter",
+    "error": "co_authors can't be empty"
+  },
+  "front-include-unset.json": {
+    "message": "FrontMatter",
+    "error": "include"
+  },
   "index-speaks-unset.json": {
     "message": "SceneIndex",
     "error": "speaks"
