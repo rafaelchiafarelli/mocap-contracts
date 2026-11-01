@@ -1,6 +1,11 @@
 ## 2. The SQLite access in the package
 
 - **Depends on:** 1
+- **Blocked (2026-10-31): waits for Harpia.** The pre-work found two gaps
+  in V5's SQLite DAOs: the key column `ID_<hash>` breaks every film
+  database when the root `.harpia` changes, and an absent optional field
+  reads back present and empty. Rafael chose to wait for a Harpia fix over
+  working around it here: [`docs/harpia-handoff.md`](../../../../../docs/harpia-handoff.md).
 - **Pre-work:** check that Harpia V5's Python target emits the CRUDL code
   (`harpia_runtime.db` and one DAO per table message, `PyDatabase/`) for
   the three messages, nested `BibleValue` included. If it can't express

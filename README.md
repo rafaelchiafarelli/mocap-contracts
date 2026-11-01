@@ -73,6 +73,7 @@ crosses repositories always starts here, and other repos pin a released tag.
 | `gen/python/` | Harpia's generated Python project | no, regenerate |
 | `mocap_contracts/messages.py` | re-exports every message under its declared name | no, regenerate |
 | `mocap_contracts/rules.py` | per-message rules `required` can't express (e.g. a STREAM camera needs its host and four ports) | yes, with the message's task |
+| `docs/harpia-handoff.md` | what this repo needs from Harpia (SQLite key column, optional fields) before `v0.8.0` | yes, until Harpia answers |
 | `third_party/harpia/` | Harpia, pinned to `V4` (V5 from messages-v0/7; same generated code) (black box) | no |
 
 ## Develop
