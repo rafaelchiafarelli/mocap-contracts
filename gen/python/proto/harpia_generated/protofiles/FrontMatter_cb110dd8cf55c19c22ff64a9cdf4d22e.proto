@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/TitlePage_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+import "harpia_generated/protofiles/Overview_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+import "harpia_generated/protofiles/Pitch_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+import "harpia_generated/protofiles/Argument_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message FrontMatter {
+int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+TitlePage title = 2;
+Overview overview = 3;
+Pitch pitch = 4;
+Argument argument = 5;
+string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 6;
+string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 7;
+string ORIGINATOR = 8;
+}

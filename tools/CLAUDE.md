@@ -2,7 +2,7 @@
 
 **Role:** scripts a maintainer runs; nothing imports them.
 
-**Entry points:** `make gen` (`harpia_gen.py`); the five fixture builders.
+**Entry points:** `make gen` (`harpia_gen.py`); the `make_*_fixtures.py` builders.
 
 **Inputs → Outputs:** `schema/` → generated code; known values → `fixtures/`.
 
@@ -26,6 +26,8 @@
 - `make_script_fixtures.py` — builds `fixtures/script-v1/`: `DEFAULTS`,
   the writer's defaults as of 2026-10-30, in declared order, and
   `INVALID`.
+- `make_workflow_fixtures.py` — builds `fixtures/workflow-v1/`: `PROPOSAL`,
+  `REVIEW`, `REQUEST` (one record of each table as JSON) and `INVALID`.
 
 ## Key facts / gotchas
 

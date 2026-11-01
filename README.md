@@ -31,6 +31,7 @@ It runs nowhere on its own. It's a library installed into every Python repo
 | `change_set.harpia` | mocap-writer | what a Sync to spec found changed between two scene indexes, scene by scene, matched by scene number |
 | `front_matter.harpia` | mocap-writer | a film's front matter: the title page and the overview, pitch and argument pages, each with its include flag |
 | `film.harpia` | mocap-writer | a film root's `film.json` (parts and their owners, id spaces), the `ids/<space>.json` counters, the record kinds |
+| `workflow.harpia` | shared (per table) | the film's workflow database tables: an agent's `Proposal` for a bible value, the creator's `Review` of it, a `Request` between agents or to the creator |
 
 It also owns:
 - **the session folder layout** (`mocap_contracts.layout`): where every file

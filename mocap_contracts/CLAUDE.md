@@ -20,13 +20,13 @@ checked strings. Nothing here creates folders or touches files.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:742`); `check` (`rules.py:808`) walks nested messages
+  in `RULES` (`rules.py:804`); `check` (`rules.py:873`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
   `ID_PATTERN` (`layout.py:23`) for session, take and role ids.
 - `film.py` — the film root (film.harpia): `KINDS` read from `RecordKind`
-  (`film.py:25`), `RECORD_ID` (`film.py:42`), `SPACE_CODE` (`film.py:41`),
+  (`film.py:25`, `request` added 2026-10-31), `RECORD_ID` (`film.py:42`), `SPACE_CODE` (`film.py:41`),
   `WRITER`, `WRITER_SPACE`, `PART_NAMES` and `PROPOSALS_PREFIX`
   (`film.py:34-37`: `script`, `settings`, `bible`, `annotations`, `history`,
   `front-matter`, `source`), `OWNER` (`film.py:40`), `FORMAT_VERSION`, `FILM_FILE`,
@@ -111,7 +111,7 @@ checked strings. Nothing here creates folders or touches files.
   −100–100, empty lines after 0–5, title size 4–288); one style for every
   element; one completion list per element; a PDF font name without
   spaces, non-ASCII or `[]{}()<>/%`.
-- Scene index rules (`rules.py:675-726`): scene numbers in the writer's
+- Scene index rules (`rules.py:675-722`): scene numbers in the writer's
   form, each once, `order` 1..n in list order; `set_id`, a character's and
   a prop's `id` record ids of their kind; pages and lines from 1, last ≥
   first; hashes 64 lower-case hex; names and words not blank.
@@ -120,6 +120,19 @@ checked strings. Nothing here creates folders or touches files.
   lower-case hex; each change's scene a scene number.
 - Front matter rules (`rules.py:737`): no blank co-author; every text
   may be empty (not filled in), every `include` and list flag set.
+- Workflow rules (`rules.py:742-801`, workflow.harpia): a proposal's id is
+  `proposal-…`, its item a bible item's id, its value checked against that
+  map's catalog fields (`_values`) with state `VALUE_STATE_PROPOSAL`, `by`
+  an agent (never `creator` or `writer`, `_agent`, `rules.py:745`), source
+  a film path, `change_set` a plain `.json` file name; a review names a
+  proposal id, `by` is `creator`, `text` on an edited review and only
+  there; a request's id is `request-…`, `from` an agent, `to` an agent or
+  `creator` and not the sender, items record ids, scenes scene numbers,
+  `what` not blank, source a film path, no `answer` or `answered_by`
+  while open. `from` is a Python keyword: read it with `getattr(msg,
+  "from")`. Rules see one record only: that a proposal's or request's
+  space belongs to its agent and that a proposal has one review need the
+  database (workflow/2).
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

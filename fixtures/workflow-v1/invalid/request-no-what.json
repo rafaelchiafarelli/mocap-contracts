@@ -1,0 +1,19 @@
+{
+  "id": "request-pcp-1",
+  "from": "props-continuity-planner",
+  "to": "creator",
+  "items": [
+    "prop-pcp-1",
+    "character-w-1"
+  ],
+  "scenes": [
+    "1",
+    "2"
+  ],
+  "what": " ",
+  "source": "analysis/props-continuity.md",
+  "time": "2026-10-31T12:05:00Z",
+  "status": "REQUEST_STATUS_DONE",
+  "answer": "Ana takes it with her.",
+  "answered_by": "creator"
+}

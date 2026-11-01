@@ -13,8 +13,9 @@ from samples import id_counters
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "film-v1"
 EXPECTED = json.loads((FIXTURES / "invalid" / "expected.json").read_text())
 
-# The regex as written in mocap-writer file-format/layout/1 (Rafael, 2026-10-26).
-LAYOUT_1_REGEX = r"^(set|character|prop|wardrobe|annotation|proposal)-[a-z][a-z0-9]{0,7}-[1-9][0-9]*$"
+# The regex as written in mocap-writer file-format/layout/1 (Rafael, 2026-10-26),
+# plus the kind request (workflow-records workflow/1, 2026-10-31).
+LAYOUT_1_REGEX = r"^(set|character|prop|wardrobe|annotation|proposal|request)-[a-z][a-z0-9]{0,7}-[1-9][0-9]*$"
 
 
 @pytest.mark.parametrize("rel, cls", [
@@ -73,7 +74,8 @@ def test_a_new_space_has_no_counters_yet():
 # ---------------------------------------------------------------- ids
 
 def test_kinds_come_from_the_schema():
-    assert film.KINDS == ("set", "character", "prop", "wardrobe", "annotation", "proposal")
+    assert film.KINDS == ("set", "character", "prop", "wardrobe", "annotation", "proposal",
+                          "request")
 
 
 def test_record_id_regex_is_the_layout_1_one():
