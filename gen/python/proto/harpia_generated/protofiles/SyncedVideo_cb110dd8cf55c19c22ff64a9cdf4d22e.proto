@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message SyncedVideo {
+int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+string role = 2;
+string path = 3;
+string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 4;
+string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 5;
+string ORIGINATOR = 6;
+}

@@ -39,6 +39,12 @@ consumers that implement the same formats.
   front matter with the argument left out; `invalid/<what>.json` with
   `invalid/expected.json`.
 
+- `workflow-v1/` — workflow.harpia (`tools/make_workflow_fixtures.py`):
+  one record of each table as JSON: `proposal.json` (an agent's proposal
+  for `prop-pcp-1` of `bible-v1/`), `review.json` (the creator's edited
+  review of it), `request.json` (from the agent to the creator, answered);
+  `invalid/<what>.json` with `invalid/expected.json`.
+
 ## Key facts / gotchas
 
 - The valid film fixtures are byte-for-byte what `to_json` writes
@@ -49,4 +55,5 @@ consumers that implement the same formats.
 ## Touchpoints
 
 - `tests/test_stream_v1.py`, `tests/test_film.py`, `tests/test_bible.py`,
-  `tests/test_script_settings.py`, `tests/test_annotation.py`.
+  `tests/test_script_settings.py`, `tests/test_annotation.py`,
+  `tests/test_workflow.py`.

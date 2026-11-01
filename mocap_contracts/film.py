@@ -21,7 +21,7 @@ from mocap_contracts.messages import RecordKind
 FORMAT_VERSION = 1
 FILM_FILE = "film.json"
 
-# The kind words, in schema order: set, character, prop, wardrobe, annotation, proposal.
+# The kind words, in schema order: set, character, prop, wardrobe, annotation, proposal, request.
 KINDS = tuple(
     name.removeprefix("RECORD_KIND_").lower()
     for name in RecordKind.keys()

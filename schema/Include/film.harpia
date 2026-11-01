@@ -12,6 +12,7 @@ enum RecordKind {
     RECORD_KIND_WARDROBE;
     RECORD_KIND_ANNOTATION;
     RECORD_KIND_PROPOSAL;
+    RECORD_KIND_REQUEST;
 }
 
 // The program and version that last wrote film json
