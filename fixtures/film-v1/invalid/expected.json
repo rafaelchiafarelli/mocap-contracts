@@ -47,6 +47,18 @@
     "message": "Film",
     "error": "Film: duplicate part names ['bible']"
   },
+  "part-shared-elsewhere.json": {
+    "message": "Film",
+    "error": "Film.parts[5]: the workflow part, and only that part, is owned by 'shared'"
+  },
+  "part-workflow-owned.json": {
+    "message": "Film",
+    "error": "Film.parts[6]: the workflow part, and only that part, is owned by 'shared'"
+  },
+  "space-owned-by-shared.json": {
+    "message": "Film",
+    "error": "Film.spaces[1]: 'shared' owns the workflow part only"
+  },
   "space-bad-code.json": {
     "message": "Film",
     "error": "Film.spaces[1]: code must be"

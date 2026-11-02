@@ -1,0 +1,18 @@
+{
+  "id": "request-pcp-1",
+  "from": "props-continuity-planner",
+  "to": "creator",
+  "items": [
+    "prop-pcp-1",
+    "character-w-1"
+  ],
+  "scenes": [
+    "1a"
+  ],
+  "what": "Who keeps the cup between scenes 1 and 2?",
+  "source": "analysis/props-continuity.md",
+  "time": "2026-10-31T12:05:00Z",
+  "status": "REQUEST_STATUS_DONE",
+  "answer": "Ana takes it with her.",
+  "answered_by": "creator"
+}

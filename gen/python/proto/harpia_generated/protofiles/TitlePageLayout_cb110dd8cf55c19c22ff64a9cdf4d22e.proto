@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/TitleString_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message TitlePageLayout {
+int32 HARPIA_ID = 1;
+repeated TitleString strings = 2;
+string HARPIA_STATUS = 3;
+string HARPIA_ERROR = 4;
+string HARPIA_ORIGINATOR = 5;
+}

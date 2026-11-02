@@ -363,6 +363,8 @@ def _film_part(msg: Message) -> Iterator[str]:
         yield "owner is empty"
     elif not film.OWNER.fullmatch(msg.owner):
         yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
+    elif (msg.name == film.WORKFLOW_PART) != (msg.owner == film.SHARED):
+        yield f"the {film.WORKFLOW_PART} part, and only that part, is owned by {film.SHARED!r}, got {msg.name!r} owned by {msg.owner!r}"
     if problem := film.path_problem(msg.path):
         yield problem
     elif msg.path == film.FILM_FILE or film.segments(msg.path)[0] == "ids":
@@ -383,7 +385,7 @@ def _film(msg: Message) -> Iterator[str]:
             if a[:len(b)] == b or b[:len(a)] == a:
                 yield f"parts {name!r} and {other!r}: one path is inside the other"
     if any(not film.SPACE_CODE.fullmatch(s.code) or not film.OWNER.fullmatch(s.owner)
-           for s in msg.spaces):
+           or s.owner == film.SHARED for s in msg.spaces):
         return  # the space itself names its broken field
     names = {p.name for p in msg.parts}
     spaces = {s.code: s.owner for s in msg.spaces}
@@ -398,7 +400,7 @@ def _film(msg: Message) -> Iterator[str]:
                 yield f"part {p.name!r}: no space {code!r}"
     owners = set(spaces.values())
     if bad := sorted({p.owner for p in msg.parts
-                          if film.OWNER.fullmatch(p.owner) and p.owner != film.WRITER} - owners):
+                          if film.OWNER.fullmatch(p.owner) and p.owner not in (film.WRITER, film.SHARED)} - owners):
         yield f"parts: owners {bad} have no space"
 
 
@@ -414,6 +416,8 @@ def _id_space(msg: Message) -> Iterator[str]:
         yield "owner is empty"
     elif not film.OWNER.fullmatch(msg.owner):
         yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
+    elif msg.owner == film.SHARED:
+        yield f"{film.SHARED!r} owns the workflow part only, never a space"
 
 
 def _id_counters(msg: Message) -> Iterator[str]:
@@ -739,6 +743,68 @@ def _title_page(msg: Message) -> Iterator[str]:
         yield "co_authors can't be empty"
 
 
+_PEOPLE = ("creator", film.WRITER)
+
+
+def _agent(name: str, field: str) -> Iterator[str]:
+    if not film.OWNER.fullmatch(name) or name in _PEOPLE:
+        yield f"{field} must be an agent name in kebab-case, got {name!r}"
+
+
+def _proposal(msg: Message) -> Iterator[str]:
+    yield from _ref(msg.id, "proposal")
+    yield from _time(msg.time)
+    if not film.RECORD_ID.fullmatch(msg.item) or not (map_ := bible.map_of(msg.item)):
+        yield f"item must be a record id of a map {list(bible.MAPS)}, got {msg.item!r}"
+    else:
+        yield from (f"value: {p.removeprefix('values[0]: ')}"
+                    for p in _values([msg.value], bible.fields(map_), map_))
+    if _enum_name(msg.value, "state") != "VALUE_STATE_PROPOSAL":
+        yield f"value: state must be VALUE_STATE_PROPOSAL, got {_enum_name(msg.value, 'state')}"
+    yield from (f"value: {p}" for p in _agent(msg.value.by, "by"))
+    if problem := film.path_problem(msg.value.source):
+        yield f"value: source is the memo's film path: {problem}"
+    if msg.HasField("change_set"):
+        if problem := film.path_problem(msg.change_set):
+            yield f"change_set: {problem}"
+        elif "/" in msg.change_set or not msg.change_set.endswith(".json"):
+            yield f"change_set is a bible/sync/ file name, got {msg.change_set!r}"
+
+
+def _review(msg: Message) -> Iterator[str]:
+    yield from _ref(msg.proposal, "proposal")
+    yield from _time(msg.time)
+    if msg.by != "creator":
+        yield f"by must be 'creator', got {msg.by!r}"
+    edited = _enum_name(msg, "outcome") == "REVIEW_OUTCOME_EDITED"
+    if edited != msg.HasField("text"):
+        yield "an edited review, and only an edited one, has text"
+
+
+def _request(msg: Message) -> Iterator[str]:
+    sender, to = getattr(msg, "from"), msg.to
+    yield from _ref(msg.id, "request")
+    yield from _time(msg.time)
+    yield from _agent(sender, "from")
+    if to != "creator":
+        yield from (f"{p} or 'creator'" for p in _agent(to, "to"))
+    if to == sender:
+        yield f"to can't be the sender {sender!r}"
+    if bad := [i for i in msg.items if not film.RECORD_ID.fullmatch(i)]:
+        yield f"items must be record ids, got {bad}"
+    if bad := [s for s in msg.scenes if not bible.SCENE.fullmatch(s)]:
+        yield f"scenes must be scene numbers like 12 or 12.A, got {bad}"
+    if not msg.what.strip():
+        yield "what is empty"
+    if problem := film.path_problem(msg.source):
+        yield f"source is the memo's film path: {problem}"
+    if _enum_name(msg, "status") == "REQUEST_STATUS_OPEN":
+        if answered := [f for f in ("answer", "answered_by") if msg.HasField(f)]:
+            yield f"an open request has no {' or '.join(answered)}"
+    elif msg.HasField("answered_by") and not bible.BY.fullmatch(msg.answered_by):
+        yield f"answered_by must be 'creator' or an agent name in kebab-case, got {msg.answered_by!r}"
+
+
 RULES: dict[str, Rule] = {
     "CameraConfig": _chain(lambda m: _ids(m, "role"), _camera_config),
     "PreprocessSpec": _preprocess_spec,
@@ -802,6 +868,9 @@ RULES: dict[str, Rule] = {
     "SceneChange": _scene_change,
     "ChangeSet": _change_set,
     "TitlePage": _title_page,
+    "Proposal": _proposal,
+    "Review": _review,
+    "Request": _request,
 }
 
 

@@ -14,7 +14,7 @@ pass/fail. Nothing is written into the repository.
 ## Files
 
 - `samples.py` — one realistic, fully populated sample per contract message
-  (`SAMPLES`); `test_jsonio.py` fails if a message has none.
+  (`SAMPLES`; the workflow ones read `fixtures/workflow-v1/`); `test_jsonio.py` fails if a message has none.
 - `java_harness.py` — runs Gradle on `gen/java` in Docker; the slow-test switch.
 - `test_jsonio.py` — every message: a sample, round trip, declared fields
   only, `required` and `*_UNSET` enforced, on write and on read.
@@ -30,7 +30,8 @@ pass/fail. Nothing is written into the repository.
 - `test_layout.py` — the session folder layout and id pattern.
 - `test_film.py` — film.harpia: `fixtures/film-v1/` (valid ones byte for
   byte, every invalid one with its field), the record id form against the
-  layout/1 regex, map key order, film paths and owners.
+  layout/1 regex plus `request`, map key order, film paths and owners, the
+  `workflow` part and its `shared` owner.
 - `test_bible.py` — bible.harpia: the catalog (round trip, every group of
   contract/1, per-scene groups), `fixtures/bible-v1/`, slugs, scene numbers.
 - `test_change.py` — change.harpia: each op's before/after, time, path, record.
@@ -43,6 +44,14 @@ pass/fail. Nothing is written into the repository.
   refused naming its field, accents kept, an unknown name has no id; a
   change set holds every change type, `from_hash` may be absent; a film
   with the `front-matter` and `source` parts is valid.
+- `test_workflow.py` — workflow.harpia: the three fixtures round-trip byte
+  for byte, each invalid one refused naming its field, `request` is a
+  record kind after `proposal`, an open request, a request to another
+  agent, a rejected review, a proposal's number and unit.
+- `test_db.py` — `mocap_contracts.db`: create, read, list and update of each
+  table on a temporary file, absent optionals stay absent, an invalid record
+  refused and nothing written, a key used once, one review per proposal, a
+  no-op reopen, the version stamp and the rollback journal.
 - `test_transport.py` — the ZeroMQ legs (loopback).
 - `test_java.py` — slow: the Java build and a Python ↔ Java exchange.
 - `test_stream_v1.py` — the stream protocol v1 reader against `fixtures/stream-v1/`.
@@ -52,7 +61,9 @@ pass/fail. Nothing is written into the repository.
 - `test_gen_reproducible.py:30` compares **files only**. Harpia's Java run
   makes empty folders (`gen/java/src/test`, `generated/{db,rest,soap}`) that
   git can't keep, so comparing folders failed on every fresh clone
-  (bug 1 gen-test-empty-dirs, fixed 2026-10-27 in fixes/000097).
+  (bug 1 gen-test-empty-dirs, fixed 2026-10-27 in fixes/000097). Since
+  the workflow tables (2026-10-31) those folders hold the tables' DAO,
+  REST, SOAP and JUnit files, which `make test-slow`'s Gradle build runs.
 - `test_gen_reproducible.py` runs Harpia in Docker (a few seconds once the
   image is built).
 
