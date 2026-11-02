@@ -36,6 +36,11 @@
       "owner": "writer"
     },
     {
+      "name": "workflow",
+      "path": "workflow.sqlite",
+      "owner": "shared"
+    },
+    {
       "name": "sync",
       "path": "bible/sync/",
       "owner": "writer"

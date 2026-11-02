@@ -140,3 +140,10 @@ def test_bad_film_paths(value):
 def test_owner_form():
     assert film.OWNER.fullmatch("props-continuity-planner")
     assert not film.OWNER.fullmatch("Props") and not film.OWNER.fullmatch("a--b")
+
+
+def test_the_workflow_part_is_shared_and_needs_no_space():
+    f = from_json(mc.Film, (FIXTURES / "film.json").read_text())
+    part = next(p for p in f.parts if p.name == film.WORKFLOW_PART)
+    assert (part.path, part.owner) == (film.WORKFLOW_FILE, film.SHARED)
+    assert film.SHARED not in {s.owner for s in f.spaces}

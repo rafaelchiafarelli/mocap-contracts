@@ -32,10 +32,17 @@ WRITER = "writer"
 WRITER_SPACE = "w"
 # A part name is one of these, or "proposals-<code>" with <code> a listed space.
 PART_NAMES = (
-    "script", "settings", "bible", "annotations", "history", "front-matter", "source",
+    "script", "settings", "bible", "annotations", "history", "front-matter", "source", "workflow",
 )
 PROPOSALS_PREFIX = "proposals-"
 SCRIPT_PART = "script"
+# The workflow database has one owner per table (workflow.harpia), so its part
+# is owned by "shared", which owns nothing else: proposals and requests are
+# written by the agent whose space they carry, reviews by the writer, the
+# answer to a request by its recipient.
+WORKFLOW_PART = "workflow"
+WORKFLOW_FILE = "workflow.sqlite"
+SHARED = "shared"
 # An owner is "writer" or an agent's file name in kebab-case.
 OWNER = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)*$")
 SPACE_CODE = re.compile(r"^[a-z][a-z0-9]{0,7}$")

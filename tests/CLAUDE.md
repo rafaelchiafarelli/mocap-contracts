@@ -30,7 +30,8 @@ pass/fail. Nothing is written into the repository.
 - `test_layout.py` — the session folder layout and id pattern.
 - `test_film.py` — film.harpia: `fixtures/film-v1/` (valid ones byte for
   byte, every invalid one with its field), the record id form against the
-  layout/1 regex plus `request`, map key order, film paths and owners.
+  layout/1 regex plus `request`, map key order, film paths and owners, the
+  `workflow` part and its `shared` owner.
 - `test_bible.py` — bible.harpia: the catalog (round trip, every group of
   contract/1, per-scene groups), `fixtures/bible-v1/`, slugs, scene numbers.
 - `test_change.py` — change.harpia: each op's before/after, time, path, record.
