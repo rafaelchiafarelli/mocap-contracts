@@ -13,7 +13,7 @@ consumers that implement the same formats.
   decodable stream, garbled SEIs, `sync.json` (`tools/make_stream_fixtures.py`).
 - `film-v1/` — film.harpia (`tools/make_film_fixtures.py`):
   - `film.json` — a new film's root index: the default parts of mocap-writer
-    file-format/layout/1, spaces `w` and `pcp`.
+    file-format/layout/1 plus `workflow`, spaces `w` and `pcp`.
   - `ids/w.json`, `ids/pcp.json` — those spaces' counters.
   - `invalid/<what>.json` — one broken field each; `invalid/expected.json`
     gives the message to read each as and a text its error holds.
@@ -39,6 +39,12 @@ consumers that implement the same formats.
   front matter with the argument left out; `invalid/<what>.json` with
   `invalid/expected.json`.
 
+- `workflow-v1/` — workflow.harpia (`tools/make_workflow_fixtures.py`):
+  one record of each table as JSON: `proposal.json` (an agent's proposal
+  for `prop-pcp-1` of `bible-v1/`), `review.json` (the creator's edited
+  review of it), `request.json` (from the agent to the creator, answered);
+  `invalid/<what>.json` with `invalid/expected.json`.
+
 ## Key facts / gotchas
 
 - The valid film fixtures are byte-for-byte what `to_json` writes
@@ -49,4 +55,5 @@ consumers that implement the same formats.
 ## Touchpoints
 
 - `tests/test_stream_v1.py`, `tests/test_film.py`, `tests/test_bible.py`,
-  `tests/test_script_settings.py`, `tests/test_annotation.py`.
+  `tests/test_script_settings.py`, `tests/test_annotation.py`,
+  `tests/test_workflow.py`.

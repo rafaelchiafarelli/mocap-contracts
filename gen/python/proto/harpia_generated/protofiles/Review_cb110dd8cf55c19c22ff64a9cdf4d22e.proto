@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "harpia_generated/protofiles/ReviewOutcome_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message Review {
+int32 HARPIA_ID = 1;
+string proposal = 2;
+ReviewOutcome outcome = 3;
+string by = 4;
+string time = 5;
+optional string note = 6;
+optional string text = 7;
+string HARPIA_STATUS = 8;
+string HARPIA_ERROR = 9;
+string HARPIA_ORIGINATOR = 10;
+}

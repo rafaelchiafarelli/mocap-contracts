@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/SceneEntry_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message SceneIndex {
+int32 HARPIA_ID = 1;
+string script_hash = 2;
+repeated SceneEntry scenes = 3;
+string HARPIA_STATUS = 4;
+string HARPIA_ERROR = 5;
+string HARPIA_ORIGINATOR = 6;
+}
