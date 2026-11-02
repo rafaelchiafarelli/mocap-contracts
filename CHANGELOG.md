@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.8.0 — 2026-11-01
+
+The film's workflow database (`workflow-records` initiative), for `mocap-preprod` preprod-link and `mocap-writer` workflow-link.
+
+- **`workflow.harpia`** (ownership per table): the table messages `Proposal` (an agent's `BibleValue` for an existing bible item, always in state `proposal`), `Review` (the creator's outcome of one proposal: approved, rejected, or edited with the creator's text) and `Request` (from an agent to another agent or the creator, with its status and answer); enums `ReviewOutcome`, `RequestStatus`.
+- **`mocap_contracts.db`**: `open(path)` opens or creates the database, tables made, older ones migrated, version stamped, rollback journal (no WAL: film roots can sit on a Windows drive seen from WSL). `proposals`, `reviews` and `requests` each `create`, `read(key)`, `list` and `update`. The rules run on every write: a broken record is refused and nothing is written. One program writes at a time.
+- **Record kind `request`** (`request-<space>-<n>`). `mocap-writer`'s layout/1 id pattern needs the same word.
+- **Film part `workflow`**: default path `workflow.sqlite`, owner `shared`, which owns nothing else.
+- **Harpia `V6`** (from `V5`): the hidden fields are `HARPIA_ID`, `HARPIA_STATUS`, `HARPIA_ERROR`, `HARPIA_ORIGINATOR`, on their old wire numbers, so a changed root no longer breaks a database. Peers on `v0.7.0` still parse the same bytes, and only a consumer naming the old hashed fields would notice; no mocap repository does. The generated Python now also holds `grpc/` and `http/` and the Java `db/rest/soap`, because of the tables.
+- Fixtures `fixtures/workflow-v1/`.
+
+New messages, a new record kind, a new part and the database module: nothing in `v0.7.0` changes meaning.
+
 ## v0.7.0 — 2026-10-31
 
 The records that link `mocap-writer` to the pre-production agents and the film's front matter (`preprod-records` initiative), for `mocap-writer` preprod-link contract/1–2 and front-matter contract/1.

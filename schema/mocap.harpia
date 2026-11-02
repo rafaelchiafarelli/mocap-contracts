@@ -15,3 +15,4 @@ import "annotation.harpia";
 import "scene_index.harpia";
 import "change_set.harpia";
 import "front_matter.harpia";
+import "workflow.harpia";

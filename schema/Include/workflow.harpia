@@ -1,0 +1,59 @@
+// The film workflow records shared by the pre production agents and mocap-writer
+// They live in one SQLite file of the film root as one table per message
+// Proposals and requests are written by the agent whose space they carry
+// Reviews are written by the writer and a request is answered by its recipient
+// One program writes at a time
+// Rules that required cannot express live in mocap_contracts rules
+import "bible.harpia";
+
+// What the creator decided about a proposal
+enum ReviewOutcome {
+    REVIEW_OUTCOME_UNSET = 0;
+    REVIEW_OUTCOME_APPROVED;
+    REVIEW_OUTCOME_REJECTED;
+    REVIEW_OUTCOME_EDITED;
+}
+
+// Where a request stands
+enum RequestStatus {
+    REQUEST_STATUS_UNSET = 0;
+    REQUEST_STATUS_OPEN;
+    REQUEST_STATUS_DONE;
+    REQUEST_STATUS_DECLINED;
+}
+
+// An agent proposes a value for an existing bible item
+// value state is always proposal and source is the memo path in the film root
+// change set is the bible sync file name the run answered
+autokey message Proposal {
+    required unique string id;
+    required string item;
+    required BibleValue value;
+    required string time;
+    optional string change_set;
+} proposal_table;
+
+// The creator review of one proposal and text is the creator value when edited
+autokey message Review {
+    required unique string proposal;
+    required ReviewOutcome outcome;
+    required string by;
+    required string time;
+    optional string note;
+    optional string text;
+} review_table;
+
+// A request from an agent to another agent or to the creator
+autokey message Request {
+    required unique string id;
+    required string from;
+    required string to;
+    repeteable string items;
+    repeteable string scenes;
+    required string what;
+    required string source;
+    required string time;
+    required RequestStatus status;
+    optional string answer;
+    optional string answered_by;
+} request_table;

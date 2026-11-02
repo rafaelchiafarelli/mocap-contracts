@@ -13,22 +13,46 @@ harpia_generated.capability
 .. automodule:: harpia_generated.capability
    :members:
 
-harpia_generated.capability.capabilities_186a1974c92f444f1bbc853569958a27_grpc
+harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
 ------------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_186a1974c92f444f1bbc853569958a27_grpc
+.. automodule:: harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
    :members:
 
-harpia_generated.capability.capabilities_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_http
+------------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_http
+   :members:
+
+harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 -----------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.capability.capabilities_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.capability.capabilities_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
 harpia_generated.db
 -------------------
 
 .. automodule:: harpia_generated.db
+   :members:
+
+harpia_generated.db.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
+-----------------------------------------------------------------
+
+.. automodule:: harpia_generated.db.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
+   :members:
+
+harpia_generated.db.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
+----------------------------------------------------------------
+
+.. automodule:: harpia_generated.db.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
+   :members:
+
+harpia_generated.db.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
+---------------------------------------------------------------
+
+.. automodule:: harpia_generated.db.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_dao
    :members:
 
 harpia_generated.db.registry
@@ -43,16 +67,76 @@ harpia_generated.dbio
 .. automodule:: harpia_generated.dbio
    :members:
 
+harpia_generated.dbio.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+--------------------------------------------------------------------
+
+.. automodule:: harpia_generated.dbio.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+   :members:
+
+harpia_generated.dbio.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+-------------------------------------------------------------------
+
+.. automodule:: harpia_generated.dbio.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+   :members:
+
+harpia_generated.dbio.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+------------------------------------------------------------------
+
+.. automodule:: harpia_generated.dbio.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_dbio
+   :members:
+
 harpia_generated.events
 -----------------------
 
 .. automodule:: harpia_generated.events
    :members:
 
-harpia_generated.events.CameraStats_186a1974c92f444f1bbc853569958a27_events
+harpia_generated.events.CameraStats_cb110dd8cf55c19c22ff64a9cdf4d22e_events
 ---------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.events.CameraStats_186a1974c92f444f1bbc853569958a27_events
+.. automodule:: harpia_generated.events.CameraStats_cb110dd8cf55c19c22ff64a9cdf4d22e_events
+   :members:
+
+harpia_generated.grpc
+---------------------
+
+.. automodule:: harpia_generated.grpc
+   :members:
+
+harpia_generated.grpc.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+--------------------------------------------------------------------
+
+.. automodule:: harpia_generated.grpc.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+   :members:
+
+harpia_generated.grpc.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+-------------------------------------------------------------------
+
+.. automodule:: harpia_generated.grpc.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+   :members:
+
+harpia_generated.grpc.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+------------------------------------------------------------------
+
+.. automodule:: harpia_generated.grpc.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_grpc
+   :members:
+
+harpia_generated.grpc.grpc_server_bringup
+-----------------------------------------
+
+.. automodule:: harpia_generated.grpc.grpc_server_bringup
+   :members:
+
+harpia_generated.http
+---------------------
+
+.. automodule:: harpia_generated.http
+   :members:
+
+harpia_generated.http.http_server_bringup
+-----------------------------------------
+
+.. automodule:: harpia_generated.http.http_server_bringup
    :members:
 
 harpia_generated.migrate
@@ -61,10 +145,76 @@ harpia_generated.migrate
 .. automodule:: harpia_generated.migrate
    :members:
 
+harpia_generated.migrate.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+--------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.migrate.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+   :members:
+
+harpia_generated.migrate.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+-------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.migrate.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+   :members:
+
+harpia_generated.migrate.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+------------------------------------------------------------------------
+
+.. automodule:: harpia_generated.migrate.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_migrate
+   :members:
+
 harpia_generated.protofiles
 ---------------------------
 
 .. automodule:: harpia_generated.protofiles
+   :members:
+
+harpia_generated.rest
+---------------------
+
+.. automodule:: harpia_generated.rest
+   :members:
+
+harpia_generated.rest.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+--------------------------------------------------------------------
+
+.. automodule:: harpia_generated.rest.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+   :members:
+
+harpia_generated.rest.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+-------------------------------------------------------------------
+
+.. automodule:: harpia_generated.rest.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+   :members:
+
+harpia_generated.rest.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+------------------------------------------------------------------
+
+.. automodule:: harpia_generated.rest.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_rest
+   :members:
+
+harpia_generated.sdc
+--------------------
+
+.. automodule:: harpia_generated.sdc
+   :members:
+
+harpia_generated.sdc.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
+------------------------------------------------------------------
+
+.. automodule:: harpia_generated.sdc.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
+   :members:
+
+harpia_generated.sdc.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
+-----------------------------------------------------------------
+
+.. automodule:: harpia_generated.sdc.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
+   :members:
+
+harpia_generated.sdc.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
+----------------------------------------------------------------
+
+.. automodule:: harpia_generated.sdc.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_sdc
    :members:
 
 harpia_generated.serialize
@@ -79,40 +229,64 @@ harpia_generated.serialize.phi_registry
 .. automodule:: harpia_generated.serialize.phi_registry
    :members:
 
+harpia_generated.soap
+---------------------
+
+.. automodule:: harpia_generated.soap
+   :members:
+
+harpia_generated.soap.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+--------------------------------------------------------------------
+
+.. automodule:: harpia_generated.soap.Proposal_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+   :members:
+
+harpia_generated.soap.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+-------------------------------------------------------------------
+
+.. automodule:: harpia_generated.soap.Request_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+   :members:
+
+harpia_generated.soap.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+------------------------------------------------------------------
+
+.. automodule:: harpia_generated.soap.Review_cb110dd8cf55c19c22ff64a9cdf4d22e_soap
+   :members:
+
 harpia_generated.zmq
 --------------------
 
 .. automodule:: harpia_generated.zmq
    :members:
 
-harpia_generated.zmq.CameraFileReady_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.zmq.CameraFileReady_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 -------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.CameraFileReady_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.zmq.CameraFileReady_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
-harpia_generated.zmq.CameraStats_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.zmq.CameraStats_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 ---------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.CameraStats_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.zmq.CameraStats_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
-harpia_generated.zmq.ControlReply_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.zmq.ControlReply_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 ----------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.ControlReply_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.zmq.ControlReply_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
-harpia_generated.zmq.ControlRequest_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.zmq.ControlRequest_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 ------------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.ControlRequest_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.zmq.ControlRequest_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
-harpia_generated.zmq.TakeClosed_186a1974c92f444f1bbc853569958a27_zmq
+harpia_generated.zmq.TakeClosed_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
 --------------------------------------------------------------------
 
-.. automodule:: harpia_generated.zmq.TakeClosed_186a1974c92f444f1bbc853569958a27_zmq
+.. automodule:: harpia_generated.zmq.TakeClosed_cb110dd8cf55c19c22ff64a9cdf4d22e_zmq
    :members:
 
 harpia_runtime
@@ -205,6 +379,36 @@ harpia_runtime.events
 .. automodule:: harpia_runtime.events
    :members:
 
+harpia_runtime.grpc_service
+---------------------------
+
+.. automodule:: harpia_runtime.grpc_service
+   :members:
+
+harpia_runtime.http
+-------------------
+
+.. automodule:: harpia_runtime.http
+   :members:
+
+harpia_runtime.http.rest
+------------------------
+
+.. automodule:: harpia_runtime.http.rest
+   :members:
+
+harpia_runtime.http.router
+--------------------------
+
+.. automodule:: harpia_runtime.http.router
+   :members:
+
+harpia_runtime.http.soap_endpoint
+---------------------------------
+
+.. automodule:: harpia_runtime.http.soap_endpoint
+   :members:
+
 harpia_runtime.json
 -------------------
 
@@ -233,6 +437,30 @@ harpia_runtime.serialize
 ------------------------
 
 .. automodule:: harpia_runtime.serialize
+   :members:
+
+harpia_runtime.soap
+-------------------
+
+.. automodule:: harpia_runtime.soap
+   :members:
+
+harpia_runtime.testing
+----------------------
+
+.. automodule:: harpia_runtime.testing
+   :members:
+
+harpia_runtime.tls
+------------------
+
+.. automodule:: harpia_runtime.tls
+   :members:
+
+harpia_runtime.wsdiscovery
+--------------------------
+
+.. automodule:: harpia_runtime.wsdiscovery
    :members:
 
 harpia_runtime.xml
