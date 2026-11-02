@@ -1,6 +1,6 @@
 """Generate the Python contracts from schema/ with Harpia (the `make gen` step).
 
-Harpia is used as a black box, as its USAGE.md (V4, §5.1-5.4) documents:
+Harpia is used as a black box, as its USAGE.md (§5.1-5.4) documents:
 the input folder is staged under the Harpia repo (Docker mounts it at
 /harpia), `main.py` runs with HARPIA_GEN_LANG=python, and then:
 
@@ -10,6 +10,8 @@ the input folder is staged under the Harpia repo (Docker mounts it at
   camera app; both runs must agree on schema_registry),
 - mocap_contracts/zmq_endpoints.py maps each ZeroMQ message to its
   generated factories (separate, because importing them needs pyzmq),
+- mocap_contracts/db_tables.py maps each table message to its generated DAO
+  and migration (mocap_contracts.db uses them),
 - mocap_contracts/messages.py is rewritten to re-export every message and
   enum under its declared name, so consumers never see the <hash> in
   Harpia's module names, plus the declared and required fields per message
@@ -39,10 +41,12 @@ GEN_PYTHON = Path("gen") / "python"
 GEN_JAVA = Path("gen") / "java"
 MESSAGES_PY = Path("mocap_contracts") / "messages.py"
 ZMQ_PY = Path("mocap_contracts") / "zmq_endpoints.py"
+DB_PY = Path("mocap_contracts") / "db_tables.py"
 REGISTRY = Path("schema") / "schema_registry"
 
 # a user module's .proto: <name>_<32 hex>.proto (not the _service companion)
 USER_ZMQ = re.compile(r"^(?P<name>.+)_(?P<hash>[0-9a-f]{32})_zmq\.py$")
+USER_DAO = re.compile(r"^(?P<name>.+)_(?P<hash>[0-9a-f]{32})_dao\.py$")
 USER_PROTO = re.compile(r"^(?P<stem>.+_(?P<hash>[0-9a-f]{32}))\.proto$")
 TOP_LEVEL = re.compile(r"^(message|enum)\s+(\w+)\s*\{")
 
@@ -183,6 +187,28 @@ def zmq_module(python_dir: Path) -> str:
     return "\n".join(lines)
 
 
+def db_module(python_dir: Path) -> str:
+    """Stable access to Harpia's DAO and migration of each table message."""
+    found = []
+    for f in sorted((python_dir / "harpia_generated" / "db").glob("*_dao.py")):
+        if m := USER_DAO.match(f.name):
+            found.append((m["name"], m["hash"]))
+    lines = [
+        '"""The DAO and migration of every table message.',
+        "",
+        "Written by tools/harpia_gen.py (`make gen`); do not edit. Use",
+        'mocap_contracts.db."""',
+        "",
+    ]
+    for name, h in found:
+        lines.append(f"from harpia_generated.db.{name}_{h}_dao import {name}_dao")
+        lines.append(f"from harpia_generated.migrate.{name}_{h}_migrate import migrate_{name}")
+    lines += ["", "TABLES = {"]
+    lines += [f'    "{name}": ({name}_dao, migrate_{name}),' for name, _ in found]
+    lines += ["}", ""]
+    return "\n".join(lines)
+
+
 def _replace_tree(src: Path, dst: Path) -> None:
     if dst.exists():
         shutil.rmtree(dst)
@@ -205,6 +231,7 @@ def write_outputs(out: Path, java_out: Path, into: Path) -> None:
     (into / MESSAGES_PY).parent.mkdir(parents=True, exist_ok=True)
     (into / MESSAGES_PY).write_text(messages_module(out / "python", SCHEMA))
     (into / ZMQ_PY).write_text(zmq_module(out / "python"))
+    (into / DB_PY).write_text(db_module(out / "python"))
 
 
 def _tree_bytes(root: Path) -> dict[str, bytes]:
@@ -215,7 +242,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--into", type=Path, default=ROOT,
                     help="where to write gen/python, gen/java, schema/schema_registry, "
-                         "mocap_contracts/messages.py and zmq_endpoints.py (default: the repo)")
+                         "mocap_contracts/messages.py, zmq_endpoints.py and db_tables.py (default: the repo)")
     args = ap.parse_args()
     if not (HARPIA / "Docker" / "run.sh").exists():
         raise SystemExit("third_party/harpia is missing: git submodule update --init")

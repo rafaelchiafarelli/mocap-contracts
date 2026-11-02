@@ -5,10 +5,11 @@ and rules, the folder layouts and ids, and the transports.
 
 **Entry points:** `import mocap_contracts` (`__init__.py`): every message and
 enum, `to_json` / `from_json`, `ContractError`, `layout`, `film`, `bible`,
-`annotation`.
+`annotation`, `db`.
 
 **Inputs → Outputs:** contract messages ↔ JSON text; ids and paths ↔
-checked strings. Nothing here creates folders or touches files.
+checked strings; records ↔ the workflow database. Only `db.py` touches a
+file (the one it is given); nothing here creates folders.
 
 ## Files
 
@@ -57,6 +58,12 @@ checked strings. Nothing here creates folders or touches files.
   (mocap-writer film-bible contract/1, "Scene annotations") as an
   `AnnotationCatalog`: per kind its groups; 66 fields over the nine kinds
   (note and general direction have none, their `text` says it all).
+- `db.py` — the film's workflow database: `open(path)` (`db.py:102`) makes
+  or migrates the tables on the rollback journal and gives a `Database`
+  (`db.py:83`) with `proposals`, `reviews`, `requests`, each a `Table`
+  (`db.py:34`): `create`, `read(key)`, `list(offset, limit)`, `update`.
+- `db_tables.py` — generated; `TABLES`: the DAO and migration per table
+  message.
 - `transport.py` — Harpia ZeroMQ legs under stable names (`[zmq]` extra).
 - `zmq_endpoints.py` — generated; the ZeroMQ factories per message.
 - `stream_v1.py` — stream protocol v1 reference reader and writer, stdlib only.
@@ -133,6 +140,12 @@ checked strings. Nothing here creates folders or touches files.
   "from")`. Rules see one record only: that a proposal's or request's
   space belongs to its agent and that a proposal has one review need the
   database (workflow/2).
+- Workflow database (`db.py`): a record's key is its unique field (`id`, a
+  review's `proposal`); `HARPIA_ID` is assigned by the database and never
+  leaves `Table`. Writes run `to_json`'s checks first (`db.py:52`, `:73`),
+  and a taken key is a `ContractError`, so a broken record writes nothing.
+  One program writes at a time, documented, not enforced. No WAL: a film
+  root can sit on a Windows drive seen from WSL.
 - `layout.ID_PATTERN` (capture ids) and `film.RECORD_ID` (film records) are
   different forms for different files.
 

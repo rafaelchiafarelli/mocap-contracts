@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message MocapFrame {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 int64 frame_id = 2;
 int64 timestamp_ns = 3;
 repeated float body_xyz = 4;
@@ -18,7 +18,7 @@ repeated float gaze = 11;
 optional string emotion = 12;
 Flag left_foot_contact = 13;
 Flag right_foot_contact = 14;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 15;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 16;
-string ORIGINATOR = 17;
+string HARPIA_STATUS = 15;
+string HARPIA_ERROR = 16;
+string HARPIA_ORIGINATOR = 17;
 }

@@ -9,21 +9,21 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Optional as _Op
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class TitleString(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "align", "bold", "font", "italic", "items", "size_pt", "underlined", "x_mm", "y_mm"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "align", "bold", "font", "italic", "items", "size_pt", "underlined", "x_mm", "y_mm"]
     ALIGN_FIELD_NUMBER: _ClassVar[int]
     BOLD_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     FONT_FIELD_NUMBER: _ClassVar[int]
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     ITALIC_FIELD_NUMBER: _ClassVar[int]
     ITEMS_FIELD_NUMBER: _ClassVar[int]
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
     SIZE_PT_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     UNDERLINED_FIELD_NUMBER: _ClassVar[int]
     X_MM_FIELD_NUMBER: _ClassVar[int]
     Y_MM_FIELD_NUMBER: _ClassVar[int]
@@ -36,4 +36,4 @@ class TitleString(_message.Message):
     underlined: _Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag
     x_mm: float
     y_mm: float
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., items: _Optional[_Iterable[str]] = ..., x_mm: _Optional[float] = ..., y_mm: _Optional[float] = ..., size_pt: _Optional[int] = ..., align: _Optional[_Union[_TextAlign_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TextAlign, str]] = ..., bold: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., italic: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., underlined: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., font: _Optional[_Union[_TitleFont_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TitleFont, str]] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., items: _Optional[_Iterable[str]] = ..., x_mm: _Optional[float] = ..., y_mm: _Optional[float] = ..., size_pt: _Optional[int] = ..., align: _Optional[_Union[_TextAlign_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TextAlign, str]] = ..., bold: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., italic: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., underlined: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., font: _Optional[_Union[_TitleFont_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TitleFont, str]] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

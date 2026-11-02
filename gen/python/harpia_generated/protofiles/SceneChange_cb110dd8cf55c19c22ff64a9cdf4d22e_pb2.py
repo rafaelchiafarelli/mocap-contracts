@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from harpia_generated.protofiles import SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_SceneChangeType__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nNharpia_generated/protofiles/SceneChange_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aRharpia_generated/protofiles/SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xaa\x02\n\x0bSceneChange\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x1e\n\x04type\x18\x02 \x01(\x0e\x32\x10.SceneChangeType\x12\r\n\x05scene\x18\x03 \x01(\t\x12\x16\n\told_value\x18\x04 \x01(\tH\x00\x88\x01\x01\x12\x16\n\tnew_value\x18\x05 \x01(\tH\x01\x88\x01\x01\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x06 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x07 \x01(\t\x12\x12\n\nORIGINATOR\x18\x08 \x01(\tB\x0c\n\n_old_valueB\x0c\n\n_new_valueB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nNharpia_generated/protofiles/SceneChange_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aRharpia_generated/protofiles/SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xe3\x01\n\x0bSceneChange\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x1e\n\x04type\x18\x02 \x01(\x0e\x32\x10.SceneChangeType\x12\r\n\x05scene\x18\x03 \x01(\t\x12\x16\n\told_value\x18\x04 \x01(\tH\x00\x88\x01\x01\x12\x16\n\tnew_value\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x15\n\rHARPIA_STATUS\x18\x06 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x07 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x08 \x01(\tB\x0c\n\n_old_valueB\x0c\n\n_new_valueB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.SceneChange_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -23,5 +23,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _SCENECHANGE._serialized_start=167
-  _SCENECHANGE._serialized_end=465
+  _SCENECHANGE._serialized_end=394
 # @@protoc_insertion_point(module_scope)

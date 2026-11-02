@@ -6,21 +6,21 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class SceneChange(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "new_value", "old_value", "scene", "type"]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "new_value", "old_value", "scene", "type"]
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     NEW_VALUE_FIELD_NUMBER: _ClassVar[int]
     OLD_VALUE_FIELD_NUMBER: _ClassVar[int]
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
     SCENE_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     TYPE_FIELD_NUMBER: _ClassVar[int]
     new_value: str
     old_value: str
     scene: str
     type: _SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SceneChangeType
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., type: _Optional[_Union[_SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SceneChangeType, str]] = ..., scene: _Optional[str] = ..., old_value: _Optional[str] = ..., new_value: _Optional[str] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., type: _Optional[_Union[_SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SceneChangeType, str]] = ..., scene: _Optional[str] = ..., old_value: _Optional[str] = ..., new_value: _Optional[str] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

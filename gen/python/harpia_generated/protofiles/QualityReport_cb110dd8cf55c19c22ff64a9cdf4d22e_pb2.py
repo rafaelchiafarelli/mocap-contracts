@@ -16,7 +16,7 @@ from harpia_generated.protofiles import BoneStability_cb110dd8cf55c19c22ff64a9cd
 from harpia_generated.protofiles import CameraAblation_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_CameraAblation__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nPharpia_generated/protofiles/QualityReport_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/CameraQuality_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/CameraAblation_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xeb\x02\n\rQualityReport\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12&\n\x19\x63\x61libration_reproj_err_px\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12\x1f\n\x07\x63\x61meras\x18\x04 \x03(\x0b\x32\x0e.CameraQuality\x12\x1d\n\x05\x62ones\x18\x05 \x03(\x0b\x32\x0e.BoneStability\x12!\n\x08\x61\x62lation\x18\x06 \x03(\x0b\x32\x0f.CameraAblation\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x07 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x08 \x01(\t\x12\x12\n\nORIGINATOR\x18\t \x01(\tB\x1c\n\x1a_calibration_reproj_err_pxB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nPharpia_generated/protofiles/QualityReport_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/CameraQuality_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/CameraAblation_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xa4\x02\n\rQualityReport\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12&\n\x19\x63\x61libration_reproj_err_px\x18\x03 \x01(\x02H\x00\x88\x01\x01\x12\x1f\n\x07\x63\x61meras\x18\x04 \x03(\x0b\x32\x0e.CameraQuality\x12\x1d\n\x05\x62ones\x18\x05 \x03(\x0b\x32\x0e.BoneStability\x12!\n\x08\x61\x62lation\x18\x06 \x03(\x0b\x32\x0f.CameraAblation\x12\x15\n\rHARPIA_STATUS\x18\x07 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x08 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\t \x01(\tB\x1c\n\x1a_calibration_reproj_err_pxB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.QualityReport_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -25,5 +25,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _QUALITYREPORT._serialized_start=332
-  _QUALITYREPORT._serialized_end=695
+  _QUALITYREPORT._serialized_end=624
 # @@protoc_insertion_point(module_scope)

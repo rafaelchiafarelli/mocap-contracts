@@ -3,7 +3,7 @@ option java_multiple_files = true;
 option java_package = "com.harpia.generated";
 
 message CameraStats {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string serial = 2;
 int64 sensor_ns = 3;
 float camera_fps = 4;
@@ -12,7 +12,7 @@ int64 dropped_frames = 6;
 float cpu_percent = 7;
 float battery_temp_c = 8;
 int32 thermal_status = 9;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 10;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 11;
-string ORIGINATOR_cb110dd8cf55c19c22ff64a9cdf4d22e = 12;
+string HARPIA_STATUS = 10;
+string HARPIA_ERROR = 11;
+string HARPIA_ORIGINATOR = 12;
 }

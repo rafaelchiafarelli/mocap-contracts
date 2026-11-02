@@ -5,25 +5,25 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class CameraQuality(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "detection_rate_body", "detection_rate_left_hand", "detection_rate_right_hand", "jitter_px", "reproj_err_px", "role"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "detection_rate_body", "detection_rate_left_hand", "detection_rate_right_hand", "jitter_px", "reproj_err_px", "role"]
     DETECTION_RATE_BODY_FIELD_NUMBER: _ClassVar[int]
     DETECTION_RATE_LEFT_HAND_FIELD_NUMBER: _ClassVar[int]
     DETECTION_RATE_RIGHT_HAND_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     JITTER_PX_FIELD_NUMBER: _ClassVar[int]
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
     REPROJ_ERR_PX_FIELD_NUMBER: _ClassVar[int]
     ROLE_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     detection_rate_body: float
     detection_rate_left_hand: float
     detection_rate_right_hand: float
     jitter_px: float
     reproj_err_px: float
     role: str
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., role: _Optional[str] = ..., detection_rate_body: _Optional[float] = ..., detection_rate_left_hand: _Optional[float] = ..., detection_rate_right_hand: _Optional[float] = ..., jitter_px: _Optional[float] = ..., reproj_err_px: _Optional[float] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., role: _Optional[str] = ..., detection_rate_body: _Optional[float] = ..., detection_rate_left_hand: _Optional[float] = ..., detection_rate_right_hand: _Optional[float] = ..., jitter_px: _Optional[float] = ..., reproj_err_px: _Optional[float] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

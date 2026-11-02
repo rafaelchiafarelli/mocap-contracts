@@ -12,7 +12,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATED = ["gen/python", "gen/java", "schema/schema_registry", "mocap_contracts/messages.py",
-             "mocap_contracts/zmq_endpoints.py"]
+             "mocap_contracts/zmq_endpoints.py", "mocap_contracts/db_tables.py"]
 
 
 def _docker_ok():

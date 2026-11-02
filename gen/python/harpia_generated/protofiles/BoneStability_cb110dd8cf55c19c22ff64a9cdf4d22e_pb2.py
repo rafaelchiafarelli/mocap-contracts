@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nPharpia_generated/protofiles/BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xe3\x01\n\rBoneStability\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0c\n\x04\x62one\x18\x02 \x01(\t\x12\x15\n\rmean_length_m\x18\x03 \x01(\x02\x12\x0b\n\x03rsd\x18\x04 \x01(\x02\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x05 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x06 \x01(\t\x12\x12\n\nORIGINATOR\x18\x07 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nPharpia_generated/protofiles/BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x9c\x01\n\rBoneStability\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0c\n\x04\x62one\x18\x02 \x01(\t\x12\x15\n\rmean_length_m\x18\x03 \x01(\x02\x12\x0b\n\x03rsd\x18\x04 \x01(\x02\x12\x15\n\rHARPIA_STATUS\x18\x05 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x06 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x07 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -22,5 +22,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _BONESTABILITY._serialized_start=85
-  _BONESTABILITY._serialized_end=312
+  _BONESTABILITY._serialized_end=241
 # @@protoc_insertion_point(module_scope)

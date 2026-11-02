@@ -47,6 +47,10 @@ pass/fail. Nothing is written into the repository.
   for byte, each invalid one refused naming its field, `request` is a
   record kind after `proposal`, an open request, a request to another
   agent, a rejected review, a proposal's number and unit.
+- `test_db.py` — `mocap_contracts.db`: create, read, list and update of each
+  table on a temporary file, absent optionals stay absent, an invalid record
+  refused and nothing written, a key used once, one review per proposal, a
+  no-op reopen, the version stamp and the rollback journal.
 - `test_transport.py` — the ZeroMQ legs (loopback).
 - `test_java.py` — slow: the Java build and a Python ↔ Java exchange.
 - `test_stream_v1.py` — the stream protocol v1 reader against `fixtures/stream-v1/`.

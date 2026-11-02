@@ -17,9 +17,10 @@ class Request_dao(Dao[Request]):
 
     MESSAGE = Request
     TABLE = 'request_table'
-    PK = 'ID_cb110dd8cf55c19c22ff64a9cdf4d22e'
+    PK = 'HARPIA_ID'
+    INSERT_AUTO_SQL = 'INSERT INTO "request_table" ("id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "HARPIA_ID"'
     COLUMNS = (
-        Column('ID_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ID_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
+        Column('HARPIA_ID', ('HARPIA_ID',)),
         Column('id', ('id',)),
         Column('from', ('from',)),
         Column('to', ('to',)),
@@ -29,9 +30,9 @@ class Request_dao(Dao[Request]):
         Column('status', ('status',)),
         Column('answer', ('answer',)),
         Column('answered_by', ('answered_by',)),
-        Column('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e', ('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ORIGINATOR', ('ORIGINATOR',)),
+        Column('HARPIA_STATUS', ('HARPIA_STATUS',)),
+        Column('HARPIA_ERROR', ('HARPIA_ERROR',)),
+        Column('HARPIA_ORIGINATOR', ('HARPIA_ORIGINATOR',)),
     )
     CHILDREN = (
         ChildTable(
@@ -46,7 +47,7 @@ class Request_dao(Dao[Request]):
             'DELETE FROM "request_table__scenes" WHERE "owner" = ?'),
     )
     CREATE_TABLE_SQL = (
-        'CREATE TABLE IF NOT EXISTS "request_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e" INTEGER PRIMARY KEY, "id" TEXT NOT NULL UNIQUE, "from" TEXT NOT NULL, "to" TEXT NOT NULL, "what" TEXT NOT NULL, "source" TEXT NOT NULL, "time" TEXT NOT NULL, "status" INTEGER, "answer" TEXT, "answered_by" TEXT, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ORIGINATOR" TEXT);',
+        'CREATE TABLE IF NOT EXISTS "request_table" ("HARPIA_ID" INTEGER PRIMARY KEY, "id" TEXT NOT NULL UNIQUE, "from" TEXT NOT NULL, "to" TEXT NOT NULL, "what" TEXT NOT NULL, "source" TEXT NOT NULL, "time" TEXT NOT NULL, "status" INTEGER, "answer" TEXT, "answered_by" TEXT, "HARPIA_STATUS" TEXT, "HARPIA_ERROR" TEXT, "HARPIA_ORIGINATOR" TEXT);',
         'CREATE TABLE IF NOT EXISTS "request_table__items" ("owner" INTEGER, "ordinal" INTEGER, "value" TEXT, PRIMARY KEY("owner", "ordinal"));',
         'CREATE TABLE IF NOT EXISTS "request_table__scenes" ("owner" INTEGER, "ordinal" INTEGER, "value" TEXT, PRIMARY KEY("owner", "ordinal"));',
     )
@@ -55,9 +56,19 @@ class Request_dao(Dao[Request]):
         'DROP TABLE IF EXISTS "request_table__scenes";',
         'DROP TABLE IF EXISTS "request_table";',
     )
-    INSERT_SQL = 'INSERT INTO "request_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    SELECT_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "request_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    UPDATE_SQL = 'UPDATE "request_table" SET "id" = ?, "from" = ?, "to" = ?, "what" = ?, "source" = ?, "time" = ?, "status" = ?, "answer" = ?, "answered_by" = ?, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ORIGINATOR" = ? WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    DELETE_SQL = 'DELETE FROM "request_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    LIST_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "request_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e"'
-    LIST_PAGE_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "request_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" LIMIT ? OFFSET ?'
+    INSERT_SQL = 'INSERT INTO "request_table" ("HARPIA_ID", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    SELECT_SQL = 'SELECT "HARPIA_ID", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "request_table" WHERE "HARPIA_ID" = ?'
+    UPDATE_SQL = 'UPDATE "request_table" SET "id" = ?, "from" = ?, "to" = ?, "what" = ?, "source" = ?, "time" = ?, "status" = ?, "answer" = ?, "answered_by" = ?, "HARPIA_STATUS" = ?, "HARPIA_ERROR" = ?, "HARPIA_ORIGINATOR" = ? WHERE "HARPIA_ID" = ?'
+    DELETE_SQL = 'DELETE FROM "request_table" WHERE "HARPIA_ID" = ?'
+    LIST_SQL = 'SELECT "HARPIA_ID", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "request_table" ORDER BY "HARPIA_ID"'
+    LIST_PAGE_SQL = 'SELECT "HARPIA_ID", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "request_table" ORDER BY "HARPIA_ID" LIMIT ? OFFSET ?'
+    READ_BY_SQL = {'id': 'SELECT "HARPIA_ID", "id", "from", "to", "what", "source", "time", "status", "answer", "answered_by", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "request_table" WHERE "id" = ?'}
+
+    def read_by_id(self, value: str, out: Request) -> bool:
+        """Load the row whose ``id`` (a ``unique`` field) is
+        ``value`` into ``out``.
+
+        Returns:
+            ``False`` when no such row exists (``out`` is untouched).
+        """
+        return self._read_by('id', value, out)

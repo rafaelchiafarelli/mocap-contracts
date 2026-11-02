@@ -32,12 +32,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Request_Test {
-    private static final String PK_FIELD = "ID_cb110dd8cf55c19c22ff64a9cdf4d22e";
+    private static final String PK_FIELD = "HARPIA_ID";
 
     private static Request sample() {
         Request.Builder b = Request.newBuilder();
         Descriptor d = b.getDescriptorForType();
-        b.setField(d.findFieldByName("ID_cb110dd8cf55c19c22ff64a9cdf4d22e"), 1);
+        b.setField(d.findFieldByName("HARPIA_ID"), 1);
         b.setField(d.findFieldByName("id"), "id_a");
         b.setField(d.findFieldByName("from"), "from_a");
         b.setField(d.findFieldByName("to"), "to_a");
@@ -47,9 +47,9 @@ class Request_Test {
         b.setField(d.findFieldByName("status"), d.findFieldByName("status").getEnumType().findValueByNumber(1));
         b.setField(d.findFieldByName("answer"), "answer_a");
         b.setField(d.findFieldByName("answered_by"), "answered_by_a");
-        b.setField(d.findFieldByName("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e"), "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e_a");
-        b.setField(d.findFieldByName("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e"), "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e_a");
-        b.setField(d.findFieldByName("ORIGINATOR"), "ORIGINATOR_a");
+        b.setField(d.findFieldByName("HARPIA_STATUS"), "HARPIA_STATUS_a");
+        b.setField(d.findFieldByName("HARPIA_ERROR"), "HARPIA_ERROR_a");
+        b.setField(d.findFieldByName("HARPIA_ORIGINATOR"), "HARPIA_ORIGINATOR_a");
         return b.build();
     }
 
@@ -57,7 +57,7 @@ class Request_Test {
     void fieldsSurviveSetterGetter() {
         Request m = sample();
         Descriptor d = m.getDescriptorForType();
-        assertEquals(1, m.getField(d.findFieldByName("ID_cb110dd8cf55c19c22ff64a9cdf4d22e")));
+        assertEquals(1, m.getField(d.findFieldByName("HARPIA_ID")));
         assertEquals("id_a", m.getField(d.findFieldByName("id")));
         assertEquals("from_a", m.getField(d.findFieldByName("from")));
         assertEquals("to_a", m.getField(d.findFieldByName("to")));
@@ -67,9 +67,9 @@ class Request_Test {
         assertEquals(d.findFieldByName("status").getEnumType().findValueByNumber(1), m.getField(d.findFieldByName("status")));
         assertEquals("answer_a", m.getField(d.findFieldByName("answer")));
         assertEquals("answered_by_a", m.getField(d.findFieldByName("answered_by")));
-        assertEquals("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e_a", m.getField(d.findFieldByName("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e")));
-        assertEquals("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e_a", m.getField(d.findFieldByName("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e")));
-        assertEquals("ORIGINATOR_a", m.getField(d.findFieldByName("ORIGINATOR")));
+        assertEquals("HARPIA_STATUS_a", m.getField(d.findFieldByName("HARPIA_STATUS")));
+        assertEquals("HARPIA_ERROR_a", m.getField(d.findFieldByName("HARPIA_ERROR")));
+        assertEquals("HARPIA_ORIGINATOR_a", m.getField(d.findFieldByName("HARPIA_ORIGINATOR")));
     }
 
     @Test

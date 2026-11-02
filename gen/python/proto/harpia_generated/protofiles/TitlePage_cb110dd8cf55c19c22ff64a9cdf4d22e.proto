@@ -3,14 +3,14 @@ option java_multiple_files = true;
 option java_package = "com.harpia.generated";
 
 message TitlePage {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string title = 2;
 string subtitle = 3;
 string episode = 4;
 string author = 5;
 repeated string co_authors = 6;
 string email = 7;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 8;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 9;
-string ORIGINATOR = 10;
+string HARPIA_STATUS = 8;
+string HARPIA_ERROR = 9;
+string HARPIA_ORIGINATOR = 10;
 }

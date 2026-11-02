@@ -28,5 +28,5 @@ Rules specific to this repository:
 | [film-records](film-records/film-records.md) | Done — released as `v0.5.0` (2026-10-28) |
 | [script-records](script-records/script-records.md) | Done — released as `v0.6.0` (2026-10-30) |
 | [preprod-records](preprod-records/preprod-records.md) | Done — released as `v0.7.0` (2026-10-31) |
-| [workflow-records](workflow-records/workflow-records.md) | In progress — workflow/1 done on the `tasks` branch; workflow/2 waits for Harpia ([`docs/harpia-handoff.md`](../docs/harpia-handoff.md)); `v0.8.0` after it |
+| [workflow-records](workflow-records/workflow-records.md) | In progress — workflow/1 and 2 done on the `tasks` branch; `v0.8.0` after workflow/3 |
 | [bugs](bugs/bugs.md) | Open — a backlog, fixed when a bug gets in the way |

@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nSharpia_generated/protofiles/AnnotationAnchor_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xab\x02\n\x10\x41nnotationAnchor\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\r\n\x05scene\x18\x02 \x01(\t\x12\x14\n\x07\x65lement\x18\x03 \x01(\x05H\x00\x88\x01\x01\x12\x12\n\x05quote\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x17\n\noccurrence\x18\x05 \x01(\x05H\x02\x88\x01\x01\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x06 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x07 \x01(\t\x12\x12\n\nORIGINATOR\x18\x08 \x01(\tB\n\n\x08_elementB\x08\n\x06_quoteB\r\n\x0b_occurrenceB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nSharpia_generated/protofiles/AnnotationAnchor_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xe4\x01\n\x10\x41nnotationAnchor\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\r\n\x05scene\x18\x02 \x01(\t\x12\x14\n\x07\x65lement\x18\x03 \x01(\x05H\x00\x88\x01\x01\x12\x12\n\x05quote\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x17\n\noccurrence\x18\x05 \x01(\x05H\x02\x88\x01\x01\x12\x15\n\rHARPIA_STATUS\x18\x06 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x07 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x08 \x01(\tB\n\n\x08_elementB\x08\n\x06_quoteB\r\n\x0b_occurrenceB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.AnnotationAnchor_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -22,5 +22,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _ANNOTATIONANCHOR._serialized_start=88
-  _ANNOTATIONANCHOR._serialized_end=387
+  _ANNOTATIONANCHOR._serialized_end=316
 # @@protoc_insertion_point(module_scope)

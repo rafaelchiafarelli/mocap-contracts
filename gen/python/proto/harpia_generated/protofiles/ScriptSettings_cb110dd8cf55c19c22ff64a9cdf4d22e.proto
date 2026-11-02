@@ -11,7 +11,7 @@ import "harpia_generated/protofiles/AutoCompletionList_cb110dd8cf55c19c22ff64a9c
 import "harpia_generated/protofiles/LocationGroup_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "harpia_generated/protofiles/TitlePages_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message ScriptSettings {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 PageSettings page = 2;
 repeated ElementStyle elements = 3;
 PdfSettings pdf = 4;
@@ -21,7 +21,7 @@ repeated AutoCompletionList auto_completion = 7;
 repeated LocationGroup locations = 8;
 repeated string spelling_words = 9;
 TitlePages title_page = 10;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 11;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 12;
-string ORIGINATOR = 13;
+string HARPIA_STATUS = 11;
+string HARPIA_ERROR = 12;
+string HARPIA_ORIGINATOR = 13;
 }

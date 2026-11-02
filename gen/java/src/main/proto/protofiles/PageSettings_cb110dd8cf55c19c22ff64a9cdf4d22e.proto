@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message PageSettings {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 float paper_width_mm = 2;
 float paper_height_mm = 3;
 float margin_top_mm = 4;
@@ -16,7 +16,7 @@ int32 page_break_action_lines = 9;
 int32 page_break_dialogue_lines = 10;
 Flag scene_continueds = 11;
 int32 scene_continued_indent_chars = 12;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 13;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 14;
-string ORIGINATOR = 15;
+string HARPIA_STATUS = 13;
+string HARPIA_ERROR = 14;
+string HARPIA_ORIGINATOR = 15;
 }

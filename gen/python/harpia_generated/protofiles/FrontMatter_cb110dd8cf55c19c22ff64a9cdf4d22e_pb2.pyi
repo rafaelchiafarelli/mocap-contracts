@@ -9,21 +9,21 @@ from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Opti
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class FrontMatter(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "argument", "overview", "pitch", "title"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "argument", "overview", "pitch", "title"]
     ARGUMENT_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     OVERVIEW_FIELD_NUMBER: _ClassVar[int]
     PITCH_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     TITLE_FIELD_NUMBER: _ClassVar[int]
     argument: _Argument_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Argument
     overview: _Overview_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Overview
     pitch: _Pitch_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Pitch
     title: _TitlePage_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TitlePage
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., title: _Optional[_Union[_TitlePage_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TitlePage, _Mapping]] = ..., overview: _Optional[_Union[_Overview_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Overview, _Mapping]] = ..., pitch: _Optional[_Union[_Pitch_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Pitch, _Mapping]] = ..., argument: _Optional[_Union[_Argument_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Argument, _Mapping]] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., title: _Optional[_Union[_TitlePage_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TitlePage, _Mapping]] = ..., overview: _Optional[_Union[_Overview_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Overview, _Mapping]] = ..., pitch: _Optional[_Union[_Pitch_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Pitch, _Mapping]] = ..., argument: _Optional[_Union[_Argument_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Argument, _Mapping]] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

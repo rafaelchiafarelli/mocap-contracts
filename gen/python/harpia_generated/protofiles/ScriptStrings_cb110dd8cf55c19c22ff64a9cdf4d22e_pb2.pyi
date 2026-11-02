@@ -5,21 +5,21 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ScriptStrings(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "continued_page_end", "continued_page_start", "dialogue_continued", "more"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "continued_page_end", "continued_page_start", "dialogue_continued", "more"]
     CONTINUED_PAGE_END_FIELD_NUMBER: _ClassVar[int]
     CONTINUED_PAGE_START_FIELD_NUMBER: _ClassVar[int]
     DIALOGUE_CONTINUED_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     MORE_FIELD_NUMBER: _ClassVar[int]
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     continued_page_end: str
     continued_page_start: str
     dialogue_continued: str
     more: str
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., more: _Optional[str] = ..., continued_page_end: _Optional[str] = ..., continued_page_start: _Optional[str] = ..., dialogue_continued: _Optional[str] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., more: _Optional[str] = ..., continued_page_end: _Optional[str] = ..., continued_page_start: _Optional[str] = ..., dialogue_continued: _Optional[str] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

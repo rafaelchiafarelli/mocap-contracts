@@ -15,7 +15,7 @@ from harpia_generated.protofiles import ScriptElement_cb110dd8cf55c19c22ff64a9cd
 from harpia_generated.protofiles import Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_Flag__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nUharpia_generated/protofiles/AutoCompletionList_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/ScriptElement_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aGharpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xfe\x01\n\x12\x41utoCompletionList\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x1f\n\x07\x65lement\x18\x02 \x01(\x0e\x32\x0e.ScriptElement\x12\x16\n\x07\x65nabled\x18\x03 \x01(\x0e\x32\x05.Flag\x12\r\n\x05items\x18\x04 \x03(\t\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x05 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x06 \x01(\t\x12\x12\n\nORIGINATOR\x18\x07 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nUharpia_generated/protofiles/AutoCompletionList_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aPharpia_generated/protofiles/ScriptElement_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aGharpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xb7\x01\n\x12\x41utoCompletionList\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x1f\n\x07\x65lement\x18\x02 \x01(\x0e\x32\x0e.ScriptElement\x12\x16\n\x07\x65nabled\x18\x03 \x01(\x0e\x32\x05.Flag\x12\r\n\x05items\x18\x04 \x03(\t\x12\x15\n\rHARPIA_STATUS\x18\x05 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x06 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x07 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.AutoCompletionList_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -24,5 +24,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _AUTOCOMPLETIONLIST._serialized_start=245
-  _AUTOCOMPLETIONLIST._serialized_end=499
+  _AUTOCOMPLETIONLIST._serialized_end=428
 # @@protoc_insertion_point(module_scope)

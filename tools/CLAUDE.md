@@ -9,8 +9,9 @@
 ## Files
 
 - `harpia_gen.py` — runs Harpia in Docker for Python and Java
-  (`run_harpia`, `harpia_gen.py:50`), copies `gen/`, `schema_registry/`, and
-  writes `mocap_contracts/messages.py` and `zmq_endpoints.py`. `--into DIR`
+  (`run_harpia`, `harpia_gen.py:54`), copies `gen/`, `schema_registry/`, and
+  writes `mocap_contracts/messages.py`, `zmq_endpoints.py` and
+  `db_tables.py`. `--into DIR`
   writes elsewhere (the reproducibility test).
 - `make_stream_fixtures.py` — builds `fixtures/stream-v1/` (needs ffmpeg and
   an eval recording).
@@ -32,7 +33,7 @@
 ## Key facts / gotchas
 
 - `harpia_gen.py` reads declared and required fields from `schema/` itself
-  (`schema_fields`, `harpia_gen.py:82`): proto3 loses `required`.
+  (`schema_fields`, `harpia_gen.py:86`): proto3 loses `required`.
 - The fixture builders are run once and their outputs committed.
 
 ## Touchpoints

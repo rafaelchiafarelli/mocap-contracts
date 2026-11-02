@@ -32,21 +32,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Review_Test {
-    private static final String PK_FIELD = "ID_cb110dd8cf55c19c22ff64a9cdf4d22e";
+    private static final String PK_FIELD = "HARPIA_ID";
 
     private static Review sample() {
         Review.Builder b = Review.newBuilder();
         Descriptor d = b.getDescriptorForType();
-        b.setField(d.findFieldByName("ID_cb110dd8cf55c19c22ff64a9cdf4d22e"), 1);
+        b.setField(d.findFieldByName("HARPIA_ID"), 1);
         b.setField(d.findFieldByName("proposal"), "proposal_a");
         b.setField(d.findFieldByName("outcome"), d.findFieldByName("outcome").getEnumType().findValueByNumber(1));
         b.setField(d.findFieldByName("by"), "by_a");
         b.setField(d.findFieldByName("time"), "time_a");
         b.setField(d.findFieldByName("note"), "note_a");
         b.setField(d.findFieldByName("text"), "text_a");
-        b.setField(d.findFieldByName("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e"), "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e_a");
-        b.setField(d.findFieldByName("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e"), "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e_a");
-        b.setField(d.findFieldByName("ORIGINATOR"), "ORIGINATOR_a");
+        b.setField(d.findFieldByName("HARPIA_STATUS"), "HARPIA_STATUS_a");
+        b.setField(d.findFieldByName("HARPIA_ERROR"), "HARPIA_ERROR_a");
+        b.setField(d.findFieldByName("HARPIA_ORIGINATOR"), "HARPIA_ORIGINATOR_a");
         return b.build();
     }
 
@@ -54,16 +54,16 @@ class Review_Test {
     void fieldsSurviveSetterGetter() {
         Review m = sample();
         Descriptor d = m.getDescriptorForType();
-        assertEquals(1, m.getField(d.findFieldByName("ID_cb110dd8cf55c19c22ff64a9cdf4d22e")));
+        assertEquals(1, m.getField(d.findFieldByName("HARPIA_ID")));
         assertEquals("proposal_a", m.getField(d.findFieldByName("proposal")));
         assertEquals(d.findFieldByName("outcome").getEnumType().findValueByNumber(1), m.getField(d.findFieldByName("outcome")));
         assertEquals("by_a", m.getField(d.findFieldByName("by")));
         assertEquals("time_a", m.getField(d.findFieldByName("time")));
         assertEquals("note_a", m.getField(d.findFieldByName("note")));
         assertEquals("text_a", m.getField(d.findFieldByName("text")));
-        assertEquals("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e_a", m.getField(d.findFieldByName("STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e")));
-        assertEquals("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e_a", m.getField(d.findFieldByName("ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e")));
-        assertEquals("ORIGINATOR_a", m.getField(d.findFieldByName("ORIGINATOR")));
+        assertEquals("HARPIA_STATUS_a", m.getField(d.findFieldByName("HARPIA_STATUS")));
+        assertEquals("HARPIA_ERROR_a", m.getField(d.findFieldByName("HARPIA_ERROR")));
+        assertEquals("HARPIA_ORIGINATOR_a", m.getField(d.findFieldByName("HARPIA_ORIGINATOR")));
     }
 
     @Test

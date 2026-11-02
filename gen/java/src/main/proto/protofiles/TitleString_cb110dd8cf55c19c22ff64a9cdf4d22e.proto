@@ -6,7 +6,7 @@ import "protofiles/TextAlign_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/TitleFont_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message TitleString {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 repeated string items = 2;
 float x_mm = 3;
 float y_mm = 4;
@@ -16,7 +16,7 @@ Flag bold = 7;
 Flag italic = 8;
 Flag underlined = 9;
 TitleFont font = 10;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 11;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 12;
-string ORIGINATOR = 13;
+string HARPIA_STATUS = 11;
+string HARPIA_ERROR = 12;
+string HARPIA_ORIGINATOR = 13;
 }

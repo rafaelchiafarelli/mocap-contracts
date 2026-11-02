@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from harpia_generated.protofiles import ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_ControlValue__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nQharpia_generated/protofiles/ControlSetting_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aOharpia_generated/protofiles/ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xdd\x01\n\x0e\x43ontrolSetting\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x1c\n\x05value\x18\x03 \x01(\x0b\x32\r.ControlValue\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x04 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x05 \x01(\t\x12\x12\n\nORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nQharpia_generated/protofiles/ControlSetting_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aOharpia_generated/protofiles/ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x96\x01\n\x0e\x43ontrolSetting\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x1c\n\x05value\x18\x03 \x01(\x0b\x32\r.ControlValue\x12\x15\n\rHARPIA_STATUS\x18\x04 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x05 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.ControlSetting_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -23,5 +23,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _CONTROLSETTING._serialized_start=167
-  _CONTROLSETTING._serialized_end=388
+  _CONTROLSETTING._serialized_end=317
 # @@protoc_insertion_point(module_scope)

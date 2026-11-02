@@ -4,14 +4,14 @@ option java_package = "com.harpia.generated";
 
 import "protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message ControlValue {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 optional int64 int_value = 2;
 optional float float_value = 3;
 optional Flag flag_value = 4;
 optional string text_value = 5;
 repeated int64 int_values = 6;
 repeated float float_values = 7;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 8;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 9;
-string ORIGINATOR = 10;
+string HARPIA_STATUS = 8;
+string HARPIA_ERROR = 9;
+string HARPIA_ORIGINATOR = 10;
 }

@@ -17,30 +17,41 @@ class Review_dao(Dao[Review]):
 
     MESSAGE = Review
     TABLE = 'review_table'
-    PK = 'ID_cb110dd8cf55c19c22ff64a9cdf4d22e'
+    PK = 'HARPIA_ID'
+    INSERT_AUTO_SQL = 'INSERT INTO "review_table" ("proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "HARPIA_ID"'
     COLUMNS = (
-        Column('ID_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ID_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
+        Column('HARPIA_ID', ('HARPIA_ID',)),
         Column('proposal', ('proposal',)),
         Column('outcome', ('outcome',)),
         Column('by', ('by',)),
         Column('time', ('time',)),
         Column('note', ('note',)),
         Column('text', ('text',)),
-        Column('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e', ('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ORIGINATOR', ('ORIGINATOR',)),
+        Column('HARPIA_STATUS', ('HARPIA_STATUS',)),
+        Column('HARPIA_ERROR', ('HARPIA_ERROR',)),
+        Column('HARPIA_ORIGINATOR', ('HARPIA_ORIGINATOR',)),
     )
     CHILDREN = (
     )
     CREATE_TABLE_SQL = (
-        'CREATE TABLE IF NOT EXISTS "review_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e" INTEGER PRIMARY KEY, "proposal" TEXT NOT NULL UNIQUE, "outcome" INTEGER, "by" TEXT NOT NULL, "time" TEXT NOT NULL, "note" TEXT, "text" TEXT, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ORIGINATOR" TEXT);',
+        'CREATE TABLE IF NOT EXISTS "review_table" ("HARPIA_ID" INTEGER PRIMARY KEY, "proposal" TEXT NOT NULL UNIQUE, "outcome" INTEGER, "by" TEXT NOT NULL, "time" TEXT NOT NULL, "note" TEXT, "text" TEXT, "HARPIA_STATUS" TEXT, "HARPIA_ERROR" TEXT, "HARPIA_ORIGINATOR" TEXT);',
     )
     DROP_TABLE_SQL = (
         'DROP TABLE IF EXISTS "review_table";',
     )
-    INSERT_SQL = 'INSERT INTO "review_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "proposal", "outcome", "by", "time", "note", "text", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    SELECT_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "proposal", "outcome", "by", "time", "note", "text", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "review_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    UPDATE_SQL = 'UPDATE "review_table" SET "proposal" = ?, "outcome" = ?, "by" = ?, "time" = ?, "note" = ?, "text" = ?, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ORIGINATOR" = ? WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    DELETE_SQL = 'DELETE FROM "review_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    LIST_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "proposal", "outcome", "by", "time", "note", "text", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "review_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e"'
-    LIST_PAGE_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "proposal", "outcome", "by", "time", "note", "text", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "review_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" LIMIT ? OFFSET ?'
+    INSERT_SQL = 'INSERT INTO "review_table" ("HARPIA_ID", "proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    SELECT_SQL = 'SELECT "HARPIA_ID", "proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "review_table" WHERE "HARPIA_ID" = ?'
+    UPDATE_SQL = 'UPDATE "review_table" SET "proposal" = ?, "outcome" = ?, "by" = ?, "time" = ?, "note" = ?, "text" = ?, "HARPIA_STATUS" = ?, "HARPIA_ERROR" = ?, "HARPIA_ORIGINATOR" = ? WHERE "HARPIA_ID" = ?'
+    DELETE_SQL = 'DELETE FROM "review_table" WHERE "HARPIA_ID" = ?'
+    LIST_SQL = 'SELECT "HARPIA_ID", "proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "review_table" ORDER BY "HARPIA_ID"'
+    LIST_PAGE_SQL = 'SELECT "HARPIA_ID", "proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "review_table" ORDER BY "HARPIA_ID" LIMIT ? OFFSET ?'
+    READ_BY_SQL = {'proposal': 'SELECT "HARPIA_ID", "proposal", "outcome", "by", "time", "note", "text", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "review_table" WHERE "proposal" = ?'}
+
+    def read_by_proposal(self, value: str, out: Review) -> bool:
+        """Load the row whose ``proposal`` (a ``unique`` field) is
+        ``value`` into ``out``.
+
+        Returns:
+            ``False`` when no such row exists (``out`` is untouched).
+        """
+        return self._read_by('proposal', value, out)

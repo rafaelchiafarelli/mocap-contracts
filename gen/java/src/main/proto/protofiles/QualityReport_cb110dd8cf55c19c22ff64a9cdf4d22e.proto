@@ -6,13 +6,13 @@ import "protofiles/CameraQuality_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/BoneStability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/CameraAblation_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message QualityReport {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string take_id = 2;
 optional float calibration_reproj_err_px = 3;
 repeated CameraQuality cameras = 4;
 repeated BoneStability bones = 5;
 repeated CameraAblation ablation = 6;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 7;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 8;
-string ORIGINATOR = 9;
+string HARPIA_STATUS = 7;
+string HARPIA_ERROR = 8;
+string HARPIA_ORIGINATOR = 9;
 }
