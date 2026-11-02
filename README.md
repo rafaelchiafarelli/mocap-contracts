@@ -70,7 +70,8 @@ with mocap_contracts.db.open(film_root / "workflow.sqlite") as db:
 
 Import from `mocap_contracts` only, never from `harpia_generated`. Its module
 names carry a hash of the root `.harpia` and change with it. A change that
-crosses repositories always starts here, and other repos pin a released tag.
+crosses repositories always starts here, and other repos pin a released tag
+(`mocap-preprod` takes the newest one when its image is built).
 
 ## Layout
 
@@ -109,8 +110,6 @@ Writing `.harpia` (what Harpia's lexer accepts, beyond USAGE §3):
 
 ## Status
 
-In progress: the generation pipeline, JSON helpers and the first messages
-(camera controls, session) are built on the `baseline` initiative branches.
-They aren't on `dev` yet; they land when the initiative is done, as release
-`v0.1.0`. Plan: [`initiatives/`](initiatives). Architecture:
+Released: see [`CHANGELOG.md`](CHANGELOG.md); the newest tag is the current
+contract. Work still to do: [`initiatives/`](initiatives). Architecture:
 `mocap-studio/HANDOFF.md`.

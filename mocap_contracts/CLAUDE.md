@@ -156,4 +156,6 @@ file (the one it is given); nothing here creates folders.
 ## Touchpoints
 
 - `schema/` (the source of `messages.py`), `tools/harpia_gen.py`, `tests/`.
-- Consumers: every Python mocap repository, pinned to a tag.
+- Consumers: `mocap-capture`, `mocap-extract` and `mocap-writer` here,
+  `mocap-camera-app` the generated Java; pinned to a tag. `mocap-preprod` takes
+  the newest tag when its image is built.
