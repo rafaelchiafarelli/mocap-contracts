@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message TitlePage {
+int32 HARPIA_ID = 1;
+string title = 2;
+string subtitle = 3;
+string episode = 4;
+string author = 5;
+repeated string co_authors = 6;
+string email = 7;
+string HARPIA_STATUS = 8;
+string HARPIA_ERROR = 9;
+string HARPIA_ORIGINATOR = 10;
+}

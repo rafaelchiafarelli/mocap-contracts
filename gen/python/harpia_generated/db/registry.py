@@ -39,7 +39,11 @@ class RegistryEntry(NamedTuple):
 PROJECT_NAME = 'mocap-studio'
 
 # One row per table-bearing message, deduped by table name, sorted.
-REGISTRY: tuple[RegistryEntry, ...] = ()
+REGISTRY: tuple[RegistryEntry, ...] = (
+    RegistryEntry('proposal_table', Visibility.PRIVATE, 'mocap-studio'),
+    RegistryEntry('request_table', Visibility.PRIVATE, 'mocap-studio'),
+    RegistryEntry('review_table', Visibility.PRIVATE, 'mocap-studio'),
+)
 
 
 def find_entry(table: str) -> RegistryEntry | None:

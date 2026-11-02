@@ -377,6 +377,12 @@ def _preprod_part(name):
     }[name]
 
 
+def _workflow_part(name):
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / "fixtures" / "workflow-v1"
+    return mc.from_json(getattr(mc, name), (root / f"{name.lower()}.json").read_text())
+
+
 SAMPLES = {
     "ControlValue": lambda: mc.ControlValue(int_values=[15, 30]),  # an fps range
     "ControlMenuOption": lambda: mc.ControlMenuOption(value=1, name="Manual Mode"),
@@ -465,4 +471,5 @@ SAMPLES = {
     **{n: (lambda n=n: _preprod_part(n)) for n in (
         "SceneIndex", "SceneEntry", "SceneCharacter", "SceneProp", "ChangeSet", "SceneChange",
         "FrontMatter", "TitlePage", "Overview", "Pitch", "Argument")},
+    **{n: (lambda n=n: _workflow_part(n)) for n in ("Proposal", "Review", "Request")},
 }
