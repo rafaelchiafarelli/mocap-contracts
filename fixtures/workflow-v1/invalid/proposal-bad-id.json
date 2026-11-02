@@ -1,0 +1,14 @@
+{
+  "id": "request-pcp-1",
+  "item": "prop-pcp-1",
+  "value": {
+    "field": "look.shape",
+    "text": "tall, with a narrow handle",
+    "state": "VALUE_STATE_PROPOSAL",
+    "source": "analysis/props-continuity.md",
+    "department": "props",
+    "by": "props-continuity-planner"
+  },
+  "time": "2026-10-31T12:00:00Z",
+  "change_set": "2026-10-31T11-00-00Z-changes.json"
+}

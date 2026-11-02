@@ -1,0 +1,45 @@
+// The front matter of a film owned by mocap-writer
+// settings slash front matter json holds the title page and three pages that can be left out
+// The writer prints them before the script and writes the Fountain title block from the title page
+// Every field is written and an empty text means not filled in
+import "common.harpia";
+
+// The title page
+message TitlePage {
+    required string title;
+    required string subtitle;
+    required string episode;
+    required string author;
+    repeteable string co_authors;
+    required string email;
+};
+
+// The overview page whose lists are computed when printed never typed
+message Overview {
+    required Flag include;
+    required Flag cast;
+    required Flag sets;
+    required Flag acts;
+};
+
+// The pitch page
+message Pitch {
+    required Flag include;
+    required string pitch;
+    required string logline;
+    required string target_audience;
+};
+
+// The argument which can run over many pages
+message Argument {
+    required Flag include;
+    required string text;
+};
+
+// front matter json of a film
+message FrontMatter {
+    required TitlePage title;
+    required Overview overview;
+    required Pitch pitch;
+    required Argument argument;
+};

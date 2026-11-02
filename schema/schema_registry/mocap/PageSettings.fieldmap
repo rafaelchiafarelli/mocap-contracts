@@ -1,0 +1,15 @@
+ID:1
+paper_width_mm:2
+paper_height_mm:3
+margin_top_mm:4
+margin_bottom_mm:5
+margin_left_mm:6
+margin_right_mm:7
+font_size_pt:8
+page_break_action_lines:9
+page_break_dialogue_lines:10
+scene_continueds:11
+scene_continued_indent_chars:12
+STATUS:13
+ERROR:14
+ORIGINATOR:15

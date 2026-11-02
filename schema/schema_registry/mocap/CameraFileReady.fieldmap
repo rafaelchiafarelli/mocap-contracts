@@ -1,0 +1,13 @@
+ID:1
+take_id:2
+role:3
+kind:4
+path:5
+size_bytes:6
+sha256:7
+frames:8
+first_ts_ns:9
+last_ts_ns:10
+STATUS:11
+ERROR:12
+ORIGINATOR:13

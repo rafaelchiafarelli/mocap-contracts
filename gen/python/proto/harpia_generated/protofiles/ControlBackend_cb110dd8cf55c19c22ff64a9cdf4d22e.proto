@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ControlBackend {
+CONTROL_BACKEND_UNSET = 0;
+CONTROL_BACKEND_V4L2 = 1;
+CONTROL_BACKEND_CAMERA2 = 2;
+}

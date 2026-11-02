@@ -1,0 +1,45 @@
+// The animation data Blender reads owned by mocap-adapt for P4
+// Metres with Z up and timestamps in nanoseconds on the recorder clock
+// Positions are flat x y z lists in the header joint order to keep files small
+import "extract.harpia";
+
+// Who this motion belongs to and how to read every frame
+message MocapTakeHeader {
+    required string take_id;
+    required string session_id;
+    required string actor_id;
+    required string character_id;
+    required float fps;
+    required int64 frame_count;
+    required int64 t0_ns;
+    required LengthUnit length_unit;
+    required UpAxis up_axis;
+    repeteable string body_joints;
+    repeteable string left_hand_joints;
+    repeteable string right_hand_joints;
+    repeteable string face_blendshape_names;
+};
+
+// One frame and joints listed as missing have no data and their xyz is zero
+// Face gaze and emotion stay empty in the baseline
+message MocapFrame {
+    required int64 frame_id;
+    required int64 timestamp_ns;
+    repeteable float body_xyz;
+    repeteable float left_hand_xyz;
+    repeteable float right_hand_xyz;
+    repeteable int body_missing;
+    repeteable int left_hand_missing;
+    repeteable int right_hand_missing;
+    repeteable float face_blendshapes;
+    repeteable float gaze;
+    optional string emotion;
+    required Flag left_foot_contact;
+    required Flag right_foot_contact;
+};
+
+// The motion of one performer in one take
+message MocapTake {
+    required MocapTakeHeader header;
+    repeteable MocapFrame frames;
+};

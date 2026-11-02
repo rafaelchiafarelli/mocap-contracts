@@ -1,0 +1,44 @@
+{
+  "id": "annotation-w-3",
+  "kind": "ANNOTATION_KIND_SHOT",
+  "anchor": {
+    "scene": "1.A",
+    "element": 2
+  },
+  "by": "creator",
+  "values": [
+    {
+      "field": "framing.size",
+      "text": "close-up",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "camera",
+      "by": "creator"
+    },
+    {
+      "field": "lens.focal_length",
+      "number": "50",
+      "unit": "mm",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "camera",
+      "by": "creator"
+    },
+    {
+      "field": "framing.characters",
+      "text": "character-w-1",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "camera",
+      "by": "creator"
+    },
+    {
+      "field": "framing.characters",
+      "text": "character-w-2",
+      "state": "VALUE_STATE_CREATOR_APPROVED",
+      "source": "decision 2026-10-30",
+      "department": "camera",
+      "by": "creator"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+ID:1
+take_id:2
+calibration_take_id:3
+calibration_path:4
+fps:5
+frames:6
+t0_ns:7
+length_unit:8
+up_axis:9
+synced_videos:10
+alignment:11
+points_3d:12
+points_2d:13
+STATUS:14
+ERROR:15
+ORIGINATOR:16

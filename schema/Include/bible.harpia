@@ -1,0 +1,102 @@
+// The film bible owned by mocap-writer
+// Each item of a map is a folder under bible with its item json
+// Values are generic and the catalog says which fields each map has and their types
+// Rules that required cannot express live in mocap_contracts rules
+import "common.harpia";
+
+// The four maps of the bible
+enum BibleMap {
+    BIBLE_MAP_UNSET = 0;
+    BIBLE_MAP_SET;
+    BIBLE_MAP_CHARACTER;
+    BIBLE_MAP_PROP;
+    BIBLE_MAP_WARDROBE;
+}
+
+// The type of a catalog field
+enum FieldType {
+    FIELD_TYPE_UNSET = 0;
+    FIELD_TYPE_TEXT;
+    FIELD_TYPE_NUMBER;
+    FIELD_TYPE_CHOICE;
+    FIELD_TYPE_LIST;
+    FIELD_TYPE_FILE;
+    FIELD_TYPE_LINK;
+}
+
+// Where a value stands so a proposal never passes as approved
+enum ValueState {
+    VALUE_STATE_UNSET = 0;
+    VALUE_STATE_SCRIPT_STATED;
+    VALUE_STATE_CREATOR_APPROVED;
+    VALUE_STATE_PROPOSAL;
+    VALUE_STATE_TBD;
+}
+
+// One field of the catalog with its type and for a choice its options
+message CatalogField {
+    required string key;
+    required string label;
+    required FieldType type;
+    repeteable string options;
+    optional string unit;
+    optional string link_kind;
+};
+
+// A group of fields with the department downstream of them
+message CatalogGroup {
+    required string key;
+    required string label;
+    required Flag per_scene;
+    required string department;
+    repeteable CatalogField fields;
+};
+
+// The groups of one map
+message CatalogMap {
+    required BibleMap bible_map;
+    repeteable CatalogGroup groups;
+};
+
+// The approved field catalog of the bible
+message BibleCatalog {
+    required int version;
+    repeteable CatalogMap maps;
+};
+
+// One value of a field with its state and where it came from
+// number is decimal text so no precision is lost
+message BibleValue {
+    required string field;
+    optional string scene;
+    optional string text;
+    optional string number;
+    optional string unit;
+    optional string note;
+    required ValueState state;
+    required string source;
+    required string department;
+    required string by;
+    optional string revisit;
+};
+
+// A scene the item is in and for wardrobe the character who wears it there
+message BibleLink {
+    required string scene;
+    optional string item;
+};
+
+// item json of one bible item
+message BibleItem {
+    required string id;
+    required string name;
+    repeteable string aliases;
+    optional string parent;
+    repeteable BibleValue values;
+    repeteable BibleLink links;
+};
+
+// not props json with the words marked as not a prop for the whole film
+message NotProps {
+    repeteable string words;
+};

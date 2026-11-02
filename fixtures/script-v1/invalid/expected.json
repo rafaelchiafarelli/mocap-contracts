@@ -1,0 +1,30 @@
+{
+  "font-size.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings.page: font_size_pt must be 4..72, got 80"
+  },
+  "width.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings.elements[0]: width_chars must be 5..80"
+  },
+  "element-twice.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings: elements: one style per element, twice ['SCRIPT_ELEMENT_SCENE']"
+  },
+  "element-missing.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings: elements: no style for ['SCRIPT_ELEMENT_NOTE']"
+  },
+  "pdf-name.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings.pdf.bold: pdf_name can't hold"
+  },
+  "header-line.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings.headers.lines[0]: line must be 1..5"
+  },
+  "no-page.json": {
+    "message": "ScriptSettings",
+    "error": "ScriptSettings: missing required field(s) ['page']"
+  }
+}

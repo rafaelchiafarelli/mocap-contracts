@@ -1,0 +1,69 @@
+{
+  "script_hash": "5731390c158feaafdd6af0baa2082dc34a738c674207c95601d0e6be4ce083c1",
+  "scenes": [
+    {
+      "scene": "1",
+      "order": 1,
+      "int_ext": "INT.",
+      "location": "DINING ROOM",
+      "time_of_day": "NIGHT",
+      "set_id": "set-w-1",
+      "characters": [
+        {
+          "name": "ANA",
+          "id": "character-w-2",
+          "speaks": "FLAG_ON"
+        }
+      ],
+      "props": [
+        {
+          "word": "BLUE CUP",
+          "id": "prop-pcp-1"
+        }
+      ],
+      "first_page": 1,
+      "last_page": 1,
+      "first_line": 1,
+      "last_line": 7,
+      "text_hash": "977fc6563614824e75d417f249a04c3e1cabd6fc5ecfa1db6b42e2e672ce7560"
+    },
+    {
+      "scene": "1",
+      "order": 2,
+      "int_ext": "EXT.",
+      "location": "STREET",
+      "time_of_day": "DAY",
+      "characters": [
+        {
+          "name": "Bia",
+          "speaks": "FLAG_OFF"
+        }
+      ],
+      "props": [
+        {
+          "word": "MATCHBOX"
+        }
+      ],
+      "first_page": 1,
+      "last_page": 2,
+      "first_line": 8,
+      "last_line": 10,
+      "text_hash": "6f09031a63ddef0a26dd20bac0ceb6db53e51afb87560ae6bbeb7de92cc3d057"
+    },
+    {
+      "scene": "2.A",
+      "order": 3,
+      "int_ext": "INT.",
+      "location": "DINING ROOM",
+      "time_of_day": "DAY",
+      "set_id": "set-w-1",
+      "characters": [],
+      "props": [],
+      "first_page": 2,
+      "last_page": 2,
+      "first_line": 11,
+      "last_line": 13,
+      "text_hash": "cab82af3ae47fac965409f42d9a56ca16b2aa2ae630d3923244761f2f75832b1"
+    }
+  ]
+}

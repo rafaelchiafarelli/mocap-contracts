@@ -1,0 +1,17 @@
+ID:1
+frame_id:2
+timestamp_ns:3
+body_xyz:4
+left_hand_xyz:5
+right_hand_xyz:6
+body_missing:7
+left_hand_missing:8
+right_hand_missing:9
+face_blendshapes:10
+gaze:11
+emotion:12
+left_foot_contact:13
+right_foot_contact:14
+STATUS:15
+ERROR:16
+ORIGINATOR:17

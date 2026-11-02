@@ -1,0 +1,26 @@
+{
+  "id": "annotation-pcp-1",
+  "kind": "ANNOTATION_KIND_PROP_DIRECTION",
+  "anchor": {
+    "scene": "2"
+  },
+  "by": "props-continuity-planner",
+  "values": [
+    {
+      "field": "direction.prop",
+      "text": "prop-w-1",
+      "state": "VALUE_STATE_PROPOSAL",
+      "source": "2",
+      "department": "props",
+      "by": "props-continuity-planner"
+    },
+    {
+      "field": "direction.action",
+      "text": "breaks",
+      "state": "VALUE_STATE_PROPOSAL",
+      "source": "2",
+      "department": "props",
+      "by": "props-continuity-planner"
+    }
+  ]
+}

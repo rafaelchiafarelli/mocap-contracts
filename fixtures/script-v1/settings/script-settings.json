@@ -1,0 +1,276 @@
+{
+  "page": {
+    "paper_width_mm": 210.0,
+    "paper_height_mm": 297.0,
+    "margin_top_mm": 12.7,
+    "margin_bottom_mm": 25.4,
+    "margin_left_mm": 38.1,
+    "margin_right_mm": 25.4,
+    "font_size_pt": 12,
+    "page_break_action_lines": 2,
+    "page_break_dialogue_lines": 2,
+    "scene_continueds": "FLAG_OFF",
+    "scene_continued_indent_chars": 45
+  },
+  "elements": [
+    {
+      "element": "SCRIPT_ELEMENT_SCENE",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 0,
+      "width_chars": 60,
+      "screen": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_ON",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_ACTION",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 0,
+      "width_chars": 60,
+      "screen": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_CHARACTER",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 22,
+      "width_chars": 38,
+      "screen": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_DIALOGUE",
+      "before_spacing_tenths": 0,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 10,
+      "width_chars": 35,
+      "screen": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_PAREN",
+      "before_spacing_tenths": 0,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 16,
+      "width_chars": 25,
+      "screen": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_TRANSITION",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 45,
+      "width_chars": 20,
+      "screen": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_SHOT",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 0,
+      "width_chars": 60,
+      "screen": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_ACT_BREAK",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 25,
+      "width_chars": 10,
+      "screen": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_ON",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_ON"
+      },
+      "export": {
+        "caps": "FLAG_ON",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_ON"
+      }
+    },
+    {
+      "element": "SCRIPT_ELEMENT_NOTE",
+      "before_spacing_tenths": 10,
+      "intra_spacing_tenths": 0,
+      "indent_chars": 5,
+      "width_chars": 55,
+      "screen": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_ON",
+        "underlined": "FLAG_OFF"
+      },
+      "export": {
+        "caps": "FLAG_OFF",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_ON",
+        "underlined": "FLAG_OFF"
+      }
+    }
+  ],
+  "pdf": {
+    "show_scene_numbers": "FLAG_OFF",
+    "include_toc": "FLAG_ON",
+    "show_toc": "FLAG_ON",
+    "open_on_current_page": "FLAG_ON",
+    "remove_notes": "FLAG_OFF",
+    "outline_notes": "FLAG_ON",
+    "show_margins": "FLAG_OFF",
+    "show_line_numbers": "FLAG_OFF",
+    "normal": {
+      "pdf_name": "",
+      "filename": ""
+    },
+    "bold": {
+      "pdf_name": "",
+      "filename": ""
+    },
+    "italic": {
+      "pdf_name": "",
+      "filename": ""
+    },
+    "bold_italic": {
+      "pdf_name": "",
+      "filename": ""
+    }
+  },
+  "strings": {
+    "more": "(MORE)",
+    "continued_page_end": "(CONTINUED)",
+    "continued_page_start": "CONTINUED:",
+    "dialogue_continued": " (cont'd)"
+  },
+  "headers": {
+    "empty_lines_after": 1,
+    "lines": [
+      {
+        "line": 1,
+        "x_offset_chars": 0,
+        "align": "TEXT_ALIGN_RIGHT",
+        "bold": "FLAG_OFF",
+        "italic": "FLAG_OFF",
+        "underlined": "FLAG_OFF",
+        "text": "${PAGE}."
+      }
+    ]
+  },
+  "auto_completion": [
+    {
+      "element": "SCRIPT_ELEMENT_SCENE",
+      "enabled": "FLAG_ON",
+      "items": []
+    },
+    {
+      "element": "SCRIPT_ELEMENT_CHARACTER",
+      "enabled": "FLAG_ON",
+      "items": []
+    },
+    {
+      "element": "SCRIPT_ELEMENT_TRANSITION",
+      "enabled": "FLAG_ON",
+      "items": [
+        "BACK TO:",
+        "CROSSFADE:",
+        "CUT TO:",
+        "DISSOLVE TO:",
+        "FADE IN:",
+        "FADE OUT",
+        "FADE TO BLACK",
+        "FLASHBACK TO:",
+        "JUMP CUT TO:",
+        "MATCH CUT TO:",
+        "SLOW FADE TO BLACK",
+        "SMASH CUT TO:",
+        "TIME CUT:"
+      ]
+    },
+    {
+      "element": "SCRIPT_ELEMENT_SHOT",
+      "enabled": "FLAG_ON",
+      "items": []
+    }
+  ],
+  "locations": [],
+  "spelling_words": [],
+  "title_page": {
+    "pages": [],
+    "fountain_title": ""
+  }
+}

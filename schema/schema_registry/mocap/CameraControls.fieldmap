@@ -1,0 +1,14 @@
+ID:1
+exposure_ns:2
+iso:3
+gain_raw:4
+focus_diopters:5
+focus_raw:6
+white_balance_k:7
+power_line_hz:8
+auto_exposure:9
+auto_focus:10
+auto_white_balance:11
+STATUS:12
+ERROR:13
+ORIGINATOR:14

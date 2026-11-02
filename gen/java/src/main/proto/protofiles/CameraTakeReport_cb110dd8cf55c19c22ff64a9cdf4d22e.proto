@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/FrameGap_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message CameraTakeReport {
+int32 HARPIA_ID = 1;
+string role = 2;
+int64 frames = 3;
+float fps_measured = 4;
+float fps_cv = 5;
+repeated FrameGap gaps = 6;
+int64 first_ts_ns = 7;
+int64 last_ts_ns = 8;
+string HARPIA_STATUS = 9;
+string HARPIA_ERROR = 10;
+string HARPIA_ORIGINATOR = 11;
+}

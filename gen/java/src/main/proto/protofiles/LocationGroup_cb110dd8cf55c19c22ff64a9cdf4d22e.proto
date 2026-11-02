@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+message LocationGroup {
+int32 HARPIA_ID = 1;
+repeated string headings = 2;
+string HARPIA_STATUS = 3;
+string HARPIA_ERROR = 4;
+string HARPIA_ORIGINATOR = 5;
+}

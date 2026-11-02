@@ -1,0 +1,70 @@
+{
+  "proposal-approved.json": {
+    "message": "Proposal",
+    "error": "Proposal: value: state must be VALUE_STATE_PROPOSAL"
+  },
+  "proposal-bad-id.json": {
+    "message": "Proposal",
+    "error": "Proposal: id must be a proposal id"
+  },
+  "proposal-unknown-field.json": {
+    "message": "Proposal",
+    "error": "Proposal: value: 'look.mood' is not a prop field of the catalog"
+  },
+  "proposal-not-an-item.json": {
+    "message": "Proposal",
+    "error": "Proposal: item must be a record id of a map"
+  },
+  "proposal-by-creator.json": {
+    "message": "Proposal",
+    "error": "Proposal: value: by must be an agent name"
+  },
+  "proposal-source-absolute.json": {
+    "message": "Proposal",
+    "error": "Proposal: value: source is the memo's film path"
+  },
+  "proposal-change-set-path.json": {
+    "message": "Proposal",
+    "error": "Proposal: change_set is a bible/sync/ file name"
+  },
+  "proposal-bad-time.json": {
+    "message": "Proposal",
+    "error": "Proposal: time must be UTC ISO-8601"
+  },
+  "review-not-creator.json": {
+    "message": "Review",
+    "error": "Review: by must be 'creator'"
+  },
+  "review-text-not-edited.json": {
+    "message": "Review",
+    "error": "Review: an edited review, and only an edited one, has text"
+  },
+  "review-bad-proposal.json": {
+    "message": "Review",
+    "error": "Review: id must be a proposal id"
+  },
+  "request-to-itself.json": {
+    "message": "Request",
+    "error": "Request: to can't be the sender"
+  },
+  "request-from-creator.json": {
+    "message": "Request",
+    "error": "Request: from must be an agent name"
+  },
+  "request-no-what.json": {
+    "message": "Request",
+    "error": "Request: what is empty"
+  },
+  "request-open-answered.json": {
+    "message": "Request",
+    "error": "Request: an open request has no answer or answered_by"
+  },
+  "request-bad-scene.json": {
+    "message": "Request",
+    "error": "Request: scenes must be scene numbers"
+  },
+  "request-bad-item.json": {
+    "message": "Request",
+    "error": "Request: items must be record ids"
+  }
+}

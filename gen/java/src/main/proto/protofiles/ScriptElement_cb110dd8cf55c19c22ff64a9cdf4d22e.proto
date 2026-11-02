@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ScriptElement {
+SCRIPT_ELEMENT_UNSET = 0;
+SCRIPT_ELEMENT_SCENE = 1;
+SCRIPT_ELEMENT_ACTION = 2;
+SCRIPT_ELEMENT_CHARACTER = 3;
+SCRIPT_ELEMENT_DIALOGUE = 4;
+SCRIPT_ELEMENT_PAREN = 5;
+SCRIPT_ELEMENT_TRANSITION = 6;
+SCRIPT_ELEMENT_SHOT = 7;
+SCRIPT_ELEMENT_ACT_BREAK = 8;
+SCRIPT_ELEMENT_NOTE = 9;
+}

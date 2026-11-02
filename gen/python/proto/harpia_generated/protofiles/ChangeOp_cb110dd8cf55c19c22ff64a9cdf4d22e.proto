@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ChangeOp {
+CHANGE_OP_UNSET = 0;
+CHANGE_OP_CREATE = 1;
+CHANGE_OP_UPDATE = 2;
+CHANGE_OP_DELETE = 3;
+}

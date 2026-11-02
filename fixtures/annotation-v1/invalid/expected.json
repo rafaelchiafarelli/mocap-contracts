@@ -1,0 +1,34 @@
+{
+  "unknown-field.json": {
+    "message": "Annotation",
+    "error": "Annotation: values[0]: 'framing.mood' is not a shot field of the catalog"
+  },
+  "shot-without-number.json": {
+    "message": "Annotation",
+    "error": "Annotation: a shot needs its number in the scene"
+  },
+  "number-on-a-note.json": {
+    "message": "Annotation",
+    "error": "Annotation: only a shot has a shot number, not a note"
+  },
+  "quote-without-element.json": {
+    "message": "Annotation",
+    "error": "Annotation.anchor: a quote needs its element"
+  },
+  "bad-scene.json": {
+    "message": "Annotation",
+    "error": "Annotation.anchor: scene must be a scene number"
+  },
+  "value-with-scene.json": {
+    "message": "Annotation",
+    "error": "Annotation: values[0]: framing.size is not per scene"
+  },
+  "bad-id.json": {
+    "message": "Annotation",
+    "error": "Annotation: id must be an annotation id"
+  },
+  "counters-bad-scene.json": {
+    "message": "ShotCounters",
+    "error": "ShotCounters: next: keys must be scene numbers"
+  }
+}

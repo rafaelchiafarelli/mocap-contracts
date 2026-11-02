@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum UpAxis {
+UP_AXIS_UNSET = 0;
+UP_AXIS_Z = 1;
+}

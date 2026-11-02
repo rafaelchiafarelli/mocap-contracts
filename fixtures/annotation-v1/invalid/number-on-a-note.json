@@ -1,0 +1,14 @@
+{
+  "id": "annotation-w-1",
+  "kind": "ANNOTATION_KIND_NOTE",
+  "anchor": {
+    "scene": "1",
+    "element": 1,
+    "quote": "runs down the street",
+    "occurrence": 1
+  },
+  "text": "Faster than in the rehearsal.",
+  "by": "creator",
+  "values": [],
+  "shot": 1
+}

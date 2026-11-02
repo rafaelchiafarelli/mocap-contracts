@@ -1,0 +1,122 @@
+{
+  "film-format-version.json": {
+    "message": "Film",
+    "error": "Film: format_version must be 1"
+  },
+  "film-no-origin.json": {
+    "message": "Film",
+    "error": "Film: missing required field(s) ['origin']"
+  },
+  "film-origin-empty-program.json": {
+    "message": "Film",
+    "error": "Film.origin: empty ['program']"
+  },
+  "film-unknown-field.json": {
+    "message": "Film",
+    "error": "Film: unknown field(s) ['title']"
+  },
+  "part-no-owner.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: missing required field(s) ['owner']"
+  },
+  "part-leaves-root.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path can't hold"
+  },
+  "part-absolute.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path must be relative"
+  },
+  "part-drive-letter.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path must be relative"
+  },
+  "part-backslash.json": {
+    "message": "Film",
+    "error": "Film.parts[1]: path must be relative"
+  },
+  "part-in-ids.json": {
+    "message": "Film",
+    "error": "Film.parts[5]: path can't be film.json or inside ids/"
+  },
+  "part-inside-another.json": {
+    "message": "Film",
+    "error": "Film: parts 'bible' and 'sync': one path is inside the other"
+  },
+  "part-duplicate-name.json": {
+    "message": "Film",
+    "error": "Film: duplicate part names ['bible']"
+  },
+  "part-shared-elsewhere.json": {
+    "message": "Film",
+    "error": "Film.parts[5]: the workflow part, and only that part, is owned by 'shared'"
+  },
+  "part-workflow-owned.json": {
+    "message": "Film",
+    "error": "Film.parts[6]: the workflow part, and only that part, is owned by 'shared'"
+  },
+  "space-owned-by-shared.json": {
+    "message": "Film",
+    "error": "Film.spaces[1]: 'shared' owns the workflow part only"
+  },
+  "space-bad-code.json": {
+    "message": "Film",
+    "error": "Film.spaces[1]: code must be"
+  },
+  "space-duplicate-code.json": {
+    "message": "Film",
+    "error": "Film: duplicate space codes ['w']"
+  },
+  "film-no-script.json": {
+    "message": "Film",
+    "error": "Film: parts: no 'script' part"
+  },
+  "film-no-writer-space.json": {
+    "message": "Film",
+    "error": "Film: spaces: no 'w' space owned by 'writer'"
+  },
+  "part-owner-no-space.json": {
+    "message": "Film",
+    "error": "Film: parts: owners ['set-designer'] have no space"
+  },
+  "part-bad-name.json": {
+    "message": "Film",
+    "error": "Film.parts[5]: name must be one of"
+  },
+  "part-proposals-no-space.json": {
+    "message": "Film",
+    "error": "Film: part 'proposals-xyz': no space 'xyz'"
+  },
+  "part-bad-owner.json": {
+    "message": "Film",
+    "error": "Film.parts[1]: owner must be 'writer' or an agent name"
+  },
+  "space-bad-owner.json": {
+    "message": "Film",
+    "error": "Film.spaces[1]: owner must be 'writer' or an agent name"
+  },
+  "part-windows-unsafe.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path can't hold <>"
+  },
+  "part-trailing-dot.json": {
+    "message": "Film",
+    "error": "Film.parts[2]: a path segment can't end in a dot or a space"
+  },
+  "part-reserved-name.json": {
+    "message": "Film",
+    "error": "Film.parts[0]: path can't use the reserved Windows name"
+  },
+  "ids-unknown-kind.json": {
+    "message": "IdCounters",
+    "error": "IdCounters: next: unknown record kinds ['scene']"
+  },
+  "ids-zero.json": {
+    "message": "IdCounters",
+    "error": "IdCounters: next: counters start at 1"
+  },
+  "ids-no-next.json": {
+    "message": "IdCounters",
+    "error": "IdCounters: missing required field(s) ['next']"
+  }
+}

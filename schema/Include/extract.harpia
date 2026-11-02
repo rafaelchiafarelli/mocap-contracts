@@ -1,0 +1,87 @@
+// Extraction index and quality report owned by mocap-extract for P3
+// Lengths are in metres and every ExtractIndex path is relative to the session folder
+import "capture.harpia";
+
+enum LengthUnit {
+    LENGTH_UNIT_UNSET = 0;
+    LENGTH_UNIT_M;
+}
+
+enum UpAxis {
+    UP_AXIS_UNSET = 0;
+    UP_AXIS_Z;
+}
+
+// What alignment did to one camera
+message CameraAlignment {
+    required string role;
+    required int64 offset_ns;
+    required float drift_ppm;
+    required int64 frames_in;
+    required int64 frames_out;
+};
+
+// One synced video
+message SyncedVideo {
+    required string role;
+    required string path;
+};
+
+// One array file of tracked points with the point names in array order
+// role is set for a per camera 2D set and empty for a 3D set
+message PointSet {
+    required string name;
+    required string role;
+    required string path;
+    required int64 frames;
+    repeteable string point_names;
+};
+
+// Everything mocap-adapt needs from one take and frame 0 is at t0_ns
+message ExtractIndex {
+    required string take_id;
+    required string calibration_take_id;
+    required string calibration_path;
+    required float fps;
+    required int64 frames;
+    required int64 t0_ns;
+    required LengthUnit length_unit;
+    required UpAxis up_axis;
+    repeteable SyncedVideo synced_videos;
+    repeteable CameraAlignment alignment;
+    repeteable PointSet points_3d;
+    repeteable PointSet points_2d;
+};
+
+// Per camera quality and the optional fields come from later quality steps
+message CameraQuality {
+    required string role;
+    required float detection_rate_body;
+    required float detection_rate_left_hand;
+    required float detection_rate_right_hand;
+    optional float jitter_px;
+    optional float reproj_err_px;
+};
+
+// How stable one bone length is over the take and rsd is relative standard deviation
+message BoneStability {
+    required string bone;
+    required float mean_length_m;
+    required float rsd;
+};
+
+// What happens to the 3D when one camera is removed
+message CameraAblation {
+    required string removed_role;
+    required float mean_shift_m;
+    required float mean_rsd_change;
+};
+
+// The quality of one take
+message QualityReport {
+    required string take_id;
+    optional float calibration_reproj_err_px;
+    repeteable CameraQuality cameras;
+    repeteable BoneStability bones;
+    repeteable CameraAblation ablation;
+};

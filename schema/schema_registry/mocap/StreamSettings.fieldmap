@@ -1,0 +1,10 @@
+ID:1
+camera_id:2
+width:3
+height:4
+fps:5
+bitrate_kbps:6
+i_frame_interval_s:7
+STATUS:8
+ERROR:9
+ORIGINATOR:10

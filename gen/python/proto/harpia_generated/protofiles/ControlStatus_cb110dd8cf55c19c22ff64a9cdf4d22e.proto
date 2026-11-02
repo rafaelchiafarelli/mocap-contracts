@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ControlStatus {
+CONTROL_STATUS_UNSET = 0;
+CONTROL_STATUS_APPLIED = 1;
+CONTROL_STATUS_CLAMPED = 2;
+CONTROL_STATUS_UNSUPPORTED = 3;
+CONTROL_STATUS_READ_ONLY = 4;
+CONTROL_STATUS_FAILED = 5;
+}

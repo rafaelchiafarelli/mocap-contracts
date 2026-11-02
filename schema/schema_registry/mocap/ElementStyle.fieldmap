@@ -1,0 +1,11 @@
+ID:1
+element:2
+before_spacing_tenths:3
+intra_spacing_tenths:4
+indent_chars:5
+width_chars:6
+screen:7
+export:8
+STATUS:9
+ERROR:10
+ORIGINATOR:11

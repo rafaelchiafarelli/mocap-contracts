@@ -1,0 +1,165 @@
+// The settings of a script owned by mocap-writer
+// settings slash script settings json in the film root
+// Every field is written defaults included so a default changed in code later never moves a film
+// Rules that required cannot express live in mocap_contracts rules
+import "common.harpia";
+
+// The element types of a script
+enum ScriptElement {
+    SCRIPT_ELEMENT_UNSET = 0;
+    SCRIPT_ELEMENT_SCENE;
+    SCRIPT_ELEMENT_ACTION;
+    SCRIPT_ELEMENT_CHARACTER;
+    SCRIPT_ELEMENT_DIALOGUE;
+    SCRIPT_ELEMENT_PAREN;
+    SCRIPT_ELEMENT_TRANSITION;
+    SCRIPT_ELEMENT_SHOT;
+    SCRIPT_ELEMENT_ACT_BREAK;
+    SCRIPT_ELEMENT_NOTE;
+}
+
+// Alignment of a header or title text
+enum TextAlign {
+    TEXT_ALIGN_UNSET = 0;
+    TEXT_ALIGN_LEFT;
+    TEXT_ALIGN_CENTER;
+    TEXT_ALIGN_RIGHT;
+}
+
+// The fonts a title page text can use
+enum TitleFont {
+    TITLE_FONT_UNSET = 0;
+    TITLE_FONT_COURIER;
+    TITLE_FONT_HELVETICA;
+    TITLE_FONT_TIMES;
+}
+
+// Paper margins and page breaking in millimetres and lines
+message PageSettings {
+    required float paper_width_mm;
+    required float paper_height_mm;
+    required float margin_top_mm;
+    required float margin_bottom_mm;
+    required float margin_left_mm;
+    required float margin_right_mm;
+    required int font_size_pt;
+    required int page_break_action_lines;
+    required int page_break_dialogue_lines;
+    required Flag scene_continueds;
+    required int scene_continued_indent_chars;
+};
+
+// How a text looks on screen or in the export
+message TextStyle {
+    required Flag caps;
+    required Flag bold;
+    required Flag italic;
+    required Flag underlined;
+};
+
+// The layout of one element type
+message ElementStyle {
+    required ScriptElement element;
+    required int before_spacing_tenths;
+    required int intra_spacing_tenths;
+    required int indent_chars;
+    required int width_chars;
+    required TextStyle screen;
+    required TextStyle export;
+};
+
+// One font of the PDF and the file to embed or empty for Courier
+message PdfFont {
+    required string pdf_name;
+    required string filename;
+};
+
+// What the PDF export does
+message PdfSettings {
+    required Flag show_scene_numbers;
+    required Flag include_toc;
+    required Flag show_toc;
+    required Flag open_on_current_page;
+    required Flag remove_notes;
+    required Flag outline_notes;
+    required Flag show_margins;
+    required Flag show_line_numbers;
+    required PdfFont normal;
+    required PdfFont bold;
+    required PdfFont italic;
+    required PdfFont bold_italic;
+};
+
+// The strings the script prints
+message ScriptStrings {
+    required string more;
+    required string continued_page_end;
+    required string continued_page_start;
+    required string dialogue_continued;
+};
+
+// One header line text with its place and style
+message HeaderLine {
+    required int line;
+    required int x_offset_chars;
+    required TextAlign align;
+    required Flag bold;
+    required Flag italic;
+    required Flag underlined;
+    required string text;
+};
+
+// The page headers
+message HeaderSettings {
+    required int empty_lines_after;
+    repeteable HeaderLine lines;
+};
+
+// The auto completion list of one element type
+message AutoCompletionList {
+    required ScriptElement element;
+    required Flag enabled;
+    repeteable string items;
+};
+
+// Scene headings that are one location
+message LocationGroup {
+    repeteable string headings;
+};
+
+// One text block of a title page with its place in millimetres
+message TitleString {
+    repeteable string items;
+    required float x_mm;
+    required float y_mm;
+    required int size_pt;
+    required TextAlign align;
+    required Flag bold;
+    required Flag italic;
+    required Flag underlined;
+    required TitleFont font;
+};
+
+// One title page
+message TitlePageLayout {
+    repeteable TitleString strings;
+};
+
+// The title pages and the Fountain title block they were saved with
+message TitlePages {
+    repeteable TitlePageLayout pages;
+    required string fountain_title;
+};
+
+// script settings json of a film
+message ScriptSettings {
+    required PageSettings page;
+    repeteable ElementStyle elements;
+    required PdfSettings pdf;
+    required ScriptStrings strings;
+    required HeaderSettings headers;
+    repeteable AutoCompletionList auto_completion;
+    repeteable LocationGroup locations;
+    repeteable string spelling_words;
+    required TitlePages title_page;
+};

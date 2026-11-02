@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum SyncKind {
+SYNC_KIND_UNSET = 0;
+SYNC_KIND_START = 1;
+SYNC_KIND_END = 2;
+}

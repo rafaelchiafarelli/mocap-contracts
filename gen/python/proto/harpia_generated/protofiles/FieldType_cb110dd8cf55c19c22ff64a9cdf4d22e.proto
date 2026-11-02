@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum FieldType {
+FIELD_TYPE_UNSET = 0;
+FIELD_TYPE_TEXT = 1;
+FIELD_TYPE_NUMBER = 2;
+FIELD_TYPE_CHOICE = 3;
+FIELD_TYPE_LIST = 4;
+FIELD_TYPE_FILE = 5;
+FIELD_TYPE_LINK = 6;
+}
