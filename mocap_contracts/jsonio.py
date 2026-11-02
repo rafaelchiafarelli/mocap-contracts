@@ -2,8 +2,8 @@
 
 Files written here contain exactly the fields declared in schema/, under
 their declared names, with every non-`optional` field present even when it
-holds its default value, and map keys sorted (protobuf keeps no map order). Harpia's bookkeeping fields (ID_/STATUS_/ERROR_
-<hash>, ORIGINATOR) are never written, and reading rejects any key that
+holds its default value, and map keys sorted (protobuf keeps no map order). Harpia's bookkeeping fields (HARPIA_ID, _STATUS,
+_ERROR, _ORIGINATOR) are never written, and reading rejects any key that
 isn't declared or any missing `required` key, at every nesting level.
 
 Every contract enum has `*_UNSET` as its zero value, so a `required` enum

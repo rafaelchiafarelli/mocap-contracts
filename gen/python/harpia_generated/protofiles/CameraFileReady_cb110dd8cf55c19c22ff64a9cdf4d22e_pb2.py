@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from harpia_generated.protofiles import FileKind_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_FileKind__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nRharpia_generated/protofiles/CameraFileReady_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aKharpia_generated/protofiles/FileKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xf7\x02\n\x0f\x43\x61meraFileReady\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12\x0c\n\x04role\x18\x03 \x01(\t\x12\x17\n\x04kind\x18\x04 \x01(\x0e\x32\t.FileKind\x12\x0c\n\x04path\x18\x05 \x01(\t\x12\x12\n\nsize_bytes\x18\x06 \x01(\x03\x12\x0e\n\x06sha256\x18\x07 \x01(\t\x12\x0e\n\x06\x66rames\x18\x08 \x01(\x03\x12\x13\n\x0b\x66irst_ts_ns\x18\t \x01(\x03\x12\x12\n\nlast_ts_ns\x18\n \x01(\x03\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x0b \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x0c \x01(\t\x12\x33\n+ORIGINATOR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\r \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nRharpia_generated/protofiles/CameraFileReady_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aKharpia_generated/protofiles/FileKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x8f\x02\n\x0f\x43\x61meraFileReady\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12\x0c\n\x04role\x18\x03 \x01(\t\x12\x17\n\x04kind\x18\x04 \x01(\x0e\x32\t.FileKind\x12\x0c\n\x04path\x18\x05 \x01(\t\x12\x12\n\nsize_bytes\x18\x06 \x01(\x03\x12\x0e\n\x06sha256\x18\x07 \x01(\t\x12\x0e\n\x06\x66rames\x18\x08 \x01(\x03\x12\x13\n\x0b\x66irst_ts_ns\x18\t \x01(\x03\x12\x12\n\nlast_ts_ns\x18\n \x01(\x03\x12\x15\n\rHARPIA_STATUS\x18\x0b \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x0c \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\r \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.CameraFileReady_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -23,5 +23,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _CAMERAFILEREADY._serialized_start=164
-  _CAMERAFILEREADY._serialized_end=539
+  _CAMERAFILEREADY._serialized_end=435
 # @@protoc_insertion_point(module_scope)

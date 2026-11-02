@@ -15,7 +15,7 @@ from harpia_generated.protofiles import LengthUnit_cb110dd8cf55c19c22ff64a9cdf4d
 from harpia_generated.protofiles import UpAxis_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_UpAxis__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nRharpia_generated/protofiles/MocapTakeHeader_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aMharpia_generated/protofiles/LengthUnit_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aIharpia_generated/protofiles/UpAxis_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xd6\x03\n\x0fMocapTakeHeader\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12\x10\n\x08\x61\x63tor_id\x18\x04 \x01(\t\x12\x14\n\x0c\x63haracter_id\x18\x05 \x01(\t\x12\x0b\n\x03\x66ps\x18\x06 \x01(\x02\x12\x13\n\x0b\x66rame_count\x18\x07 \x01(\x03\x12\r\n\x05t0_ns\x18\x08 \x01(\x03\x12 \n\x0blength_unit\x18\t \x01(\x0e\x32\x0b.LengthUnit\x12\x18\n\x07up_axis\x18\n \x01(\x0e\x32\x07.UpAxis\x12\x13\n\x0b\x62ody_joints\x18\x0b \x03(\t\x12\x18\n\x10left_hand_joints\x18\x0c \x03(\t\x12\x19\n\x11right_hand_joints\x18\r \x03(\t\x12\x1d\n\x15\x66\x61\x63\x65_blendshape_names\x18\x0e \x03(\t\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x0f \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x10 \x01(\t\x12\x12\n\nORIGINATOR\x18\x11 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nRharpia_generated/protofiles/MocapTakeHeader_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aMharpia_generated/protofiles/LengthUnit_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aIharpia_generated/protofiles/UpAxis_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x8f\x03\n\x0fMocapTakeHeader\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0f\n\x07take_id\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12\x10\n\x08\x61\x63tor_id\x18\x04 \x01(\t\x12\x14\n\x0c\x63haracter_id\x18\x05 \x01(\t\x12\x0b\n\x03\x66ps\x18\x06 \x01(\x02\x12\x13\n\x0b\x66rame_count\x18\x07 \x01(\x03\x12\r\n\x05t0_ns\x18\x08 \x01(\x03\x12 \n\x0blength_unit\x18\t \x01(\x0e\x32\x0b.LengthUnit\x12\x18\n\x07up_axis\x18\n \x01(\x0e\x32\x07.UpAxis\x12\x13\n\x0b\x62ody_joints\x18\x0b \x03(\t\x12\x18\n\x10left_hand_joints\x18\x0c \x03(\t\x12\x19\n\x11right_hand_joints\x18\r \x03(\t\x12\x1d\n\x15\x66\x61\x63\x65_blendshape_names\x18\x0e \x03(\t\x12\x15\n\rHARPIA_STATUS\x18\x0f \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x10 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x11 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.MocapTakeHeader_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -24,5 +24,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _MOCAPTAKEHEADER._serialized_start=241
-  _MOCAPTAKEHEADER._serialized_end=711
+  _MOCAPTAKEHEADER._serialized_end=640
 # @@protoc_insertion_point(module_scope)

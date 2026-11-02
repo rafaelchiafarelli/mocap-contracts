@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from harpia_generated.protofiles import CatalogKind_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_CatalogKind__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nTharpia_generated/protofiles/AnnotationCatalog_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aNharpia_generated/protofiles/CatalogKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xe3\x01\n\x11\x41nnotationCatalog\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x1b\n\x05kinds\x18\x03 \x03(\x0b\x32\x0c.CatalogKind\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x04 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x05 \x01(\t\x12\x12\n\nORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nTharpia_generated/protofiles/AnnotationCatalog_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aNharpia_generated/protofiles/CatalogKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x9c\x01\n\x11\x41nnotationCatalog\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x1b\n\x05kinds\x18\x03 \x03(\x0b\x32\x0c.CatalogKind\x12\x15\n\rHARPIA_STATUS\x18\x04 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x05 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.AnnotationCatalog_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -23,5 +23,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _ANNOTATIONCATALOG._serialized_start=169
-  _ANNOTATIONCATALOG._serialized_end=396
+  _ANNOTATIONCATALOG._serialized_end=325
 # @@protoc_insertion_point(module_scope)

@@ -81,7 +81,7 @@ def test_crudl_round_trip(tmp_path: Path) -> None:
         testing.create_tables(conn, Proposal_dao)
         dao = Proposal_dao(conn)
         first = testing.sample(Proposal, "a", pk=1, id_base=1000)
-        second = testing.sample(Proposal, "a", pk=2, id_base=2000)
+        second = testing.sample(Proposal, "a", pk=2, id_base=2000, distinct=('id',))
         assert dao.create(first) and dao.create(second)
         got = Proposal()
         assert dao.read(1, got)
@@ -157,7 +157,7 @@ def test_rest_api(tmp_path: Path) -> None:
                                        headers={**CRED, "Accept": "application/xml"})
         got = Proposal()
         assert status == 200 and from_xml(body, got) and _view(got) == _view(first)
-        second = testing.sample(Proposal, "a", pk=2, id_base=2000)
+        second = testing.sample(Proposal, "a", pk=2, id_base=2000, distinct=('id',))
         assert testing.request(port, "POST", path, to_xml(second),
                                {**CRED, "Content-Type": "application/xml"})[0] == 201
         assert testing.request(port, "GET", path + "/2", headers=CRED)[0] == 200

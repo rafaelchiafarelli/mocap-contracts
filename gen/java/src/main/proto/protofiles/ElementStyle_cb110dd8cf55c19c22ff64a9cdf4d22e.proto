@@ -5,7 +5,7 @@ option java_package = "com.harpia.generated";
 import "protofiles/ScriptElement_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/TextStyle_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message ElementStyle {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 ScriptElement element = 2;
 int32 before_spacing_tenths = 3;
 int32 intra_spacing_tenths = 4;
@@ -13,7 +13,7 @@ int32 indent_chars = 5;
 int32 width_chars = 6;
 TextStyle screen = 7;
 TextStyle export = 8;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 9;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 10;
-string ORIGINATOR = 11;
+string HARPIA_STATUS = 9;
+string HARPIA_ERROR = 10;
+string HARPIA_ORIGINATOR = 11;
 }

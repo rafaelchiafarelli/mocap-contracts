@@ -11,23 +11,23 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ControlCapability(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "backend", "current_value", "default_value", "key", "max_value", "min_value", "options", "read_only", "step", "unit", "value_type"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "backend", "current_value", "default_value", "key", "max_value", "min_value", "options", "read_only", "step", "unit", "value_type"]
     BACKEND_FIELD_NUMBER: _ClassVar[int]
     CURRENT_VALUE_FIELD_NUMBER: _ClassVar[int]
     DEFAULT_VALUE_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     KEY_FIELD_NUMBER: _ClassVar[int]
     MAX_VALUE_FIELD_NUMBER: _ClassVar[int]
     MIN_VALUE_FIELD_NUMBER: _ClassVar[int]
     OPTIONS_FIELD_NUMBER: _ClassVar[int]
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
     READ_ONLY_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     STEP_FIELD_NUMBER: _ClassVar[int]
     UNIT_FIELD_NUMBER: _ClassVar[int]
     VALUE_TYPE_FIELD_NUMBER: _ClassVar[int]
@@ -42,4 +42,4 @@ class ControlCapability(_message.Message):
     step: _ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue
     unit: str
     value_type: _ControlValueType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValueType
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., backend: _Optional[_Union[_ControlBackend_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlBackend, str]] = ..., key: _Optional[str] = ..., value_type: _Optional[_Union[_ControlValueType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValueType, str]] = ..., min_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., max_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., step: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., options: _Optional[_Iterable[_Union[_ControlMenuOption_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlMenuOption, _Mapping]]] = ..., default_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., current_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., read_only: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., unit: _Optional[str] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., backend: _Optional[_Union[_ControlBackend_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlBackend, str]] = ..., key: _Optional[str] = ..., value_type: _Optional[_Union[_ControlValueType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValueType, str]] = ..., min_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., max_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., step: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., options: _Optional[_Iterable[_Union[_ControlMenuOption_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlMenuOption, _Mapping]]] = ..., default_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., current_value: _Optional[_Union[_ControlValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.ControlValue, _Mapping]] = ..., read_only: _Optional[_Union[_Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Flag, str]] = ..., unit: _Optional[str] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

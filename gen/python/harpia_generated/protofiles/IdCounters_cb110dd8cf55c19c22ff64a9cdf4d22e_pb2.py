@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/IdCounters_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x80\x02\n\nIdCounters\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12#\n\x04next\x18\x02 \x03(\x0b\x32\x15.IdCounters.NextEntry\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x03 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x04 \x01(\t\x12\x12\n\nORIGINATOR\x18\x05 \x01(\t\x1a+\n\tNextEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\x42\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/IdCounters_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xb9\x01\n\nIdCounters\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12#\n\x04next\x18\x02 \x03(\x0b\x32\x15.IdCounters.NextEntry\x12\x15\n\rHARPIA_STATUS\x18\x03 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x04 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x05 \x01(\t\x1a+\n\tNextEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\x42\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.IdCounters_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -24,7 +24,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _IDCOUNTERS_NEXTENTRY._options = None
   _IDCOUNTERS_NEXTENTRY._serialized_options = b'8\001'
   _IDCOUNTERS._serialized_start=82
-  _IDCOUNTERS._serialized_end=338
-  _IDCOUNTERS_NEXTENTRY._serialized_start=295
-  _IDCOUNTERS_NEXTENTRY._serialized_end=338
+  _IDCOUNTERS._serialized_end=267
+  _IDCOUNTERS_NEXTENTRY._serialized_start=224
+  _IDCOUNTERS_NEXTENTRY._serialized_end=267
 # @@protoc_insertion_point(module_scope)

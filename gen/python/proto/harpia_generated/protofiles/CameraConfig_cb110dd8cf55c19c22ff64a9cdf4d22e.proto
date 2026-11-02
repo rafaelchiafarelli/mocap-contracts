@@ -6,7 +6,7 @@ import "harpia_generated/protofiles/CameraSource_cb110dd8cf55c19c22ff64a9cdf4d22
 import "harpia_generated/protofiles/PreprocessSpec_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "harpia_generated/protofiles/ControlSetting_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message CameraConfig {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string role = 2;
 CameraSource source = 3;
 int32 width = 4;
@@ -21,7 +21,7 @@ optional int32 video_port = 12;
 optional int32 sync_port = 13;
 optional int32 control_port = 14;
 optional int32 stats_port = 15;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 16;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 17;
-string ORIGINATOR = 18;
+string HARPIA_STATUS = 16;
+string HARPIA_ERROR = 17;
+string HARPIA_ORIGINATOR = 18;
 }

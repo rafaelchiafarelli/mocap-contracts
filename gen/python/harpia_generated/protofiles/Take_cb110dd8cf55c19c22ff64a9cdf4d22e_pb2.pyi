@@ -11,22 +11,22 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class Take(_message.Message):
-    __slots__ = ["ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "board", "cameras", "casting", "end", "id", "session_id", "start", "type"]
+    __slots__ = ["HARPIA_ERROR", "HARPIA_ID", "HARPIA_ORIGINATOR", "HARPIA_STATUS", "board", "cameras", "casting", "end", "id", "session_id", "start", "type"]
     BOARD_FIELD_NUMBER: _ClassVar[int]
     CAMERAS_FIELD_NUMBER: _ClassVar[int]
     CASTING_FIELD_NUMBER: _ClassVar[int]
     END_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: str
-    ID_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ERROR: str
+    HARPIA_ERROR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ID: int
+    HARPIA_ID_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_ORIGINATOR: str
+    HARPIA_ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
+    HARPIA_STATUS: str
+    HARPIA_STATUS_FIELD_NUMBER: _ClassVar[int]
     ID_FIELD_NUMBER: _ClassVar[int]
-    ID_cb110dd8cf55c19c22ff64a9cdf4d22e: int
-    ORIGINATOR: str
-    ORIGINATOR_FIELD_NUMBER: _ClassVar[int]
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]
     START_FIELD_NUMBER: _ClassVar[int]
-    STATUS_CB110DD8CF55C19C22FF64A9CDF4D22E_FIELD_NUMBER: _ClassVar[int]
-    STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: str
     TYPE_FIELD_NUMBER: _ClassVar[int]
     board: _CalibrationBoard_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.CalibrationBoard
     cameras: _containers.RepeatedCompositeFieldContainer[_TakeCamera_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeCamera]
@@ -36,4 +36,4 @@ class Take(_message.Message):
     session_id: str
     start: _SyncEvent_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SyncEvent
     type: _TakeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeType
-    def __init__(self, ID_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[int] = ..., id: _Optional[str] = ..., session_id: _Optional[str] = ..., type: _Optional[_Union[_TakeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeType, str]] = ..., start: _Optional[_Union[_SyncEvent_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SyncEvent, _Mapping]] = ..., end: _Optional[_Union[_SyncEvent_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SyncEvent, _Mapping]] = ..., casting: _Optional[_Iterable[_Union[_Casting_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Casting, _Mapping]]] = ..., board: _Optional[_Union[_CalibrationBoard_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.CalibrationBoard, _Mapping]] = ..., cameras: _Optional[_Iterable[_Union[_TakeCamera_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeCamera, _Mapping]]] = ..., STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e: _Optional[str] = ..., ORIGINATOR: _Optional[str] = ...) -> None: ...
+    def __init__(self, HARPIA_ID: _Optional[int] = ..., id: _Optional[str] = ..., session_id: _Optional[str] = ..., type: _Optional[_Union[_TakeType_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeType, str]] = ..., start: _Optional[_Union[_SyncEvent_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SyncEvent, _Mapping]] = ..., end: _Optional[_Union[_SyncEvent_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.SyncEvent, _Mapping]] = ..., casting: _Optional[_Iterable[_Union[_Casting_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.Casting, _Mapping]]] = ..., board: _Optional[_Union[_CalibrationBoard_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.CalibrationBoard, _Mapping]] = ..., cameras: _Optional[_Iterable[_Union[_TakeCamera_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2.TakeCamera, _Mapping]]] = ..., HARPIA_STATUS: _Optional[str] = ..., HARPIA_ERROR: _Optional[str] = ..., HARPIA_ORIGINATOR: _Optional[str] = ...) -> None: ...

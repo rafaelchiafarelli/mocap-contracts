@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from harpia_generated.protofiles import Flag_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_Flag__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nOharpia_generated/protofiles/PageSettings_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aGharpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xe4\x03\n\x0cPageSettings\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x16\n\x0epaper_width_mm\x18\x02 \x01(\x02\x12\x17\n\x0fpaper_height_mm\x18\x03 \x01(\x02\x12\x15\n\rmargin_top_mm\x18\x04 \x01(\x02\x12\x18\n\x10margin_bottom_mm\x18\x05 \x01(\x02\x12\x16\n\x0emargin_left_mm\x18\x06 \x01(\x02\x12\x17\n\x0fmargin_right_mm\x18\x07 \x01(\x02\x12\x14\n\x0c\x66ont_size_pt\x18\x08 \x01(\x05\x12\x1f\n\x17page_break_action_lines\x18\t \x01(\x05\x12!\n\x19page_break_dialogue_lines\x18\n \x01(\x05\x12\x1f\n\x10scene_continueds\x18\x0b \x01(\x0e\x32\x05.Flag\x12$\n\x1cscene_continued_indent_chars\x18\x0c \x01(\x05\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\r \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x0e \x01(\t\x12\x12\n\nORIGINATOR\x18\x0f \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nOharpia_generated/protofiles/PageSettings_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aGharpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x9d\x03\n\x0cPageSettings\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x16\n\x0epaper_width_mm\x18\x02 \x01(\x02\x12\x17\n\x0fpaper_height_mm\x18\x03 \x01(\x02\x12\x15\n\rmargin_top_mm\x18\x04 \x01(\x02\x12\x18\n\x10margin_bottom_mm\x18\x05 \x01(\x02\x12\x16\n\x0emargin_left_mm\x18\x06 \x01(\x02\x12\x17\n\x0fmargin_right_mm\x18\x07 \x01(\x02\x12\x14\n\x0c\x66ont_size_pt\x18\x08 \x01(\x05\x12\x1f\n\x17page_break_action_lines\x18\t \x01(\x05\x12!\n\x19page_break_dialogue_lines\x18\n \x01(\x05\x12\x1f\n\x10scene_continueds\x18\x0b \x01(\x0e\x32\x05.Flag\x12$\n\x1cscene_continued_indent_chars\x18\x0c \x01(\x05\x12\x15\n\rHARPIA_STATUS\x18\r \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x0e \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x0f \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.PageSettings_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -23,5 +23,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _PAGESETTINGS._serialized_start=157
-  _PAGESETTINGS._serialized_end=641
+  _PAGESETTINGS._serialized_end=570
 # @@protoc_insertion_point(module_scope)

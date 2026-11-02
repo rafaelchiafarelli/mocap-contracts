@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "harpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message CameraControls {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 optional int64 exposure_ns = 2;
 optional int32 iso = 3;
 optional float gain_raw = 4;
@@ -15,7 +15,7 @@ optional int32 power_line_hz = 8;
 optional Flag auto_exposure = 9;
 optional Flag auto_focus = 10;
 optional Flag auto_white_balance = 11;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 12;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 13;
-string ORIGINATOR = 14;
+string HARPIA_STATUS = 12;
+string HARPIA_ERROR = 13;
+string HARPIA_ORIGINATOR = 14;
 }

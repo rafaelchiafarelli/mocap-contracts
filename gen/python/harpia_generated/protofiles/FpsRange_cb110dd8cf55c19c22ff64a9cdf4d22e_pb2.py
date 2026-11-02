@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nKharpia_generated/protofiles/FpsRange_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xce\x01\n\x08\x46psRange\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\x0f\n\x07min_fps\x18\x02 \x01(\x05\x12\x0f\n\x07max_fps\x18\x03 \x01(\x05\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x04 \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x05 \x01(\t\x12\x12\n\nORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nKharpia_generated/protofiles/FpsRange_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x87\x01\n\x08\x46psRange\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\x0f\n\x07min_fps\x18\x02 \x01(\x05\x12\x0f\n\x07max_fps\x18\x03 \x01(\x05\x12\x15\n\rHARPIA_STATUS\x18\x04 \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x05 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x06 \x01(\tB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.FpsRange_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -22,5 +22,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _FPSRANGE._serialized_start=80
-  _FPSRANGE._serialized_end=286
+  _FPSRANGE._serialized_end=215
 # @@protoc_insertion_point(module_scope)

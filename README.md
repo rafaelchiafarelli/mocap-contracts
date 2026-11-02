@@ -11,7 +11,7 @@ It runs nowhere on its own. It's a library installed into every Python repo
 (`pip install git+…@<tag>`), and its generated Java goes into the camera app.
 
 ```
-.harpia sources ──Harpia V5 (black box, Docker)──▶ generated Python + Java ──▶ every repo
+.harpia sources ──Harpia V6 (black box, Docker)──▶ generated Python + Java ──▶ every repo
 ```
 
 | Module (`schema/Include/`) | Owner (who produces the data) | What it defines |
@@ -53,11 +53,20 @@ back = mocap_contracts.from_json(mocap_contracts.ControlMenuOption, text)
 ```
 
 `from_json` raises `ContractError` on invalid JSON, on any key not declared in
-`schema/` (Harpia's own `ID_/STATUS_/ERROR_<hash>` and `ORIGINATOR` fields
+`schema/` (Harpia's own `HARPIA_ID/_STATUS/_ERROR/_ORIGINATOR` fields
 included), on a missing `required` field at any nesting level, and on any broken
 per-message rule (`mocap_contracts/rules.py`), with the path of the problem. A `required` enum
 holding its `*_UNSET` zero value counts as missing, and `to_json` refuses to
 write what `from_json` would refuse to read.
+
+The film's workflow records live in one SQLite file, read and written through
+`mocap_contracts.db` (rules run on every write, one program writes at a time):
+
+```python
+with mocap_contracts.db.open(film_root / "workflow.sqlite") as db:
+    db.proposals.create(proposal)            # also db.reviews, db.requests
+    db.proposals.read("proposal-pcp-1")      # None if there is none
+```
 
 Import from `mocap_contracts` only, never from `harpia_generated`. Its module
 names carry a hash of the root `.harpia` and change with it. A change that
@@ -73,9 +82,10 @@ crosses repositories always starts here, and other repos pin a released tag.
 | `schema/schema_registry/` | frozen wire numbers, written by Harpia | **never delete**; commit |
 | `gen/python/` | Harpia's generated Python project | no, regenerate |
 | `mocap_contracts/messages.py` | re-exports every message under its declared name | no, regenerate |
+| `mocap_contracts/db_tables.py` | the DAO and migration of each table message | no, regenerate |
+| `mocap_contracts/db.py` | the film's workflow database (`workflow.sqlite`) | yes, with the tables' tasks |
 | `mocap_contracts/rules.py` | per-message rules `required` can't express (e.g. a STREAM camera needs its host and four ports) | yes, with the message's task |
-| `docs/harpia-handoff.md` | what this repo needs from Harpia (SQLite key column, optional fields) before `v0.8.0` | yes, until Harpia answers |
-| `third_party/harpia/` | Harpia, pinned to `V4` (V5 from messages-v0/7; same generated code) (black box) | no |
+| `third_party/harpia/` | Harpia, pinned to `V6` (black box) | no |
 
 ## Develop
 

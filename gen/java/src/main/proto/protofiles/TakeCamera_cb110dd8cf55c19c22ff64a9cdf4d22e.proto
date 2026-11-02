@@ -7,12 +7,12 @@ import "protofiles/ControlResult_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/CameraControls_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "protofiles/PreprocessSpec_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message TakeCamera {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 CameraConfig config = 2;
 repeated ControlResult control_results = 3;
 CameraControls applied_controls = 4;
 PreprocessSpec applied_preprocess = 5;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 6;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 7;
-string ORIGINATOR = 8;
+string HARPIA_STATUS = 6;
+string HARPIA_ERROR = 7;
+string HARPIA_ORIGINATOR = 8;
 }

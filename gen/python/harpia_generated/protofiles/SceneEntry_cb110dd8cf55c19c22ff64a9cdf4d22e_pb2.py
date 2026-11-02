@@ -15,7 +15,7 @@ from harpia_generated.protofiles import SceneCharacter_cb110dd8cf55c19c22ff64a9c
 from harpia_generated.protofiles import SceneProp_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_SceneProp__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/SceneEntry_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/SceneCharacter_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aLharpia_generated/protofiles/SceneProp_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xc5\x03\n\nSceneEntry\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\r\n\x05scene\x18\x02 \x01(\t\x12\r\n\x05order\x18\x03 \x01(\x05\x12\x0f\n\x07int_ext\x18\x04 \x01(\t\x12\x10\n\x08location\x18\x05 \x01(\t\x12\x13\n\x0btime_of_day\x18\x06 \x01(\t\x12\x13\n\x06set_id\x18\x07 \x01(\tH\x00\x88\x01\x01\x12#\n\ncharacters\x18\x08 \x03(\x0b\x32\x0f.SceneCharacter\x12\x19\n\x05props\x18\t \x03(\x0b\x32\n.SceneProp\x12\x12\n\nfirst_page\x18\n \x01(\x05\x12\x11\n\tlast_page\x18\x0b \x01(\x05\x12\x12\n\nfirst_line\x18\x0c \x01(\x05\x12\x11\n\tlast_line\x18\r \x01(\x05\x12\x11\n\ttext_hash\x18\x0e \x01(\t\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x0f \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x10 \x01(\t\x12\x12\n\nORIGINATOR\x18\x11 \x01(\tB\t\n\x07_set_idB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/SceneEntry_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/SceneCharacter_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aLharpia_generated/protofiles/SceneProp_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xfe\x02\n\nSceneEntry\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\r\n\x05scene\x18\x02 \x01(\t\x12\r\n\x05order\x18\x03 \x01(\x05\x12\x0f\n\x07int_ext\x18\x04 \x01(\t\x12\x10\n\x08location\x18\x05 \x01(\t\x12\x13\n\x0btime_of_day\x18\x06 \x01(\t\x12\x13\n\x06set_id\x18\x07 \x01(\tH\x00\x88\x01\x01\x12#\n\ncharacters\x18\x08 \x03(\x0b\x32\x0f.SceneCharacter\x12\x19\n\x05props\x18\t \x03(\x0b\x32\n.SceneProp\x12\x12\n\nfirst_page\x18\n \x01(\x05\x12\x11\n\tlast_page\x18\x0b \x01(\x05\x12\x12\n\nfirst_line\x18\x0c \x01(\x05\x12\x11\n\tlast_line\x18\r \x01(\x05\x12\x11\n\ttext_hash\x18\x0e \x01(\t\x12\x15\n\rHARPIA_STATUS\x18\x0f \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\x10 \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x11 \x01(\tB\t\n\x07_set_idB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.SceneEntry_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -24,5 +24,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _SCENEENTRY._serialized_start=243
-  _SCENEENTRY._serialized_end=696
+  _SCENEENTRY._serialized_end=625
 # @@protoc_insertion_point(module_scope)

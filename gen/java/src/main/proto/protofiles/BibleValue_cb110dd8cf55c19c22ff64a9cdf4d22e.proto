@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "protofiles/ValueState_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message BibleValue {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string field = 2;
 optional string scene = 3;
 optional string text = 4;
@@ -16,7 +16,7 @@ string source = 9;
 string department = 10;
 string by = 11;
 optional string revisit = 12;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 13;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 14;
-string ORIGINATOR = 15;
+string HARPIA_STATUS = 13;
+string HARPIA_ERROR = 14;
+string HARPIA_ORIGINATOR = 15;
 }

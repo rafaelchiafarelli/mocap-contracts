@@ -16,7 +16,7 @@ from harpia_generated.protofiles import AnnotationAnchor_cb110dd8cf55c19c22ff64a
 from harpia_generated.protofiles import BibleValue_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2 as harpia__generated_dot_protofiles_dot_BibleValue__cb110dd8cf55c19c22ff64a9cdf4d22e__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/Annotation_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/AnnotationKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aSharpia_generated/protofiles/AnnotationAnchor_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aMharpia_generated/protofiles/BibleValue_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\xdd\x02\n\nAnnotation\x12+\n#ID_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1d\n\x04kind\x18\x03 \x01(\x0e\x32\x0f.AnnotationKind\x12!\n\x06\x61nchor\x18\x04 \x01(\x0b\x32\x11.AnnotationAnchor\x12\x11\n\x04text\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\n\n\x02\x62y\x18\x06 \x01(\t\x12\x11\n\x04shot\x18\x07 \x01(\x05H\x01\x88\x01\x01\x12\x1b\n\x06values\x18\x08 \x03(\x0b\x32\x0b.BibleValue\x12/\n\'STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\t \x01(\t\x12.\n&ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\x18\n \x01(\t\x12\x12\n\nORIGINATOR\x18\x0b \x01(\tB\x07\n\x05_textB\x07\n\x05_shotB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nMharpia_generated/protofiles/Annotation_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aQharpia_generated/protofiles/AnnotationKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aSharpia_generated/protofiles/AnnotationAnchor_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\x1aMharpia_generated/protofiles/BibleValue_cb110dd8cf55c19c22ff64a9cdf4d22e.proto\"\x96\x02\n\nAnnotation\x12\x11\n\tHARPIA_ID\x18\x01 \x01(\x05\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1d\n\x04kind\x18\x03 \x01(\x0e\x32\x0f.AnnotationKind\x12!\n\x06\x61nchor\x18\x04 \x01(\x0b\x32\x11.AnnotationAnchor\x12\x11\n\x04text\x18\x05 \x01(\tH\x00\x88\x01\x01\x12\n\n\x02\x62y\x18\x06 \x01(\t\x12\x11\n\x04shot\x18\x07 \x01(\x05H\x01\x88\x01\x01\x12\x1b\n\x06values\x18\x08 \x03(\x0b\x32\x0b.BibleValue\x12\x15\n\rHARPIA_STATUS\x18\t \x01(\t\x12\x14\n\x0cHARPIA_ERROR\x18\n \x01(\t\x12\x19\n\x11HARPIA_ORIGINATOR\x18\x0b \x01(\tB\x07\n\x05_textB\x07\n\x05_shotB\x18\n\x14\x63om.harpia.generatedP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'harpia_generated.protofiles.Annotation_cb110dd8cf55c19c22ff64a9cdf4d22e_pb2', globals())
@@ -25,5 +25,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\024com.harpia.generatedP\001'
   _ANNOTATION._serialized_start=329
-  _ANNOTATION._serialized_end=678
+  _ANNOTATION._serialized_end=607
 # @@protoc_insertion_point(module_scope)

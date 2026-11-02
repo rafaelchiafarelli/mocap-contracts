@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "harpia_generated/protofiles/FileKind_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message CameraFileReady {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string take_id = 2;
 string role = 3;
 FileKind kind = 4;
@@ -14,7 +14,7 @@ string sha256 = 7;
 int64 frames = 8;
 int64 first_ts_ns = 9;
 int64 last_ts_ns = 10;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 11;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 12;
-string ORIGINATOR_cb110dd8cf55c19c22ff64a9cdf4d22e = 13;
+string HARPIA_STATUS = 11;
+string HARPIA_ERROR = 12;
+string HARPIA_ORIGINATOR = 13;
 }

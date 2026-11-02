@@ -19,7 +19,7 @@ public final class Review_dao {
         this.conn = conn;
     }
 
-    public static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS \"review_table\" (\"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\" INTEGER PRIMARY KEY, \"proposal\" TEXT NOT NULL UNIQUE, \"outcome\" INTEGER, \"by\" TEXT NOT NULL, \"time\" TEXT NOT NULL, \"note\" TEXT, \"text\" TEXT, \"STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\" TEXT, \"ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\" TEXT, \"ORIGINATOR\" TEXT);";
+    public static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS \"review_table\" (\"HARPIA_ID\" INTEGER PRIMARY KEY, \"proposal\" TEXT NOT NULL UNIQUE, \"outcome\" INTEGER, \"by\" TEXT NOT NULL, \"time\" TEXT NOT NULL, \"note\" TEXT, \"text\" TEXT, \"HARPIA_STATUS\" TEXT, \"HARPIA_ERROR\" TEXT, \"HARPIA_ORIGINATOR\" TEXT);";
     public static final String DROP_TABLE_SQL = "DROP TABLE IF EXISTS \"review_table\";";
 
     public boolean createTable() throws SQLException {
@@ -37,81 +37,126 @@ public final class Review_dao {
     }
 
     public boolean create(Review msg) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("INSERT INTO \"review_table\" (\"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ORIGINATOR\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-        JdbcBind.bind(ps, 1, msg, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.bind(ps, 2, msg, "proposal");
-        JdbcBind.bind(ps, 3, msg, "outcome");
-        JdbcBind.bind(ps, 4, msg, "by");
-        JdbcBind.bind(ps, 5, msg, "time");
-        JdbcBind.bind(ps, 6, msg, "note");
-        JdbcBind.bind(ps, 7, msg, "text");
-        JdbcBind.bind(ps, 8, msg, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.bind(ps, 9, msg, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.bind(ps, 10, msg, "ORIGINATOR");
-            return ps.executeUpdate() > 0;
-        }
+        return createReturningKey(msg) != 0;
     }
 
-    public boolean read(int id, Review.Builder builder) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("SELECT \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ORIGINATOR\" FROM \"review_table\" WHERE \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\" = ?")) {
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return false;
-                }
-        JdbcBind.extract(rs, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.extract(rs, "proposal", builder, "proposal");
-        JdbcBind.extract(rs, "outcome", builder, "outcome");
-        JdbcBind.extract(rs, "by", builder, "by");
-        JdbcBind.extract(rs, "time", builder, "time");
-        JdbcBind.extract(rs, "note", builder, "note");
-        JdbcBind.extract(rs, "text", builder, "text");
-        JdbcBind.extract(rs, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.extract(rs, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.extract(rs, "ORIGINATOR", builder, "ORIGINATOR");
-                return true;
-            }
-        }
-    }
-
-    public boolean update(Review msg) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("UPDATE \"review_table\" SET \"proposal\" = ?, \"outcome\" = ?, \"by\" = ?, \"time\" = ?, \"note\" = ?, \"text\" = ?, \"STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\" = ?, \"ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\" = ?, \"ORIGINATOR\" = ? WHERE \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\" = ?")) {
+    public int createReturningKey(Review msg) throws SQLException {
+        int key = (Integer) msg.getField(msg.getDescriptorForType().findFieldByName("HARPIA_ID"));
+        if (key == 0) {
+            try (PreparedStatement ps = conn.prepareStatement("INSERT INTO \"review_table\" (\"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"HARPIA_STATUS\", \"HARPIA_ERROR\", \"HARPIA_ORIGINATOR\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING \"HARPIA_ID\"")) {
         JdbcBind.bind(ps, 1, msg, "proposal");
         JdbcBind.bind(ps, 2, msg, "outcome");
         JdbcBind.bind(ps, 3, msg, "by");
         JdbcBind.bind(ps, 4, msg, "time");
         JdbcBind.bind(ps, 5, msg, "note");
         JdbcBind.bind(ps, 6, msg, "text");
-        JdbcBind.bind(ps, 7, msg, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.bind(ps, 8, msg, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.bind(ps, 9, msg, "ORIGINATOR");
-            JdbcBind.bind(ps, 10, msg, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e");
-            return ps.executeUpdate() > 0;
+        JdbcBind.bind(ps, 7, msg, "HARPIA_STATUS");
+        JdbcBind.bind(ps, 8, msg, "HARPIA_ERROR");
+        JdbcBind.bind(ps, 9, msg, "HARPIA_ORIGINATOR");
+                try (ResultSet rs = ps.executeQuery()) {
+                    rs.next();
+                    return rs.getInt(1);
+                }
+            }
         }
+        try (PreparedStatement ps = conn.prepareStatement("INSERT INTO \"review_table\" (\"HARPIA_ID\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"HARPIA_STATUS\", \"HARPIA_ERROR\", \"HARPIA_ORIGINATOR\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+        JdbcBind.bind(ps, 1, msg, "HARPIA_ID");
+        JdbcBind.bind(ps, 2, msg, "proposal");
+        JdbcBind.bind(ps, 3, msg, "outcome");
+        JdbcBind.bind(ps, 4, msg, "by");
+        JdbcBind.bind(ps, 5, msg, "time");
+        JdbcBind.bind(ps, 6, msg, "note");
+        JdbcBind.bind(ps, 7, msg, "text");
+        JdbcBind.bind(ps, 8, msg, "HARPIA_STATUS");
+        JdbcBind.bind(ps, 9, msg, "HARPIA_ERROR");
+        JdbcBind.bind(ps, 10, msg, "HARPIA_ORIGINATOR");
+            ps.executeUpdate();
+        }
+        return key;
     }
 
-    public boolean remove(int id) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM \"review_table\" WHERE \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\" = ?")) {
+    public boolean read(int id, Review.Builder builder) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("SELECT \"HARPIA_ID\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"HARPIA_STATUS\", \"HARPIA_ERROR\", \"HARPIA_ORIGINATOR\" FROM \"review_table\" WHERE \"HARPIA_ID\" = ?")) {
             ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
-        }
-    }
-
-    public boolean list(List<Review> out) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("SELECT \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e\", \"ORIGINATOR\" FROM \"review_table\" ORDER BY \"ID_cb110dd8cf55c19c22ff64a9cdf4d22e\"");
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Review.Builder builder = Review.newBuilder();
-        JdbcBind.extract(rs, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "ID_cb110dd8cf55c19c22ff64a9cdf4d22e");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+        JdbcBind.extract(rs, "HARPIA_ID", builder, "HARPIA_ID");
         JdbcBind.extract(rs, "proposal", builder, "proposal");
         JdbcBind.extract(rs, "outcome", builder, "outcome");
         JdbcBind.extract(rs, "by", builder, "by");
         JdbcBind.extract(rs, "time", builder, "time");
         JdbcBind.extract(rs, "note", builder, "note");
         JdbcBind.extract(rs, "text", builder, "text");
-        JdbcBind.extract(rs, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.extract(rs, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", builder, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e");
-        JdbcBind.extract(rs, "ORIGINATOR", builder, "ORIGINATOR");
+        JdbcBind.extract(rs, "HARPIA_STATUS", builder, "HARPIA_STATUS");
+        JdbcBind.extract(rs, "HARPIA_ERROR", builder, "HARPIA_ERROR");
+        JdbcBind.extract(rs, "HARPIA_ORIGINATOR", builder, "HARPIA_ORIGINATOR");
+                return true;
+            }
+        }
+    }
+
+    public boolean readByProposal(String value, Review.Builder builder) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("SELECT \"HARPIA_ID\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"HARPIA_STATUS\", \"HARPIA_ERROR\", \"HARPIA_ORIGINATOR\" FROM \"review_table\" WHERE \"proposal\" = ?")) {
+            ps.setString(1, value);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+        JdbcBind.extract(rs, "HARPIA_ID", builder, "HARPIA_ID");
+        JdbcBind.extract(rs, "proposal", builder, "proposal");
+        JdbcBind.extract(rs, "outcome", builder, "outcome");
+        JdbcBind.extract(rs, "by", builder, "by");
+        JdbcBind.extract(rs, "time", builder, "time");
+        JdbcBind.extract(rs, "note", builder, "note");
+        JdbcBind.extract(rs, "text", builder, "text");
+        JdbcBind.extract(rs, "HARPIA_STATUS", builder, "HARPIA_STATUS");
+        JdbcBind.extract(rs, "HARPIA_ERROR", builder, "HARPIA_ERROR");
+        JdbcBind.extract(rs, "HARPIA_ORIGINATOR", builder, "HARPIA_ORIGINATOR");
+                return true;
+            }
+        }
+    }
+
+    public boolean update(Review msg) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("UPDATE \"review_table\" SET \"proposal\" = ?, \"outcome\" = ?, \"by\" = ?, \"time\" = ?, \"note\" = ?, \"text\" = ?, \"HARPIA_STATUS\" = ?, \"HARPIA_ERROR\" = ?, \"HARPIA_ORIGINATOR\" = ? WHERE \"HARPIA_ID\" = ?")) {
+        JdbcBind.bind(ps, 1, msg, "proposal");
+        JdbcBind.bind(ps, 2, msg, "outcome");
+        JdbcBind.bind(ps, 3, msg, "by");
+        JdbcBind.bind(ps, 4, msg, "time");
+        JdbcBind.bind(ps, 5, msg, "note");
+        JdbcBind.bind(ps, 6, msg, "text");
+        JdbcBind.bind(ps, 7, msg, "HARPIA_STATUS");
+        JdbcBind.bind(ps, 8, msg, "HARPIA_ERROR");
+        JdbcBind.bind(ps, 9, msg, "HARPIA_ORIGINATOR");
+            JdbcBind.bind(ps, 10, msg, "HARPIA_ID");
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public boolean remove(int id) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM \"review_table\" WHERE \"HARPIA_ID\" = ?")) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public boolean list(List<Review> out) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("SELECT \"HARPIA_ID\", \"proposal\", \"outcome\", \"by\", \"time\", \"note\", \"text\", \"HARPIA_STATUS\", \"HARPIA_ERROR\", \"HARPIA_ORIGINATOR\" FROM \"review_table\" ORDER BY \"HARPIA_ID\"");
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Review.Builder builder = Review.newBuilder();
+        JdbcBind.extract(rs, "HARPIA_ID", builder, "HARPIA_ID");
+        JdbcBind.extract(rs, "proposal", builder, "proposal");
+        JdbcBind.extract(rs, "outcome", builder, "outcome");
+        JdbcBind.extract(rs, "by", builder, "by");
+        JdbcBind.extract(rs, "time", builder, "time");
+        JdbcBind.extract(rs, "note", builder, "note");
+        JdbcBind.extract(rs, "text", builder, "text");
+        JdbcBind.extract(rs, "HARPIA_STATUS", builder, "HARPIA_STATUS");
+        JdbcBind.extract(rs, "HARPIA_ERROR", builder, "HARPIA_ERROR");
+        JdbcBind.extract(rs, "HARPIA_ORIGINATOR", builder, "HARPIA_ORIGINATOR");
                 out.add(builder.build());
             }
             return true;

@@ -57,7 +57,7 @@
   sets, acts), `Pitch` (include, pitch, logline, target audience),
   `Argument` (include, text).
 - `Include/workflow.harpia` — the film's workflow records (owner: shared;
-  ownership per table): table messages `Proposal` (`proposal_table`: an
+  ownership per table): `autokey` table messages `Proposal` (`proposal_table`: an
   agent's `BibleValue` for an existing bible item, its time and the change
   set it answered), `Review` (`review_table`: the creator's outcome of one
   proposal, unique by `proposal`), `Request` (`request_table`: from an
@@ -78,8 +78,12 @@
 - `BibleValue.number` is decimal text: Harpia's `float` is 32-bit and would
   change `1.85` on a round trip.
 - A message with a trailing table name (`} proposal_table;`) is a table:
-  Harpia adds its key column `ID_<hash>` and the DAOs, and the Java run
-  then also fills `generated/{db,rest,soap}`.
+  Harpia adds the DAOs, a `read_by_<field>` per `unique` field, and the Java
+  run then also fills `generated/{db,rest,soap}`. `autokey` lets the database
+  assign its key, `HARPIA_ID`.
+- Since Harpia V6 the hidden fields are `HARPIA_ID/_STATUS/_ERROR/_ORIGINATOR`
+  on their old wire numbers, so a changed root renames generated files but
+  no column: film databases keep opening.
 - `Character` already exists in `session.harpia` (capture), so the film's
   kinds are enum values, not messages.
 

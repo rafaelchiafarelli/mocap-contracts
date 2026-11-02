@@ -7,7 +7,7 @@ import "harpia_generated/protofiles/FrameSize_cb110dd8cf55c19c22ff64a9cdf4d22e.p
 import "harpia_generated/protofiles/FpsRange_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "harpia_generated/protofiles/ControlCapability_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message CameraInfo {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string camera_id = 2;
 CameraFacing facing = 3;
 string hardware_level = 4;
@@ -16,7 +16,7 @@ repeated float focal_lengths_mm = 6;
 repeated FrameSize sizes = 7;
 repeated FpsRange fps_ranges = 8;
 repeated ControlCapability controls = 9;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 10;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 11;
-string ORIGINATOR = 12;
+string HARPIA_STATUS = 10;
+string HARPIA_ERROR = 11;
+string HARPIA_ORIGINATOR = 12;
 }

@@ -5,11 +5,11 @@ option java_package = "com.harpia.generated";
 import "harpia_generated/protofiles/ScriptElement_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "harpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message AutoCompletionList {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 ScriptElement element = 2;
 Flag enabled = 3;
 repeated string items = 4;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 5;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 6;
-string ORIGINATOR = 7;
+string HARPIA_STATUS = 5;
+string HARPIA_ERROR = 6;
+string HARPIA_ORIGINATOR = 7;
 }

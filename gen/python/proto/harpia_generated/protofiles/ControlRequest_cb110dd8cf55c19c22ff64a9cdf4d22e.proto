@@ -6,14 +6,14 @@ import "harpia_generated/protofiles/StreamSettings_cb110dd8cf55c19c22ff64a9cdf4d
 import "harpia_generated/protofiles/ControlSetting_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 import "harpia_generated/protofiles/Flag_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message ControlRequest {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string request_id = 2;
 string serial = 3;
 StreamSettings stream = 4;
 repeated ControlSetting settings = 5;
 Flag want_device_info = 6;
 string reply_endpoint = 10;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 7;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 8;
-string ORIGINATOR_cb110dd8cf55c19c22ff64a9cdf4d22e = 9;
+string HARPIA_STATUS = 7;
+string HARPIA_ERROR = 8;
+string HARPIA_ORIGINATOR = 9;
 }

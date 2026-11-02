@@ -25,7 +25,7 @@ enum RequestStatus {
 // An agent proposes a value for an existing bible item
 // value state is always proposal and source is the memo path in the film root
 // change set is the bible sync file name the run answered
-message Proposal {
+autokey message Proposal {
     required unique string id;
     required string item;
     required BibleValue value;
@@ -34,7 +34,7 @@ message Proposal {
 } proposal_table;
 
 // The creator review of one proposal and text is the creator value when edited
-message Review {
+autokey message Review {
     required unique string proposal;
     required ReviewOutcome outcome;
     required string by;
@@ -44,7 +44,7 @@ message Review {
 } review_table;
 
 // A request from an agent to another agent or to the creator
-message Request {
+autokey message Request {
     required unique string id;
     required string from;
     required string to;

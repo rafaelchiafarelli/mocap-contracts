@@ -4,10 +4,10 @@ option java_package = "com.harpia.generated";
 
 import "harpia_generated/protofiles/CatalogMap_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message BibleCatalog {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 int32 version = 2;
 repeated CatalogMap maps = 3;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 4;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 5;
-string ORIGINATOR = 6;
+string HARPIA_STATUS = 4;
+string HARPIA_ERROR = 5;
+string HARPIA_ORIGINATOR = 6;
 }

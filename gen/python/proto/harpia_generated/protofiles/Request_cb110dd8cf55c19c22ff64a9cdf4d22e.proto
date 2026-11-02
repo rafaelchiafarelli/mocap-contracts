@@ -4,7 +4,7 @@ option java_package = "com.harpia.generated";
 
 import "harpia_generated/protofiles/RequestStatus_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
 message Request {
-int32 ID_cb110dd8cf55c19c22ff64a9cdf4d22e = 1;
+int32 HARPIA_ID = 1;
 string id = 2;
 string from = 3;
 string to = 4;
@@ -16,7 +16,7 @@ string time = 9;
 RequestStatus status = 10;
 optional string answer = 11;
 optional string answered_by = 12;
-string STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e = 13;
-string ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e = 14;
-string ORIGINATOR = 15;
+string HARPIA_STATUS = 13;
+string HARPIA_ERROR = 14;
+string HARPIA_ORIGINATOR = 15;
 }

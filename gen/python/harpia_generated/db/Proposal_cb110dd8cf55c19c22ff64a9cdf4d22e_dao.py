@@ -17,11 +17,13 @@ class Proposal_dao(Dao[Proposal]):
 
     MESSAGE = Proposal
     TABLE = 'proposal_table'
-    PK = 'ID_cb110dd8cf55c19c22ff64a9cdf4d22e'
+    PK = 'HARPIA_ID'
+    INSERT_AUTO_SQL = 'INSERT INTO "proposal_table" ("id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "HARPIA_ID"'
     COLUMNS = (
-        Column('ID_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ID_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
+        Column('HARPIA_ID', ('HARPIA_ID',)),
         Column('id', ('id',)),
         Column('item', ('item',)),
+        Column('HARPIA_HAS_value', ('value',), presence=True),
         Column('value_field', ('value', 'field')),
         Column('value_scene', ('value', 'scene')),
         Column('value_text', ('value', 'text')),
@@ -35,21 +37,31 @@ class Proposal_dao(Dao[Proposal]):
         Column('value_revisit', ('value', 'revisit')),
         Column('time', ('time',)),
         Column('change_set', ('change_set',)),
-        Column('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e', ('STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e', ('ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e',)),
-        Column('ORIGINATOR', ('ORIGINATOR',)),
+        Column('HARPIA_STATUS', ('HARPIA_STATUS',)),
+        Column('HARPIA_ERROR', ('HARPIA_ERROR',)),
+        Column('HARPIA_ORIGINATOR', ('HARPIA_ORIGINATOR',)),
     )
     CHILDREN = (
     )
     CREATE_TABLE_SQL = (
-        'CREATE TABLE IF NOT EXISTS "proposal_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e" INTEGER PRIMARY KEY, "id" TEXT NOT NULL UNIQUE, "item" TEXT NOT NULL, "value_field" TEXT, "value_scene" TEXT, "value_text" TEXT, "value_number" TEXT, "value_unit" TEXT, "value_note" TEXT, "value_state" INTEGER, "value_source" TEXT, "value_department" TEXT, "value_by" TEXT, "value_revisit" TEXT, "time" TEXT NOT NULL, "change_set" TEXT, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" TEXT, "ORIGINATOR" TEXT);',
+        'CREATE TABLE IF NOT EXISTS "proposal_table" ("HARPIA_ID" INTEGER PRIMARY KEY, "id" TEXT NOT NULL UNIQUE, "item" TEXT NOT NULL, "HARPIA_HAS_value" INTEGER, "value_field" TEXT, "value_scene" TEXT, "value_text" TEXT, "value_number" TEXT, "value_unit" TEXT, "value_note" TEXT, "value_state" INTEGER, "value_source" TEXT, "value_department" TEXT, "value_by" TEXT, "value_revisit" TEXT, "time" TEXT NOT NULL, "change_set" TEXT, "HARPIA_STATUS" TEXT, "HARPIA_ERROR" TEXT, "HARPIA_ORIGINATOR" TEXT);',
     )
     DROP_TABLE_SQL = (
         'DROP TABLE IF EXISTS "proposal_table";',
     )
-    INSERT_SQL = 'INSERT INTO "proposal_table" ("ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "item", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    SELECT_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "item", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "proposal_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    UPDATE_SQL = 'UPDATE "proposal_table" SET "id" = ?, "item" = ?, "value_field" = ?, "value_scene" = ?, "value_text" = ?, "value_number" = ?, "value_unit" = ?, "value_note" = ?, "value_state" = ?, "value_source" = ?, "value_department" = ?, "value_by" = ?, "value_revisit" = ?, "time" = ?, "change_set" = ?, "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?, "ORIGINATOR" = ? WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    DELETE_SQL = 'DELETE FROM "proposal_table" WHERE "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" = ?'
-    LIST_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "item", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "proposal_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e"'
-    LIST_PAGE_SQL = 'SELECT "ID_cb110dd8cf55c19c22ff64a9cdf4d22e", "id", "item", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "STATUS_cb110dd8cf55c19c22ff64a9cdf4d22e", "ERROR_cb110dd8cf55c19c22ff64a9cdf4d22e", "ORIGINATOR" FROM "proposal_table" ORDER BY "ID_cb110dd8cf55c19c22ff64a9cdf4d22e" LIMIT ? OFFSET ?'
+    INSERT_SQL = 'INSERT INTO "proposal_table" ("HARPIA_ID", "id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    SELECT_SQL = 'SELECT "HARPIA_ID", "id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "proposal_table" WHERE "HARPIA_ID" = ?'
+    UPDATE_SQL = 'UPDATE "proposal_table" SET "id" = ?, "item" = ?, "HARPIA_HAS_value" = ?, "value_field" = ?, "value_scene" = ?, "value_text" = ?, "value_number" = ?, "value_unit" = ?, "value_note" = ?, "value_state" = ?, "value_source" = ?, "value_department" = ?, "value_by" = ?, "value_revisit" = ?, "time" = ?, "change_set" = ?, "HARPIA_STATUS" = ?, "HARPIA_ERROR" = ?, "HARPIA_ORIGINATOR" = ? WHERE "HARPIA_ID" = ?'
+    DELETE_SQL = 'DELETE FROM "proposal_table" WHERE "HARPIA_ID" = ?'
+    LIST_SQL = 'SELECT "HARPIA_ID", "id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "proposal_table" ORDER BY "HARPIA_ID"'
+    LIST_PAGE_SQL = 'SELECT "HARPIA_ID", "id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "proposal_table" ORDER BY "HARPIA_ID" LIMIT ? OFFSET ?'
+    READ_BY_SQL = {'id': 'SELECT "HARPIA_ID", "id", "item", "HARPIA_HAS_value", "value_field", "value_scene", "value_text", "value_number", "value_unit", "value_note", "value_state", "value_source", "value_department", "value_by", "value_revisit", "time", "change_set", "HARPIA_STATUS", "HARPIA_ERROR", "HARPIA_ORIGINATOR" FROM "proposal_table" WHERE "id" = ?'}
+
+    def read_by_id(self, value: str, out: Proposal) -> bool:
+        """Load the row whose ``id`` (a ``unique`` field) is
+        ``value`` into ``out``.
+
+        Returns:
+            ``False`` when no such row exists (``out`` is untouched).
+        """
+        return self._read_by('id', value, out)
