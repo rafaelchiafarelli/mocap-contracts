@@ -12,6 +12,7 @@ enum RecordKind {
     RECORD_KIND_WARDROBE;
     RECORD_KIND_ANNOTATION;
     RECORD_KIND_PROPOSAL;
+    RECORD_KIND_REQUEST;
 }
 
 // The program and version that last wrote film json
@@ -21,6 +22,10 @@ message FilmOrigin {
 };
 
 // One part of the film with its path relative to the film root and its owner
+// The workflow part is the one database of workflow harpia and its owner is shared
+// Ownership inside it is per table
+// Proposals and requests are written by the agent whose space they carry
+// Reviews are written by the writer and a request is answered by its recipient
 message FilmPart {
     required string name;
     required string path;

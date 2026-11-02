@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/ValueState_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message BibleValue {
+int32 HARPIA_ID = 1;
+string field = 2;
+optional string scene = 3;
+optional string text = 4;
+optional string number = 5;
+optional string unit = 6;
+optional string note = 7;
+ValueState state = 8;
+string source = 9;
+string department = 10;
+string by = 11;
+optional string revisit = 12;
+string HARPIA_STATUS = 13;
+string HARPIA_ERROR = 14;
+string HARPIA_ORIGINATOR = 15;
+}

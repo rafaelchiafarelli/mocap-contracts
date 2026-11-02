@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/SceneChangeType_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message SceneChange {
+int32 HARPIA_ID = 1;
+SceneChangeType type = 2;
+string scene = 3;
+optional string old_value = 4;
+optional string new_value = 5;
+string HARPIA_STATUS = 6;
+string HARPIA_ERROR = 7;
+string HARPIA_ORIGINATOR = 8;
+}

@@ -28,5 +28,5 @@ Rules specific to this repository:
 | [film-records](film-records/film-records.md) | Done — released as `v0.5.0` (2026-10-28) |
 | [script-records](script-records/script-records.md) | Done — released as `v0.6.0` (2026-10-30) |
 | [preprod-records](preprod-records/preprod-records.md) | Done — released as `v0.7.0` (2026-10-31) |
-| [workflow-records](workflow-records/workflow-records.md) | Planned — proposals, reviews, requests in the film's SQLite database, `v0.8.0` |
+| **workflow-records** — the film's workflow database: proposals, reviews, requests | Done — released as `v0.8.0` (2026-11-01; history: `git log -- initiatives/workflow-records`) |
 | [bugs](bugs/bugs.md) | Open — a backlog, fixed when a bug gets in the way |

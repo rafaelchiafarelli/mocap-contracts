@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+enum ReviewOutcome {
+REVIEW_OUTCOME_UNSET = 0;
+REVIEW_OUTCOME_APPROVED = 1;
+REVIEW_OUTCOME_REJECTED = 2;
+REVIEW_OUTCOME_EDITED = 3;
+}

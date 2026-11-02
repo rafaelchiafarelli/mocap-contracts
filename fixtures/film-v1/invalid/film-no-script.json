@@ -29,6 +29,11 @@
       "name": "history",
       "path": "history/",
       "owner": "writer"
+    },
+    {
+      "name": "workflow",
+      "path": "workflow.sqlite",
+      "owner": "shared"
     }
   ],
   "spaces": [

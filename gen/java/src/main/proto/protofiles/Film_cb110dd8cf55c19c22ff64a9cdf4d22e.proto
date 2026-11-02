@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.harpia.generated";
+
+import "protofiles/FilmOrigin_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+import "protofiles/FilmPart_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+import "protofiles/IdSpace_cb110dd8cf55c19c22ff64a9cdf4d22e.proto";
+message Film {
+int32 HARPIA_ID = 1;
+int32 format_version = 2;
+FilmOrigin origin = 3;
+repeated FilmPart parts = 4;
+repeated IdSpace spaces = 5;
+string HARPIA_STATUS = 6;
+string HARPIA_ERROR = 7;
+string HARPIA_ORIGINATOR = 8;
+}
