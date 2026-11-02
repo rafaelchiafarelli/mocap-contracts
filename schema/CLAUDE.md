@@ -22,7 +22,8 @@
 - `Include/film.harpia` — `Film` (`film.json`), `FilmOrigin`, `FilmPart`,
   `IdSpace`, `IdCounters` (`ids/<code>.json`, a `map<string,int>`) and the
   `RecordKind` enum (owner: mocap-writer); `request` added for the
-  workflow records.
+  workflow records, and the part `workflow` (`workflow.sqlite`, owner
+  `shared`, per-table ownership in the comments).
 - `Include/bible.harpia` — the film bible (owner: mocap-writer):
   `BibleItem` (`item.json`), `BibleValue`, `BibleLink`, `NotProps`, the
   catalog messages `BibleCatalog`, `CatalogMap`, `CatalogGroup`,

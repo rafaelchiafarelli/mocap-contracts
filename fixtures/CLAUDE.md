@@ -13,7 +13,7 @@ consumers that implement the same formats.
   decodable stream, garbled SEIs, `sync.json` (`tools/make_stream_fixtures.py`).
 - `film-v1/` — film.harpia (`tools/make_film_fixtures.py`):
   - `film.json` — a new film's root index: the default parts of mocap-writer
-    file-format/layout/1, spaces `w` and `pcp`.
+    file-format/layout/1 plus `workflow`, spaces `w` and `pcp`.
   - `ids/w.json`, `ids/pcp.json` — those spaces' counters.
   - `invalid/<what>.json` — one broken field each; `invalid/expected.json`
     gives the message to read each as and a text its error holds.

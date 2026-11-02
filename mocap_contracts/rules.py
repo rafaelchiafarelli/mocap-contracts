@@ -363,6 +363,8 @@ def _film_part(msg: Message) -> Iterator[str]:
         yield "owner is empty"
     elif not film.OWNER.fullmatch(msg.owner):
         yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
+    elif (msg.name == film.WORKFLOW_PART) != (msg.owner == film.SHARED):
+        yield f"the {film.WORKFLOW_PART} part, and only that part, is owned by {film.SHARED!r}, got {msg.name!r} owned by {msg.owner!r}"
     if problem := film.path_problem(msg.path):
         yield problem
     elif msg.path == film.FILM_FILE or film.segments(msg.path)[0] == "ids":
@@ -383,7 +385,7 @@ def _film(msg: Message) -> Iterator[str]:
             if a[:len(b)] == b or b[:len(a)] == a:
                 yield f"parts {name!r} and {other!r}: one path is inside the other"
     if any(not film.SPACE_CODE.fullmatch(s.code) or not film.OWNER.fullmatch(s.owner)
-           for s in msg.spaces):
+           or s.owner == film.SHARED for s in msg.spaces):
         return  # the space itself names its broken field
     names = {p.name for p in msg.parts}
     spaces = {s.code: s.owner for s in msg.spaces}
@@ -398,7 +400,7 @@ def _film(msg: Message) -> Iterator[str]:
                 yield f"part {p.name!r}: no space {code!r}"
     owners = set(spaces.values())
     if bad := sorted({p.owner for p in msg.parts
-                          if film.OWNER.fullmatch(p.owner) and p.owner != film.WRITER} - owners):
+                          if film.OWNER.fullmatch(p.owner) and p.owner not in (film.WRITER, film.SHARED)} - owners):
         yield f"parts: owners {bad} have no space"
 
 
@@ -414,6 +416,8 @@ def _id_space(msg: Message) -> Iterator[str]:
         yield "owner is empty"
     elif not film.OWNER.fullmatch(msg.owner):
         yield f"owner must be 'writer' or an agent name in kebab-case, got {msg.owner!r}"
+    elif msg.owner == film.SHARED:
+        yield f"{film.SHARED!r} owns the workflow part only, never a space"
 
 
 def _id_counters(msg: Message) -> Iterator[str]:

@@ -21,20 +21,21 @@ file (the one it is given); nothing here creates folders.
   declared fields only, `required` and `*_UNSET` enforced, rules run, on
   write and on read.
 - `rules.py` — the rules `required` can't express, one function per message
-  in `RULES` (`rules.py:804`); `check` (`rules.py:873`) walks nested messages
+  in `RULES` (`rules.py:808`); `check` (`rules.py:877`) walks nested messages
   and raises with the path of the first problem.
 - `errors.py` — `ContractError` (a `ValueError`).
 - `layout.py` — the session folder layout of both capture PCs and
   `ID_PATTERN` (`layout.py:23`) for session, take and role ids.
 - `film.py` — the film root (film.harpia): `KINDS` read from `RecordKind`
-  (`film.py:25`, `request` added 2026-10-31), `RECORD_ID` (`film.py:42`), `SPACE_CODE` (`film.py:41`),
+  (`film.py:25`, `request` added 2026-10-31), `RECORD_ID` (`film.py:49`), `SPACE_CODE` (`film.py:48`),
   `WRITER`, `WRITER_SPACE`, `PART_NAMES` and `PROPOSALS_PREFIX`
   (`film.py:34-37`: `script`, `settings`, `bible`, `annotations`, `history`,
-  `front-matter`, `source`), `OWNER` (`film.py:40`), `FORMAT_VERSION`, `FILM_FILE`,
+  `front-matter`, `source`, `workflow`), `WORKFLOW_PART`, `WORKFLOW_FILE`,
+  `SHARED` (`film.py:43-45`), `OWNER` (`film.py:47`), `FORMAT_VERSION`, `FILM_FILE`,
   `check_record_id`, `record_id`, `check_space_code`, `ids_file`,
-  `history_file(time)` → `history/<yyyy-mm>.jsonl` (`film.py:73`);
-  `segments`, `path_problem` (`film.py:93`: relative, `/`, no empty, `.` or
-  `..` segment, Windows-safe names) and `check_path` (`film.py:117`), for
+  `history_file(time)` → `history/<yyyy-mm>.jsonl` (`film.py:80`);
+  `segments`, `path_problem` (`film.py:100`: relative, `/`, no empty, `.` or
+  `..` segment, Windows-safe names) and `check_path` (`film.py:124`), for
   any path a film record holds.
 - `bible.py` — the film bible (bible.harpia): `MAPS` read from `BibleMap`
   (`bible.py:30`), `MAP_FOLDERS` (`sets`, `characters`, `props`,
@@ -73,7 +74,7 @@ file (the one it is given); nothing here creates folders.
 - `to_json` writes map keys sorted (`jsonio.py:114`): protobuf keeps no map
   order, so without it `ids/<code>.json` came out in a different order each
   time.
-- Film rules (`rules.py:357-424`): `format_version` must be 1; part paths
+- Film rules (`rules.py:357-428`): `format_version` must be 1; part paths
   pass `film.path_problem` and are never `film.json` or under `ids/`; no
   part path inside or equal to another, compared by segment, so `bible/`
   and `bible-old/` don't clash; part names and space codes unique; counter
@@ -81,11 +82,14 @@ file (the one it is given); nothing here creates folders.
   (film-records/messages/1): a `script` part and a `w` space owned by
   `writer`; part names from `PART_NAMES` or `proposals-<code>` with a
   listed space; owners `writer` or kebab-case; every non-writer part owner
-  has a space (`rules.py:373-402`).
+  has a space (`rules.py:375-404`). The owner `shared` goes with the part
+  `workflow` and nothing else (`rules.py:366`, `:419`; decided 2026-10-31,
+  workflow-records workflow/3): ownership inside that one file is per table,
+  and it needs no space.
 - `_film` skips its cross-list checks while a space has a broken code or
-  owner (`rules.py:387-389`), so the error names the space, not a
+  owner, or a space owned by `shared` (`rules.py:387-389`), so the error names the space, not a
   consequence of it.
-- Bible rules (`rules.py:426-532`, the values in `_values`, `rules.py:508`,
+- Bible rules (`rules.py:430-536`, the values in `_values`, `rules.py:512`,
   shared with annotations): catalog keys and per-type extras
   (options only on a choice, unit only on a number, `link_kind` only on a
   link); a value holds text or a decimal number with a unit, a `TBD` needs
@@ -96,11 +100,11 @@ file (the one it is given); nothing here creates folders.
   scene key; a parent is an id of the same map; only a wardrobe link names
   an item (the character). A choice accepts text outside its options (the
   free "other").
-- Change rules (`rules.py:588-612`): `time` UTC ISO-8601 ending in `Z` and
+- Change rules (`rules.py:592-616`): `time` UTC ISO-8601 ending in `Z` and
   a real date; `by` kebab-case; `path` a film path; `record` a record id
   when present; a create has `after` only, an update both, a delete
   `before` only.
-- Annotation rules (`rules.py:534-578`): an anchor's scene is a scene
+- Annotation rules (`rules.py:538-582`): an anchor's scene is a scene
   number, its element ≥ 0 (the heading is 0), a quote needs its element
   and an occurrence its quote (from 1); an id `annotation-…`; only a shot
   has a shot number, and it must; values checked against the kind's
@@ -111,26 +115,26 @@ file (the one it is given); nothing here creates folders.
   their default value last, so the key order would depend on the values
   (changed 2026-10-30; files written by `v0.5.0` read the same, only the
   order differs).
-- Script settings rules (`rules.py:615-672`): Trelby's limits refused, not
+- Script settings rules (`rules.py:619-676`): Trelby's limits refused, not
   clamped (font size 4–72, margins 0–900 mm, paper 50–1000 × 100–1000
   mm, page-break lines 1–30, scene-continued indent −20–80, spacing 0–50
   and 0–20 tenths, indent 0–80, width 5–80, header line 1–5 and offset
   −100–100, empty lines after 0–5, title size 4–288); one style for every
   element; one completion list per element; a PDF font name without
   spaces, non-ASCII or `[]{}()<>/%`.
-- Scene index rules (`rules.py:675-722`): scene numbers in the writer's
+- Scene index rules (`rules.py:679-726`): scene numbers in the writer's
   form, each once, `order` 1..n in list order; `set_id`, a character's and
   a prop's `id` record ids of their kind; pages and lines from 1, last ≥
   first; hashes 64 lower-case hex; names and words not blank.
-- Change set rules (`rules.py:725-734`): `time` as a `Change`'s (`_time`,
-  `rules.py:591`); `from_hash` (absent on a first sync) and `to_hash` 64
+- Change set rules (`rules.py:729-738`): `time` as a `Change`'s (`_time`,
+  `rules.py:595`); `from_hash` (absent on a first sync) and `to_hash` 64
   lower-case hex; each change's scene a scene number.
-- Front matter rules (`rules.py:737`): no blank co-author; every text
+- Front matter rules (`rules.py:741`): no blank co-author; every text
   may be empty (not filled in), every `include` and list flag set.
-- Workflow rules (`rules.py:742-801`, workflow.harpia): a proposal's id is
+- Workflow rules (`rules.py:746-805`, workflow.harpia): a proposal's id is
   `proposal-…`, its item a bible item's id, its value checked against that
   map's catalog fields (`_values`) with state `VALUE_STATE_PROPOSAL`, `by`
-  an agent (never `creator` or `writer`, `_agent`, `rules.py:745`), source
+  an agent (never `creator` or `writer`, `_agent`, `rules.py:749`), source
   a film path, `change_set` a plain `.json` file name; a review names a
   proposal id, `by` is `creator`, `text` on an edited review and only
   there; a request's id is `request-…`, `from` an agent, `to` an agent or
